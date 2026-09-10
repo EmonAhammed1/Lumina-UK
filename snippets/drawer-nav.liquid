@@ -1,24 +1,23 @@
-<!-- drawer-nav.liquid v2-not-eam -->
+<!-- drawer-nav.liquid -->
 <div class="grid grid--no-gutters meganav__scroller meganav__scroller--has-list">
   <div class="grid__item meganav__list">
     {%- for childlink in link.links -%}
-      {%- assign t = childlink.title | downcase -%}
-      {%- if t contains 'team' or t contains 'echip' -%}
-        {%- continue -%}
-      {%- endif -%}
       {%- assign childlink_url = childlink.url -%}
-      {%- if t contains 'conversat' -%}
-        {%- assign childlink_url = '/pages/lumina-world#conversations' -%}
-      {%- elsif t contains 'articl' or t contains 'articol' -%}
-        {%- assign childlink_url = '/pages/lumina-world#articles' -%}
-      {%- elsif t contains 'journal' or t contains 'jurnal' or t contains 'blog' -%}
-        {%- assign childlink_url = '/pages/lumina-world#journal' -%}
-      {%- elsif t contains 'film' or t contains 'manifest' -%}
-        {%- assign childlink_url = '/pages/lumina-world#films' -%}
-      {%- elsif t contains 'galler' or t contains 'galeri' -%}
-        {%- assign childlink_url = '/pages/lumina-world#gallery' -%}
-      {%- elsif t contains 'follow' or t contains 'urmar' or t contains 'social' -%}
-        {%- assign childlink_url = '/pages/lumina-world#follow-lumina' -%}
+      {%- if childlink_url == blank or childlink_url == '#' -%}
+        {%- assign t = childlink.title | downcase -%}
+        {%- if t contains 'conversat' -%}
+          {%- assign childlink_url = '/pages/lumina-world#conversations' -%}
+        {%- elsif t contains 'articl' or t contains 'articol' -%}
+          {%- assign childlink_url = '/pages/lumina-world#articles' -%}
+        {%- elsif t contains 'journal' or t contains 'jurnal' -%}
+          {%- assign childlink_url = '/pages/lumina-world#journal' -%}
+        {%- elsif t contains 'film' or t contains 'manifest' -%}
+          {%- assign childlink_url = '/pages/lumina-world#films' -%}
+        {%- elsif t contains 'galler' or t contains 'galeri' -%}
+          {%- assign childlink_url = '/pages/gallery' -%}
+        {%- elsif t contains 'follow' or t contains 'urmar' or t contains 'social' -%}
+          {%- assign childlink_url = '/pages/lumina-world#social' -%}
+        {%- endif -%}
       {%- endif -%}
     <li class="drawer__nav-item">
       {%- if childlink.links != blank -%}
