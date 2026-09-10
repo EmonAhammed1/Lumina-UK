@@ -1,0 +1,331 @@
+<!-- sections/lumina-world-manifesto.liquid -->
+<style>
+  .lumina-manifesto-section {
+    background-color: #040404;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding: 60px 0;
+    border-top: 1px solid rgba(197, 160, 89, 0.25);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+    scroll-margin-top: 90px;
+  }
+
+  .lwm-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 45px;
+    box-sizing: border-box;
+  }
+
+  .lwm-grid-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    border: 1px solid rgba(197, 160, 89, 0.25);
+  }
+
+  /* Left Column: Text Content */
+  .lwm-col-left {
+    flex: 0 0 50%;
+    max-width: 50%;
+    background-color: #050505;
+    background-image: radial-gradient(circle at left center, rgba(30, 25, 18, 0.3) 0%, rgba(5, 5, 5, 0.95) 100%);
+    border-right: 1px solid rgba(197, 160, 89, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 70px 60px;
+    box-sizing: border-box;
+  }
+
+  .lwm-content-inner {
+    max-width: 480px;
+  }
+
+  .lwm-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #c5a059;
+    font-weight: 500;
+    margin-bottom: 20px;
+    opacity: 0.9;
+  }
+
+  .lwm-title {
+    font-family: var(--g-font-2), "Cormorant Garamond", "Times New Roman", serif;
+    font-size: 44px;
+    line-height: 1.15;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0 0 24px 0;
+    letter-spacing: 0.02em;
+  }
+
+  .lwm-title-gold {
+    color: #c5a059;
+    font-style: normal;
+  }
+
+  .lwm-desc-1 {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.72);
+    margin-bottom: 18px;
+    font-weight: 300;
+  }
+
+  .lwm-desc-2 {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 35px;
+    font-weight: 300;
+  }
+
+  .lwm-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #c5a059;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .lwm-cta-link:hover {
+    color: #d8b26a;
+    transform: translateX(4px);
+  }
+
+  .lwm-cta-arrow {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+  }
+
+  .lwm-cta-link:hover .lwm-cta-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Right Column: Media (Image or Video) */
+  .lwm-col-right {
+    flex: 0 0 50%;
+    max-width: 50%;
+    position: relative;
+    overflow: hidden;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+  }
+
+  .lwm-media-box {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .lwm-media-box img,
+  .lwm-media-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Responsive & Layout Adjustments */
+  @media (min-width: 992px) {
+    .lwm-col-left {
+      flex: 0 0 50%;
+      max-width: 50%;
+      padding: 70px 60px;
+    }
+    .lwm-content-inner {
+      max-width: 500px;
+      margin-left: 0;
+      padding-left: 0;
+    }
+    .lwm-col-right {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+
+  @media (max-width: 1199px) and (min-width: 992px) {
+    .lwm-title { font-size: 38px; }
+    .lwm-col-left { padding: 50px 40px; }
+  }
+
+  @media (max-width: 991px) {
+    .lumina-manifesto-section { padding: 40px 0; }
+    .lwm-container { padding: 0 15px; }
+    .lwm-col-left, .lwm-col-right {
+      flex: 0 0 100%;
+      max-width: 100%;
+      border-right: none;
+    }
+    .lwm-col-left {
+      border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+      padding: 50px 24px;
+    }
+    .lwm-content-inner {
+      max-width: 100%;
+      margin-left: 0;
+    }
+    .lwm-col-right {
+      min-height: 340px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .lwm-title { font-size: 32px; }
+    .lwm-desc-1 { font-size: 13.5px; }
+    .lwm-col-right { min-height: 280px; }
+  }
+</style>
+
+<div id="films" class="lumina-manifesto-section">
+  <div class="lwm-container">
+    <div class="lwm-grid-wrap">
+
+      <!-- LEFT COLUMN: Text Content -->
+      <div class="lwm-col-left">
+        <div class="lwm-content-inner">
+          {%- if section.settings.eyebrow != blank -%}
+            <div class="lwm-eyebrow">{{ section.settings.eyebrow }}</div>
+          {%- endif -%}
+
+          {%- if section.settings.title != blank -%}
+            <h2 class="lwm-title">
+              {{ section.settings.title }}
+              {%- if section.settings.title_gold != blank -%}
+                <span class="lwm-title-gold">{{ section.settings.title_gold }}</span>
+              {%- endif -%}
+            </h2>
+          {%- endif -%}
+
+          {%- if section.settings.paragraph_1 != blank -%}
+            <div class="lwm-desc-1">{{ section.settings.paragraph_1 }}</div>
+          {%- endif -%}
+
+          {%- if section.settings.paragraph_2 != blank -%}
+            <div class="lwm-desc-2">{{ section.settings.paragraph_2 }}</div>
+          {%- endif -%}
+
+          {%- if section.settings.btn_label != blank -%}
+            <a href="{{ section.settings.btn_link | default: '#' }}" class="lwm-cta-link">
+              {{ section.settings.btn_label }}
+              <span class="lwm-cta-arrow">&rarr;</span>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Image or Video -->
+      <div class="lwm-col-right">
+        <div class="lwm-media-box">
+          {%- if section.settings.video_url != blank -%}
+            <video autoplay loop muted playsinline poster="{{ section.settings.image | image_url: width: 1200 }}">
+              <source src="{% if section.settings.video_url contains 'http' %}{{ section.settings.video_url }}{% else %}{{ section.settings.video_url | file_url }}{% endif %}" type="video/mp4">
+              <source src="{{ '3_lumina_world_manifesto_talk.mp4' | file_url }}" type="video/mp4">
+              <source src="{{ 'video 1 presentation.mp4' | file_url }}" type="video/mp4">
+            </video>
+          {%- elsif section.settings.image != blank -%}
+            <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.title | escape }}" loading="lazy">
+          {%- else -%}
+            <video autoplay loop muted playsinline poster="{{ 'lumina-experience-reborn.png' | asset_url }}">
+              <source src="{{ '3_lumina_world_manifesto_talk.mp4' | file_url }}" type="video/mp4">
+              <source src="{{ 'video 1 presentation.mp4' | file_url }}" type="video/mp4">
+              <source src="https://cdn.shopify.com/videos/c/o/v/06637b7d08654c609c15feae7fb90035.mp4" type="video/mp4">
+            </video>
+          {%- endif -%}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Lumina Manifesto Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Text Settings"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "MANIFESTUL"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title (White Text)",
+      "default": "A digital magazine"
+    },
+    {
+      "type": "text",
+      "id": "title_gold",
+      "label": "Main Title (Gold Text)",
+      "default": "cu un scop."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_1",
+      "label": "Paragraph 1",
+      "default": "LUMINA WORLD is our editorial space for ideas that illuminate. A place for conversations with remarkable minds, stories from the frontiers of beauty and science, and inspiration for living with intention."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_2",
+      "label": "Paragraph 2",
+      "default": "Carefully curated. Shared with a purpose."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button / CTA Label",
+      "default": "EXPLORE THE MANIFESTO"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Right Media Settings (Image or Video)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Right Column Image"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Right Column MP4 Video URL",
+      "info": "If provided, video will autoplay instead of image."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lumina Manifesto Banner"
+    }
+  ]
+}
+{% endschema %}

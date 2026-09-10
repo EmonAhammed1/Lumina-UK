@@ -1,0 +1,202 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "find_your_ritual_RH3RET": {
+      "type": "find-your-ritual",
+      "blocks": {
+        "step_1_XqP9dk": {
+          "type": "step_1",
+          "settings": {
+            "area_value": "face",
+            "title": "Face",
+            "bg_image": "shopify://shop_images/Ten.png"
+          }
+        },
+        "step_1_knM7yb": {
+          "type": "step_1",
+          "settings": {
+            "area_value": "eyes",
+            "title": "Eyes",
+            "bg_image": "shopify://shop_images/Ochi.png"
+          }
+        },
+        "step_1_UfCHEx": {
+          "type": "step_1",
+          "settings": {
+            "area_value": "neck",
+            "title": "Neck",
+            "bg_image": "shopify://shop_images/Gat.png"
+          }
+        },
+        "step_1_jpPn8B": {
+          "type": "step_1",
+          "settings": {
+            "area_value": "decollete",
+            "title": "Décolleté",
+            "bg_image": "shopify://shop_images/Decolteu.png"
+          }
+        },
+        "product_match_jJfyw8": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Soothing for Sensitive Skin",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-skin-smoothing-sheet-mask"
+          }
+        },
+        "product_match_yfTXr9": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Deep Hydration",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-hydrating-sheet-mask"
+          }
+        },
+        "product_match_DQPbkt": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Refresh (Mist)",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-hydro-mist-cu-acid-hialuronic"
+          }
+        },
+        "product_match_4pC6Xr": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Stain Removal and Uniformity",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-brightening-sheet-mask"
+          }
+        },
+        "product_match_Vn8VtV": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Intense Brightness",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-intensive-wipe-mask-for-luminosity"
+          }
+        },
+        "product_match_awcwHE": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Prevention Aging",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-anty-aging-sheet-mask"
+          }
+        },
+        "product_match_BJxJhH": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Anti-Aging Intensiv",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro"
+          }
+        },
+        "product_match_wgPYh8": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Firmness and Lifting",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-collagen-face-mask-for-lifting"
+          }
+        },
+        "product_match_XMH37q": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Regeneration and Repair",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-regenerating-sheet-mask"
+          }
+        },
+        "product_match_biz7hY": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Revitalization and Energy",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-intensive-wipe-mask-for-luminosity"
+          }
+        },
+        "product_match_UGVefg": {
+          "type": "product_match",
+          "settings": {
+            "area": "eyes",
+            "goal": "",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-anti-aging-eye-mask"
+          }
+        },
+        "product_match_8jcFqE": {
+          "type": "product_match",
+          "settings": {
+            "area": "neck",
+            "goal": "",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-anti-aging-neck-mask"
+          }
+        },
+        "product_match_gQj3rm": {
+          "type": "product_match",
+          "settings": {
+            "area": "decollete",
+            "goal": "",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-anti-aging-mask-for-décolletage"
+          }
+        }
+      },
+      "block_order": [
+        "step_1_XqP9dk",
+        "step_1_knM7yb",
+        "step_1_UfCHEx",
+        "step_1_jpPn8B",
+        "product_match_jJfyw8",
+        "product_match_yfTXr9",
+        "product_match_DQPbkt",
+        "product_match_4pC6Xr",
+        "product_match_Vn8VtV",
+        "product_match_awcwHE",
+        "product_match_BJxJhH",
+        "product_match_wgPYh8",
+        "product_match_XMH37q",
+        "product_match_biz7hY",
+        "product_match_UGVefg",
+        "product_match_8jcFqE",
+        "product_match_gQj3rm"
+      ],
+      "settings": {
+        "subtitle": "Personalize your care",
+        "title": "Find Your Perfect Ritual",
+        "description": "Each area of ​​your skin has unique needs. Choose the area you want to treat...",
+        "bg_color": "#000000",
+        "bg_image": "shopify://shop_images/quiz-section.png"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "find_your_ritual_RH3RET"
+  ]
+}

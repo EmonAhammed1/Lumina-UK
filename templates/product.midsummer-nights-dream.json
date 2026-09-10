@@ -1,0 +1,641 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "mask-menu-trigger": {
+      "type": "mask-menu-quick-trigger",
+      "settings": {
+        "sidebar_title": "Masks Collection",
+        "menu": "main-menu"
+      }
+    },
+    "exp-promise": {
+      "type": "experience-benefits",
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container-fluid",
+        "bg_text_col": "#010101",
+        "bg_stats_box": "#0d0d0f",
+        "bgsection": "#010101",
+        "color_heading": "#b8963e",
+        "color_text": "#cccccc",
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "main": {
+      "type": "experience-product",
+      "blocks": {
+        "judge_me_reviews_preview_badge_cEVbfm": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_preview_badge_cEVbfm"
+      ],
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container-fluid",
+        "gold_color": "#c5a059",
+        "rating_val": "",
+        "reviews_count": "",
+        "slogan": "Volume. Hydration. Shine.",
+        "app_time": "5 minutes to transform your skin",
+        "show_gift_button": false,
+        "show_routine_button": true,
+        "why_love_title": "Why you will love it",
+        "why_love_content": "<p> Deeply hydrates, volumizes and restores skin radiance in just 5 minutes. Perfect for a quick skin refresh or a weekly luxury skin care ritual. </p>",
+        "nano_title": "Nanofiber Technology",
+        "nano_content": "<p> Specially designed nanofibers activate only on contact with wet skin, delivering active ingredients directly to where they are needed most. The ultra-fine nanofiber matrix ensures maximum absorption and optimal breathability. </p>",
+        "ingredients_title": "Key Ingredients",
+        "ingredients_content": "<p><strong>Hyaluronic Acid, Niacinamide, Panthenol, Ectoin, Allantoin, Beta-Glucan.</strong><br/><br/>Formulated without parabens, fragrances, mineral oils and silicones. </p>"
+      }
+    },
+    "product-requently": {
+      "type": "product-bundle",
+      "settings": {
+        "animation": "fade-up",
+        "bgsection": "#ffffff",
+        "bundle_title": "Frequently purchased together",
+        "size_text": "h4",
+        "limit_bundle": 3,
+        "enable_border": true,
+        "btn_add": "Add selected items",
+        "paddingsection": "40px 0px 40px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "product-content": {
+      "type": "product-content",
+      "blocks": {
+        "6889c9ba-caef-4edd-9757-6711505cb095": {
+          "type": "description",
+          "settings": {
+            "title_tab": "Description",
+            "enable_special": true,
+            "left_heading": "Intense hydration. Visible transformation.",
+            "metafield_source": "descriere",
+            "feat_1_icon": "water",
+            "feat_1_text": "Deep hydration and regeneration",
+            "feat_2_icon": "sparkle",
+            "feat_2_text": "Strengthens and soothes",
+            "feat_3_icon": "wave",
+            "feat_3_text": "Bring back the shine and comfort",
+            "feat_4_icon": "leaf",
+            "feat_4_text": "Perfect for all skin types, including sensitive skin",
+            "mid_image": "shopify://shop_images/result_-_7_3a96c0a5-e331-4ed1-9777-7d00101e2443.webp",
+            "card_1_title": "TRANSFORMATION IN 5 MINUTES",
+            "card_1_time": "05:00",
+            "timeline_val_1": "01:00",
+            "timeline_lbl_1": "Activare",
+            "timeline_val_2": "04:00",
+            "timeline_lbl_2": "Absorption",
+            "timeline_val_3": "05:00",
+            "timeline_lbl_3": "Transformare",
+            "card_2_title": "PERFECT FOR",
+            "perfect_1": "Dehydrated and tired skin",
+            "perfect_2": "After long journeys or flights",
+            "perfect_3": "Before special events",
+            "perfect_4": "When your skin needs an instant recovery"
+          }
+        },
+        "b69a53cf-5bc1-4b18-add3-92af436f966c": {
+          "type": "content",
+          "settings": {
+            "title_tab": "How to use",
+            "metafield_source": "mod_utilizare",
+            "answer_content": "",
+            "page": ""
+          }
+        },
+        "450a0011-a13e-4bad-9fbb-454bc0a862b4": {
+          "type": "content",
+          "settings": {
+            "title_tab": "Key ingredients",
+            "metafield_source": "ingrediente_cheie",
+            "answer_content": "",
+            "page": ""
+          }
+        },
+        "f4c1b859-6506-4354-b686-25d6efffda01": {
+          "type": "content",
+          "settings": {
+            "title_tab": "Rezultate clinice",
+            "metafield_source": "rezultate_clinice",
+            "answer_content": "",
+            "page": ""
+          }
+        },
+        "2e69c5c0-ab83-4cda-9c38-1aaab6fdf1cc": {
+          "type": "related-product",
+          "settings": {
+            "title_heading": "Buy with",
+            "size_text": "h6",
+            "product_limit": 3
+          }
+        }
+      },
+      "block_order": [
+        "6889c9ba-caef-4edd-9757-6711505cb095",
+        "b69a53cf-5bc1-4b18-add3-92af436f966c",
+        "450a0011-a13e-4bad-9fbb-454bc0a862b4",
+        "f4c1b859-6506-4354-b686-25d6efffda01",
+        "2e69c5c0-ab83-4cda-9c38-1aaab6fdf1cc"
+      ],
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container-fluid",
+        "tab_size": "full",
+        "enable_left": true,
+        "paddingsection": "48px 0px 20px 0px",
+        "paddingmobile": "32px 0px 32px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px",
+        "show_social_right": true,
+        "social_right_text": "Artistic images (TBC) may be associated with social media posts.",
+        "social_img_1": "shopify://shop_images/PEPTIDE.webp",
+        "social_img_2": "shopify://shop_images/CENTELLA.webp",
+        "social_img_3": "shopify://shop_images/HYALURONIC.webp"
+      }
+    },
+    "exp-transformation": {
+      "type": "experience-transformation",
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container-fluid",
+        "gold_color": "#c5a059",
+        "section_title": "Transformation in 5 minutes",
+        "show_separator": true,
+        "col_1_time": "01:00",
+        "col_1_title": "PURE ACTIVE DIFFUSION",
+        "col_1_text": "<p><strong>Dry technology</strong>- Nanofibers activate only on contact with wet skin, eliminating product wastage. </p>",
+        "col_2_img": "shopify://shop_images/pure_transfer_5_min.jpg",
+        "col_2_time": "04:00",
+        "col_2_title": "TRANSFER PUR",
+        "col_2_text": "<p> Direct transfer of ingredients into the dermis, offering results 10x faster than classic masks. </p>",
+        "col_3_time": "05:00",
+        "col_3_title": "PUR PRIN DESIGN",
+        "col_3_text": "<p> Pure formula without parabens, fragrances or preservatives. Ideal for sensitive skin. </p>",
+        "bottom_text": "5 MINUTES THAT CHANGE EVERYTHING. VISIBLE RESULTS THAT LAST."
+      }
+    },
+    "exp-alchemy": {
+      "type": "experience-alchemy",
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container-fluid",
+        "gold_color": "#c5a059",
+        "section_title": "Alchimia",
+        "show_separator": true,
+        "subtitle": "KEY INGREDIENTS",
+        "desc": "<p> Pure formulas with concentrated active ingredients, delivered directly to the dermis through the nanofiber structure. </p>",
+        "autoplay": true,
+        "autoplay_speed": 5000,
+        "card_bg": "#0d0d0f",
+        "text_color": "#ffffff",
+        "metafield_key": "filter.ingredients",
+        "desc_color": "#cccccc"
+      }
+    },
+    "exp-video": {
+      "type": "experience-video",
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container-fluid",
+        "gold_color": "#c5a059",
+        "section_title": "Where the light begins",
+        "show_separator": true,
+        "subtitle": "",
+        "desc": "<p> It all starts with a touch.<br>Hydro Mist preps the skin. The dry mask settles easily and the nanofibers begin to transform, releasing the active ingredients in a smooth, silent, precise ritual.<br>You don't just see a technology. See the moment care becomes light. </p>",
+        "link_video": "https://cdn.shopify.com/videos/c/o/v/daa8f8991d7e47419cbd9ff37f3f6f05.mp4",
+        "video_url": "",
+        "autoplay": true,
+        "muted": true,
+        "loop": true,
+        "controls": false,
+        "aspect_ratio": "16-9",
+        "desc_color": "#cccccc"
+      }
+    },
+    "exp-rituals": {
+      "type": "experience-rituals",
+      "blocks": {
+        "ritual_1": {
+          "type": "ritual",
+          "settings": {
+            "product": "nano-beauty-pro",
+            "item_type": "product",
+            "title": "",
+            "subtitle": "",
+            "price": "",
+            "link": ""
+          }
+        },
+        "ritual_2": {
+          "type": "ritual",
+          "settings": {
+            "product": "nano-beauty-pro-anti-aging-mask-for-décolletage",
+            "item_type": "product",
+            "title": "",
+            "subtitle": "",
+            "price": "",
+            "link": "",
+            "image": "shopify://shop_images/skinsotthing_back.png"
+          }
+        },
+        "ritual_3": {
+          "type": "ritual",
+          "settings": {
+            "product": "nano-beauty-pro",
+            "item_type": "product",
+            "title": "",
+            "subtitle": "",
+            "price": "",
+            "link": "",
+            "image": "shopify://shop_images/iluminare_back_-_copie.png"
+          }
+        },
+        "ritual_4": {
+          "type": "ritual",
+          "settings": {
+            "product": "nano-beauty-pro-regenerating-sheet-mask",
+            "item_type": "product",
+            "title": "",
+            "subtitle": "",
+            "price": "",
+            "link": "",
+            "image": "shopify://shop_images/masca_A.A._neck_back.png"
+          }
+        },
+        "ritual_5": {
+          "type": "ritual",
+          "settings": {
+            "product": "nano-beauty-pro-collagen-face-mask-for-lifting",
+            "item_type": "bundle",
+            "title": "",
+            "subtitle": "",
+            "price": "",
+            "link": "",
+            "image": "shopify://shop_images/masca_A.A._neck_front.png"
+          }
+        },
+        "ritual_6": {
+          "type": "ritual",
+          "settings": {
+            "product": "nano-beauty-pro-anti-aging-neck-mask",
+            "item_type": "product",
+            "title": "",
+            "subtitle": "",
+            "price": "",
+            "link": "",
+            "image": "shopify://shop_images/masca_regenerare_back.png"
+          }
+        }
+      },
+      "block_order": [
+        "ritual_1",
+        "ritual_2",
+        "ritual_3",
+        "ritual_4",
+        "ritual_5",
+        "ritual_6"
+      ],
+      "settings": {
+        "animation": "fade-up",
+        "bg_color": "#000000",
+        "gold_color": "#c5a059",
+        "card_bg": "#0d0d0f",
+        "subtitle": "REVEAL MORE RITUALS",
+        "title": "Your Journey, Your Rituals",
+        "description": "Every skin has its moment. Discover the perfect rituals designed to support your skin – and your life.",
+        "center_image": "{{ product.featured_image }}",
+        "center_title": "LUMINA EUROPA",
+        "center_name": "HYDRATING RECOVERY MASK",
+        "center_sub": "",
+        "center_link": "",
+        "btn_label": "DISCOVER ALL RITUALS",
+        "btn_link": ""
+      }
+    },
+    "experience_under_microscope_pHQJR3": {
+      "type": "experience-under-microscope",
+      "blocks": {
+        "feature_YgWBWY": {
+          "type": "feature",
+          "settings": {
+            "icon": "molecule",
+            "title": "PATENTED NANOFIBER TECHNOLOGY",
+            "description": "Ultra-fine nanofibers create a smart structure that stays dry and stable until activated."
+          }
+        },
+        "feature_hctX3w": {
+          "type": "feature",
+          "settings": {
+            "icon": "delivery",
+            "title": "ACTIVE DELIVERY",
+            "description": "On contact with wet skin, the fibers dissolve instantly, delivering the active ingredients directly to where they are needed most."
+          }
+        },
+        "feature_MYLLkH": {
+          "type": "feature",
+          "settings": {
+            "icon": "leaf",
+            "title": "FORMAT WITHOUT PRESERVATIVES",
+            "description": "Our dry format eliminates the need for parabens, added fragrances and unnecessary preservatives - perfect for sensitive skin."
+          }
+        }
+      },
+      "block_order": [
+        "feature_YgWBWY",
+        "feature_hctX3w",
+        "feature_MYLLkH"
+      ],
+      "name": "Experience Microscope Explorer",
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container",
+        "subtitle": "SUB MICROSCOP",
+        "title": "Science you can see. Results you can feel.",
+        "desc": "<p> Our patented nanofiber technology is designed for precise delivery, activating only on contact with wet skin – ensuring the maximum performance of each pure ingredient. </p>",
+        "scroll_label": "SCROLL TO EXPLORE",
+        "stage_1_label": "MICRO",
+        "stage_1_title": "Structure of Nanofibers",
+        "stage_1_video_url": "https://cdn.shopify.com/videos/c/o/v/a3f8b7ec2b264fbda558acd951f1b106.mp4",
+        "stage_2_label": "ACTIVE",
+        "stage_2_title": "Delivery of Ingredients",
+        "stage_2_video_url": "",
+        "stage_3_label": "DEEP",
+        "stage_3_title": "Skin penetration",
+        "stage_3_video_url": "",
+        "stage_4_label": "RESULT",
+        "stage_4_title": "Visible Transformation",
+        "stage_4_video_url": "",
+        "btn_label": "DISCOVER TECHNOLOGY",
+        "btn_link": "",
+        "bg_color": "#010101",
+        "accent_color": "#b8963e",
+        "text_color": "#af9552",
+        "desc_color": "#cccccc",
+        "border_color": "#ffffff14"
+      }
+    },
+    "exp-trust": {
+      "type": "experience-promise",
+      "blocks": {
+        "shipping_block": {
+          "type": "promise",
+          "settings": {
+            "icon_type": "shipping",
+            "custom_svg": "",
+            "title": "FREE DELIVERY",
+            "description": "Enjoy fast and insured delivery right to your door on all orders.",
+            "link": ""
+          }
+        },
+        "circle_block": {
+          "type": "promise",
+          "settings": {
+            "icon_type": "circle",
+            "custom_svg": "",
+            "title": "LUMINA CIRCLE",
+            "description": "Join our exclusive club to receive priority access, special gifts and dedicated offers.",
+            "link": ""
+          }
+        },
+        "payment_block": {
+          "type": "promise",
+          "settings": {
+            "icon_type": "payment",
+            "custom_svg": "",
+            "title": "SECURE PAYMENT",
+            "description": "100% secure transactions through top payment processors and advanced SSL encryption.",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "shipping_block",
+        "circle_block",
+        "payment_block"
+      ],
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container",
+        "subtitle": "OUR PROMISE",
+        "section_title": "The Lumina Promise",
+        "bgsection": "#010101",
+        "card_bg": "#0d0d0fb8",
+        "border_color": "#ffffff0d",
+        "title_color": "#ffffff",
+        "text_color": "#cccccc",
+        "accent_color": "#c5a059",
+        "paddingsection": "80px 0px 80px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container",
+        "heading": "You might also like",
+        "heading_size": "h3",
+        "heading_align": "center",
+        "products_to_show": 10,
+        "spaceBetween": 30,
+        "perviewDesktop": 4,
+        "nowrap": true,
+        "arrows": true,
+        "scrollbar": true,
+        "padding_top": 80,
+        "padding_bottom": 32
+      }
+    },
+    "product-recent": {
+      "type": "recently-viewed",
+      "disabled": true,
+      "settings": {
+        "enable": true,
+        "animation": "fade-up",
+        "setwidth": "container",
+        "title_top": "",
+        "title": "Vizualizate recent",
+        "des": "",
+        "align-heading": "center",
+        "limit": 6,
+        "paddingsection": "0px 0px 60px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "continua_ritualul_K3qkFh": {
+      "type": "continua-ritualul",
+      "name": "Continue the ritual",
+      "settings": {
+        "max_width": 1300,
+        "bg_color": "#0a0a0a",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top_desktop": 100,
+        "padding_bottom_desktop": 100,
+        "padding_top_tablet": 70,
+        "padding_bottom_tablet": 70,
+        "padding_top_mobile": 50,
+        "padding_bottom_mobile": 50,
+        "top_icon": "",
+        "heading": "Continue the ritual",
+        "heading_color": "#b8963e",
+        "heading_size_desktop": 48,
+        "heading_size_tablet": 38,
+        "heading_size_mobile": 30,
+        "heading_weight": "400",
+        "subheading": "<p> Choose an individual mask or a complete protocol that naturally continues the Light moment you are in. </p>",
+        "subheading_color": "#cfc7ba",
+        "subheading_size_desktop": 17,
+        "subheading_size_mobile": 14,
+        "subheading_weight": "400",
+        "divider_text": "Individual masks",
+        "divider_line_color": "#a9822c",
+        "divider_text_color": "#c9a24a",
+        "divider_size_desktop": 24,
+        "divider_size_mobile": 18,
+        "divider_weight": "500",
+        "columns_desktop": 4,
+        "columns_tablet": 2,
+        "columns_mobile": 1,
+        "grid_gap_desktop": 24,
+        "grid_gap_mobile": 16,
+        "card_bg_color": "#111111",
+        "card_border_color": "#2a2a2a",
+        "card_radius": 12,
+        "card_padding_desktop": 24,
+        "card_padding_mobile": 16,
+        "title_color": "#f5efe6",
+        "title_size_desktop": 20,
+        "title_size_mobile": 17,
+        "title_weight": "500",
+        "star_color": "#c9a24a",
+        "star_empty_color": "#4a4a4a",
+        "rating_count_color": "#9a9a9a",
+        "rating_size": 13,
+        "price_color": "#c9a24a",
+        "price_size_desktop": 20,
+        "price_size_mobile": 17,
+        "price_weight": "600",
+        "button_text_color": "#c9a24a",
+        "button_bg_color": "rgba(0,0,0,0)",
+        "button_border_color": "#c9a24a",
+        "button_hover_text_color": "#0a0a0a",
+        "button_hover_bg_color": "#c9a24a",
+        "button_hover_border_color": "#c9a24a",
+        "button_size_desktop": 14,
+        "button_size_mobile": 13,
+        "button_weight": "500",
+        "button_radius": 4,
+        "button_text": "Discover",
+        "show_button_icon": true
+      }
+    },
+    "protocoale_complete_7L7mXw": {
+      "type": "protocoale-complete",
+      "name": "Protocoale & complete",
+      "settings": {
+        "max_width": 1200,
+        "bg_color": "#0a0a0a",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top_desktop": 100,
+        "padding_bottom_desktop": 100,
+        "padding_top_tablet": 70,
+        "padding_bottom_tablet": 70,
+        "padding_top_mobile": 50,
+        "padding_bottom_mobile": 50,
+        "top_icon": "",
+        "heading": "Complete Rituals",
+        "heading_color": "#d4af6a",
+        "heading_size_desktop": 48,
+        "heading_size_tablet": 38,
+        "heading_size_mobile": 30,
+        "heading_weight": "400",
+        "subheading": "<p> Complete rituals, visible results. Choose the protocol that suits you. </p>",
+        "subheading_color": "#cfc7ba",
+        "subheading_size_desktop": 17,
+        "subheading_size_mobile": 14,
+        "subheading_weight": "400",
+        "divider_text": "Protocoale complete",
+        "divider_line_color": "#a9822c",
+        "divider_text_color": "#c9a24a",
+        "divider_size_desktop": 24,
+        "divider_size_mobile": 18,
+        "divider_weight": "500",
+        "columns_desktop": 4,
+        "columns_tablet": 2,
+        "columns_mobile": 1,
+        "grid_gap_desktop": 24,
+        "grid_gap_mobile": 16,
+        "card_bg_color": "#111111",
+        "card_border_color": "#2a2a2a",
+        "card_radius": 12,
+        "card_padding_desktop": 24,
+        "card_padding_mobile": 16,
+        "title_color": "#f5efe6",
+        "title_size_desktop": 20,
+        "title_size_mobile": 17,
+        "title_weight": "500",
+        "star_color": "#c9a24a",
+        "star_empty_color": "#4a4a4a",
+        "rating_count_color": "#9a9a9a",
+        "rating_size": 13,
+        "price_color": "#c9a24a",
+        "price_size_desktop": 20,
+        "price_size_mobile": 17,
+        "price_weight": "600",
+        "button_text_color": "#c9a24a",
+        "button_bg_color": "rgba(0,0,0,0)",
+        "button_border_color": "#c9a24a",
+        "button_hover_text_color": "#0a0a0a",
+        "button_hover_bg_color": "#c9a24a",
+        "button_hover_border_color": "#c9a24a",
+        "button_size_desktop": 14,
+        "button_size_mobile": 13,
+        "button_weight": "500",
+        "button_radius": 4,
+        "button_text": "Discover",
+        "show_button_icon": true
+      }
+    }
+  },
+  "order": [
+    "mask-menu-trigger",
+    "exp-promise",
+    "main",
+    "product-requently",
+    "product-content",
+    "exp-transformation",
+    "exp-alchemy",
+    "exp-video",
+    "exp-rituals",
+    "experience_under_microscope_pHQJR3",
+    "exp-trust",
+    "product-recommendations",
+    "product-recent",
+    "continua_ritualul_K3qkFh",
+    "protocoale_complete_7L7mXw"
+  ]
+}

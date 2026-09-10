@@ -1,0 +1,482 @@
+<!-- sections/experience-benefits.liquid -->
+{%- liquid
+  assign animation = section.settings.animation
+  assign setwidth = section.settings.setwidth
+  assign bg_text_col = section.settings.bg_text_col
+  assign bg_stats_box = section.settings.bg_stats_box
+  
+  assign color_heading = section.settings.color_heading
+  assign color_text = section.settings.color_text
+  assign color_line = section.settings.color_line
+-%}
+
+{%- render 'style-section' -%}
+
+<style>
+  .customstyle{{ section.id }} {
+    overflow: hidden;
+    background-color: {{ bg_text_col }};
+  }
+  .customstyle{{ section.id }} .benefit-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .customstyle{{ section.id }} .benefit-image-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2.2 / 1;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    background-color: #111;
+  }
+  .customstyle{{ section.id }} .benefit-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  }
+  .customstyle{{ section.id }} .benefit-card:hover .benefit-img {
+    transform: scale(1.06) !important;
+  }
+  .customstyle{{ section.id }} .benefit-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: {{ color_heading }};
+    font-family: var(--g-font-2);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .customstyle{{ section.id }} .benefit-desc {
+    color: {{ color_text }};
+    font-size: 13px;
+    line-height: 1.5;
+    max-width: 260px;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+  
+  /* Stats Box Styles */
+  .customstyle{{ section.id }} .stats-container-box {
+    background-color: {{ bg_stats_box }};
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-top: 40px;
+    padding: 24px 0;
+  }
+  .customstyle{{ section.id }} .stat-item-col {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 12px 30px;
+  }
+  .customstyle{{ section.id }} .stat-icon-wrap {
+    margin-right: 15px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+  }
+  .customstyle{{ section.id }} .stat-icon-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .customstyle{{ section.id }} .stat-icon-wrap svg {
+    width: 28px;
+    height: 28px;
+    stroke-width: 2;
+  }
+  .customstyle{{ section.id }} .stat-content-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+  .customstyle{{ section.id }} .stat-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: {{ color_heading }};
+    margin-bottom: 2px;
+    font-family: var(--g-font-2);
+    line-height: 1.2;
+  }
+  .customstyle{{ section.id }} .stat-subtitle {
+    font-size: 12px;
+    color: {{ color_text }};
+    line-height: 1.3;
+    font-weight: 400;
+  }
+  
+  @media (min-width: 768px) {
+    .customstyle{{ section.id }} .stat-item-col {
+      justify-content: center;
+    }
+    .customstyle{{ section.id }} .stat-item-col:not(:last-child) {
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  }
+  @media (max-width: 767px) {
+    .customstyle{{ section.id }} .stat-item-col {
+      justify-content: flex-start;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .customstyle{{ section.id }} .stat-item-col:not(:last-child) {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
+  }
+</style>
+
+<div class="customstyle{{ section.id }} experience-benefits-section" data-aos="{{ animation }}">
+  <div class="{{ setwidth }}">
+    <div class="section-block p-0">
+      
+      <!-- Benefit Cards Grid -->
+      <div class="row justify-content-center">
+        {%- assign benefit_blocks = section.blocks | where: "type", "benefit" -%}
+        {%- for block in benefit_blocks -%}
+          <div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0" {{ block.shopify_attributes }} data-aos="{{ animation }}" data-aos-delay="{{ forloop.index | times: 100 }}">
+            <div class="benefit-card">
+              <div class="benefit-image-wrap">
+                {%- if block.settings.image != blank -%}
+                  {%- assign img_url = block.settings.image | image_url: width: 1 | replace: 'width=1', 'width={width}' -%}
+                  <img class="benefit-img lazyload"
+                       src="{{ block.settings.image | image_url: width: 600 }}"
+                       data-src="{{ img_url }}"
+                       data-widths="[360, 540, 720]"
+                       data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+                       data-sizes="auto"
+                       alt="{{ block.settings.title | escape }}"
+                       loading="lazy">
+                {%- else -%}
+                  {%- case forloop.index -%}
+                    {%- when 1 -%}
+                      <img class="benefit-img lazyload" src="{{ 'nano-fiber-stracture.webp' | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                    {%- when 2 -%}
+                      <img class="benefit-img lazyload" src="{{ 'active-ingredients.webp' | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                    {%- when 3 -%}
+                      <img class="benefit-img lazyload" src="{{ 'deep-penetration.webp' | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                    {%- when 4 -%}
+                      <img class="benefit-img lazyload" src="{{ 'ChatGPT_Image_Aug_10_2026_03_22_12_PM.png' | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                    {%- else -%}
+                      <img class="benefit-img lazyload" src="{{ 'img-1.png' | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                  {%- endcase -%}
+                {%- endif -%}
+              </div>
+              {%- if block.settings.title != blank -%}
+                <h3 class="benefit-title">{{ block.settings.title }}</h3>
+              {%- endif -%}
+              {%- if block.settings.description != blank -%}
+                <p class="benefit-desc">{{ block.settings.description }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+      
+      <!-- Bottom Statistics Container Box -->
+      {%- assign stat_blocks = section.blocks | where: "type", "stat" -%}
+      {%- if stat_blocks.size > 0 -%}
+        <div class="stats-container-box" data-aos="{{ animation }}" data-aos-delay="400">
+          <div class="row no-gutters">
+            {%- for block in stat_blocks -%}
+              <div class="col-12 col-md-3 stat-item-col" {{ block.shopify_attributes }}>
+                <div class="stat-icon-wrap">
+                  {%- if block.settings.icon != blank -%}
+                    <img src="{{ block.settings.icon | image_url: width: 64 }}" alt="{{ block.settings.title | escape }}" class="lazyload" loading="lazy">
+                  {%- else -%}
+                    {%- case forloop.index -%}
+                      {%- when 1 -%}
+                        <img src="{{ 'pure_transfer.jpg' | asset_url }}" alt="{{ block.settings.title | escape }}" style="max-width:100%;max-height:100%;object-fit:contain;" loading="lazy">
+                      {%- when 2 -%}
+                        <img src="{{ 'pure_by_design.jpg' | asset_url }}" alt="{{ block.settings.title | escape }}" style="max-width:100%;max-height:100%;object-fit:contain;" loading="lazy">
+                      {%- when 3 -%}
+                        <img src="{{ 'Pure_active_delivery.jpg' | asset_url }}" alt="{{ block.settings.title | escape }}" style="max-width:100%;max-height:100%;object-fit:contain;" loading="lazy">
+                      {%- when 4 -%}
+                        <img src="{{ 'WhatsApp_Image_2026-07-09_at_14.32.17.jpg' | asset_url }}" alt="{{ block.settings.title | escape }}" style="max-width:100%;max-height:100%;object-fit:contain;" loading="lazy">
+                      {%- else -%}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#b8963e">
+                          <circle cx="12" cy="13" r="8"/>
+                          <path d="M12 9v4l2.5 2.5M12 2v3M9 2h6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    {%- endcase -%}
+                  {%- endif -%}
+                </div>
+                <div class="stat-content-wrap">
+                  {%- if block.settings.title != blank -%}
+                    <span class="stat-title">{{ block.settings.title }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.subtitle != blank -%}
+                    <span class="stat-subtitle">{{ block.settings.subtitle }}</span>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+      
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Experience Benefits",
+  "class": "index-section-experience-benefits",
+  "settings": [
+    {
+      "type": "select",
+      "id": "animation",
+      "options": [
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "fade-up",
+          "label": "Fade Up"
+        },
+        {
+          "value": "fade-down",
+          "label": "Fade Down"
+        },
+        {
+          "value": "fade-left",
+          "label": "Fade Left"
+        },
+        {
+          "value": "fade-right",
+          "label": "Fade Right"
+        },
+        {
+          "value": "zoom-in",
+          "label": "Zoom In"
+        },
+        {
+          "value": "zoom-out",
+          "label": "Zoom Out"
+        }
+      ],
+      "default": "fade-up",
+      "label": "Select Animation"
+    },
+    {
+      "type": "select",
+      "id": "setwidth",
+      "label": "Full Width Wrapper",
+      "default": "container-fluid",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Section Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_text_col",
+      "label": "Background Section Inner",
+      "default": "#010101"
+    },
+    {
+      "type": "color",
+      "id": "bg_stats_box",
+      "label": "Background Stats Box",
+      "default": "#0d0d0f"
+    },
+    {
+      "type": "color",
+      "id": "bgsection",
+      "label": "Background Section Outer",
+      "default": "#010101"
+    },
+    {
+      "type": "color",
+      "id": "color_heading",
+      "label": "Heading / Highlight Color",
+      "default": "#b8963e"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Description Text Color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "text",
+      "id": "paddingsection",
+      "label": "Padding Section",
+      "default": "0px 0px 0px 0px",
+      "info": "Padding: Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "paddingmobile",
+      "label": "Padding Section Mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Padding: Top Right Bottom Left"
+    },
+    {
+      "type": "header",
+      "content": "Section Margin"
+    },
+    {
+      "type": "text",
+      "id": "marginsection",
+      "label": "Margin Section",
+      "default": "0px 0px 0px 0px",
+      "info": "Margin: Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "marginmobile",
+      "label": "Margin Mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Margin: Top Right Bottom Left"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit Column",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Benefit Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Benefit Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Benefit description goes here."
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "name": "Stat Box Item",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Stat Icon",
+          "info": "Upload custom icon. If empty, the default colored line icon will be shown."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Stat Title (Highlight)",
+          "default": "5-8 Minutes"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Stat Subtitle",
+          "default": "Visible Results"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Experience Benefits",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "NANOFIBER STRUCTURE",
+            "description": "Ultra-fine fibers create a breathable matrix."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "ACTIVE INGREDIENTS",
+            "description": "Encapsulated for maximum efficiency."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "DEEP PENETRATION",
+            "description": "Delivers active ingredients beyond the surface."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "REZULTATE VIZIBILE",
+            "description": "Healthier, brighter and revitalized skin."
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "title": "5–8 Minute",
+            "subtitle": "Rezultate Vizibile"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "title": "95%+ absorption",
+            "subtitle": "Improved Delivery"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "title": "0% Conservatives",
+            "subtitle": "Pure and Safe Formula"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "title": "Testat Clinic",
+            "subtitle": "Advanced Performance"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

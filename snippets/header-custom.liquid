@@ -1,0 +1,106 @@
+<!-- header-custom.liquid: Hamburger Left | Logo Center | Icons Right -->
+<div class="{{ container }} px-3 px-lg-4">
+  <div class="d-flex align-items-center hc-row">
+
+    <!-- ===== LEFT: Hamburger ===== -->
+    <div class="hc-col hc-col-left d-flex align-items-center">
+
+      <!-- Mobile hamburger → opens #NavDrawer (existing mobile drawer) -->
+      <button type="button"
+        class="text-link site-header__link js-drawer-open-left hc-hamburger d-lg-none"
+        aria-label="{{ 'general.drawers.navigation' | t }}">
+        <svg aria-hidden="true" fill="none" focusable="false" width="24" viewBox="0 0 24 24">
+          <path d="M2 19h20M2 12h20M2 5h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <!-- Desktop hamburger → opens slide-menu (existing desktop nav drawer) -->
+      <button type="button"
+        class="site-click-menu hc-hamburger d-none d-lg-flex"
+        aria-label="Navigation Menu">
+        <svg aria-hidden="true" fill="none" focusable="false" width="24" viewBox="0 0 24 24">
+          <path d="M2 19h20M2 12h20M2 5h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- ===== CENTER: Logo ===== -->
+    <div class="hc-col hc-col-center d-flex align-items-center justify-content-center">
+      {%- render 'site-logo' -%}
+    </div>
+
+    <!-- ===== RIGHT: Icons ===== -->
+    <div class="hc-col hc-col-right d-flex align-items-center justify-content-end">
+
+      <!-- Language / Currency (desktop only) -->
+      <div class="d-none d-lg-flex align-items-center">
+        {%- liquid
+          assign enable_image = section.settings.enable_image
+          assign enable_name  = section.settings.enable_name
+          if section.settings.e_hd_currency and localization.available_countries.size > 1
+            render 'localization', id: 'HeaderCountryFormHC', enable_image: enable_image, enable_name: enable_name
+          endif
+          if section.settings.enable_language_selector and localization.available_languages.size > 1
+            render 'localization-language', id: 'HeaderLanguageFormHC', enable_name: enable_name
+          endif
+        -%}
+      </div>
+
+      <!-- Search -->
+      {%- render 'header-search', link_list_search: section.settings.link_list_search, e_search: section.settings.sidebar_search -%}
+
+      <!-- Account login -->
+      {%- render 'header-login' -%}
+
+      <!-- Wishlist -->
+      {%- render 'block-wishlist' -%}
+
+      <!-- Cart -->
+      {%- render 'block-cart' -%}
+
+    </div>
+
+  </div><!-- /hc-row -->
+</div>
+
+<style>
+/* ── Custom Header Row ─────────────────────────────────── */
+.hc-row {
+  width: 100%;
+  min-height: 64px;
+}
+
+/* Equal three-column layout */
+.hc-col {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.hc-col-left  { justify-content: flex-start; }
+.hc-col-right { justify-content: flex-end;   }
+
+/* ── Hamburger Button ─────────────────────────────────── */
+.hc-hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: var(--header-linkcolor, currentColor);
+  border-radius: 4px;
+  transition: color 0.25s ease, background 0.25s ease;
+  line-height: 1;
+}
+
+.hc-hamburger:hover {
+  color: var(--header-linkhover, var(--header-linkcolor));
+  background: rgba(var(--header-border-color, 128,128,128), 0.08);
+}
+
+.hc-hamburger svg {
+  display: block;
+  pointer-events: none;
+}
+</style>

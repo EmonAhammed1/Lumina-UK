@@ -1,0 +1,197 @@
+<div id="NavDrawer" class="drawer drawer--left">
+  <div class="drawer__inner">
+    <div class="modal-header js-drawer-close py-4">
+        <button type="button" class="close" ></button>
+    </div>
+    <ul class="drawer__nav menu-mobile-footer-content">
+      {%- for link in linklists[settings.main_linklist].links -%}
+        {%- assign child_list_handle = link.title | handleize -%}
+        {%- if link.links != blank -%}
+          <li class="drawer__nav-item">
+            <div class="drawer__nav-has-sublist">
+              {%- assign link_title_dn = link.title | downcase -%}
+              {%- if link_title_dn == 'colectie'  -%}
+                <a href="javascript:void(0)" data-toggle="collapse" data-target="#DrawerLinklist-{{ child_list_handle }}" aria-controls="DrawerLinklist-{{ child_list_handle }}" class="drawer__nav-link drawer__nav-link--top-level drawer__nav-link--split" id="DrawerLabel-{{ child_list_handle }}" {% if link.active %} aria-current="page"{% endif %}>
+                  {%- render 'processMenuTitle' , itemName: link.title -%}
+                  {%- render 'processMenuLabel' , itemName: link.title -%}
+                </a>
+              {%- else -%}
+                <a href="{{ link.url }}" class="drawer__nav-link drawer__nav-link--top-level drawer__nav-link--split" id="DrawerLabel-{{ child_list_handle }}" {% if link.active %} aria-current="page"{% endif %}>
+                  {%- render 'processMenuTitle' , itemName: link.title -%}
+                  {%- render 'processMenuLabel' , itemName: link.title -%}
+                </a>
+              {%- endif -%}
+              <button data-toggle="collapse" data-target="#DrawerLinklist-{{ child_list_handle }}" for="DrawerLinklist-{{ child_list_handle }}" type="button" aria-controls="DrawerLinklist-{{ child_list_handle }}" class="text-link drawer__nav-toggle-btn collapsed" aria-label="{%- render 'processMenuTitle' , itemName: link.title -%}" aria-expanded="true">
+                <span class="drawer__nav-toggle--open">
+                  {%- render 'icon-plus' -%}
+                </span>
+                <span class="drawer__nav-toggle--close">
+                  {%- render 'icon-minus' -%}
+                </span>
+              </button>
+            </div>
+            <div class="collapse meganav meganav--drawer" id="DrawerLinklist-{{ child_list_handle }}" aria-labelledby="DrawerLabel-{{ child_list_handle }}" role="navigation">
+              <ul class="meganav__nav">
+                {%- render 'drawer-nav', link: link -%}
+              </ul>
+            </div>
+          </li>
+        {%- else -%}
+          <li class="drawer__nav-item">
+            <a href="{{ link.url }}" class="drawer__nav-link drawer__nav-link--top-level" {% if link.active %} aria-current="page"{% endif %}>
+              {%- render 'processMenuTitle' , itemName: link.title -%}
+              {%- render 'processMenuLabel' , itemName: link.title -%}
+            </a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+      
+    </ul>
+    <ul class="menu-mobile-footer drawer__nav">
+      {% if settings.mobile_phone != blank %}
+        <li class="drawer__nav-item drawer-nav__item--secondary">
+          <a href="tel:{{ settings.mobile_phone | strip }}" class="drawer__nav-link drawer__nav-link--top-level font-weight-normal pr-1 d-flex align-items-center letter-spacing-0">
+            {% render 'icon-mobile-phone' %}
+            <span class="pl-2">{{ settings.mobile_phone}}</span>
+          </a>
+        </li>
+      {% endif %}
+      {% if settings.mobile_email != blank %}
+      <li class="drawer__nav-item drawer-nav__item--secondary">
+        <a href="mailto:{{ settings.mobile_email }}" class="drawer__nav-link drawer__nav-link--top-level font-weight-normal pr-1 d-flex align-items-center letter-spacing-0">
+          {% render 'icon-email' %}
+          <span class="pl-2">{{ settings.mobile_email }}</span>
+        </a>
+      </li>
+    {% endif %}
+      {%- if settings.login_enable -%}
+        {%- if shop.customer_accounts_optional or shop.customer_accounts_enabled -%}
+          {%- if customer -%}
+            <li class="drawer__nav-item drawer-nav__item--secondary">
+              <a href="/account" class="drawer__nav-link drawer__nav-link--top-level font-weight-normal d-flex align-items-center">
+                <span class="account-text letter-spacing-0 pl-2">{{ 'layout.customer.account' | t }}
+                </span>
+              </a>
+            </li>
+          {%- else -%}
+            <li class="drawer__nav-item drawer-nav__item--secondary d-flex align-items-center d-flex align-items-center">
+              <a href="/account" class="drawer__nav-link drawer__nav-link--top-level font-weight-normal pr-1 d-flex align-items-center">
+                {% render 'icon-user' %}
+                <span class="account-text letter-spacing-0 pl-2">{{ 'customer.login.sign_in' | t }}
+                </span>
+              </a> 
+              <span class="drawer__nav-link--top-level small px-1">/</span> 
+              <a href="/account/register" class="drawer__nav-link drawer__nav-link--top-level font-weight-normal pl-1 letter-spacing-0 d-flex align-items-center">
+                {{ 'customer.register.title' | t }}
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+      
+      <li class="drawer__nav-item drawer-nav__item--secondary py-3 pl-2 d-flex">
+        {%- if settings.currency_enable -%}
+          <span class="pr-4">
+            {% render 'localization' id: 'HeaderCountryFormMobile' , header-left : 'header-left' %}
+          </span>
+        {%- endif -%}
+        {%- if settings.lang_enable -%}
+        {% render 'localization-language', id: 'HeaderLanguageFormMobile', header-left : 'header-left' %}
+      {%- endif -%}
+      </li>
+    </ul>
+    
+    <div class="drawer__mobile-cta p-4" style="margin-top: 15px; border-top: 1px solid rgba(184, 150, 62, 0.15);">
+      <a href="/collections/all" class="btn w-100 text-center" style="background-color: var(--g-main) !important; color: #1C1C1E !important; font-family: var(--g-font-2); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; padding: 14px 20px; border-radius: 4px; display: block; border: none !important; transition: opacity 0.2s ease;">
+        Discover Collection
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var textTranslations = {
+      'conversatii': 'Conversations',
+      'conversatii': 'Conversations',
+      'articole': 'Articles',
+      'jurnal': 'Journal',
+      'filme': 'Films',
+      'film': 'Films',
+      'galerie': 'Gallery',
+      'urmareste lumina': 'Follow Lumina',
+      'urmareste lumina': 'Follow Lumina',
+      'ce sunt nanofibrele': 'WHAT ARE NANOFIBERS',
+      'tehnologie si formula': 'TECHNOLOGY & FORMULA',
+      'tehnologie si formula': 'TECHNOLOGY & FORMULA',
+      'mod de utilizare': 'HOW TO USE',
+      'sinergii de ritual': 'RITUAL SYNERGIES',
+      'baza stiintifica si premii': 'SCIENTIFIC FOUNDATION & AWARDS',
+      'baza stiintifica si premii': 'SCIENTIFIC FOUNDATION & AWARDS'
+    };
+
+    var mapping = {
+      'conversat': '/pages/lumina-world#conversations',
+      'articl': '/pages/lumina-world#articles',
+      'articol': '/pages/lumina-world#articles',
+      'blog': '/pages/lumina-world#journal',
+      'journal': '/pages/lumina-world#journal',
+      'jurnal': '/pages/lumina-world#journal',
+      'film': '/pages/lumina-world#films',
+      'manifest': '/pages/lumina-world#films',
+      'galler': '/pages/lumina-world#gallery',
+      'galeri': '/pages/lumina-world#gallery',
+      'follow': '/pages/lumina-world#follow-lumina',
+      'urmar': '/pages/lumina-world#follow-lumina',
+      'social': '/pages/lumina-world#follow-lumina'
+    };
+
+    var allMenuLinks = document.querySelectorAll('#NavDrawer a, .site-nav a, .side-menu__wrap a');
+    allMenuLinks.forEach(function(a) {
+      var text = (a.textContent || '').trim();
+      var textDn = text.toLowerCase();
+      if (textDn.indexOf('team') !== -1 || textDn.indexOf('echip') !== -1) {
+        var li = a.closest('li');
+        if (li) li.remove();
+        else a.remove();
+        return;
+      }
+      if (textTranslations[textDn]) {
+        if (a.children.length === 0) {
+          a.textContent = textTranslations[textDn];
+        }
+      }
+      for (var key in mapping) {
+        if (textDn.indexOf(key) !== -1) {
+          a.setAttribute('href', mapping[key]);
+          break;
+        }
+      }
+    });
+
+    var drawerLinks = document.querySelectorAll('#NavDrawer a[href*="#"]');
+    drawerLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var href = this.getAttribute('href');
+        if (!href) return;
+        var parts = href.split('#');
+        var path = parts[0];
+        var hash = parts[1];
+        if (hash) {
+          var currentPath = window.location.pathname;
+          if (path === '' || path === currentPath || (currentPath.indexOf('lumina-world') !== -1 && path.indexOf('lumina-world') !== -1)) {
+            var targetEl = document.getElementById(hash);
+            if (targetEl) {
+              e.preventDefault();
+              var closeBtn = document.querySelector('#NavDrawer .js-drawer-close button, #NavDrawer .js-drawer-close');
+              if (closeBtn) closeBtn.click();
+              setTimeout(function() {
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }, 300);
+            }
+          }
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,339 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header Group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "disabled": true,
+      "settings": {
+        "enable": true,
+        "animation": "fade",
+        "setwidth": "container-fluid",
+        "background": "#094a6e",
+        "gradient_bg": "",
+        "text_color": "#ffffff",
+        "font_size_topbar": 13,
+        "enable_image": true,
+        "enable_name": false,
+        "enable_money_topbar": true,
+        "enable_language_topbar": true,
+        "enable_social_topbar": true,
+        "enable_login_topbar": false,
+        "text_topbar": "FREE HALLOWEEN BAG ON $45+",
+        "buttonall_topbar": "Shop now",
+        "buttonall_link_topbar": "shopify://collections/all"
+      }
+    },
+    "announcement-bar-slide": {
+      "type": "announcement-bar-slide",
+      "blocks": {
+        "a00daf6f-fb1c-4351-80dc-24e405bf630e": {
+          "type": "Item",
+          "settings": {
+            "code": "Complimentary shipping on orders over €150",
+            "button_text": "Shop Now",
+            "button_link": "shopify://collections"
+          }
+        },
+        "afb084a9-2a31-4207-9d23-694c0f6b1281": {
+          "type": "Item",
+          "settings": {
+            "code": "Express Worldwide Delivery",
+            "button_text": "Shop Now",
+            "button_link": "shopify://collections/best-seller"
+          }
+        },
+        "afb084a9-2a31-4207-9d23-694c0f6b1282": {
+          "type": "Item",
+          "settings": {
+            "code": "30-Day Insured Returns",
+            "button_text": "Shop Now",
+            "button_link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "a00daf6f-fb1c-4351-80dc-24e405bf630e",
+        "afb084a9-2a31-4207-9d23-694c0f6b1281",
+        "afb084a9-2a31-4207-9d23-694c0f6b1282"
+      ],
+      "custom_css": [
+        ".small {text-transform: uppercase; font-weight: 600;}"
+      ],
+      "settings": {
+        "enable": false,
+        "animation": "fade",
+        "size_text": "small",
+        "announ_type": "carousel",
+        "scroll_dot": "dot",
+        "size_icon": 24,
+        "speed": 4,
+        "scroll_type": "from-right",
+        "background": "#1c1c1e",
+        "gradient_bg": "",
+        "text": "#b8963e"
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "a2730c80-674d-41f6-9f75-d2dea64fcd6b": {
+          "type": "menu-banner",
+          "settings": {
+            "menu_title": "home",
+            "menu_width": "container",
+            "menu_column": 3,
+            "enable_menu_banner": true,
+            "menu_banner_width": 50,
+            "menu_banner_height": 340,
+            "menu_banner_size_title": "h4",
+            "menu_banner_position_text_1": "bot-center",
+            "menu_banner_subheading_1": "women",
+            "menu_banner_heading_1": "Mama Collection",
+            "menu_banner_paragraph_1": "",
+            "menu_banner_btn_1": "shop now",
+            "menu_banner_link_1": "shopify://collections/bras",
+            "menu_banner_position_text_2": "bot-center",
+            "menu_banner_subheading_2": "Tank Top",
+            "menu_banner_heading_2": "50% Off",
+            "menu_banner_paragraph_2": "",
+            "menu_banner_btn_2": "shop now",
+            "menu_banner_link_2": "shopify://collections/tank-tops",
+            "menu_banner_position_text_3": "mid-center",
+            "menu_banner_subheading_3": "Sub Heading 3",
+            "menu_banner_heading_3": "Heading 3",
+            "menu_banner_paragraph_3": "<p>Paragraph 3</p>",
+            "menu_banner_btn_3": "",
+            "menu_banner_link_3": ""
+          }
+        },
+        "281b36cf-b829-4a1c-a3a5-5a7c0a30225a": {
+          "type": "menu-product",
+          "settings": {
+            "menu_title": "colectie",
+            "menu_width": "container",
+            "menu_column": 3,
+            "enable_menu_product": true,
+            "menu_product_width": 30,
+            "menu_product_1": "after-sun-gel",
+            "menu_product_2": "",
+            "menu_product_3": "",
+            "menu_product_4": "",
+            "menu_product_5": "",
+            "menu_product_6": ""
+          }
+        },
+        "9d3d821c-82a9-439a-b2db-6700a3c6685f": {
+          "type": "menu-product",
+          "settings": {
+            "menu_title": "product",
+            "menu_width": "container",
+            "menu_column": 4,
+            "enable_menu_product": true,
+            "menu_product_width": 20,
+            "menu_product_1": "after-sun-gel",
+            "menu_product_2": "",
+            "menu_product_3": "",
+            "menu_product_4": "",
+            "menu_product_5": "",
+            "menu_product_6": ""
+          }
+        },
+        "0f4d122e-cf9d-4fbf-8082-85a6cb05155f": {
+          "type": "menu-banner",
+          "disabled": true,
+          "settings": {
+            "menu_title": "pages",
+            "menu_width": "container",
+            "menu_column": 2,
+            "enable_menu_banner": true,
+            "menu_banner_width": 60,
+            "menu_banner_height": 300,
+            "menu_banner_size_title": "h4",
+            "menu_banner_position_text_1": "bot-left",
+            "menu_banner_subheading_1": "All Styles",
+            "menu_banner_heading_1": "Min. 65% Off",
+            "menu_banner_paragraph_1": "",
+            "menu_banner_btn_1": "Discover now",
+            "menu_banner_link_1": "shopify://collections",
+            "menu_banner_position_text_2": "bot-left",
+            "menu_banner_subheading_2": "Lingerie",
+            "menu_banner_heading_2": "Flat 50% Off",
+            "menu_banner_paragraph_2": "",
+            "menu_banner_btn_2": "Discover now",
+            "menu_banner_link_2": "shopify://collections/all",
+            "menu_banner_position_text_3": "mid-center",
+            "menu_banner_subheading_3": "Sub Heading 3",
+            "menu_banner_heading_3": "Heading 3",
+            "menu_banner_paragraph_3": "<p>Paragraph 3</p>",
+            "menu_banner_btn_3": "",
+            "menu_banner_link_3": ""
+          }
+        },
+        "96e8331c-f8e4-4b9d-802b-4a659893f052": {
+          "type": "menu-banner-classic",
+          "settings": {
+            "menu_title": "blog",
+            "menu_width": "container",
+            "menu_column": 3,
+            "enable_menu_banner": true,
+            "image_size": "wide",
+            "menu_banner_width": 30,
+            "menu_banner_html_1": "<h5 class=\"mb-0\">Flat 50% Off</h5>\n<p>Our products are designed for everyone.</p>",
+            "menu_banner_btn_1": "Shop now",
+            "menu_banner_link_1": "shopify://collections",
+            "menu_banner_html_2": "<h5 class=\"mb-0\">Flat 50% Off</h5>\n<p>sss</p>",
+            "menu_banner_btn_2": "",
+            "menu_banner_link_2": "",
+            "menu_banner_html_3": "",
+            "menu_banner_btn_3": "",
+            "menu_banner_link_3": "",
+            "menu_banner_html_4": "",
+            "menu_banner_btn_4": "",
+            "menu_banner_link_4": "",
+            "menu_banner_html_5": "",
+            "menu_banner_btn_5": "",
+            "menu_banner_link_5": "",
+            "menu_banner_html_6": "",
+            "menu_banner_btn_6": "",
+            "menu_banner_link_6": ""
+          }
+        },
+        "25d568c7-cca2-4e6e-bb4c-31ad2907d4f3": {
+          "type": "level_1",
+          "settings": {
+            "menu_title_lv1": "Women",
+            "enable_menu_banner_lv1": true,
+            "menu_gradient_bg_lv1": "linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.7) 98%)",
+            "menu_banner_position_text_lv1": "bot-left",
+            "subtitle_menu_banner_lv1": "Sale",
+            "title_menu_banner_lv1": "50% Off",
+            "menu_banner_size_title_lv1": "h2",
+            "des_menu_banner_lv1": "<p>The Linen Collection</p>",
+            "btn_menu_banner_lv1": "shop now",
+            "btn_link_menu_banner_lv1": "shopify://collections/women"
+          }
+        },
+        "38d779e0-19e7-45f0-b24e-4728518c7ea4": {
+          "type": "level_1",
+          "settings": {
+            "menu_title_lv1": "Men",
+            "enable_menu_banner_lv1": true,
+            "menu_gradient_bg_lv1": "linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.7) 100%)",
+            "menu_banner_position_text_lv1": "bot-left",
+            "subtitle_menu_banner_lv1": "sale",
+            "title_menu_banner_lv1": "40% Off",
+            "menu_banner_size_title_lv1": "h2",
+            "des_menu_banner_lv1": "<p>Men's Collections ss23</p>",
+            "btn_menu_banner_lv1": "shop now",
+            "btn_link_menu_banner_lv1": "shopify://collections/men"
+          }
+        },
+        "f6a2ffe9-edfd-4d1e-8d8e-7ad8c9531293": {
+          "type": "level_2",
+          "settings": {
+            "menu_title_lv2": "Mens Tops",
+            "enable_menu_banner_lv2": true,
+            "menu_gradient_bg_lv2": "linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.6) 100%)",
+            "menu_banner_position_text_lv2": "bot-left",
+            "subtitle_menu_banner_lv2": "deal hot",
+            "title_menu_banner_lv2": "Mens Tops",
+            "menu_banner_size_title_lv2": "h2",
+            "des_menu_banner_lv2": "",
+            "btn_menu_banner_lv2": "shop now",
+            "btn_link_menu_banner_lv2": ""
+          }
+        }
+      },
+      "block_order": [
+        "a2730c80-674d-41f6-9f75-d2dea64fcd6b",
+        "281b36cf-b829-4a1c-a3a5-5a7c0a30225a",
+        "9d3d821c-82a9-439a-b2db-6700a3c6685f",
+        "0f4d122e-cf9d-4fbf-8082-85a6cb05155f",
+        "96e8331c-f8e4-4b9d-802b-4a659893f052",
+        "25d568c7-cca2-4e6e-bb4c-31ad2907d4f3",
+        "38d779e0-19e7-45f0-b24e-4728518c7ea4",
+        "f6a2ffe9-edfd-4d1e-8d8e-7ad8c9531293"
+      ],
+      "settings": {
+        "logo": "shopify://shop_images/Logo.jpg",
+        "logo_max_width": 260,
+        "enable_transparent": false,
+        "hover_transparent": false,
+        "enable_white": true,
+        "setwidth": "container-fluid",
+        "layout_header": "logo-center-navigation-left",
+        "type_sticky": "sticky",
+        "height_header": "small",
+        "background": "#010101",
+        "textcolor": "#b8963e",
+        "linkcolor": "#b8963e",
+        "linkhover": "#b8963e",
+        "color_indicator": "#b8963e",
+        "menutext": "#b8963e",
+        "menutexthover": "#b8963e",
+        "menudroptexttitle": "#b8963e",
+        "menudroptext": "#8c8c8c",
+        "menudropbg": "#010101",
+        "menudropborder": "#b8963e",
+        "main_linklist": "main-menu",
+        "font_family_menu": "--g-font-2",
+        "font_sizemenu": "9px",
+        "font_weight": "500",
+        "menu_spacing": 30,
+        "menu_space": 1,
+        "type_menu": "uppercase",
+        "menu_active": "thin-line",
+        "menu_label_text": "#ffffff",
+        "menu_label_new": "#34bf49",
+        "menu_label_hot": "#d24418",
+        "menu_label_sale": "#ffa800",
+        "menu_label_other": "#848484",
+        "enable_menu_vertical": false,
+        "sl_menu_vertical": "click-menu",
+        "main_linklist_vertical": "",
+        "link_list_search": "",
+        "sidebar_search": true,
+        "e_hd_currency": true,
+        "enable_image": true,
+        "enable_name": false,
+        "enable_language_selector": true,
+        "icon_cart": "icon",
+        "svg_cart": "cart-2",
+        "icon_wishlist": "icon",
+        "icon_login": "icon",
+        "e_link_login": "link",
+        "icon_search": "icon"
+      }
+    },
+    "store-messages": {
+      "type": "store-messages",
+      "settings": {
+        "enable": false,
+        "enable_homepage": false,
+        "background": "#000000",
+        "gradient_bg": "",
+        "text": "#ffffff",
+        "paddingsection": "8px 0px 8px 0px",
+        "paddingmobile": "8px 0px 8px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "announcement-bar-slide",
+    "header",
+    "store-messages"
+  ]
+}

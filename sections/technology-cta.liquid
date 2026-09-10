@@ -1,0 +1,178 @@
+{%- liquid
+  assign overlay_opacity = section.settings.overlay_opacity | divided_by: 100.0
+-%}
+<style>
+  #technology-cta {
+    position: relative;
+    width: 100%;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .tech-cta-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 1;
+  }
+  .tech-cta-bg video, .tech-cta-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .tech-cta-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0, {{ overlay_opacity }});
+    z-index: 2;
+  }
+  .tech-cta-content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+  }
+  .tech-cta-heading {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 40px;
+    color: var(--g-color-heading, #fff);
+    line-height: 1.2;
+  }
+  .tech-cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+  .tech-cta-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+  }
+  .tech-cta-btn.primary {
+    background-color: var(--g-main, #B8963E);
+    border-color: var(--g-main, #B8963E);
+    color: #000;
+  }
+  .tech-cta-btn.primary:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: #000;
+    transform: translateY(-2px);
+  }
+  .tech-cta-btn.secondary:hover {
+    background-color: #fff;
+    color: #000;
+    transform: translateY(-2px);
+  }
+  
+  @media (min-width: 768px) {
+    #technology-cta {
+      min-height: 70vh;
+    }
+    .tech-cta-buttons {
+      flex-direction: row;
+    }
+  }
+</style>
+
+<div id="technology-cta" data-section-id="{{ section.id }}">
+  <div class="tech-cta-bg">
+    {% if section.settings.bg_video != blank %}
+      <video autoplay loop muted playsinline preload="metadata">
+        <source src="{{ section.settings.bg_video }}" type="video/mp4">
+      </video>
+    {% elsif section.settings.image != blank %}
+      <img src="{{ section.settings.image | image_url: width: 2000 }}" alt="CTA Background" loading="lazy">
+    {% else %}
+      <img src="{{ 'Screenshot_2026-03-31_at_14.31.38.png' | asset_url }}" alt="CTA Background" loading="lazy">
+    {% endif %}
+  </div>
+  <div class="tech-cta-overlay"></div>
+  <div class="tech-cta-content" data-aos="fade-up" data-aos-duration="700">
+    {% if section.settings.heading != blank %}
+      <h2 class="tech-cta-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    <div class="tech-cta-buttons">
+      {% if section.settings.button_1_label != blank %}
+        <a href="{{ section.settings.button_1_link }}" class="tech-cta-btn primary">{{ section.settings.button_1_label }}</a>
+      {% endif %}
+      {% if section.settings.button_2_label != blank %}
+        <a href="{{ section.settings.button_2_link }}" class="tech-cta-btn secondary">{{ section.settings.button_2_label }}</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Technology CTA",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "bg_video",
+      "label": "Optional Background Video URL (MP4)"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Technology Only Matters When It Becomes Part of Your Ritual."
+    },
+    {
+      "type": "text",
+      "id": "button_1_label",
+      "label": "Button 1 Label",
+      "default": "Discover Your Ritual"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_label",
+      "label": "Button 2 Label",
+      "default": "Explore the Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Technology CTA"
+    }
+  ]
+}
+{% endschema %}

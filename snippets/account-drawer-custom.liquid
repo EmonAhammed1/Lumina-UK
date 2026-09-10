@@ -1,0 +1,112 @@
+<div id="AccountDrawer" class="drawer drawer--right">
+  <div class="drawer__inner" style="background-color: #000; color: #fff;">
+    <div class="modal-header js-drawer-close py-4 px-4 d-flex justify-content-end border-0" style="padding-bottom: 0 !important;">
+      <button type="button" class="close" style="color: #fff; text-shadow: none; opacity: 1;">
+        <span aria-hidden="true" style="font-size: 28px;">&times;</span>
+      </button>
+    </div>
+    <div class="drawer__body px-4 pb-4">
+      <style>
+        #AccountDrawer .account-drawer-item { border-bottom: 1px solid #222; padding: 1.25rem 0; display: flex; align-items: center; }
+        #AccountDrawer .account-drawer-item:first-child { padding-top: 0; }
+        #AccountDrawer .account-drawer-link { font-size: 16px; font-weight: 600; color: #fff; letter-spacing: 0; }
+        #AccountDrawer .account-drawer-icon-wrap { width: 40px; display: flex; justify-content: flex-start; align-items: center; }
+        #AccountDrawer .account-drawer-icon-wrap svg { width: 26px !important; height: 26px !important; }
+        #AccountDrawer .search__input { border: 1px solid #333; padding: 12px 15px; width: 100%; border-radius: 4px; background: transparent; color: #fff; }
+        #AccountDrawer .search__input:focus { outline: none; border-color: #b8963e; }
+        #AccountDrawer .search-wrap { position: relative; width: 100%; }
+        #AccountDrawer .search__button { position: absolute; right: 0; top: 0; bottom: 0; padding: 0 15px; background: transparent; border: none; color: #b8963e; }
+        #AccountDrawer .custom-cart-btn { border: 1px solid #b8963e; color: #b8963e; padding: 5px 10px; border-radius: 4px; font-size: 13px; font-weight: 500; text-transform: uppercase; cursor: pointer; display: inline-flex; align-items: center; background: transparent; }
+        #AccountDrawer .localization-form { margin-top: 0; }
+        #AccountDrawer .localization-form button { padding: 0; background: transparent; border: none; box-shadow: none; display: flex; align-items: center; color: #fff; }
+        #AccountDrawer .text-dark { color: #fff !important; }
+        #AccountDrawer svg { fill: none !important; color: #b8963e !important; }
+      </style>
+
+      <!-- Search -->
+      <div class="account-drawer-item pt-0">
+        <form action="{{ routes.search_url }}" method="get" role="search" class="search search-wrap">
+          <input type="hidden" name="type" value="product">
+          <input class="search__input" type="search" name="q" placeholder="{{ 'general.search.placeholder' | t }}">
+          <button class="search__button" type="submit" aria-label="{{ 'general.search.search' | t }}">
+            {% render 'icon-search' %}
+          </button>
+        </form>
+      </div>
+
+      <!-- Cart -->
+      <div class="account-drawer-item">
+        <div class="account-drawer-icon-wrap" style="position: relative;">
+          <a href="#" class="text-dark d-flex align-items-center custom-cart-trigger">
+            {%- render 'icon-cart' -%}
+            <span class="js-cart-count" style="position: absolute; top: -6px; right: -8px; background: #b8963e; color: #fff; border-radius: 50%; font-size: 10px; width: 16px; height: 16px; display: flex; justify-content: center; align-items: center;">{{ cart.item_count }}</span>
+          </a>
+        </div>
+        <button type="button" class="account-drawer-link border-0 bg-transparent p-0 custom-cart-trigger" style="margin-left: 15px;">{{ 'layout.cart.title' | t }}</button>
+      </div>
+
+      <!-- Wishlist -->
+      <div class="account-drawer-item">
+        <div class="account-drawer-icon-wrap" style="position: relative;">
+          <a href="/pages/wishlist" class="text-dark d-flex align-items-center">
+            {%- render 'icon-heart' -%}
+            <span class="js-wishlist-count" style="position: absolute; top: -6px; right: -8px; background: #b8963e; color: #fff; border-radius: 50%; font-size: 10px; width: 16px; height: 16px; display: flex; justify-content: center; align-items: center;">0</span>
+          </a>
+        </div>
+        <a href="/pages/wishlist" class="account-drawer-link" style="margin-left: 15px;">{{ 'products.product.wishlist_text' | t }}</a>
+      </div>
+
+      <!-- Account -->
+      <div class="account-drawer-item">
+        <div class="account-drawer-icon-wrap">
+          <a href="{{ routes.account_url }}" class="text-dark d-flex align-items-center">
+            {%- render 'icon-user' -%}
+          </a>
+        </div>
+        <a href="{{ routes.account_url }}" class="account-drawer-link" style="margin-left: 15px;">{{ 'customer.account.title' | t }}</a>
+      </div>
+
+      <!-- Language and Currency -->
+      <div class="account-drawer-item border-0">
+        <div class="account-drawer-localization w-100">
+          {%- liquid
+            assign enable_image = true
+            assign enable_name = true 
+            if localization.available_countries.size > 1
+              render 'localization' id: 'AccountCountryForm', enable_image: enable_image, enable_name: enable_name
+            endif
+            if localization.available_languages.size > 1 
+              render 'localization-language', id: 'AccountLanguageForm', enable_name: enable_name
+            endif
+          -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof theme !== 'undefined' && theme.Drawers) {
+      theme.AccountDrawer = new theme.Drawers('AccountDrawer', 'right', {
+        open: '.js-drawer-open-account'
+      });
+      
+      // Proxy Cart Click to Real Cart Toggle
+      document.querySelectorAll('#AccountDrawer .custom-cart-trigger').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (theme.AccountDrawer && theme.AccountDrawer.drawerIsOpen) {
+            theme.AccountDrawer.close();
+          }
+          // Give it a tiny delay to allow Account drawer to start closing
+          setTimeout(function() {
+            var realCartToggle = document.querySelector('.header-bottom__right .js-toggle-cart');
+            if (realCartToggle) {
+              realCartToggle.click();
+            }
+          }, 100);
+        });
+      });
+    }
+  });
+</script>

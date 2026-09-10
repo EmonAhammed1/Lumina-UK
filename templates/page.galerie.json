@@ -1,0 +1,226 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "gallery_full": {
+      "type": "lumina-gallery-full",
+      "blocks": {
+        "item_1": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-1.png",
+            "author_name": "Elena Vancea",
+            "location": "Florence, Italy",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com"
+          }
+        },
+        "item_2": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-2.png",
+            "author_name": "Marco Rossi",
+            "location": "Roma, Italia",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com"
+          }
+        },
+        "item_3": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-3.png",
+            "author_name": "Sophie Laurent",
+            "location": "Paris, France",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com"
+          }
+        },
+        "item_4": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-4.png",
+            "author_name": "Andrei Popa",
+            "location": "Brasov, Romania",
+            "social_platform": "facebook",
+            "social_url": "https://facebook.com"
+          }
+        },
+        "item_5": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-5.png",
+            "author_name": "Lucas Meyer",
+            "location": "München, Germania",
+            "social_platform": "threads",
+            "social_url": "https://threads.com"
+          }
+        },
+        "item_6": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-6.png",
+            "author_name": "Chiara Bianchi",
+            "location": "Venice, Italy",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com"
+          }
+        },
+        "item_7": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-7.png",
+            "author_name": "Gabriel Ionescu",
+            "location": "Sibiu, Romania",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com"
+          }
+        },
+        "item_8": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-8.png",
+            "author_name": "Mateo Silva",
+            "location": "Lisabona, Portugalia",
+            "social_platform": "tiktok",
+            "social_url": "https://tiktok.com"
+          }
+        },
+        "item_9": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-9.png",
+            "author_name": "Anna Lind",
+            "location": "Stockholm, Suedia",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com"
+          }
+        },
+        "item_10": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-10.png",
+            "author_name": "David Varga",
+            "location": "Budapesta, Ungaria",
+            "social_platform": "pinterest",
+            "social_url": "https://pinterest.com"
+          }
+        },
+        "item_11": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-11.png",
+            "author_name": "Clara Dupont",
+            "location": "Nice, France",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com"
+          }
+        },
+        "item_12": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-12.png",
+            "author_name": "Stefan Radu",
+            "location": "Cluj-Napoca, Romania",
+            "social_platform": "youtube",
+            "social_url": "https://youtube.com"
+          }
+        },
+        "item_13": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-1.png",
+            "author_name": "Maria Pop",
+            "location": "Viena, Austria",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com"
+          }
+        },
+        "item_14": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-2.png",
+            "author_name": "Hugo Martin",
+            "location": "Bordeaux, France",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com"
+          }
+        },
+        "item_15": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-3.png",
+            "author_name": "Sara Gomez",
+            "location": "Madrid, Spania",
+            "social_platform": "tiktok",
+            "social_url": "https://tiktok.com"
+          }
+        },
+        "item_16": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-4.png",
+            "author_name": "Klaus Weber",
+            "location": "Berlin, Germania",
+            "social_platform": "threads",
+            "social_url": "https://threads.com"
+          }
+        },
+        "item_17": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-5.png",
+            "author_name": "Diana Dumitru",
+            "location": "Timisoara, Romania",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com"
+          }
+        },
+        "item_18": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-6.png",
+            "author_name": "Federico Conti",
+            "location": "Milano, Italia",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com"
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4",
+        "item_5",
+        "item_6",
+        "item_7",
+        "item_8",
+        "item_9",
+        "item_10",
+        "item_11",
+        "item_12",
+        "item_13",
+        "item_14",
+        "item_15",
+        "item_16",
+        "item_17",
+        "item_18"
+      ],
+      "settings": {
+        "bg_color": "#040404",
+        "eyebrow": "LUMINA GALLERY",
+        "title": "Humanity in the Light",
+        "description": "Visual stories from across Europe. Authentic moments of light, architecture, nature and people, captured by the Lumina community.",
+        "show_upload_btn": true,
+        "upload_btn_label": "SUBMIT YOUR PHOTO"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "gallery_full"
+  ]
+}

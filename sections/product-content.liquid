@@ -1,0 +1,1473 @@
+<!-- product-content.liquid -->
+{%- liquid
+    assign validRelated = 'col-12'
+    assign left_size = 'col-md-6 col-12'
+    assign right_size = 'col-md-6 col-12'
+    assign setwidth = section.settings.setwidth
+
+    case section.settings.tab_size 
+    when 'normal' 
+        assign left_size = 'col-md-6 col-12'
+        assign right_size = 'col-md-6 col-12'
+    when 'large' 
+        assign left_size = 'col-md-7 col-12'
+        assign right_size = 'col-md-5 col-12'
+      when 'largest' 
+        assign left_size = 'col-md-8 col-12'
+        assign right_size = 'col-md-4 col-12'  
+    when 'full' 
+        assign left_size = 'col-12'
+        assign right_size = 'col-12'  
+    endcase
+
+    for block in section.blocks
+        if block.type == 'related-product'
+            assign validRelated = left_size
+        else
+            assign validRelated = left_size
+        endif
+    endfor
+-%}
+<style>
+  .descriere-left-text, .product-content .tab-content .tab-pane {
+    font-size: {{ section.settings.tab_text_size_desktop | default: 16 }}px !important;
+    line-height: 1.7 !important;
+    color: rgba(245, 235, 215, 0.95);
+  }
+  .descriere-left-text p, .product-content .tab-content .tab-pane p {
+    font-size: {{ section.settings.tab_text_size_desktop | default: 16 }}px !important;
+    line-height: 1.7 !important;
+    margin-bottom: 14px;
+  }
+  .descriere-left-text ul, .descriere-left-text ol, .product-content .tab-content .tab-pane ul, .product-content .tab-content .tab-pane ol {
+    margin-top: 10px;
+    margin-bottom: 14px;
+    padding-left: 20px;
+  }
+  .descriere-left-text li, .product-content .tab-content .tab-pane li {
+    font-size: calc({{ section.settings.tab_text_size_desktop | default: 16 }}px - 0.5px) !important;
+    line-height: 1.65 !important;
+    margin-bottom: 6px;
+  }
+
+  @media (max-width: 767px) {
+    .descriere-left-text, .product-content .tab-content .tab-pane {
+      font-size: {{ section.settings.tab_text_size_mobile | default: 14 }}px !important;
+    }
+    .descriere-left-text p, .product-content .tab-content .tab-pane p {
+      font-size: {{ section.settings.tab_text_size_mobile | default: 14 }}px !important;
+    }
+    .descriere-left-text li, .product-content .tab-content .tab-pane li {
+      font-size: {{ section.settings.tab_text_size_mobile | default: 14 }}px !important;
+    }
+  }
+
+  @media (min-width:768px){
+    .product-related.product-block{
+        padding: 0rem 0rem 0rem 2rem;
+    }
+    .product-content #nav-tab-info .nav-tabs .nav-item{
+        margin: 0;
+    }
+  }
+  
+  /* Custom Redesigned Tabs Bar */
+  .product-content #nav-tab-info .nav-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid rgba(197, 160, 89, 0.25);
+    background-color: #050505;
+    padding: 0;
+    margin-bottom: 40px;
+    border-radius: 4px;
+  }
+  .product-content #nav-tab-info .nav-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .product-content #nav-tab-info .nav-tabs .nav-link {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 18px 26px;
+    border: none;
+    border-right: 1px solid rgba(197, 160, 89, 0.25) !important;
+    margin: 0;
+    border-radius: 0;
+    position: relative;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    background: transparent;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .product-content #nav-tab-info .nav-tabs .nav-link:hover {
+    color: #ffffff !important;
+  }
+  .product-content #nav-tab-info .nav-tabs .nav-link.active {
+    color: #c5a059 !important;
+    background: transparent;
+  }
+  .product-content #nav-tab-info .nav-tabs .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+  }
+  .product-content #nav-tab-info .nav-tabs .nav-link.active::after {
+    background-color: #c5a059;
+  }
+  
+  /* Right social content in tabs bar */
+  .tab-bar-right-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 20px;
+    margin-left: auto;
+  }
+  .tab-bar-right-text {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 250px;
+    text-align: right;
+    line-height: 1.3;
+    font-weight: 300;
+  }
+  .tab-bar-right-images {
+    display: flex;
+    gap: 6px;
+  }
+  .social-img-thumb {
+    width: 38px;
+    height: 38px;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid rgba(197, 160, 89, 0.15);
+  }
+  .social-img-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Special Description Layout Styles */
+  .special-desc-container {
+    color: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .special-desc-col-left {
+    padding-right: 30px;
+  }
+  .special-desc-heading {
+    font-family: var(--g-font-2), "Cormorant Garamond", serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: #c5a059;
+    line-height: 1.3;
+    margin-bottom: 30px;
+    letter-spacing: 0.02em;
+  }
+  .special-desc-sep {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 40px 0;
+  }
+  .sep-line {
+    flex: 1;
+    height: 1px;
+    background-color: rgba(197, 160, 89, 0.2);
+  }
+  .sep-diamond {
+    width: 14px;
+    height: 14px;
+    color: #c5a059;
+  }
+  .special-desc-main-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+    margin-bottom: 30px;
+  }
+  .special-desc-main-text p {
+    margin: 0 0 15px 0;
+  }
+  .special-desc-features {
+    display: flex;
+    flex-direction: column;
+  }
+  .special-desc-feat-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+  }
+  .special-desc-feat-item:last-child {
+    border-bottom: none;
+  }
+  .special-desc-feat-icon {
+    width: 20px;
+    height: 20px;
+    color: #c5a059;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .special-desc-feat-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  .special-desc-feat-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+  }
+  
+  /* Middle Column - Image */
+  .special-desc-img-wrap {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin: 0 auto;
+    max-width: 100%;
+  }
+  .special-desc-img-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .special-desc-img-wrap:hover img {
+    transform: scale(1.03);
+  }
+  
+  /* Right Column - Cards */
+  .special-desc-card {
+    background-color: #0d0d0f;
+    border: 1px solid rgba(197, 160, 89, 0.18);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .special-desc-card:last-child {
+    margin-bottom: 0;
+  }
+  .special-desc-card .card-subtitle {
+    font-size: 11px;
+    font-weight: 700;
+    color: #c5a059;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 12px;
+  }
+  .card-big-digits {
+    font-family: var(--g-font-2), "Cormorant Garamond", serif;
+    font-size: 60px;
+    color: #c5a059;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: 20px;
+  }
+  
+  /* Timeline */
+  .transformation-timeline {
+    position: relative;
+    padding-top: 15px;
+    margin-top: 15px;
+  }
+  .timeline-line-bg {
+    position: absolute;
+    top: 19px;
+    left: 15px;
+    right: 15px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+  .timeline-line-active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%; /* Default starting at node 1 */
+    height: 100%;
+    background-color: #c5a059;
+  }
+  .timeline-nodes {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+  }
+  .timeline-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+  }
+  .timeline-node::before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: #0d0d0f;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .timeline-node.active::before {
+    background-color: #c5a059;
+    border-color: #c5a059;
+    box-shadow: 0 0 6px #c5a059;
+  }
+  .node-time {
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 3px;
+  }
+  .node-label {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.2;
+    font-weight: 300;
+  }
+  
+  /* Perfect list */
+  .perfect-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .perfect-item {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+    font-weight: 300;
+  }
+  .perfect-item:last-child {
+    border-bottom: none;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 991px) {
+    .product-content #nav-tab-info .nav-tabs {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      overflow-x: visible !important;
+      border: 1px solid rgba(197, 160, 89, 0.25) !important;
+      background-color: #050505 !important;
+      border-radius: 4px !important;
+      margin-bottom: 30px !important;
+    }
+    .product-content #nav-tab-info .nav-tabs .nav-link {
+      width: 100% !important;
+      padding: 16px 20px !important;
+      border: none !important;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.25) !important;
+      text-align: left !important;
+      border-radius: 0 !important;
+      white-space: normal !important;
+      flex-shrink: 1 !important;
+    }
+    .product-content #nav-tab-info .nav-tabs .nav-link:last-child {
+      border-bottom: none !important;
+    }
+    .product-content #nav-tab-info .nav-tabs .nav-link::after {
+      display: none !important;
+    }
+    .product-content #nav-tab-info .nav-tabs .nav-link.active {
+      color: #c5a059 !important;
+      background-color: rgba(197, 160, 89, 0.04) !important;
+    }
+    
+    .special-desc-col-left {
+      padding-right: 15px;
+      margin-bottom: 40px;
+    }
+    .special-desc-col-mid {
+      margin-bottom: 40px;
+    }
+    .special-desc-img-wrap {
+      max-width: 450px;
+    }
+    .card-big-digits {
+      font-size: 50px;
+    }
+  }
+</style>
+
+<div class="section-{{ section.id }} product-content customstyle{{ section.id }}" data-aos="{{ section.settings.animation }}" >
+  {%- render 'style-section' -%}  
+  <div class="{{ setwidth }}">
+        <div class="row justify-content-center">
+            <div id="nav-tab-info" class="nav-tab-info {{ left_size }}" data-aos="{{ section.settings.animation }}" >
+                <div class="nav nav-tabs {% if section.settings.enable_left %} justify-content-start {% endif %}" role="tablist">
+                    {%- for block in section.blocks -%}
+                        {%- liquid
+                            if forloop.first == true
+                                assign active = 'active'
+                            else
+                                assign active = ''
+                            endif
+                        -%}
+                        {%- case block.type -%}
+                            {%- when 'description' -%}
+                                <a class="nav-item nav-link {{ active }} disabled-anchor" href="#gtab{{ block.id }}" data-toggle="tab" role="tab" aria-selected="true">
+                                    {{ block.settings.title_tab | default: 'Description' }}
+                                </a>
+                            {%- when 'custom_liquid' -%}
+                                <a class="nav-item nav-link {{ active }} disabled-anchor" href="#gtab{{ block.id }}" data-toggle="tab" role="tab" aria-selected="true">
+                                    {{ block.settings.title_tab | default: 'Custom Liquid' }}
+                                </a>
+                            {%- when 'content' -%}
+                                <a class="nav-item nav-link {{ active }} disabled-anchor" href="#gtab{{ block.id }}" data-toggle="tab" role="tab" aria-selected="true">
+                                    {{ block.settings.title_tab | default: 'Title Content' }}
+                                </a>
+                            {%- when 'review' -%}
+                                    <a class="nav-item nav-link {{ active }} disabled-anchor" href="#gtab{{ block.id }}" data-toggle="tab" role="tab" aria-selected="true">
+                                        {{ block.settings.title_tab | default: 'Reviews' }}
+                                    </a>
+                            {%- endcase -%}
+                    {%- endfor -%}
+                    
+                    {%- if section.settings.show_social_right -%}
+                      <div class="tab-bar-right-content d-none d-lg-flex">
+                        {%- if section.settings.social_right_text != blank -%}
+                          <span class="tab-bar-right-text">{{ section.settings.social_right_text }}</span>
+                        {%- endif -%}
+                        <div class="tab-bar-right-images">
+                          {%- if section.settings.social_img_1 != blank -%}
+                            <div class="social-img-thumb">
+                              <img src="{{ section.settings.social_img_1 | image_url: width: 80 }}" alt="" loading="lazy">
+                            </div>
+                          {%- endif -%}
+                          {%- if section.settings.social_img_2 != blank -%}
+                            <div class="social-img-thumb">
+                              <img src="{{ section.settings.social_img_2 | image_url: width: 80 }}" alt="" loading="lazy">
+                            </div>
+                          {%- endif -%}
+                          {%- if section.settings.social_img_3 != blank -%}
+                            <div class="social-img-thumb">
+                              <img src="{{ section.settings.social_img_3 | image_url: width: 80 }}" alt="" loading="lazy">
+                            </div>
+                          {%- endif -%}
+                          {%- if section.settings.social_img_4 != blank -%}
+                            <div class="social-img-thumb">
+                              <img src="{{ section.settings.social_img_4 | image_url: width: 80 }}" alt="" loading="lazy">
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                </div>
+                <div class="tab-content">
+                    {%- for block in section.blocks -%}
+                        {%- liquid
+                            if forloop.first == true
+                                assign activetab = 'show active'
+                            else
+                                assign activetab = ''
+                            endif
+                        -%}
+                        {%- case block.type -%}
+                            {%- when 'description' -%}
+                                <div class="tab-pane fade {{ activetab }}" id="gtab{{ block.id }}" role="tabpanel" >
+                                    {%- if block.settings.enable_special -%}
+                                      <div class="special-desc-container">
+                                        <div class="row">
+                                          
+                                          <!-- Left Column: Text & Features -->
+                                          <div class="col-12 col-lg-5 col-xl-5 special-desc-col-left">
+                                            {%- if block.settings.left_heading != blank -%}
+                                              <h2 class="special-desc-heading">{{ block.settings.left_heading }}</h2>
+                                            {%- endif -%}
+                                            
+                                            {%- assign mf_source = block.settings.metafield_source -%}
+                                            {%- if mf_source != blank and product.metafields.custom[mf_source] != blank -%}
+                                              <div class="special-desc-main-text">
+                                                {{ product.metafields.custom[mf_source] | metafield_tag }}
+                                              </div>
+                                            {%- endif -%}
+                                            
+                                            <div class="special-desc-sep">
+                                              <span class="sep-line"></span>
+                                              <svg class="sep-diamond" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7z"/>
+                                              </svg>
+                                              <span class="sep-line"></span>
+                                            </div>
+
+                                            
+                                            <div class="special-desc-features">
+                                              {%- for i in (1..4) -%}
+                                                {%- liquid
+                                                  assign feat_icon_key = 'feat_' | append: i | append: '_icon'
+                                                  assign feat_text_key = 'feat_' | append: i | append: '_text'
+                                                  assign feat_icon = block.settings[feat_icon_key]
+                                                  assign feat_text = block.settings[feat_text_key]
+                                                -%}
+                                                {%- if feat_text != blank -%}
+                                                  <div class="special-desc-feat-item">
+                                                    <div class="special-desc-feat-icon">
+                                                      {%- case feat_icon -%}
+                                                        {%- when 'water' -%}
+                                                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                                                        {%- when 'sparkle' -%}
+                                                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                                                        {%- when 'wave' -%}
+                                                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c3.2-1.5 5.8 1.5 9 0 3.2-1.5 5.8 1.5 9 0M2 12c3.2-1.5 5.8 1.5 9 0 3.2-1.5 5.8 1.5 9 0M2 18c3.2-1.5 5.8 1.5 9 0 3.2-1.5 5.8 1.5 9 0"/></svg>
+                                                        {%- when 'leaf' -%}
+                                                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22c0-5.5 4.5-10 10-10h10v2C22 19.5 17.5 24 12 24H2z"/><path d="M12 12C6.5 12 2 16.5 2 22"/></svg>
+                                                      {%- endcase -%}
+                                                    </div>
+                                                    <div class="special-desc-feat-text">{{ feat_text }}</div>
+                                                  </div>
+                                                {%- endif -%}
+                                              {%- endfor -%}
+                                            </div>
+                                          </div>
+                                          
+                                          <!-- Middle Column: Portrait Image -->
+                                          <div class="col-12 col-lg-4 col-xl-4 text-center special-desc-col-mid">
+                                            <div class="special-desc-img-wrap">
+                                              {%- if product.metafields.custom.descriere_image != blank -%}
+                                                <img src="{{ product.metafields.custom.descriere_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" loading="lazy">
+                                              {%- elsif block.settings.mid_image != blank -%}
+                                                <img src="{{ block.settings.mid_image | image_url: width: 600 }}" alt="" loading="lazy">
+                                              {%- else -%}
+                                                <img src="{{ 'masca_A.A._neck_front.png' | asset_url }}" alt="Lumina Ritual" loading="lazy">
+                                              {%- endif -%}
+                                            </div>
+                                          </div>
+                                          
+                                          <!-- Right Column: Timeline & Perfect For Cards -->
+                                          <div class="col-12 col-lg-3 col-xl-3 special-desc-col-right">
+                                            
+                                            <!-- Card 1: Timeline -->
+                                            <div class="special-desc-card transformation-card">
+                                              {%- if block.settings.card_1_title != blank -%}<span class="card-subtitle">{{ block.settings.card_1_title }}</span>{%- endif -%}
+                                              {%- if block.settings.card_1_time != blank -%}<div class="card-big-digits">{{ block.settings.card_1_time }}</div>{%- endif -%}
+                                              
+                                              <div class="transformation-timeline">
+                                                <div class="timeline-line-bg">
+                                                  <div class="timeline-line-active"></div>
+                                                </div>
+                                                <div class="timeline-nodes">
+                                                  <div class="timeline-node node-1 active">
+                                                    <span class="node-time">{{ block.settings.timeline_val_1 }}</span>
+                                                    <span class="node-label">{{ block.settings.timeline_lbl_1 }}</span>
+                                                  </div>
+                                                  <div class="timeline-node node-2">
+                                                    <span class="node-time">{{ block.settings.timeline_val_2 }}</span>
+                                                    <span class="node-label">{{ block.settings.timeline_lbl_2 }}</span>
+                                                  </div>
+                                                  <div class="timeline-node node-3">
+                                                    <span class="node-time">{{ block.settings.timeline_val_3 }}</span>
+                                                    <span class="node-label">{{ block.settings.timeline_lbl_3 }}</span>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            
+                                            <!-- Card 2: Perfect For -->
+                                            <div class="special-desc-card perfect-card">
+                                              {%- if block.settings.card_2_title != blank -%}<span class="card-subtitle">{{ block.settings.card_2_title }}</span>{%- endif -%}
+                                              <div class="perfect-list">
+                                                {%- if block.settings.perfect_1 != blank -%}<div class="perfect-item">{{ block.settings.perfect_1 }}</div>{%- endif -%}
+                                                {%- if block.settings.perfect_2 != blank -%}<div class="perfect-item">{{ block.settings.perfect_2 }}</div>{%- endif -%}
+                                                {%- if block.settings.perfect_3 != blank -%}<div class="perfect-item">{{ block.settings.perfect_3 }}</div>{%- endif -%}
+                                                {%- if block.settings.perfect_4 != blank -%}<div class="perfect-item">{{ block.settings.perfect_4 }}</div>{%- endif -%}
+                                              </div>
+                                            </div>
+                                            
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                                    {%- else -%}
+                                      {%- if product.metafields.custom.descriere_image != blank -%}
+                                         <div class="row align-items-center descriere-2col-wrap" style="margin-top: 10px;">
+                                           <div class="col-12 col-lg-8 col-xl-8 descriere-left-text">
+                                             {%- assign mf_source = block.settings.metafield_source -%}
+                                             {%- if mf_source != blank and product.metafields.custom[mf_source] != blank -%}
+                                               {{ product.metafields.custom[mf_source] | metafield_tag }}
+                                             {%- else -%}
+                                               {{ product.description }}
+                                             {%- endif -%}
+                                           </div>
+                                           <div class="col-12 col-lg-4 col-xl-4 text-center descriere-right-image mt-4 mt-lg-0">
+                                             <div class="descriere-img-box" style="padding: 5px; text-align: center;">
+                                               <img src="{{ product.metafields.custom.descriere_image | image_url: width: 700 }}" alt="{{ product.title | escape }}" loading="lazy" style="max-width: 380px; width: 100%; height: auto; object-fit: cover; border-radius: 14px; border: 1px solid rgba(226, 215, 195, 0.35); box-shadow: 0 8px 30px rgba(0,0,0,0.25); display: inline-block;">
+                                             </div>
+                                           </div>
+                                         </div>
+                                      {%- else -%}
+                                        {%- assign mf_source = block.settings.metafield_source -%}
+                                        {%- if mf_source != blank and product.metafields.custom[mf_source] != blank -%}
+                                          {{ product.metafields.custom[mf_source] | metafield_tag }}
+                                        {%- else -%}
+                                          {{ product.description }}
+                                        {%- endif -%}
+                                      {%- endif -%}
+                                    {%- endif -%}
+                                </div>
+                            {%- when 'custom_liquid' -%}
+                                <div class="tab-pane fade {{ activetab }}" id="gtab{{ block.id }}" role="tabpanel" >
+                                    {{ block.settings.custom_liquid }}
+                                </div>
+                            {%- when 'content' -%}
+                                <div class="tab-pane fade {{ activetab }}" id="gtab{{ block.id }}" role="tabpanel" >
+                                    {%- assign mf_source = block.settings.metafield_source -%}
+                                    {%- assign mf_img_key = mf_source | append: '_image' -%}
+                                    {%- if mf_source == 'mod_utilizare' and product.metafields.custom.cum_se_utilizeaza_image != blank -%}
+                                      {%- assign active_img = product.metafields.custom.cum_se_utilizeaza_image -%}
+                                    {%- elsif product.metafields.custom[mf_img_key] != blank -%}
+                                      {%- assign active_img = product.metafields.custom[mf_img_key] -%}
+                                    {%- else -%}
+                                      {%- assign active_img = nil -%}
+                                    {%- endif -%}
+
+                                    {%- assign txt_val = nil -%}
+                                    {%- if mf_source != blank and product.metafields.custom[mf_source] != blank -%}
+                                      {%- assign txt_val = product.metafields.custom[mf_source] -%}
+                                    {%- elsif mf_source == 'mod_utilizare' and product.metafields.custom.cum_se_utilizeaza != blank -%}
+                                      {%- assign txt_val = product.metafields.custom.cum_se_utilizeaza -%}
+                                    {%- elsif mf_source == 'cum_se_utilizeaza' and product.metafields.custom.mod_utilizare != blank -%}
+                                      {%- assign txt_val = product.metafields.custom.mod_utilizare -%}
+                                    {%- endif -%}
+                                    
+                                    {%- assign default_img = nil -%}
+                                    {%- assign default_txt = nil -%}
+                                    {%- case mf_source -%}
+                                      {%- when 'inainte_de_utilizare' -%}
+                                        {%- assign default_txt = '<p>Gently cleanse your face before application. Ensure skin is clean and lightly misted with Hydro Mist or lukewarm water.</p>' -%}
+                                        {%- assign default_img = '2._activate.png' | asset_url -%}
+                                      {%- when 'cum_se_utilizeaza', 'mod_utilizare' -%}
+                                        {%- assign default_txt = '<p>1. Open the dry mask and smooth onto misted skin.<br/>2. Allow the nanofibers to dissolve and release pure encapsulated actives.<br/>3. Gently press the remaining essence into the skin.</p>' -%}
+                                        {%- assign default_img = '3apply.jpg' | asset_url -%}
+                                      {%- when 'ingrediente_cheie' -%}
+                                        {%- assign default_txt = '<p><strong>Hyaluronic Acid:</strong> Multi-depth cellular hydration.<br/><strong>Niacinamide (Vitamin B3):</strong> Evens skin tone and strengthens lipid barrier.<br/><strong>Panthenol:</strong> Calms and accelerates cellular recovery.</p>' -%}
+                                        {%- assign default_img = 'PEPTIDE.webp' | asset_url -%}
+                                      {%- when 'rezultate_clinice' -%}
+                                        {%- assign default_txt = '<p>✦ <strong>98%</strong> of participants noted immediate hydration after first application.<br/>✦ <strong>94%</strong> reported refined texture and enhanced elasticity after 14 days.<br/>✦ <strong>91%</strong> saw visibly luminous, rejuvenated skin.</p>' -%}
+                                        {%- assign default_img = 'pure_transfer_5_min.jpg' | asset_url -%}
+                                    {%- endcase -%}
+
+                                    {%- if active_img != blank -%}
+                                      {%- assign display_img = active_img | image_url: width: 700 -%}
+                                    {%- elsif default_img != blank -%}
+                                      {%- assign display_img = default_img -%}
+                                    {%- else -%}
+                                      {%- assign display_img = nil -%}
+                                    {%- endif -%}
+
+                                    {%- if txt_val != blank -%}
+                                      {%- capture display_content %}{{ txt_val | metafield_tag }}{% endcapture -%}
+                                    {%- elsif block.settings.answer_content != blank or block.settings.page.content != blank -%}
+                                      {%- capture display_content %}{{ block.settings.answer_content }}{{ block.settings.page.content }}{% endcapture -%}
+                                    {%- else -%}
+                                      {%- assign display_content = default_txt -%}
+                                    {%- endif -%}
+                                    
+                                    {%- if display_img != blank -%}
+                                      <div class="row align-items-center descriere-2col-wrap" style="margin-top: 10px;">
+                                        <div class="col-12 col-lg-8 col-xl-8 descriere-left-text">
+                                          {{ display_content }}
+                                        </div>
+                                        <div class="col-12 col-lg-4 col-xl-4 text-center descriere-right-image mt-4 mt-lg-0">
+                                          <div class="descriere-img-box" style="padding: 5px; text-align: center;">
+                                            <img src="{{ display_img }}" alt="{{ product.title | escape }}" loading="lazy" style="max-width: 380px; width: 100%; height: auto; object-fit: cover; border-radius: 14px; border: 1px solid rgba(226, 215, 195, 0.35); box-shadow: 0 8px 30px rgba(0,0,0,0.25); display: inline-block;">
+                                          </div>
+                                        </div>
+                                      </div>
+                                    {%- else -%}
+                                      {{ display_content }}
+                                    {%- endif -%}
+                                </div>
+                            {%- when 'review' -%}
+                                <div class="tab-pane fade {{ activetab }}" id="gtab{{ block.id }}" role="tabpanel">
+                                    <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ product.metafields.spr.reviews }}</div>
+                                </div>
+                        {%- endcase -%}
+                    {%- endfor -%}
+                </div>
+            </div>
+            
+            {%- for block in section.blocks -%}
+                {%- if block.type == 'related-product' -%}
+                    <div class="{{ right_size }}" data-aos-delay="200" data-aos="{{ section.settings.animation }}" >
+                      <div class="product-block product-related mt-lg-0 mt-4 {% if section.settings.tab_size  == 'full' %} pl-0 {% endif %}">
+                            <product-pairs class="product-pairs isolate product-pairs--loaded" data-id="{{ section.id }}" 
+                              data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.product_limit }}&intent=complementary">
+                              {% if recommendations.performed and recommendations.products_count > 0 %}
+                                {%- if block.settings.title_heading != blank -%}
+                                  <h5 class="mb-4 {{ block.settings.size_text }}">{{ block.settings.title_heading }}</h5>
+                                {%- endif -%}
+                                <div class="row">
+                                  {% for recommendation in recommendations.products %}
+                                    <div class="col-lg col-6">
+                                    {%- render 'product-grid-buywith', product: recommendation -%}
+                                  </div>
+                                  {% endfor %}
+                                </div>
+                              {% endif %}
+                            </product-pairs>
+                        </div>
+                    </div>
+                {%- endif -%}
+            {%- endfor -%}
+        </div>
+    </div>
+</div>
+
+{% javascript %}
+  class productPairs extends HTMLElement {
+    connectedCallback() {
+      fetch(this.dataset.url).
+      then((response) => {
+        if (!response.ok) {
+          throw new Error("HTTP error! Status: ".concat(response.status));
+        }
+        return response.text();
+      }).
+      then((response) => {
+        var frag = document.createDocumentFragment(),
+          fetchedContent = document.createElement('div');
+        frag.appendChild(fetchedContent);
+        fetchedContent.innerHTML = response;
+
+        var replacementContent = fetchedContent.querySelector("[data-id=\"".concat(CSS.escape(this.dataset.id), "\"]"));
+        if (replacementContent) {
+          this.innerHTML = replacementContent.innerHTML;
+        }
+      });
+    }
+  }
+
+  customElements.define('product-pairs', productPairs);
+{% endjavascript %}
+{% schema %}
+{
+  "name": "Product Content",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Tab Text Font Size Settings"
+    },
+    {
+      "type": "range",
+      "id": "tab_text_size_desktop",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab Content Text Size (Desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "tab_text_size_mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab Content Text Size (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "animation",
+      "options": [
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "fade-up",
+          "label": "Fade Up"
+        },
+        {
+          "value": "fade-down",
+          "label": "Fade Down"
+        },
+        {
+          "value": "fade-left",
+          "label": "Fade Left"
+        },
+        {
+          "value": "fade-right",
+          "label": "Fade Right"
+        },
+        {
+          "value": "fade-up-right",
+          "label": "Fade Up Right"
+        },
+        {
+          "value": "fade-up-left",
+          "label": "Fade Up Left"
+        },
+        {
+          "value": "fade-down-right",
+          "label": "Fade Down Right"
+        },
+        {
+          "value": "fade-down-left",
+          "label": "Fade Down Left"
+        },
+        {
+          "value": "flip-up",
+          "label": "Flip Up"
+        },
+        {
+          "value": "flip-down",
+          "label": "Flip Down"
+        },
+        {
+          "value": "flip-left",
+          "label": "Flip Left"
+        },
+        {
+          "value": "flip-right",
+          "label": "Flip Right"
+        },
+        {
+          "value": "slide-up",
+          "label": "Slide Up"
+        },
+        {
+          "value": "slide-down",
+          "label": "Slide Down"
+        },
+        {
+          "value": "slide-left",
+          "label": "Slide Left"
+        },
+        {
+          "value": "slide-right",
+          "label": "Slide Right"
+        },
+        {
+          "value": "zoom-in",
+          "label": "Zoom In"
+        },
+        {
+          "value": "zoom-in-up",
+          "label": "Zoom In Up"
+        },
+        {
+          "value": "zoom-in-down",
+          "label": "Zoom In Down"
+        },
+        {
+          "value": "zoom-in-left",
+          "label": "Zoom In Left"
+        },
+        {
+          "value": "zoom-in-right",
+          "label": "Zoom In Right"
+        },
+        {
+          "value": "zoom-out",
+          "label": "Zoom Out"
+        },
+        {
+          "value": "zoom-out-up",
+          "label": "Zoom Out Up"
+        },
+        {
+          "value": "zoom-out-down",
+          "label": "Zoom Out Down"
+        },
+        {
+          "value": "zoom-out-left",
+          "label": "Zoom Out Feft"
+        },
+        {
+          "value": "zoom-out-right",
+          "label": "Zoom Out Right"
+        }
+      ],
+      "label": "Select Animation"
+    },
+    {
+      "type": "select",
+      "id": "setwidth",
+      "label": "Width",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "tab_size",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "largest",
+          "label": "Largest"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ],
+      "default": "large",
+      "label": "Tab Size"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_left",
+      "label": "Title Tab Left",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section Padding "
+    },
+    {
+      "type": "text",
+      "id": "paddingsection",
+      "label": "Padding Section",
+      "default": "0px 0px 0px 0px",
+      "info": "Padding: Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "paddingmobile",
+      "label": "Padding Section Mobile",
+      "default": "40px 0px 40px 0px",
+      "info": "Padding: Top Right Bottom Left"
+    },
+    {
+      "type": "header",
+      "content": "Section Margin "
+    },
+    {
+      "type": "text",
+      "id": "marginsection",
+      "label": "Margin Section",
+      "default": "0px 0px 0px 0px",
+      "info": "Margin: Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "marginmobile",
+      "label": "Margin Mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Margin: Top Right Bottom Left"
+    },
+    {
+      "type": "header",
+      "content": "Tabs Bar Right Side Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_right",
+      "label": "Show Social Content on Right",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "social_right_text",
+      "label": "Social Content Text",
+      "default": "Artistic images (TBC) may be associated with social media posts."
+    },
+    {
+      "type": "image_picker",
+      "id": "social_img_1",
+      "label": "Social Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "social_img_2",
+      "label": "Social Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "social_img_3",
+      "label": "Social Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "social_img_4",
+      "label": "Social Image 4"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title_tab",
+          "label": "Heading",
+          "default": "Description"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_special",
+          "label": "Enable Special Premium Layout",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Left Column - Features"
+        },
+        {
+          "type": "text",
+          "id": "left_heading",
+          "label": "Left Heading",
+          "default": "Intense hydration. Visible transformation."
+        },
+        {
+          "type": "select",
+          "id": "metafield_source",
+          "label": "Show unique text per product from",
+          "info": "Displays unique content from the selected metafield.",
+          "default": "",
+          "options": [
+            {
+              "value": "",
+              "label": "None (use default text)"
+            },
+            {
+              "value": "descriere",
+              "label": "Description (custom.descriere)"
+            },
+            {
+              "value": "inainte_de_utilizare",
+              "label": "Next de utilizare (custom.inainte_de_utilizare)"
+            },
+            {
+              "value": "cum_se_utilizeaza",
+              "label": "How to use (custom.how_to_use)"
+            },
+            {
+              "value": "mod_utilizare",
+              "label": "How to use (custom.how_to_use)"
+            },
+            {
+              "value": "ingrediente_cheie",
+              "label": "Ingredients cheie (custom.ingrediente_cheie)"
+            },
+            {
+              "value": "rezultate_clinice",
+              "label": "Clinical Results (custom.rezultate_clinice)"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "feat_1_icon",
+          "label": "Feature 1 Icon",
+          "options": [
+            {
+              "value": "water",
+              "label": "Water Drop"
+            },
+            {
+              "value": "sparkle",
+              "label": "Sparkle"
+            },
+            {
+              "value": "wave",
+              "label": "Wave Lines"
+            },
+            {
+              "value": "leaf",
+              "label": "Leaf"
+            }
+          ],
+          "default": "water"
+        },
+        {
+          "type": "text",
+          "id": "feat_1_text",
+          "label": "Feature 1 Text",
+          "default": "Deep hydration and regeneration"
+        },
+        {
+          "type": "select",
+          "id": "feat_2_icon",
+          "label": "Feature 2 Icon",
+          "options": [
+            {
+              "value": "water",
+              "label": "Water Drop"
+            },
+            {
+              "value": "sparkle",
+              "label": "Sparkle"
+            },
+            {
+              "value": "wave",
+              "label": "Wave Lines"
+            },
+            {
+              "value": "leaf",
+              "label": "Leaf"
+            }
+          ],
+          "default": "sparkle"
+        },
+        {
+          "type": "text",
+          "id": "feat_2_text",
+          "label": "Feature 2 Text",
+          "default": "Strengthens and soothes"
+        },
+        {
+          "type": "select",
+          "id": "feat_3_icon",
+          "label": "Feature 3 Icon",
+          "options": [
+            {
+              "value": "water",
+              "label": "Water Drop"
+            },
+            {
+              "value": "sparkle",
+              "label": "Sparkle"
+            },
+            {
+              "value": "wave",
+              "label": "Wave Lines"
+            },
+            {
+              "value": "leaf",
+              "label": "Leaf"
+            }
+          ],
+          "default": "wave"
+        },
+        {
+          "type": "text",
+          "id": "feat_3_text",
+          "label": "Feature 3 Text",
+          "default": "Bring back the shine and comfort"
+        },
+        {
+          "type": "select",
+          "id": "feat_4_icon",
+          "label": "Feature 4 Icon",
+          "options": [
+            {
+              "value": "water",
+              "label": "Water Drop"
+            },
+            {
+              "value": "sparkle",
+              "label": "Sparkle"
+            },
+            {
+              "value": "wave",
+              "label": "Wave Lines"
+            },
+            {
+              "value": "leaf",
+              "label": "Leaf"
+            }
+          ],
+          "default": "leaf"
+        },
+        {
+          "type": "text",
+          "id": "feat_4_text",
+          "label": "Feature 4 Text",
+          "default": "Perfect for all skin types, including sensitive skin"
+        },
+        {
+          "type": "header",
+          "content": "Middle Column - Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mid_image",
+          "label": "Portrait Image"
+        },
+        {
+          "type": "header",
+          "content": "Right Column - Transformation Card"
+        },
+        {
+          "type": "text",
+          "id": "card_1_title",
+          "label": "Card 1 Title",
+          "default": "TRANSFORMATION IN 8 MINUTES"
+        },
+        {
+          "type": "text",
+          "id": "card_1_time",
+          "label": "Card 1 Timer Digits",
+          "default": "08:00"
+        },
+        {
+          "type": "text",
+          "id": "timeline_val_1",
+          "label": "Timeline Value 1",
+          "default": "01:00"
+        },
+        {
+          "type": "text",
+          "id": "timeline_lbl_1",
+          "label": "Timeline Label 1",
+          "default": "Activare"
+        },
+        {
+          "type": "text",
+          "id": "timeline_val_2",
+          "label": "Timeline Value 2",
+          "default": "04:00"
+        },
+        {
+          "type": "text",
+          "id": "timeline_lbl_2",
+          "label": "Timeline Label 2",
+          "default": "Absorption"
+        },
+        {
+          "type": "text",
+          "id": "timeline_val_3",
+          "label": "Timeline Value 3",
+          "default": "08:00"
+        },
+        {
+          "type": "text",
+          "id": "timeline_lbl_3",
+          "label": "Timeline Label 3",
+          "default": "Transformare"
+        },
+        {
+          "type": "header",
+          "content": "Right Column - Perfect For Card"
+        },
+        {
+          "type": "text",
+          "id": "card_2_title",
+          "label": "Card 2 Title",
+          "default": "PERFECT PENTRU"
+        },
+        {
+          "type": "text",
+          "id": "perfect_1",
+          "label": "Perfect For Item 1",
+          "default": "Dehydrated and tired skin"
+        },
+        {
+          "type": "text",
+          "id": "perfect_2",
+          "label": "Perfect For Item 2",
+          "default": "After long journeys or flights"
+        },
+        {
+          "type": "text",
+          "id": "perfect_3",
+          "label": "Perfect For Item 3",
+          "default": "Next de evenimente speciale"
+        },
+        {
+          "type": "text",
+          "id": "perfect_4",
+          "label": "Perfect For Item 4",
+          "default": "When your skin needs an instant recovery"
+        }
+      ]
+    },
+    {
+      "type": "custom_liquid",
+      "name": "Custom Liquid",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title_tab",
+          "label": "Heading",
+          "default": "Title Custom liquid"
+        },
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Custom Liquid",
+          "info": "Add app snippets or other Liquid code to create advanced customizations."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "Content",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title_tab",
+          "label": "Heading",
+          "default": "Title Content"
+        },
+        {
+          "type": "header",
+          "content": "Per-Product Content"
+        },
+        {
+          "type": "select",
+          "id": "metafield_source",
+          "label": "Show unique text per product from",
+          "info": "If a product has this metafield filled in, it replaces the default text below on that product only. Requires creating the matching metafield definition first (Settings → Custom data → Products, namespace 'custom', Rich text type).",
+          "default": "",
+          "options": [
+            {
+              "value": "",
+              "label": "None (use default text below)"
+            },
+            {
+              "value": "descriere",
+              "label": "Description (custom.descriere)"
+            },
+            {
+              "value": "inainte_de_utilizare",
+              "label": "Next de utilizare (custom.inainte_de_utilizare)"
+            },
+            {
+              "value": "cum_se_utilizeaza",
+              "label": "How to use (custom.how_to_use)"
+            },
+            {
+              "value": "mod_utilizare",
+              "label": "How to use (custom.how_to_use)"
+            },
+            {
+              "value": "ingrediente_cheie",
+              "label": "Ingredients cheie (custom.ingrediente_cheie)"
+            },
+            {
+              "value": "rezultate_clinice",
+              "label": "Clinical Results (custom.rezultate_clinice)"
+            }
+          ]
+        },
+        {
+          "type": "richtext",
+          "id": "answer_content",
+          "label": "Default tab content",
+          "default": "<p>Use collapsible tabs for more detailed information that will help customers make a purchasing decision.</p><p>Ex: Shipping and return policies, size guides, and other common questions.</p>"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Select Page"
+        }
+      ]
+    },
+    {
+      "type": "related-product",
+      "name": "Featured products ",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title_heading",
+          "label": "Heading",
+          "default": "Related products"
+        },
+        {
+          "type": "select",
+          "id": "size_text",
+          "default": "h6",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            }
+          ],
+          "label": "Heading Size"
+        },
+        {
+          "type": "range",
+          "id": "product_limit",
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "label": "Limit Products",
+          "default": 6,
+          "info": "Complementary products. Guide https://help.shopify.com/en/manual/online-store/search-and-discovery/product-recommendations"
+        }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Review",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title_tab",
+          "label": "Heading",
+          "default": "Review"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

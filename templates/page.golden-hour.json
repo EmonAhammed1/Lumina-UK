@@ -1,0 +1,471 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "golden-hour-hero",
+      "settings": {
+        "max_width": 4000,
+        "subtitle": "A MOMENT THAT BELONGS ONLY TO YOU.",
+        "title": "GOLDEN HOUR",
+        "text": "",
+        "button_label": "KEEP THE LIGHT CLOSE TO YOU",
+        "button_link": "",
+        "video": "",
+        "height_desktop": 100,
+        "button_bottom_desktop": 50,
+        "video_mobile": "",
+        "height_mobile": 100,
+        "button_bottom_mobile": 30,
+        "button_color": "#f9e29c"
+      }
+    },
+    "intro": {
+      "type": "golden-hour-intro",
+      "disabled": true,
+      "settings": {
+        "max_width": 2000,
+        "subtitle": "Golden Hour — A moment that belongs only to you. Scroll.",
+        "quote": "Beauty begins with ritual. Not routine. Not perfection. Presence.",
+        "sub_size_desktop": 14,
+        "quote_size_desktop": 40,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "sub_size_mobile": 12,
+        "quote_size_mobile": 26,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80
+      }
+    },
+    "why": {
+      "type": "golden-hour-why",
+      "settings": {
+        "max_width": 2000,
+        "video": "",
+        "text": "<p>Golden Hour was created for those who choose intention over noise.</p>",
+        "overlay_opacity": 55,
+        "min_height_desktop": 100,
+        "text_size_desktop": 34,
+        "min_height_mobile": 80,
+        "text_size_mobile": 24
+      }
+    },
+    "what": {
+      "type": "golden-hour-what",
+      "settings": {
+        "max_width": 2000,
+        "image_width_percent": 42,
+        "video": "",
+        "decorative_image": "shopify://shop_images/section-i.png",
+        "graphic_width": 500,
+        "graphic_height": 370,
+        "graphic_opacity": 100,
+        "heading": "Ce este Golden Hour?",
+        "content": "<p> There is a moment every day when the light becomes softer, warmer and closer to the skin.</p><p> Lumina Golden Hour is the community of those who discover the rituals, novelties and experiences of Lumina before everyone else.</p><p> Golden Hour is that time of day when the light becomes softer and time seems to slow down.</p><p> We created this community to keep that same excitement: a place where every release, every ritual, and every story reaches first those who choose to be part of the Lumina universe. </p>",
+        "link_label": "",
+        "link_url": "",
+        "section_height_desktop": 480,
+        "heading_size_desktop": 36,
+        "body_size_desktop": 18,
+        "padding_top_desktop": 100,
+        "padding_bottom_desktop": 100,
+        "padding_side_desktop": 80,
+        "section_height_mobile": 320,
+        "heading_size_mobile": 26,
+        "body_size_mobile": 15,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "benefits": {
+      "type": "golden-hour-benefits",
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "image_icon": "shopify://shop_images/key.png",
+            "icon": "key",
+            "title": "Priority Access",
+            "description": "Be among the first to discover Lumina's new releases, seasonal collections and limited editions."
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "image_icon": "shopify://shop_images/gift-box.png",
+            "icon": "star",
+            "title": "Exclusive Gifts",
+            "description": "Enjoy carefully selected surprises and gifts, created especially for the Golden Hour community."
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "image_icon": "shopify://shop_images/tag.png",
+            "icon": "star",
+            "title": "Curated Offers",
+            "description": "Access benefits and offers available exclusively to Golden Hour members."
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "image_icon": "shopify://shop_images/leaf.png",
+            "icon": "star",
+            "title": "Seasonal Rituals",
+            "description": "Receive recommendations and rituals adapted to the needs of your skin, in harmony with each season."
+          }
+        },
+        "benefit_5": {
+          "type": "benefit",
+          "settings": {
+            "image_icon": "shopify://shop_images/book.png",
+            "icon": "star",
+            "title": "Lumina Journal",
+            "description": "Discover articles, inspiration and stories about the beauty of rituals and conscious skin care."
+          }
+        },
+        "benefit_6": {
+          "type": "benefit",
+          "settings": {
+            "image_icon": "shopify://shop_images/calendar.png",
+            "icon": "star",
+            "title": "Exclusive Events",
+            "description": "Receive invitations to launches, experiences and events dedicated to the Lumina community."
+          }
+        },
+        "benefit_7": {
+          "type": "benefit",
+          "settings": {
+            "image_icon": "shopify://shop_images/user.png",
+            "icon": "star",
+            "title": "Personalized recommendations",
+            "description": "Get inspired by suggestions and rituals chosen according to the season and your skin's needs."
+          }
+        },
+        "benefit_8": {
+          "type": "benefit",
+          "settings": {
+            "image_icon": "shopify://shop_images/star.png",
+            "icon": "star",
+            "title": "Experiences before everyone else",
+            "description": "Test new products and concepts for the first time and discover the Lumina universe before the official launch."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4",
+        "benefit_5",
+        "benefit_6",
+        "benefit_7",
+        "benefit_8"
+      ],
+      "settings": {
+        "max_width": 2000,
+        "heading": "Benefits",
+        "background_image_desktop": "shopify://shop_images/Beneficii.png",
+        "title_size_desktop": 36,
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "background_image_mobile": "shopify://shop_images/Beneficii-m.png",
+        "title_size_mobile": 26,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60,
+        "card_padding_desktop": 20,
+        "grid_gap_desktop": 10,
+        "icon_size_desktop": 36,
+        "card_title_size_desktop": 18,
+        "card_desc_size_desktop": 14,
+        "card_padding_mobile": 20,
+        "grid_gap_mobile": 16,
+        "icon_size_mobile": 26,
+        "card_title_size_mobile": 17,
+        "card_desc_size_mobile": 13
+      }
+    },
+    "rewards": {
+      "type": "golden-hour-rewards",
+      "settings": {
+        "max_width": 2000,
+        "heading": "Golden Rewards",
+        "content": "<p> Every ritual tells a story. And every choice to return to the Light universe deserves to be rewarded.</p><p> Golden Rewards is our way of thanking you for being a part of our community. As you discover new rituals and return with us, you unlock benefits designed to make each experience even more special.</p><p> From carefully chosen gifts and free shipping, to priority access to releases, limited editions and invitations to Lumina experiences, every step brings you closer to our universe. </p>",
+        "link_label": "DISCOVER GOLDEN REWARDS",
+        "link_url": "",
+        "video": "",
+        "section_height_desktop": 600,
+        "heading_size_desktop": 36,
+        "body_size_desktop": 18,
+        "section_height_mobile": 380,
+        "heading_size_mobile": 26,
+        "body_size_mobile": 15
+      }
+    },
+    "moments": {
+      "type": "golden-hour-moments",
+      "blocks": {
+        "moment_1": {
+          "type": "moment",
+          "settings": {
+            "leaf_image": "shopify://shop_images/block-1.png",
+            "image_icon": "shopify://shop_images/moon.png",
+            "icon": "flower",
+            "title": "Ritual of the Moon",
+            "description": "A complete Lumina ritual, chosen according to the season and the needs of the skin."
+          }
+        },
+        "moment_2": {
+          "type": "moment",
+          "settings": {
+            "leaf_image": "shopify://shop_images/block-2.png",
+            "image_icon": "shopify://shop_images/mandala.png",
+            "icon": "flower",
+            "title": "The collection of the season",
+            "description": "Get the premiere of the ritual that defines the season."
+          }
+        },
+        "moment_3": {
+          "type": "moment",
+          "settings": {
+            "leaf_image": "shopify://shop_images/block-3.png",
+            "image_icon": "shopify://shop_images/gift.png",
+            "icon": "flower",
+            "title": "Golden Box",
+            "description": "A surprise selection of products and special editions, available only to the Golden Hour community."
+          }
+        },
+        "moment_4": {
+          "type": "moment",
+          "settings": {
+            "leaf_image": "shopify://shop_images/block-4.png",
+            "image_icon": "shopify://shop_images/people.png",
+            "icon": "flower",
+            "title": "Light experiences",
+            "description": "Invitations to launches, workshops, private events and community meetings."
+          }
+        },
+        "moment_5": {
+          "type": "moment",
+          "settings": {
+            "leaf_image": "shopify://shop_images/block-5.png",
+            "image_icon": "shopify://shop_images/lotus.png",
+            "icon": "flower",
+            "title": "Moments of indulgence",
+            "description": "Experiences offered in conjunction with selected spas and partners."
+          }
+        },
+        "moment_6": {
+          "type": "moment",
+          "settings": {
+            "leaf_image": "shopify://shop_images/block-6.png",
+            "image_icon": "shopify://shop_images/camera.png",
+            "icon": "flower",
+            "title": "A day in the Lumina universe",
+            "description": "An exclusive experience with the Lumina team, with access to the backstage of the brand, photo sessions and product testing before launch."
+          }
+        }
+      },
+      "block_order": [
+        "moment_1",
+        "moment_2",
+        "moment_3",
+        "moment_4",
+        "moment_5",
+        "moment_6"
+      ],
+      "settings": {
+        "max_width": 2000,
+        "bg_image": "shopify://shop_images/section-bg.png",
+        "bg_opacity": 60,
+        "heading": "Moments you can't buy",
+        "intro": "As a Golden Hour member, you are automatically selected for experiences and surprises created exclusively for the Lumina community.",
+        "heading_size_desktop": 38,
+        "intro_size_desktop": 18,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "card_width_desktop": 190,
+        "gap_desktop": 80,
+        "heading_size_mobile": 26,
+        "intro_size_mobile": 15,
+        "padding_top_mobile": 70,
+        "padding_bottom_mobile": 70,
+        "card_width_mobile": 160,
+        "gap_mobile": 15
+      }
+    },
+    "community": {
+      "type": "golden-hour-community",
+      "settings": {
+        "max_width": 2000,
+        "heading": "Every ritual tells a story",
+        "content": "<p> Behind every ritual is a moment of stillness, an intention, and a choice to put self-care first.</p><p> Golden Hour is the community of those who believe that beauty begins in these simple gestures and continues through the stories we share together. </p>",
+        "link_label": "JOIN THE COMMUNITY",
+        "link_url": "",
+        "video": "",
+        "section_height_desktop": 600,
+        "heading_size_desktop": 36,
+        "body_size_desktop": 18,
+        "section_height_mobile": 380,
+        "heading_size_mobile": 26,
+        "body_size_mobile": 15
+      }
+    },
+    "tech_mockup_hero_YmgBGP": {
+      "type": "tech-mockup-hero",
+      "settings": {
+        "bg_video": "",
+        "overlay_opacity": 0,
+        "subtitle": "MORE THAN BEAUTY",
+        "title": "LUMINA GOLDEN HOUR",
+        "text": "A time you give yourself. Rituals, stories, experiences and privileges created for those who choose to make care a moment of their own.",
+        "btn_label": "DISCOVER LUMINA GOLDEN HOUR →",
+        "btn_link": ""
+      }
+    },
+    "faq": {
+      "type": "golden-hour-faq",
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Is it free to be a part of Golden Hour?",
+            "answer": "Yes. Joining the Lumina Golden Hour community is completely free."
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I sign up?",
+            "answer": "It is enough to create an account or register using the form on this page."
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I opt out at any time?",
+            "answer": "Of course. You can unsubscribe or close your account at any time."
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "How does Golden Rewards work?",
+            "answer": "As you become part of the community and choose Lumina rituals, you will have access to exclusive benefits, surprises and experiences."
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4"
+      ],
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "heading_size_desktop": 36,
+        "q_size_desktop": 22,
+        "a_size_desktop": 17,
+        "padding_top_desktop": 100,
+        "padding_bottom_desktop": 100,
+        "heading_size_mobile": 26,
+        "q_size_mobile": 18,
+        "a_size_mobile": 15,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "tiers": {
+      "type": "golden-hour-tiers",
+      "blocks": {
+        "tier_1": {
+          "type": "tier",
+          "settings": {
+            "title": "Golden Hour",
+            "tagline": "The beginning of the ritual.",
+            "description": "You enter the Lumina community and have access to first releases, inspiration, rituals and surprises prepared for Golden Hour members.",
+            "color_theme": "golden",
+            "icon": "star"
+          }
+        },
+        "tier_2": {
+          "type": "tier",
+          "settings": {
+            "title": "Afterglow",
+            "tagline": "The light that remains.",
+            "description": "Your loyalty is rewarded with extended benefits, exclusive gifts and priority access to collections and experiences dedicated to the community.",
+            "color_theme": "afterglow",
+            "icon": "star"
+          }
+        }
+      },
+      "block_order": [
+        "tier_1",
+        "tier_2"
+      ],
+      "settings": {
+        "bg_image": "shopify://shop_images/section-back.png",
+        "max_width": 2000,
+        "heading": "Povestea ta Lumina Golden Hour",
+        "section_height_desktop": 600,
+        "gap_desktop": 60,
+        "heading_size_desktop": 14,
+        "name_size_desktop": 32,
+        "desc_size_desktop": 17,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "section_height_mobile": 400,
+        "heading_size_mobile": 12,
+        "name_size_mobile": 24,
+        "desc_size_mobile": 15,
+        "padding_top_mobile": 70,
+        "padding_bottom_mobile": 70
+      }
+    },
+    "ctas": {
+      "type": "golden-hour-ctas",
+      "settings": {
+        "max_width": 2000,
+        "video": "",
+        "overlay_opacity": 50,
+        "heading": "A place where taking care of yourself becomes art.",
+        "primary_label": "Become a LUMINA GOLDEN HOUR Member",
+        "primary_url": "",
+        "secondary_label": "Discover Lumina Europa",
+        "secondary_url": "",
+        "min_height_desktop": 1000,
+        "heading_size_desktop": 42,
+        "btn_size_desktop": 14,
+        "padding_top_desktop": 100,
+        "padding_bottom_desktop": 120,
+        "min_height_mobile": 400,
+        "heading_size_mobile": 28,
+        "btn_size_mobile": 12,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 80
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "intro",
+    "why",
+    "what",
+    "benefits",
+    "rewards",
+    "moments",
+    "community",
+    "tech_mockup_hero_YmgBGP",
+    "faq",
+    "tiers",
+    "ctas"
+  ]
+}

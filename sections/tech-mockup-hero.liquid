@@ -1,0 +1,302 @@
+{% render 'golden-hour-vars' %}
+<style>
+  #shopify-section-{{ section.id }} .tm-hero-wrap {
+    position: relative;
+    width: 100%;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 4% 80px 8%;
+    background-color: #000;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .tm-hero-inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    box-sizing: border-box;
+  }
+
+  .tm-hero-content {
+    position: relative;
+    z-index: 2;
+    flex: 1 1 45%;
+    max-width: 580px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    box-sizing: border-box;
+  }
+
+  .tm-hero-subtitle {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gh-text-muted);
+    margin-bottom: 16px;
+    font-family: sans-serif;
+  }
+
+  .tm-hero-title {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    font-weight: 300;
+    color: var(--gh-golden);
+    margin-bottom: 24px;
+    font-family: serif;
+    text-transform: uppercase;
+  }
+
+  .tm-hero-desc {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--gh-text-light);
+    margin-bottom: 40px;
+    max-width: 450px;
+  }
+
+  .tm-hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    background-color: #F9D633;
+    border: 1px solid #F9D633;
+    color: #000;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    gap: 8px;
+  }
+
+  .tm-hero-btn:hover {
+    background-color: #000;
+    border-color: #F9D633;
+    color: #F9D633;
+  }
+
+  .tm-hero-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+
+  .tm-hero-media {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 55%;
+    width: 100%;
+    max-width: 750px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .tm-hero-media img,
+  .tm-hero-media video {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    mix-blend-mode: screen;
+    opacity: 1;
+    display: block;
+  }
+
+  @media screen and (max-width: 991px) {
+    #shopify-section-{{ section.id }} .tm-hero-wrap {
+      padding: 60px 4% 60px 6%;
+      min-height: 70vh;
+    }
+    .tm-hero-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    #shopify-section-{{ section.id }} .tm-hero-wrap {
+      padding: 40px 20px 48px 20px;
+      min-height: auto;
+      display: block;
+    }
+
+    .tm-hero-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .tm-hero-content {
+      width: 100%;
+      max-width: 100%;
+      flex: none;
+      margin-bottom: 0;
+    }
+
+    .tm-hero-subtitle {
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .tm-hero-title {
+      font-size: clamp(2.3rem, 8.5vw, 3.2rem);
+      margin-bottom: 18px;
+    }
+
+    .tm-hero-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      max-width: 100%;
+    }
+
+    .tm-hero-btn {
+      margin-bottom: 8px;
+    }
+
+    .tm-hero-media {
+      width: 100%;
+      max-width: 100%;
+      flex: none;
+      justify-content: center;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .tm-hero-media img,
+    .tm-hero-media video {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      max-height: 420px;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<div id="{{ section.id | split: '__' | last }}" class="tm-hero-wrap">
+  <div class="tm-hero-inner">
+    <div class="tm-hero-content">
+      {% if section.settings.subtitle != blank %}
+        <div class="tm-hero-subtitle">{{ section.settings.subtitle }}</div>
+      {% endif %}
+      {% if section.settings.title != blank %}
+        <h1 class="tm-hero-title">{{ section.settings.title | newline_to_br }}</h1>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="tm-hero-desc">{{ section.settings.text }}</div>
+      {% endif %}
+      {% if section.settings.btn_label != blank %}
+        <a href="{{ section.settings.btn_link | default: '#' }}" class="tm-hero-btn">
+          {{ section.settings.btn_label }}
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      {% endif %}
+    </div>
+    <div class="tm-hero-media">
+      {% if section.settings.bg_video != blank %}
+        {% if section.settings.bg_video.sources != blank %}
+          {{ section.settings.bg_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+        {% else %}
+          <video autoplay loop muted playsinline preload="metadata">
+            <source src="{% if section.settings.bg_video contains 'http' %}{{ section.settings.bg_video }}{% else %}{{ section.settings.bg_video | file_url }}{% endif %}" type="video/mp4">
+            <source src="{{ 'Visual 1. What are nanofibres_.mov' | file_url }}" type="video/mp4">
+            <source src="{{ 'kling_20260723_VIDEO_1__Subject_568_0.mp4' | file_url }}" type="video/mp4">
+          </video>
+        {% endif %}
+      {% elsif section.settings.bg_video_url != blank %}
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="{% if section.settings.bg_video_url contains 'http' %}{{ section.settings.bg_video_url }}{% else %}{{ section.settings.bg_video_url | file_url }}{% endif %}" type="video/mp4">
+          <source src="{{ 'Visual 1. What are nanofibres_.mov' | file_url }}" type="video/mp4">
+        </video>
+      {% elsif section.settings.bg_image != blank %}
+        <img src="{{ section.settings.bg_image | image_url: width: 1200 }}" alt="Hero Graphic">
+      {% else %}
+        <video autoplay loop muted playsinline preload="metadata" poster="{{ 'Screenshot_2026-03-31_at_15.38.29.png' | asset_url }}">
+          <source src="{{ 'Visual 1. What are nanofibres_.mov' | file_url }}" type="video/mp4">
+          <source src="{{ 'Visual_1._What_are_nanofibres_.mov' | file_url }}" type="video/mp4">
+          <source src="{{ 'kling_20260723_VIDEO_1__Subject_568_0.mp4' | file_url }}" type="video/mp4">
+          <source src="{{ '6_experience_technology_player.mp4' | file_url }}" type="video/mp4">
+        </video>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Mockup - Hero",
+  "settings": [
+    {
+      "type": "video",
+      "id": "bg_video",
+      "label": "Background Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image (Fallback)"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 30
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "WHERE SCIENCE"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "BECOMES\nRITUAL"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Lumina nanofibre technology delivers encapsulated actives with precision, purity and purpose."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "EXPLORE THE TECHNOLOGY"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mockup - Hero"
+    }
+  ]
+}
+{% endschema %}

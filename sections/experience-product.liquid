@@ -1,0 +1,871 @@
+<!-- sections/experience-product.liquid -->
+{%- liquid
+  assign animation = section.settings.animation
+  assign setwidth = section.settings.setwidth
+  assign gold_color = section.settings.gold_color
+  assign slogan = section.settings.slogan
+  assign app_time = section.settings.app_time
+  assign current_variant = product.selected_or_first_available_variant
+  
+  # Map product images with fallback to first image
+  assign main_image = product.images[0]
+  assign img_2 = product.images[1] | default: main_image
+  assign img_3 = product.images[2] | default: main_image
+  assign img_4 = product.images[3] | default: main_image
+  assign img_5 = product.images[4] | default: main_image
+-%}
+
+{%- render 'style-section' -%}
+
+<style>
+  .custom-prod-section-{{ section.id }} {
+    background: radial-gradient(circle at 10% 10%, rgba(197, 160, 89, 0.12) 0%, rgba(0, 0, 0, 0) 60%), #000000;
+    color: #ffffff;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  
+  /* Left Column - Main Image */
+  .custom-prod-section-{{ section.id }} .main-image-wrapper {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #111;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  .custom-prod-section-{{ section.id }} .main-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  /* Center Column - Thumbnails */
+  .custom-prod-section-{{ section.id }} .middle-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  @media (min-width: 992px) {
+    .custom-prod-section-{{ section.id }} .middle-gallery-col {
+      align-self: stretch;
+      position: relative;
+    }
+    .custom-prod-section-{{ section.id }} .middle-gallery {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 15px;
+      right: 15px;
+      overflow-y: auto;
+      /* Hide scrollbar but keep scroll functionality */
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+    .custom-prod-section-{{ section.id }} .middle-gallery::-webkit-scrollbar {
+      display: none; /* Chrome, Safari and Opera */
+    }
+  }
+  .custom-prod-section-{{ section.id }} .gallery-thumb {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #111;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    cursor: pointer;
+    transition: border-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    flex-shrink: 0;
+  }
+  .custom-prod-section-{{ section.id }} .gallery-thumb:hover {
+    border-color: {{ gold_color }};
+    transform: scale(1.02);
+  }
+  .custom-prod-section-{{ section.id }} .gallery-thumb.active {
+    border-color: {{ gold_color }};
+    box-shadow: 0 0 10px rgba(197, 160, 89, 0.4);
+  }
+  .custom-prod-section-{{ section.id }} .gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Right Column - Product Info */
+  .custom-prod-section-{{ section.id }} .product-info-wrap {
+    padding-left: 15px;
+  }
+  .custom-prod-section-{{ section.id }} .product-title-serif {
+    font-family: var(--g-font-2), "Cormorant Garamond", serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: {{ gold_color }};
+    line-height: 1.2;
+    margin-bottom: 12px;
+    letter-spacing: 0.03em;
+  }
+  
+  /* Reviews */
+  .custom-prod-section-{{ section.id }} .reviews-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: {{ gold_color }};
+  }
+  .custom-prod-section-{{ section.id }} .stars-wrap {
+    display: flex;
+    gap: 3px;
+  }
+  .custom-prod-section-{{ section.id }} .stars-wrap svg {
+    width: 14px;
+    height: 14px;
+    fill: {{ gold_color }};
+  }
+  .custom-prod-section-{{ section.id }} .reviews-text {
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+  .custom-prod-section-{{ section.id }} .reviews-text span {
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0 4px;
+  }
+  .custom-prod-section-{{ section.id }} .see-all-reviews {
+    color: {{ gold_color }};
+    text-decoration: none;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+    transition: opacity 0.3s ease;
+  }
+  .custom-prod-section-{{ section.id }} .see-all-reviews:hover {
+    opacity: 0.8;
+  }
+
+  /* Review App Block Slot */
+  .custom-prod-section-{{ section.id }} .app-review-block {
+    margin-bottom: 24px;
+  }
+  .custom-prod-section-{{ section.id }} .app-review-block:empty {
+    display: none;
+    margin-bottom: 0;
+  }
+
+  /* Price & Slogan */
+  .custom-prod-section-{{ section.id }} .price-tag {
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+  .custom-prod-section-{{ section.id }} .product-slogan {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: var(--g-font-2), serif;
+    font-style: italic;
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Application Time */
+  .custom-prod-section-{{ section.id }} .app-time-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: {{ gold_color }};
+    font-size: 14px;
+    margin-bottom: 30px;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+  }
+  .custom-prod-section-{{ section.id }} .app-time-row svg {
+    width: 18px;
+    height: 18px;
+    stroke: {{ gold_color }};
+  }
+
+  /* Button Styles */
+  .custom-prod-section-{{ section.id }} .product-actions-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 24px;
+    align-items: stretch;
+    width: 100%;
+  }
+  .custom-prod-section-{{ section.id }} .ritual-btn-wrapper {
+    flex: 3;
+    min-width: 0;
+  }
+  .custom-prod-section-{{ section.id }} .gift-btn-wrapper {
+    flex: 2;
+    min-width: 0;
+  }
+  .custom-prod-section-{{ section.id }} .product-form {
+    width: 100%;
+  }
+  .custom-prod-section-{{ section.id }} .btn-add-ritual {
+    background: linear-gradient(135deg, #dfa857 0%, #b87b2e 100%);
+    color: #000000;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: filter 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(197, 160, 89, 0.15);
+  }
+  .custom-prod-section-{{ section.id }} .btn-add-ritual:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(197, 160, 89, 0.25);
+  }
+  .custom-prod-section-{{ section.id }} .btn-add-ritual:active {
+    transform: translateY(0);
+  }
+  .custom-prod-section-{{ section.id }} .btn-vertical-line {
+    width: 1px;
+    height: 16px;
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+  .custom-prod-section-{{ section.id }} .btn-add-ritual svg {
+    width: 16px;
+    height: 16px;
+    stroke: #000000;
+    stroke-width: 2.2;
+  }
+
+  /* Outlined Gift Button */
+  .custom-prod-section-{{ section.id }} .btn-gift-ritual {
+    background-color: transparent;
+    color: {{ gold_color }};
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+  }
+  .custom-prod-section-{{ section.id }} .btn-gift-ritual:hover {
+    background-color: rgba(197, 160, 89, 0.05);
+    border-color: {{ gold_color }};
+    transform: translateY(-1px);
+  }
+  .custom-prod-section-{{ section.id }} .btn-gift-ritual:active {
+    transform: translateY(0);
+  }
+  .custom-prod-section-{{ section.id }} .btn-gift-ritual svg {
+    width: 20px;
+    height: 20px;
+    stroke: {{ gold_color }};
+  }
+  .custom-prod-section-{{ section.id }} .btn-gift-content-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    line-height: 1.2;
+  }
+  .custom-prod-section-{{ section.id }} .btn-gift-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .custom-prod-section-{{ section.id }} .btn-gift-subtitle {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 1px;
+  }
+
+  /* Outlined Routine Box */
+  .custom-prod-section-{{ section.id }} .btn-routine-box {
+    background-color: transparent;
+    color: {{ gold_color }};
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 4px;
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    margin-bottom: 30px;
+    text-decoration: none;
+  }
+  .custom-prod-section-{{ section.id }} .btn-routine-box:hover {
+    border-color: {{ gold_color }};
+    background-color: rgba(197, 160, 89, 0.03);
+  }
+  .custom-prod-section-{{ section.id }} .btn-routine-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 2px;
+  }
+  .custom-prod-section-{{ section.id }} .btn-routine-title {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .custom-prod-section-{{ section.id }} .btn-routine-desc {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .custom-prod-section-{{ section.id }} .btn-routine-box svg {
+    width: 16px;
+    height: 16px;
+    stroke: {{ gold_color }};
+    stroke-width: 2;
+  }
+
+  /* Accordions Toggles */
+  .custom-prod-section-{{ section.id }} .product-accordions-group {
+    border-top: 1px solid rgba(197, 160, 89, 0.18);
+    margin-top: 30px;
+  }
+  .custom-prod-section-{{ section.id }} .accordion-details {
+    border-bottom: 1px solid rgba(197, 160, 89, 0.18);
+  }
+  .custom-prod-section-{{ section.id }} .accordion-summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 0;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0;
+    cursor: pointer;
+    user-select: none;
+    color: #ffffff;
+    transition: color 0.2s ease;
+  }
+  .custom-prod-section-{{ section.id }} .accordion-summary::-webkit-details-marker {
+    display: none;
+  }
+  .custom-prod-section-{{ section.id }} .accordion-summary:focus {
+    outline: none;
+  }
+  .custom-prod-section-{{ section.id }} .accordion-summary:hover {
+    color: {{ gold_color }};
+  }
+  .custom-prod-section-{{ section.id }} .accordion-icon-arrow {
+    display: flex;
+    align-items: center;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+  }
+  .custom-prod-section-{{ section.id }} .accordion-icon-arrow svg {
+    width: 12px;
+    height: 12px;
+    fill: {{ gold_color }};
+    display: block;
+  }
+  .custom-prod-section-{{ section.id }} .accordion-details[open] .accordion-icon-arrow {
+    transform: rotate(90deg);
+  }
+  .custom-prod-section-{{ section.id }} .accordion-body-content {
+    padding-bottom: 24px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+  }
+  .custom-prod-section-{{ section.id }} .accordion-body-content p {
+    margin: 0;
+  }
+  .custom-prod-section-{{ section.id }} .accordion-body-content p:not(:last-child) {
+    margin-bottom: 12px;
+  }
+  .custom-prod-section-{{ section.id }} .accordion-body-content strong {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  /* Responsive Rules */
+  @media (max-width: 991px) {
+    .custom-prod-section-{{ section.id }} .middle-gallery {
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 10px;
+      margin-top: 15px;
+      margin-bottom: 30px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .custom-prod-section-{{ section.id }} .middle-gallery::-webkit-scrollbar {
+      display: none;
+    }
+    .custom-prod-section-{{ section.id }} .gallery-thumb {
+      width: 80px;
+      flex-shrink: 0;
+    }
+    .custom-prod-section-{{ section.id }} .product-info-wrap {
+      padding-left: 0;
+      margin-top: 10px;
+    }
+    .custom-prod-section-{{ section.id }} .product-title-serif {
+      font-size: 34px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .custom-prod-section-{{ section.id }} .product-actions-row {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .custom-prod-section-{{ section.id }} .ritual-btn-wrapper,
+    .custom-prod-section-{{ section.id }} .gift-btn-wrapper {
+      flex: none;
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="custom-prod-section-{{ section.id }} js-recently-view" data-handle="{{ product.handle }}" data-aos="{{ animation }}">
+  <div class="{{ setwidth }}">
+    <div class="row align-items-start">
+      
+      <!-- Left Container (Main Image + Thumbnails) -->
+      <div class="col-12 col-lg-7 col-xl-7">
+        <div class="row align-items-stretch">
+          
+          <!-- Left Column - Main Image -->
+          <div class="col-12 col-lg-9 col-xl-9">
+            <div class="main-image-wrapper">
+              {% if main_image != blank %}
+                <img id="mainProductImage-{{ section.id }}" 
+                     src="{{ main_image | image_url: width: 800 }}" 
+                     alt="{{ product.title | escape }}"
+                     loading="lazy">
+              {% else %}
+                <img id="mainProductImage-{{ section.id }}" 
+                     src="{{ 'masca_A.A._neck_front.png' | asset_url }}" 
+                     alt="{{ product.title | default: 'Lumina Product' | escape }}"
+                     loading="lazy">
+              {% endif %}
+            </div>
+          </div>
+          
+          <!-- Center Column - Thumbnails -->
+          <div class="col-12 col-lg-3 col-xl-3 middle-gallery-col">
+            <div class="middle-gallery">
+              {%- if product.images.size > 0 -%}
+                {%- for image in product.images -%}
+                  <div class="gallery-thumb{% if forloop.first %} active{% endif %}" data-large-src="{{ image | image_url: width: 800 }}">
+                    <img src="{{ image | image_url: width: 250 }}" alt="{{ image.alt | escape }}" loading="lazy">
+                  </div>
+                {%- endfor -%}
+              {%- else -%}
+                <div class="gallery-thumb active" data-large-src="{{ 'masca_A.A._neck_front.png' | asset_url }}">
+                  <img src="{{ 'masca_A.A._neck_front.png' | asset_url }}" alt="Lumina Front" loading="lazy">
+                </div>
+                <div class="gallery-thumb" data-large-src="{{ 'masca_A.A._neck_back.png' | asset_url }}">
+                  <img src="{{ 'masca_A.A._neck_back.png' | asset_url }}" alt="Lumina Back" loading="lazy">
+                </div>
+                <div class="gallery-thumb" data-large-src="{{ 'masca_regenerare_back.png' | asset_url }}">
+                  <img src="{{ 'masca_regenerare_back.png' | asset_url }}" alt="Lumina Regenerare" loading="lazy">
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Right Column - Product details, buy buttons & accordions -->
+      <div class="col-12 col-lg-5 col-xl-5">
+        <div class="product-info-wrap">
+          
+          <!-- Product Name -->
+          <h1 class="product-title-serif">{{ product.title }}</h1>
+          
+          <!-- Reviews Section (App Block) -->
+          <div class="app-review-block">
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when '@app' -%}
+                  <div {{ block.shopify_attributes }}>
+                    {%- render block -%}
+                  </div>
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+          
+          <!-- Price Tag -->
+          <div class="price-tag">
+            {{ current_variant.price | money }}
+          </div>
+          
+          <!-- Slogan -->
+          {%- if slogan != blank -%}
+            <div class="product-slogan">{{ slogan }}</div>
+          {%- endif -%}
+          
+          <!-- Application Time -->
+          <div class="app-time-row">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" stroke-width="2"/>
+              <path d="M12 6v6l4 2" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>{{ app_time }}</span>
+          </div>
+          
+          <!-- Product Actions Row -->
+          <div class="product-actions-row">
+            <div class="ritual-btn-wrapper">
+              {%- capture form_class -%}product-form{%- endcapture -%}
+              {%- capture form_id -%}AddToCartForm-{{ section.id }}{%- endcapture -%}
+              
+              {%- form 'product', product, class: form_class, id: form_id -%}
+                <input type="hidden" name="id" value="{{ current_variant.id }}">
+                <input type="hidden" name="quantity" value="1">
+                
+                <button type="submit"
+                        name="add"
+                        id="AddToCart-{{ section.id }}"
+                        class="btn-add-ritual product-form__cart-submit"
+                        {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                  <span>
+                    {%- if current_variant.available -%}
+                      ADD TO RITUAL
+                    {%- else -%}
+                      {{ 'products.product.sold_out' | t }}
+                    {%- endif -%}
+                  </span>
+                  <span class="btn-vertical-line"></span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <path d="M16 10a4 4 0 0 1-8 0"/>
+                  </svg>
+                </button>
+              {%- endform -%}
+            </div>
+            
+            {%- if section.settings.show_gift_button and false -%}
+              <div class="gift-btn-wrapper">
+                <a href="#" class="btn-gift-ritual">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 7.5a2.5 2.5 0 0 1-2.5-2.5c0-1.5 1-2.5 2.5-2.5s2.5 1 2.5 2.5c0 1.5-1 2.5-2.5 2.5z"/>
+                    <path d="M12 7.5a2.5 2.5 0 0 0 2.5-2.5c0-1.5-1-2.5-2.5-2.5S9.5 3.5 9.5 5c0 1.5 1 2.5 2.5 2.5z"/>
+                    <rect x="5" y="7.5" width="14" height="3" rx="0.5"/>
+                    <path d="M6 10.5v8.5a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-8.5"/>
+                    <line x1="12" y1="7.5" x2="12" y2="20"/>
+                  </svg>
+                  <div class="btn-gift-content-stack">
+                    <span class="btn-gift-title">GIFT THIS RITUAL</span>
+                    <span class="btn-gift-subtitle">£1 / 5 RON</span>
+                  </div>
+                </a>
+              </div>
+            {%- endif -%}
+          </div>
+          
+          <!-- Build Your Routine Box (Hidden / toggled via settings) -->
+          {%- if section.settings.show_routine_button -%}
+            <a href="{{ section.settings.routine_button_link | default: '#' }}" class="btn-routine-box">
+              <div class="btn-routine-text">
+                <span class="btn-routine-title">{{ section.settings.routine_button_title | default: 'CREATE YOUR ROUTINE' }}</span>
+                <span class="btn-routine-desc">{{ section.settings.routine_button_desc | default: 'Seturi & rutine personalizate' }}</span>
+              </div>
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          {%- endif -%}
+          
+          <!-- Accordions -->
+          <div class="product-accordions-group">
+            
+            <!-- Accordion 1: Why You'll love it -->
+            <details class="accordion-details" open>
+              <summary class="accordion-summary">
+                <span>{{ section.settings.why_love_title }}</span>
+                <span class="accordion-icon-arrow">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 6l8 6-8 6V6z"/>
+                  </svg>
+                </span>
+              </summary>
+              <div class="accordion-body-content">
+                {%- if product.metafields.custom.why_love_content != blank -%}
+                  {{ product.metafields.custom.why_love_content | metafield_tag }}
+                {%- else -%}
+                  {{ section.settings.why_love_content }}
+                {%- endif -%}
+              </div>
+            </details>
+            
+            <!-- Accordion 2: Nanofibers Technology -->
+            <details class="accordion-details">
+              <summary class="accordion-summary">
+                <span>{{ section.settings.nano_title }}</span>
+                <span class="accordion-icon-arrow">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 6l8 6-8 6V6z"/>
+                  </svg>
+                </span>
+              </summary>
+              <div class="accordion-body-content">
+                {%- if product.metafields.custom.nano_content != blank -%}
+                  {{ product.metafields.custom.nano_content | metafield_tag }}
+                {%- else -%}
+                  {{ section.settings.nano_content }}
+                {%- endif -%}
+              </div>
+            </details>
+            
+            <!-- Accordion 3: Key Ingredients -->
+            <details class="accordion-details">
+              <summary class="accordion-summary">
+                <span>{{ section.settings.ingredients_title }}</span>
+                <span class="accordion-icon-arrow">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 6l8 6-8 6V6z"/>
+                  </svg>
+                </span>
+              </summary>
+              <div class="accordion-body-content">
+                {%- if product.metafields.custom.ingrediente_cheie != blank -%}
+                  {{ product.metafields.custom.ingrediente_cheie | metafield_tag }}
+                {%- else -%}
+                  {{ section.settings.ingredients_content }}
+                {%- endif -%}
+              </div>
+            </details>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    function initGallery() {
+      const mainImg = document.getElementById('mainProductImage-{{ section.id }}');
+      const thumbnails = document.querySelectorAll('.custom-prod-section-{{ section.id }} .gallery-thumb');
+      
+      thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', function() {
+          const newSrc = this.getAttribute('data-large-src');
+          if (mainImg && newSrc) {
+            mainImg.src = newSrc;
+          }
+          thumbnails.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+    }
+
+    function initAjaxCart() {
+      const form = document.getElementById('AddToCartForm-{{ section.id }}');
+      if (form && window.AjaxCart) {
+        new window.AjaxCart($(form));
+      }
+    }
+
+    function initAll() {
+      initGallery();
+      initAjaxCart();
+    }
+    
+    // Init on page load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+      initAll();
+    }
+    
+    // Init in Shopify Theme Editor
+    document.addEventListener('shopify:section:load', function(e) {
+      if (e.detail.sectionId === '{{ section.id }}') {
+        initAll();
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Experience Product Main",
+  "class": "index-section-experience-product-main",
+  "settings": [
+    {
+      "type": "select",
+      "id": "animation",
+      "options": [
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "fade-up",
+          "label": "Fade Up"
+        },
+        {
+          "value": "fade-down",
+          "label": "Fade Down"
+        }
+      ],
+      "default": "fade-up",
+      "label": "Select Animation"
+    },
+    {
+      "type": "select",
+      "id": "setwidth",
+      "label": "Full Width Wrapper",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "gold_color",
+      "label": "Gold Highlight Color",
+      "default": "#c5a059"
+    },
+    {
+      "type": "text",
+      "id": "rating_val",
+      "label": "Review Rating",
+      "default": "4.9"
+    },
+    {
+      "type": "text",
+      "id": "reviews_count",
+      "label": "Reviews Count",
+      "default": "128 reviews"
+    },
+    {
+      "type": "text",
+      "id": "slogan",
+      "label": "Product Slogan",
+      "default": "Volume. Hydration. Shine."
+    },
+    {
+      "type": "text",
+      "id": "app_time",
+      "label": "Application Time Info",
+      "default": "8 minutes to transform your skin"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_gift_button",
+      "label": "Show Gift Button",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_routine_button",
+      "label": "Show Routine Box",
+      "default": false
+    },
+    {
+      "type": "url",
+      "id": "routine_button_link",
+      "label": "Routine Button Link"
+    },
+    {
+      "type": "text",
+      "id": "routine_button_title",
+      "label": "Routine Button Title",
+      "default": "CREATE YOUR ROUTINE"
+    },
+    {
+      "type": "text",
+      "id": "routine_button_desc",
+      "label": "Routine Button Description",
+      "default": "Personalized sets & routines"
+    },
+    {
+      "type": "header",
+      "content": "Accordions Settings"
+    },
+    {
+      "type": "text",
+      "id": "why_love_title",
+      "label": "Accordion 1 Title",
+      "default": "Why you will love it"
+    },
+    {
+      "type": "richtext",
+      "id": "why_love_content",
+      "label": "Accordion 1 Content",
+      "default": "<p>Deeply hydrates, volumizes and restores skin radiance in just 8 minutes. Perfect for a quick skin refresh or a weekly luxury care ritual.</p>"
+    },
+    {
+      "type": "text",
+      "id": "nano_title",
+      "label": "Accordion 2 Title",
+      "default": "Tehnologia Nanofibers"
+    },
+    {
+      "type": "richtext",
+      "id": "nano_content",
+      "label": "Accordion 2 Content",
+      "default": "<p>Specially designed nanofibers activate only on contact with wet skin, delivering active ingredients directly to where they are most needed. The ultra-fine nanofiber matrix ensures maximum absorption and optimal breathability.</p>"
+    },
+    {
+      "type": "text",
+      "id": "ingredients_title",
+      "label": "Accordion 3 Title",
+      "default": "Key Ingredients"
+    },
+    {
+      "type": "richtext",
+      "id": "ingredients_content",
+      "label": "Accordion 3 Content",
+      "default": "<p><strong>Hyaluronic Acid, Niacinamide, Panthenol, Ectoin, Allantoin, Beta-Glucan.</strong><br><br>Formulated without parabens, perfumes, mineral oils and silicones.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Experience Product Main",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

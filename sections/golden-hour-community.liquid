@@ -1,0 +1,275 @@
+{% render 'golden-hour-vars' %}
+{%- style -%}
+  #shopify-section-{{ section.id }} .gh-comm-wrap {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--gh-dark-bg);
+    color: var(--gh-text-light);
+    height: {{ section.settings.section_height_desktop }}px;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 990px) {
+    #shopify-section-{{ section.id }} .gh-comm-wrap {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .gh-comm-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  @media screen and (max-width: 990px) {
+    .gh-comm-media {
+      position: relative;
+      height: {{ section.settings.section_height_mobile }}px;
+    }
+  }
+  .gh-comm-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .gh-comm-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      270deg,
+      var(--gh-dark-bg) 0%,
+      rgba(10, 8, 6, 0.92) 22%,
+      rgba(10, 8, 6, 0.55) 40%,
+      rgba(10, 8, 6, 0) 62%
+    );
+  }
+  @media screen and (max-width: 990px) {
+    .gh-comm-overlay {
+      display: none;
+    }
+  }
+  .gh-comm-text-col {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 520px;
+    padding: 0 40px;
+    margin-left: auto;
+  }
+  @media screen and (max-width: 990px) {
+    .gh-comm-text-col {
+      padding: 40px 20px;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  .gh-comm-heading-small {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--gh-text-muted);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .gh-comm-heading {
+    font-size: {{ section.settings.heading_size_desktop }}px;
+    color: var(--gh-golden);
+    margin-bottom: 18px;
+    font-weight: 300;
+    font-family: serif;
+    line-height: 1.2;
+  }
+  @media screen and (max-width: 1024px) {
+    .gh-comm-heading {
+      font-size: calc({{ section.settings.heading_size_desktop }}px * 0.85);
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .gh-comm-heading {
+      font-size: {{ section.settings.heading_size_mobile }}px;
+      margin-bottom: 14px;
+    }
+  }
+  .gh-comm-body {
+    font-size: {{ section.settings.body_size_desktop }}px;
+    line-height: 1.6;
+    color: var(--gh-text-muted);
+    margin-bottom: 20px;
+  }
+  @media screen and (max-width: 1024px) {
+    .gh-comm-body {
+      font-size: calc({{ section.settings.body_size_desktop }}px * 0.9);
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .gh-comm-body {
+      font-size: {{ section.settings.body_size_mobile }}px;
+    }
+  }
+  .gh-comm-link {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--gh-transition);
+  }
+  .gh-comm-link:hover {
+    opacity: 0.7;
+  }
+{%- endstyle -%}
+
+<div class="gh-comm-wrap" id="{{ section.id | split: '__' | last }}" data-section-id="{{ section.id }}">
+  <div class="gh-comm-media">
+    {%- if section.settings.video != blank and section.settings.video.sources != blank -%}
+      {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, class: 'gh-comm-video' }}
+    {%- elsif section.settings.video != blank -%}
+      <video class="gh-comm-video" autoplay loop muted playsinline poster="{{ 'Johana-Kulhankova-1.jpg' | asset_url }}">
+        <source src="{% if section.settings.video contains 'http' %}{{ section.settings.video }}{% else %}{{ section.settings.video | file_url }}{% endif %}" type="video/mp4">
+        <source src="{{ 'Video 5 petals white flowers.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ 'Video_5_petals_white_flowers.mp4' | file_url }}" type="video/mp4">
+      </video>
+    {%- else -%}
+      <video class="gh-comm-video" autoplay loop muted playsinline poster="{{ 'Johana-Kulhankova-1.jpg' | asset_url }}">
+        <source src="{{ 'Video 5 petals white flowers.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ 'Video_5_petals_white_flowers.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ 'The Golden Hour HERO.mp4' | file_url }}" type="video/mp4">
+      </video>
+    {%- endif -%}
+  </div>
+  <div class="gh-comm-overlay"></div>
+  <div class="gh-comm-text-col">
+    <div class="gh-comm-heading-small">LUMINA COMMUNITY</div>
+    {%- if section.settings.heading != blank -%}
+      <h2 class="gh-comm-heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    <div class="gh-comm-body">
+      {{ section.settings.content }}
+    </div>
+    {%- if section.settings.link_label != blank -%}
+      <a href="{{ section.settings.link_url | default: '#' }}" class="gh-comm-link">
+        {{ section.settings.link_label }} &rarr;
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Golden Hour - Community",
+  "settings": [
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum Width (px)",
+      "min": 800,
+      "max": 2000,
+      "step": 50,
+      "default": 1450
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Every ritual tells a story."
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Behind every ritual there is a moment of stillness, an intention and a choice to put self-care first.</p><p>Golden Hour is the community of those who believe that beauty begins in these simple gestures and continues through the stories we share together.</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link Label",
+      "default": "JOIN THE COMMUNITY"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Accompanying Video"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_height_desktop",
+      "label": "Banner Height (Desktop px)",
+      "min": 180,
+      "max": 600,
+      "step": 10,
+      "default": 260
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Heading Size (Desktop px)",
+      "min": 24,
+      "max": 56,
+      "step": 2,
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "body_size_desktop",
+      "label": "Body Text Size (Desktop px)",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_height_mobile",
+      "label": "Banner Height (Mobile px)",
+      "min": 220,
+      "max": 600,
+      "step": 10,
+      "default": 380
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading Size (Mobile px)",
+      "min": 18,
+      "max": 36,
+      "step": 1,
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "body_size_mobile",
+      "label": "Body Text Size (Mobile px)",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "default": 15
+    }
+  ],
+  "presets": [
+    {
+      "name": "Golden Hour - Community"
+    }
+  ]
+}
+{% endschema %}

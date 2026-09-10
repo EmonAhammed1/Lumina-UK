@@ -1,0 +1,301 @@
+sections\article-template.liquid:280 -> ['email', 'email', 'email', 'email', 'email'] | <input type="email" name="comment[email]" id="CommentEmail" class="form-control {% if form.errors co
+sections\article-template.liquid:281 -> ['email'] | <label for="CommentEmail" class="label--hidden">{{ 'blogs.comments.email' | t }}</label>
+sections\contact-form.liquid:22 -> ['email'] | <a href="#ContactForm-email" class="link">
+sections\contact-form.liquid:23 -> ['email', 'email'] | {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+sections\contact-form.liquid:39 -> ['email'] | autocomplete="email"
+sections\contact-form.liquid:40 -> ['email'] | type="email"
+sections\contact-form.liquid:41 -> ['email'] | id="ContactForm-email"
+sections\contact-form.liquid:43 -> ['email'] | name="contact[email]"
+sections\contact-form.liquid:46 -> ['email', 'email', 'email'] | value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+sections\contact-form.liquid:48 -> ['email'] | {% if form.errors contains 'email' %}
+sections\contact-form.liquid:50 -> ['email'] | aria-describedby="ContactForm-email-error"
+sections\contact-form.liquid:52 -> ['email'] | placeholder="{{ 'contact.form.email' | t }}"
+sections\contact-form.liquid:54 -> ['email', 'email'] | <label class="field__label" for="ContactForm-email">{{ 'contact.form.email' | t }} <span aria-hidden
+sections\contact-form.liquid:55 -> ['email'] | {%- if form.errors contains 'email' -%}
+sections\contact-form.liquid:56 -> ['email'] | <small class="contact__field-error" id="ContactForm-email-error">
+sections\contact-form.liquid:58 -> ['email', 'email'] | <span class="form__message">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors
+sections\contact-form.liquid:246 -> ['email'] | "default": "Questions? Send us an email"
+sections\experience-alchemy.liquid:369 -> ['ingrediente'] | {%- assign mf_setting = section.settings.metafield_key | default: 'filter.ingrediente' -%}
+sections\experience-alchemy.liquid:582 -> ['ingrediente'] | "info": "Enter the full namespace and key (e.g., 'filter.ingrediente')",
+sections\experience-alchemy.liquid:583 -> ['ingrediente'] | "default": "filter.ingrediente"
+sections\experience-rituals.liquid:917 -> ['cos'] | const x = 50 + radiusX * Math.cos(angle);
+sections\experience-rituals.liquid:1000 -> ['cos'] | const pxPercent = 50 + radiusX * Math.cos(angle);
+sections\experience-rituals.liquid:1095 -> ['cos', 'cos'] | const cos = Math.cos(spreadAngle);
+sections\experience-rituals.liquid:1101 -> ['cos'] | vx: (vx * cos - vy * sin) * (Math.random() * 0.9 + 0.4),
+sections\experience-rituals.liquid:1102 -> ['cos'] | vy: (vx * sin + vy * cos) * (Math.random() * 0.9 + 0.4),
+sections\experience-rituals.liquid:1146 -> ['cos'] | d.x += Math.cos(d.angle) * d.speed * delta;
+sections\experience-technology.liquid:638 -> ['Rapid'] | <!-- Circular Down Arrow (Rapid Absorption) -->
+sections\experience-technology.liquid:949 -> ['rapid'] | "default": "<p>Inspired by medical aesthetics and advanced dermatology, nanofiber technology ensures
+sections\experience-technology.liquid:1162 -> ['Rapid'] | "title": "Rapid Absorption",
+sections\footer-group.json:26 -> ['tehnologie'] | "col1_link2_url": "shopify://pages/tehnologie",
+sections\footer-group.json:28 -> ['tehnologie'] | "col1_link3_url": "/pages/tehnologie#technology-how-to-use",
+sections\footer-group.json:30 -> ['tehnologie'] | "col1_link4_url": "/pages/tehnologie#technology-ingredients",
+sections\footer-group.json:49 -> ['dimineata'] | "col2_sub2_link1_url": "shopify://collections/ritualul-de-dimineata",
+sections\footer-group.json:51 -> ['seara'] | "col2_sub2_link2_url": "shopify://collections/ritualul-de-seara",
+sections\footer-group.json:53 -> ['rapid'] | "col2_sub2_link3_url": "shopify://collections/ritualul-rapid",
+sections\footer-group.json:63 -> ['retururi'] | "col3_link4_url": "shopify://pages/retururi",
+sections\footer-group.json:85 -> ['email'] | "newsletter_placeholder": "Your email address",
+sections\footer-group.json:110 -> ['tehnologie'] | "bm_link3_url": "shopify://pages/tehnologie",
+sections\footer-group.json:116 -> ['echipa'] | "bm_link6_url": "shopify://pages/echipa",
+sections\footer-lumina.liquid:559 -> ['email', 'email', 'email'] | <input type="email" name="contact[email]" placeholder="{{ section.settings.newsletter_placeholder | 
+sections\footer-lumina.liquid:1089 -> ['email'] | "default": "Your email address"
+sections\footer-lumina.liquid:1185 -> ['Email'] | "label": "Feature 4 Support Email",
+sections\footer.liquid:191 -> ['email'] | .footer-email .btn-theme::before{
+sections\footer.liquid:211 -> ['email'] | .section-footer-email .social-icons li span{display: none;}
+sections\footer.liquid:212 -> ['email'] | /* .section-footer-email .social-icons li i{color:var(--footer-title)} */
+sections\footer.liquid:213 -> ['email'] | .section-footer-email .social-icons li:not(:last-child), .social-account .social-icons li:not(:last-
+sections\footer.liquid:214 -> ['email'] | .footer-email .form-control{
+sections\footer.liquid:218 -> ['email'] | .footer-email .form-control::placeholder {
+sections\footer.liquid:222 -> ['email'] | .footer-email .form-control:-ms-input-placeholder {
+sections\footer.liquid:225 -> ['email'] | .footer-email .form-control::-ms-input-placeholder {
+sections\footer.liquid:431 -> ['email'] | .footer-email .btn-theme{
+sections\footer.liquid:435 -> ['email'] | .footer-email .btn-theme:hover{
+sections\footer.liquid:441 -> ['email'] | .footer-email .form-group label{
+sections\footer.liquid:447 -> ['email'] | <div class="site-footer__section section-footer-email text-lg-{{ footer_align_title }}">
+sections\footer.liquid:454 -> ['email'] | <div class="form-vertical footer-email ">
+sections\footer.liquid:468 -> ['email'] | type="email"
+sections\footer.liquid:469 -> ['email'] | value="{{ form.email }}"
+sections\footer.liquid:471 -> ['email'] | name="contact[email]"
+sections\footer.liquid:477 -> ['email'] | autocomplete="email"
+sections\footer.liquid:1184 -> ['Email'] | "label": "Email",
+sections\golden-hour-benefits.liquid:10 -> ['Beneficii'] | background-image: url('{{ "Beneficii.png" | asset_url }}');
+sections\golden-hour-benefits.liquid:29 -> ['Beneficii'] | background-image: url('{{ "Beneficii-m.png" | asset_url }}');
+sections\golden-hour-community.liquid:182 -> ['poveste'] | "default": "Fiecare ritual spune o poveste."
+sections\lumina-gallery-full.liquid:169 -> ['email', 'Email'] | <label class="lumina-photo-label" for="full-photo-email-{{ section.id }}">Email Address <span class=
+sections\lumina-gallery-full.liquid:170 -> ['email', 'email', 'email'] | <input type="email" id="full-photo-email-{{ section.id }}" name="contact[email]" class="lumina-photo
+sections\lumina-gallery.liquid:80 -> ['galerie'] | <a href="{{ section.settings.load_more_url | default: '/pages/galerie' }}" class="lumina-gallery__bt
+sections\lumina-gallery.liquid:246 -> ['email', 'Email'] | <label class="lumina-photo-label" for="photo-email-{{ section.id }}">Email Address <span class="req"
+sections\lumina-gallery.liquid:247 -> ['email', 'email', 'email'] | <input type="email" id="photo-email-{{ section.id }}" name="contact[email]" class="lumina-photo-inpu
+sections\lumina-gallery.liquid:402 -> ['galerie'] | "info": "Link to the full gallery page (e.g., /pages/galerie)"
+sections\lumina-gallery.liquid:424 -> ['POVESTE'] | "default": "FII PARTE DIN POVESTE"
+sections\lumina-world-articles-grid.liquid:430 -> ['toate'] | if(catNorm === 'all' || catNorm === 'toate' || cardCat.indexOf(catNorm) !== -1 || (catNorm === 'stii
+sections\lumina-world-journal-grid.liquid:775 -> ['Poveste', 'Jurnal'] | <input type="hidden" name="contact[Tip Formular]" value="Trimitere Articol / Poveste Jurnal - Lumina
+sections\lumina-world-journal-grid.liquid:788 -> ['email'] | Your story submission has been received with appreciation. Our editorial team will review your piece
+sections\lumina-world-journal-grid.liquid:816 -> ['email', 'Email'] | <label class="lwj-label" for="lwj-email">Email Address <span class="lwj-req">*</span></label>
+sections\lumina-world-journal-grid.liquid:817 -> ['email', 'email', 'email'] | <input type="email" id="lwj-email" name="contact[email]" class="lwj-input" placeholder="e.g. maria@e
+sections\lumina-world-journal-grid.liquid:827 -> ['Jurnal'] | <input type="text" id="lwj-title" name="contact[Titlu Jurnal]" class="lwj-input" placeholder="What i
+sections\lumina-world-journal-grid.liquid:937 -> ['JURNAL'] | "default": "JURNAL"
+sections\main-login.liquid:73 -> ['email'] | type="email"
+sections\main-login.liquid:74 -> ['email'] | name="customer[email]"
+sections\main-login.liquid:76 -> ['email'] | class="{% if form.errors contains 'email' %} input--error{% endif %}"
+sections\main-login.liquid:77 -> ['email'] | placeholder="{{ 'customer.login.email' | t }}"
+sections\main-login.liquid:81 -> ['email'] | <label for="CustomerEmail" class="label--hidden">{{ 'customer.login.email' | t }}</label>
+sections\main-login.liquid:133 -> ['email'] | type="email"
+sections\main-login.liquid:135 -> ['email'] | name="email"
+sections\main-login.liquid:137 -> ['email'] | placeholder="{{ 'customer.recover_password.email' | t }}"
+sections\main-login.liquid:140 -> ['email'] | <label for="RecoverEmail" class="label--hidden">{{ 'customer.recover_password.email' | t }}</label>
+sections\main-terms.liquid:833 -> ['Email'] | <!-- Email row -->
+sections\main-terms.liquid:839 -> ['Email'] | <span class="contact-info-label-{{ section.id }}">Email Us</span>
+sections\newsletter-footer.liquid:30 -> ['email'] | .mail-section-footer .form-group .svg-email{
+sections\newsletter-footer.liquid:76 -> ['email'] | {%- render 'icon-email' -%}
+sections\newsletter-footer.liquid:77 -> ['email', 'email', 'email'] | <input class="form-control" type="email" value="{% if customer %}{{ customer.email }}{% endif %}" pl
+sections\newsletter.liquid:47 -> ['email'] | .mail-section .form-group .svg-email{
+sections\newsletter.liquid:95 -> ['email'] | {%- render 'icon-email' -%}
+sections\newsletter.liquid:96 -> ['email', 'email', 'email'] | <input class="form-control" type="email" value="{% if customer %}{{ customer.email }}{% endif %}" pl
+sections\password-content.liquid:30 -> ['email'] | <label for="email" class="label--hidden">{{ 'general.password_page.signup_form_email_label' | t }}</
+sections\password-content.liquid:32 -> ['email', 'email', 'Email'] | <input type="email" name="contact[email]" id="Email" class="input-group__field form-control mr-3 rou
+sections\password-content.liquid:75 -> ['Email'] | "default": "Email address"
+sections\product-content.liquid:1084 -> ['utilizare'] | "label": "Next de utilizare (custom.inainte_de_utilizare)"
+sections\product-content.liquid:1370 -> ['utilizare'] | "label": "Next de utilizare (custom.inainte_de_utilizare)"
+sections\product-recommendations.liquid:34 -> ['ingrediente'] | {%- assign filter_keys = "pentru_cine,moment_ritual,parfum,conservanti,ingrediente,tip_ten,beneficiu
+sections\return-form.liquid:568 -> ['email'] | Our concierge team will review your details and send complete return shipping instructions via email
+sections\return-form.liquid:571 -> ['magazin'] | Back la magazin
+sections\return-form.liquid:598 -> ['email', 'Email'] | <label class="lrf-label" for="lrf-email">Email Address <span>*</span></label>
+sections\return-form.liquid:599 -> ['email', 'email', 'email'] | <input class="lrf-input" type="email" id="lrf-email" name="contact[email]" placeholder="ex. maria@gm
+sections\return-form.liquid:752 -> ['sol'] | <label class="lrf-label" for="lrf-other-sol">Other requested resolution</label>
+sections\return-form.liquid:753 -> ['sol'] | <input class="lrf-input" type="text" id="lrf-other-sol" placeholder="Please specify if applicable...
+sections\return-form.liquid:765 -> ['email'] | For <strong>damaged, defective, incorrect, or non-compliant</strong> items, please attach photos bel
+sections\return-form.liquid:818 -> ['Email'] | Email: <a href="mailto:office@markeu.eu" style="color:var(--gh-golden);">office@markeu.eu</a><br>
+sections\return-form.liquid:824 -> ['email'] | ⚠️ <strong>Important Note:</strong> Please do not ship return parcels to the registered headquarters
+sections\return-form.liquid:1028 -> ['email', 'email'] | var email = (document.getElementById('lrf-email') || {}).value || '';
+sections\return-form.liquid:1057 -> ['sol'] | var otherSol = (document.getElementById('lrf-other-sol') || {}).value || '';
+sections\return-form.liquid:1082 -> ['Email', 'email'] | "  • Email: " + email + "\n" +
+sections\s_team_member_premium.liquid:881 -> ['cos'] | const y = height * 0.6 + Math.sin(x * 0.004 + time * 0.8) * 20 + Math.cos(x * 0.008 + time * 0.4) * 
+sections\s_team_member_premium.liquid:907 -> ['cos'] | const y = height * 0.58 + Math.cos(x * 0.003 + time * 0.7) * 20;
+snippets\block-cart.liquid:24 -> ['COS'] | <span class="cart-title">COS</span>
+snippets\block-cart.liquid:292 -> ['COS'] | <span class="cart-title">COS</span>
+snippets\comment.liquid:4 -> ['email'] | <img class="comment__user__gravatar rounded-circle" width="100" height="100" src="//www.gravatar.com
+snippets\drawer-nav.liquid:14 -> ['jurnal'] | {%- elsif t contains 'journal' or t contains 'jurnal' or t contains 'blog' -%}
+snippets\header-logo-center-nav-center.liquid:131 -> ['jurnal'] | {%- elsif t contains 'journal' or t contains 'jurnal' or t contains 'blog' -%}
+snippets\header-logo-left-nav-left.liquid:134 -> ['jurnal'] | {%- elsif t contains 'journal' or t contains 'jurnal' or t contains 'blog' -%}
+snippets\icon-email.liquid:2 -> ['email'] | <svg xmlns="http://www.w3.org/2000/svg" class="svg-email" viewBox="0 0 512 512"><rect x="48" y="96" 
+snippets\megamenu-product.liquid:108 -> ['Ingrediente', 'ingrediente'] | elsif tag contains 'Ingrediente:' or tag contains 'ingrediente:' or tag contains 'Ingredient:'
+snippets\menu-mobile.liquid:62 -> ['email'] | {% render 'icon-email' %}
+snippets\menu-mobile.liquid:117 -> ['articole'] | 'articole': 'Articles',
+snippets\menu-mobile.liquid:118 -> ['jurnal'] | 'jurnal': 'Journal',
+snippets\menu-mobile.liquid:119 -> ['filme'] | 'filme': 'Films',
+snippets\menu-mobile.liquid:121 -> ['galerie'] | 'galerie': 'Gallery',
+snippets\menu-mobile.liquid:122 -> ['urmareste'] | 'urmareste lumina': 'Follow Lumina',
+snippets\menu-mobile.liquid:123 -> ['urmareste'] | 'urmareste lumina': 'Follow Lumina',
+snippets\menu-mobile.liquid:125 -> ['tehnologie'] | 'tehnologie si formula': 'TECHNOLOGY & FORMULA',
+snippets\menu-mobile.liquid:126 -> ['tehnologie'] | 'tehnologie si formula': 'TECHNOLOGY & FORMULA',
+snippets\menu-mobile.liquid:127 -> ['mod', 'utilizare'] | 'mod de utilizare': 'HOW TO USE',
+snippets\menu-mobile.liquid:128 -> ['sinergii'] | 'sinergii de ritual': 'RITUAL SYNERGIES',
+snippets\menu-mobile.liquid:129 -> ['premii'] | 'baza stiintifica si premii': 'SCIENTIFIC FOUNDATION & AWARDS',
+snippets\menu-mobile.liquid:130 -> ['premii'] | 'baza stiintifica si premii': 'SCIENTIFIC FOUNDATION & AWARDS'
+snippets\menu-mobile.liquid:139 -> ['jurnal'] | 'jurnal': '/pages/lumina-world#journal',
+snippets\notifySoldoutProduct.liquid:16 -> ['email', 'email', 'email', 'email', 'email', 'email'] | <input class="form-control" type="email" id="ContactFormEmail" name="contact[email]" placeholder="{{
+snippets\notifySoldoutProduct.liquid:17 -> ['email'] | <label for="ContactFormEmail" class="">{{ 'contact.form.email' | t }}</label>
+snippets\pnew-1.liquid:26 -> ['email', 'email', 'email'] | <input id="popupNewsletter" type="email" value="{% if customer %}{{ customer.email }}{% endif %}" pl
+snippets\pnew-2.liquid:28 -> ['email'] | type="email"
+snippets\pnew-2.liquid:29 -> ['email'] | value="{% if customer %}{{ customer.email }}{% endif %}"
+snippets\pnew-2.liquid:31 -> ['email'] | name="contact[email]"
+snippets\pnew-3.liquid:49 -> ['email', 'email'] | <input id="popupNewsletter" type="email" value="{% if customer %}{{ customer.email }}{% endif %}"
+snippets\pnew-3.liquid:51 -> ['email'] | name="contact[email]" class="col-lg col-12 mb-3 mb-lg-0 form-control" autocapitalize="off">
+snippets\popup-login.liquid:20 -> ['email', 'email', 'email', 'email'] | <input type="email" name="customer[email]" id="CustomerEmail" class="form-control {% if form.errors 
+snippets\popup-login.liquid:21 -> ['email'] | <label for="CustomerEmail" class="label--hidden">{{ 'customer.login.email' | t }}</label>
+snippets\popup-login.liquid:50 -> ['email', 'email', 'email'] | <input class="form-control" type="email" value="" name="email" id="RecoverEmail" placeholder="{{ 'cu
+snippets\popup-login.liquid:51 -> ['email'] | <label for="RecoverEmail" class="label--hidden">{{ 'customer.recover_password.email' | t }}</label>
+snippets\processMenuTitle.liquid:11 -> ['ă'] | when 'descoperă lumina' or 'descopera lumina' or 'discover lumina'
+snippets\processMenuTitle.liquid:13 -> ['ritualuri', 'ritualuri', 'ritualuri', 'ritualuri'] | when 'colecții & ritualuri' or 'colectii & ritualuri' or 'collections & rituals' or 'colectii si rit
+snippets\processMenuTitle.liquid:13 -> ['ț', 'ț', 'ș'] | when 'colecții & ritualuri' or 'colectii & ritualuri' or 'collections & rituals' or 'colectii si rit
+snippets\processMenuTitle.liquid:15 -> ['ț', 'ă'] | when 'ajutor & concierge' or 'ajutor si concierge' or 'ajutor' or 'help & concierge' or 'help and co
+snippets\processMenuTitle.liquid:17 -> ['termeni'] | when 'legal' or 'termeni legali'
+snippets\processMenuTitle.liquid:19 -> ['produse'] | when 'produse' or 'products'
+snippets\processMenuTitle.liquid:21 -> ['ritualuri'] | when 'ritualuri' or 'rituals'
+snippets\processMenuTitle.liquid:23 -> ['lumea'] | when 'lumea lumina' or 'lumina world'
+snippets\processMenuTitle.liquid:29 -> ['tehnologie', 'tehnologie', 'tehnologie', 'tehnologie'] | when 'technology and formula' or 'technology & formula' or 'tehnologie și formulă' or 'tehnologie si
+snippets\processMenuTitle.liquid:29 -> ['ș', 'ă', 'ș'] | when 'technology and formula' or 'technology & formula' or 'tehnologie și formulă' or 'tehnologie si
+snippets\processMenuTitle.liquid:31 -> ['mod', 'utilizare', 'utilizare'] | when 'how to use' or 'how to use it' or 'mod de utilizare' or 'cum se folosește' or 'cum se folosest
+snippets\processMenuTitle.liquid:31 -> ['ș'] | when 'how to use' or 'how to use it' or 'mod de utilizare' or 'cum se folosește' or 'cum se folosest
+snippets\processMenuTitle.liquid:33 -> ['sinergii', 'sinergii'] | when 'ritual synergies' or 'sinergii de ritual' or 'sinergii'
+snippets\processMenuTitle.liquid:35 -> ['premii', 'premii'] | when 'scientific foundation and awards' or 'scientific foundation & awards' or 'scientific foundatio
+snippets\processMenuTitle.liquid:35 -> ['ă', 'ș', 'ț', 'ă', 'ș', 'ă', 'ș', 'ț', 'ă'] | when 'scientific foundation and awards' or 'scientific foundation & awards' or 'scientific foundatio
+snippets\processMenuTitle.liquid:37 -> ['ingrediente', 'ingrediente'] | when 'active ingredients' or 'ingrediente active' or 'ingrediente'
+snippets\processMenuTitle.liquid:41 -> ['ț'] | when 'conversations' or 'conversații' or 'conversatii'
+snippets\processMenuTitle.liquid:43 -> ['articole'] | when 'articles' or 'articole'
+snippets\processMenuTitle.liquid:45 -> ['ș'] | when 'blog' or 'stiri' or 'știri' or 'news'
+snippets\processMenuTitle.liquid:47 -> ['jurnal'] | when 'journal' or 'jurnal' or 'jurnalul lumina'
+snippets\processMenuTitle.liquid:49 -> ['filme'] | when 'films' or 'film' or 'filme' or 'video' or 'videoclipuri'
+snippets\processMenuTitle.liquid:51 -> ['galerie', 'galerie'] | when 'gallery' or 'galerie' or 'galerie foto'
+snippets\processMenuTitle.liquid:53 -> ['urmareste'] | when 'follow lumina' or 'urmărește lumina' or 'urmareste lumina'
+snippets\processMenuTitle.liquid:53 -> ['ă', 'ș'] | when 'follow lumina' or 'urmărește lumina' or 'urmareste lumina'
+snippets\processMenuTitle.liquid:59 -> ['toate', 'toate'] | when 'collections' or 'colectii' or 'colecții' or 'colectie' or 'colecție' or 'toate colecțiile' or 
+snippets\processMenuTitle.liquid:59 -> ['ț', 'ț', 'ț'] | when 'collections' or 'colectii' or 'colecții' or 'colectie' or 'colecție' or 'toate colecțiile' or 
+snippets\processMenuTitle.liquid:61 -> ['toate', 'toate', 'vezi', 'toate'] | when 'all products' or 'toate produsele' or 'toate produsele lumina' or 'vezi toate produsele'
+snippets\processMenuTitle.liquid:63 -> ['ă', 'ș', 'ă', 'ș', 'ț', 'ă', 'ș'] | when 'masks with nanofibers' or 'nanofiber masks' or 'măști cu nanofibre' or 'masti cu nanofibre' or
+snippets\processMenuTitle.liquid:65 -> ['ț', 'ă'] | when 'face sprays' or 'sprayuri pentru față' or 'sprayuri pentru fata' or 'sprayuri' or 'spray de fa
+snippets\processMenuTitle.liquid:69 -> ['â'] | when 'bestsellers' or 'bestsellere' or 'cele mai vandute' or 'cele mai vândute'
+snippets\processMenuTitle.liquid:71 -> ['noutati'] | when 'new arrivals' or 'noutăți' or 'noutati'
+snippets\processMenuTitle.liquid:71 -> ['ă', 'ț'] | when 'new arrivals' or 'noutăți' or 'noutati'
+snippets\processMenuTitle.liquid:75 -> ['dimineata', 'dimineata'] | when 'morning ritual' or 'ritualul de dimineață' or 'ritualul de dimineata' or 'ritual de dimineata'
+snippets\processMenuTitle.liquid:75 -> ['ț', 'ă', 'ț', 'ă'] | when 'morning ritual' or 'ritualul de dimineață' or 'ritualul de dimineata' or 'ritual de dimineata'
+snippets\processMenuTitle.liquid:77 -> ['seara', 'seara'] | when 'evening ritual' or 'ritualul de seară' or 'ritualul de seara' or 'ritual de seara' or 'ritual 
+snippets\processMenuTitle.liquid:77 -> ['ă', 'ă'] | when 'evening ritual' or 'ritualul de seară' or 'ritualul de seara' or 'ritual de seara' or 'ritual 
+snippets\processMenuTitle.liquid:79 -> ['rapid', 'rapid'] | when 'express ritual' or 'ritual rapid' or 'ritualul rapid'
+snippets\processMenuTitle.liquid:81 -> ['ritualuri'] | when 'seasonal rituals' or 'ritualuri sezoniere'
+snippets\processMenuTitle.liquid:85 -> ['contul'] | when 'my account' or 'contul meu' or 'cont' or 'profil'
+snippets\processMenuTitle.liquid:87 -> ['comenzi', 'comenzi'] | when 'my orders' or 'comenzile mele' or 'comenzi' or 'istoric comenzi'
+snippets\processMenuTitle.liquid:89 -> ['retururi', 'retur', 'retur', 'retur', 'retur', 'retur'] | when 'returns' or 'returns & refunds' or 'retururi' or 'retur' or 'politica de retur' or 'formular d
+snippets\processMenuTitle.liquid:89 -> ['ș'] | when 'returns' or 'returns & refunds' or 'retururi' or 'retur' or 'politica de retur' or 'formular d
+snippets\processMenuTitle.liquid:91 -> ['livrare', 'livrare', 'livrare', 'plata', 'livrare', 'plata'] | when 'shipping' or 'shipping & delivery' or 'shipping policy' or 'livrare' or 'politica de livrare' 
+snippets\processMenuTitle.liquid:93 -> ['intrebari', 'intrebari', 'intrebari'] | when 'faq' or 'faqs' or 'întrebări frecvente' or 'intrebari frecvente' or 'intrebari' or 'intrebari 
+snippets\processMenuTitle.liquid:93 -> ['î', 'ă', 'î', 'ă', 'ș', 'ă'] | when 'faq' or 'faqs' or 'întrebări frecvente' or 'intrebari frecvente' or 'intrebari' or 'intrebari 
+snippets\processMenuTitle.liquid:95 -> ['contacteaza'] | when 'contact' or 'contact us' or 'contactează-ne' or 'contacteaza-ne' or 'contactati-ne' or 'contac
+snippets\processMenuTitle.liquid:95 -> ['ă', 'ț'] | when 'contact' or 'contact us' or 'contactează-ne' or 'contacteaza-ne' or 'contactati-ne' or 'contac
+snippets\processMenuTitle.liquid:99 -> ['despre', 'despre', 'despre', 'despre'] | when 'about' or 'about us' or 'about lumina europa' or 'despre noi' or 'despre lumina europa' or 'de
+snippets\processMenuTitle.liquid:101 -> ['echipa', 'echipa', 'echipa'] | when 'meet the team' or 'our team' or 'echipa noastră' or 'echipa noastra' or 'echipa' or 'the team'
+snippets\processMenuTitle.liquid:101 -> ['ă'] | when 'meet the team' or 'our team' or 'echipa noastră' or 'echipa noastra' or 'echipa' or 'the team'
+snippets\processMenuTitle.liquid:103 -> ['termeni', 'termeni', 'conditii', 'termeni', 'termeni', 'conditii', 'utilizare'] | when 'terms' or 'terms of service' or 'terms and conditions' or 'termeni și condiții' or 'termeni si
+snippets\processMenuTitle.liquid:103 -> ['ș', 'ț'] | when 'terms' or 'terms of service' or 'terms and conditions' or 'termeni și condiții' or 'termeni si
+snippets\processMenuTitle.liquid:105 -> ['confidentialitate', 'confidentialitate', 'protectia'] | when 'privacy policy' or 'politica de confidențialitate' or 'politica de confidentialitate' or 'conf
+snippets\processMenuTitle.liquid:105 -> ['ț'] | when 'privacy policy' or 'politica de confidențialitate' or 'politica de confidentialitate' or 'conf
+snippets\processMenuTitle.liquid:109 -> ['protectia', 'protectia'] | when 'anpc' or 'anpc.ro' or 'protectia consumatorului' or 'protectia consumatorilor'
+snippets\processMenuTitle.liquid:111 -> ['sal', 'sal'] | when 'anpc - sal' or 'sal' or 'soluționarea alternativă a litigiilor' or 'solutionarea alternativa a
+snippets\processMenuTitle.liquid:111 -> ['ț', 'ă'] | when 'anpc - sal' or 'sal' or 'soluționarea alternativă a litigiilor' or 'solutionarea alternativa a
+snippets\processMenuTitle.liquid:112 -> ['SAL'] | echo 'Alternative Dispute Resolution (SAL)'
+snippets\processMenuTitle.liquid:113 -> ['sol', 'sol'] | when 'anpc - sol' or 'sol' or 'soluționarea online a litigiilor' or 'solutionarea online a litigiilo
+snippets\processMenuTitle.liquid:113 -> ['ț'] | when 'anpc - sol' or 'sol' or 'soluționarea online a litigiilor' or 'solutionarea online a litigiilo
+snippets\processMenuTitle.liquid:114 -> ['SOL'] | echo 'Online Dispute Resolution (SOL)'
+snippets\processMenuTitle.liquid:117 -> ['ă'] | when 'careers' or 'cariere' or 'carieră' or 'cariera'
+snippets\processMenuTitle.liquid:119 -> ['acasa'] | when 'home' or 'acasă' or 'acasa'
+snippets\processMenuTitle.liquid:119 -> ['ă'] | when 'home' or 'acasă' or 'acasa'
+snippets\processMenuTitle.liquid:123 -> ['ț'] | when 'collection' or 'colectie' or 'colecție'
+snippets\processMenuTitle.liquid:125 -> ['tehnologie'] | when 'technology' or 'tehnologie'
+snippets\site-nav.liquid:14 -> ['jurnal'] | {% elsif t contains 'journal' or t contains 'jurnal' or t contains 'blog' %}
+snippets\slide-menu.liquid:71 -> ['jurnal'] | {% elsif t contains 'journal' or t contains 'jurnal' or t contains 'blog' %}
+snippets\slide-menu.liquid:299 -> ['email'] | {% render 'icon-email' %}
+templates\page.about-us-v1.json:460 -> ['Trimite'] | "title": "Trimite-ne un e-mail",
+templates\page.about-us-v3.json:572 -> ['Trimite'] | "title": "Trimite-ne un e-mail",
+templates\page.faq.json:1206 -> ['transport'] | "answer": "<p> Helps protect the product during storage and transport and is important for hygiene a
+templates\page.faq.json:1216 -> ['transport'] | "answer": "<p> Generally yes, subject to local transport and security regulations. </p>",
+templates\page.faq.json:1376 -> ['email'] | "answer": "<p> Yes. Once the order has been received, you will receive an electronic confirmation to
+templates\page.faq.json:1846 -> ['email'] | "answer": "<p> Use the password reset link on the login page and follow the instructions in the emai
+templates\page.faq.json:1865 -> ['email'] | "question": "How can I change my email address?",
+templates\page.faq.json:1896 -> ['email'] | "answer": "<p> Use the unsubscribe link in the footer of any promotional email. </p>",
+templates\page.faq.json:2266 -> ['program'] | "answer": "<p> Minimum order requirements depend on partner program and region. </p>",
+templates\page.faqs.json:1206 -> ['transport'] | "answer": "<p> Helps protect the product during storage and transport and is important for hygiene a
+templates\page.faqs.json:1216 -> ['transport'] | "answer": "<p> Generally yes, subject to local transport and security regulations. </p>",
+templates\page.faqs.json:1376 -> ['email'] | "answer": "<p> Yes. Once the order has been received, you will receive an electronic confirmation to
+templates\page.faqs.json:1846 -> ['email'] | "answer": "<p> Use the password reset link on the login page and follow the instructions in the emai
+templates\page.faqs.json:1865 -> ['email'] | "question": "How can I change my email address?",
+templates\page.faqs.json:1896 -> ['email'] | "answer": "<p> Use the unsubscribe link in the footer of any promotional email. </p>",
+templates\page.faqs.json:2266 -> ['program'] | "answer": "<p> Minimum order requirements depend on partner program and region. </p>",
+templates\page.golden-hour.json:104 -> ['Cadouri'] | "title": "Cadouri exclusive",
+templates\page.golden-hour.json:176 -> ['Beneficii'] | "background_image_desktop": "shopify://shop_images/Beneficii.png",
+templates\page.golden-hour.json:180 -> ['Beneficii'] | "background_image_mobile": "shopify://shop_images/Beneficii-m.png",
+templates\page.golden-hour.json:309 -> ['poveste'] | "heading": "Fiecare ritual spune o poveste",
+templates\page.lumina-world.json:211 -> ['JURNAL'] | "section_title": "JURNAL",
+templates\page.lumina-world.json:221 -> ['JURNAL'] | "modal_eyebrow": "FII PARTE DIN JURNAL",
+templates\page.lumina-world.json:222 -> ['Trimite'] | "modal_title": "Trimite Povestea Ta",
+templates\page.lumina-world.json:329 -> ['galerie'] | "link_url": "/pages/galerie"
+templates\page.lumina-world.json:343 -> ['galerie'] | "link_url": "/pages/galerie"
+templates\page.lumina-world.json:357 -> ['galerie'] | "link_url": "/pages/galerie"
+templates\page.lumina-world.json:371 -> ['galerie'] | "link_url": "/pages/galerie"
+templates\page.lumina-world.json:385 -> ['galerie'] | "link_url": "/pages/galerie"
+templates\page.lumina-world.json:399 -> ['galerie'] | "link_url": "/pages/galerie"
+templates\page.lumina-world.json:413 -> ['galerie'] | "link_url": "/pages/galerie"
+templates\page.lumina-world.json:427 -> ['galerie'] | "link_url": "/pages/galerie"
+templates\page.lumina-world.json:441 -> ['galerie'] | "link_url": "/pages/galerie"
+templates\page.lumina-world.json:455 -> ['galerie'] | "link_url": "/pages/galerie"
+templates\page.lumina-world.json:469 -> ['galerie'] | "link_url": "/pages/galerie"
+templates\page.lumina-world.json:492 -> ['TRIMITE'] | "title": "TRIMITE",
+templates\page.lumina-world.json:531 -> ['POVESTE'] | "share_subheading": "FII PARTE DIN POVESTE",
+templates\page.tehnologie.backup.json:388 -> ['ț'] | "button_1_link": "shopify://pages/creeaza-ți-rutina",
+templates\product.collage-s1.json:386 -> ['Transport', 'Gratuit'] | "title": "Transport Gratuit",
+templates\product.collage-s1.json:626 -> ['Magazin'] | "text_circle": "Magazin de stil Fashion2",
+templates\product.collage-s1.json:742 -> ['email'] | "faq_des": "<p> After we receive your order, you will automatically receive a confirmation email. Or
+templates\product.collage-s2.json:386 -> ['Transport', 'Gratuit'] | "title": "Transport Gratuit",
+templates\product.collage-s2.json:626 -> ['Magazin'] | "text_circle": "Magazin de stil Fashion2",
+templates\product.collage-s2.json:742 -> ['email'] | "faq_des": "<p> After we receive your order, you will automatically receive a confirmation email. Or
+templates\product.des-tabcenter.json:386 -> ['Transport', 'Gratuit'] | "title": "Transport Gratuit",
+templates\product.des-tabcenter.json:626 -> ['Magazin'] | "text_circle": "Magazin de stil Fashion2",
+templates\product.des-tabcenter.json:742 -> ['email'] | "faq_des": "<p> After we receive your order, you will automatically receive a confirmation email. Or
+templates\product.list-grid.json:386 -> ['Transport', 'Gratuit'] | "title": "Transport Gratuit",
+templates\product.list-grid.json:626 -> ['Magazin'] | "text_circle": "Magazin de stil Fashion2",
+templates\product.list-grid.json:742 -> ['email'] | "faq_des": "<p> After we receive your order, you will automatically receive a confirmation email. Or
+templates\product.list-stacked.json:386 -> ['Transport', 'Gratuit'] | "title": "Transport Gratuit",
+templates\product.list-stacked.json:626 -> ['Magazin'] | "text_circle": "Magazin de stil Fashion2",
+templates\product.list-stacked.json:742 -> ['email'] | "faq_des": "<p> After we receive your order, you will automatically receive a confirmation email. Or
+templates\product.tab-accordion.json:393 -> ['Transport', 'Gratuit'] | "title": "Transport Gratuit",
+templates\product.tab-accordion.json:633 -> ['Magazin'] | "text_circle": "Magazin de stil Fashion2",
+templates\product.tab-accordion.json:749 -> ['email'] | "faq_des": "<p> After we receive your order, you will automatically receive a confirmation email. Or
+templates\product.thumb-bottom.json:386 -> ['Transport', 'Gratuit'] | "title": "Transport Gratuit",
+templates\product.thumb-bottom.json:626 -> ['Magazin'] | "text_circle": "Magazin de stil Fashion2",
+templates\product.thumb-bottom.json:742 -> ['email'] | "faq_des": "<p> After we receive your order, you will automatically receive a confirmation email. Or
+templates\product.thumb-left.json:386 -> ['Transport', 'Gratuit'] | "title": "Transport Gratuit",
+templates\product.thumb-left.json:626 -> ['Magazin'] | "text_circle": "Magazin de stil Fashion2",
+templates\product.thumb-left.json:742 -> ['email'] | "faq_des": "<p> After we receive your order, you will automatically receive a confirmation email. Or
+templates\product.thumb-right.json:386 -> ['Transport', 'Gratuit'] | "title": "Transport Gratuit",
+templates\product.thumb-right.json:626 -> ['Magazin'] | "text_circle": "Magazin de stil Fashion2",
+templates\product.thumb-right.json:742 -> ['email'] | "faq_des": "<p> After we receive your order, you will automatically receive a confirmation email. Or
+templates\product.variant-dropdown.json:386 -> ['Transport', 'Gratuit'] | "title": "Transport Gratuit",
+templates\product.variant-dropdown.json:626 -> ['Magazin'] | "text_circle": "Magazin de stil Fashion2",
+templates\product.variant-dropdown.json:742 -> ['email'] | "faq_des": "<p> After we receive your order, you will automatically receive a confirmation email. Or
+templates\product.variant-image-square.json:386 -> ['Transport', 'Gratuit'] | "title": "Transport Gratuit",
+templates\product.variant-image-square.json:626 -> ['Magazin'] | "text_circle": "Magazin de stil Fashion2",
+templates\product.variant-image-square.json:742 -> ['email'] | "faq_des": "<p> After we receive your order, you will automatically receive a confirmation email. Or
+templates\product.variant-image.json:386 -> ['Transport', 'Gratuit'] | "title": "Transport Gratuit",
+templates\product.variant-image.json:626 -> ['Magazin'] | "text_circle": "Magazin de stil Fashion2",
+templates\product.variant-image.json:742 -> ['email'] | "faq_des": "<p> After we receive your order, you will automatically receive a confirmation email. Or
+templates\product.without-thumb.json:386 -> ['Transport', 'Gratuit'] | "title": "Transport Gratuit",
+templates\product.without-thumb.json:626 -> ['Magazin'] | "text_circle": "Magazin de stil Fashion2",
+templates\product.without-thumb.json:742 -> ['email'] | "faq_des": "<p> After we receive your order, you will automatically receive a confirmation email. Or
+templates\customers\register.liquid:21 -> ['email', 'email', 'Email', 'email', 'email', 'email', 'email'] | <input class="form-control" type="email" name="customer[email]" id="Email" class="{% if form.errors 
+templates\customers\register.liquid:22 -> ['Email', 'email'] | <label for="Email" class="label--hidden">{{ 'customer.register.email' | t }}</label>
+templates\customers\reset_password.liquid:8 -> ['email', 'email'] | <p>{{ 'customer.reset_password.subtext' | t: email: email }}</p>
+config\settings_data.json:163 -> ['Nou'] | "label_text2": "Nou",
+config\settings_data.json:1584 -> ['Email'] | "newsletter_placeholder": "Email address"
+config\settings_data.json:1601 -> ['Transport', 'Gratuit'] | "title": "Transport Gratuit",
+config\settings_data.json:1628 -> ['Cadou'] | "title": "Voucher Cadou",
+config\settings_schema.json:1183 -> ['Email'] | "label": "Mobile Email",

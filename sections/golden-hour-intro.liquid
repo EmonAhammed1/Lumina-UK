@@ -1,0 +1,191 @@
+{% render 'golden-hour-vars' %}
+{%- style -%}
+  #shopify-section-{{ section.id }} .gh-intro-wrap {
+    background-color: var(--gh-dark-bg);
+    color: var(--gh-text-light);
+    padding: {{ section.settings.padding_top_desktop }}px 24px {{ section.settings.padding_bottom_desktop }}px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 768px) {
+    #shopify-section-{{ section.id }} .gh-intro-wrap {
+      padding: {{ section.settings.padding_top_mobile }}px 16px {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+  .gh-intro-sub {
+    font-size: {{ section.settings.sub_size_desktop }}px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gh-golden);
+    margin-bottom: 48px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: var(--gh-transition);
+  }
+  @media screen and (max-width: 768px) {
+    .gh-intro-sub {
+      font-size: {{ section.settings.sub_size_mobile }}px;
+      margin-bottom: 32px;
+    }
+  }
+  .gh-intro-quote {
+    font-size: {{ section.settings.quote_size_desktop }}px;
+    line-height: 1.35;
+    font-weight: 300;
+    max-width: 900px;
+    margin: 0 auto;
+    color: var(--gh-first-light);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: var(--gh-transition);
+    transition-delay: 0.2s;
+  }
+  @media screen and (max-width: 768px) {
+    .gh-intro-quote {
+      font-size: {{ section.settings.quote_size_mobile }}px;
+    }
+  }
+  .gh-intro-wrap.is-visible .gh-intro-sub,
+  .gh-intro-wrap.is-visible .gh-intro-quote {
+    opacity: 1;
+    transform: translateY(0);
+  }
+{%- endstyle -%}
+
+<div class="gh-intro-wrap" id="{{ section.id | split: '__' | last }}" data-section-id="{{ section.id }}">
+  <div class="gh-intro-sub">{{ section.settings.subtitle }}</div>
+  <h2 class="gh-intro-quote">{{ section.settings.quote }}</h2>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const el = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if ('IntersectionObserver' in window && el) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) e.target.classList.add('is-visible');
+        });
+      }, { threshold: 0.25 });
+      obs.observe(el);
+    } else if (el) {
+      el.classList.add('is-visible');
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Golden Hour - Intro",
+  "settings": [
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum Width (px)",
+      "min": 800,
+      "max": 2000,
+      "step": 50,
+      "default": 1450
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle Copy",
+      "default": "Golden Hour — A moment that belongs only to you. Scroll."
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote Copy",
+      "default": "Beauty begins with ritual. Not routine. Not perfection. Presence."
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing & Sizes"
+    },
+    {
+      "type": "range",
+      "id": "sub_size_desktop",
+      "label": "Subtitle Font Size (Desktop px)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "quote_size_desktop",
+      "label": "Quote Font Size (Desktop px)",
+      "min": 24,
+      "max": 56,
+      "step": 2,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Top Padding (Desktop px)",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Bottom Padding (Desktop px)",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "default": 120
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing & Sizes"
+    },
+    {
+      "type": "range",
+      "id": "sub_size_mobile",
+      "label": "Subtitle Font Size (Mobile px)",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "quote_size_mobile",
+      "label": "Quote Font Size (Mobile px)",
+      "min": 18,
+      "max": 36,
+      "step": 1,
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top Padding (Mobile px)",
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom Padding (Mobile px)",
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Golden Hour - Intro"
+    }
+  ]
+}
+{% endschema %}

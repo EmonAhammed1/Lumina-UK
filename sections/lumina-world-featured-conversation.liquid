@@ -1,0 +1,396 @@
+<!-- sections/lumina-world-featured-conversation.liquid -->
+<style>
+  .lumina-conversation-section {
+    background-color: #040404;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding: 70px 0;
+    border-top: 1px solid rgba(197, 160, 89, 0.25);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+    scroll-margin-top: 90px;
+  }
+
+  .lwc-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 45px;
+    box-sizing: border-box;
+  }
+
+  .lwc-header-label {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #c5a059;
+    font-weight: 500;
+    margin-bottom: 25px;
+    opacity: 0.9;
+  }
+
+  .lwc-grid-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 50px;
+  }
+
+  /* Left Column: Video Frame */
+  .lwc-col-video {
+    flex: 0 0 52%;
+    max-width: 52%;
+    position: relative;
+  }
+
+  .lwc-video-frame {
+    position: relative;
+    width: 100%;
+    border: 1px solid rgba(197, 160, 89, 0.35);
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #000000;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    aspect-ratio: 16 / 9;
+  }
+
+  .lwc-video-frame video,
+  .lwc-video-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Play Button Overlay */
+  .lwc-play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .lwc-play-overlay:hover {
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .lwc-play-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1.5px solid #c5a059;
+    background: rgba(5, 5, 5, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 25px rgba(197, 160, 89, 0.3);
+  }
+
+  .lwc-play-overlay:hover .lwc-play-btn {
+    transform: scale(1.1);
+    background: #c5a059;
+  }
+
+  .lwc-play-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: #c5a059;
+    margin-left: 3px;
+    transition: fill 0.3s ease;
+  }
+
+  .lwc-play-overlay:hover .lwc-play-btn svg {
+    fill: #000000;
+  }
+
+  /* Right Column: Content Details */
+  .lwc-col-content {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .lwc-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #c5a059;
+    font-weight: 500;
+    margin-bottom: 16px;
+    opacity: 0.9;
+  }
+
+  .lwc-title {
+    font-family: var(--g-font-2), "Cormorant Garamond", "Times New Roman", serif;
+    font-size: 42px;
+    line-height: 1.15;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0 0 14px 0;
+    letter-spacing: 0.02em;
+  }
+
+  .lwc-subtitle {
+    font-family: var(--g-font-2), "Cormorant Garamond", "Times New Roman", serif;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 400;
+    color: #c5a059;
+    margin-bottom: 20px;
+  }
+
+  .lwc-description {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 35px;
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  /* Buttons Row */
+  .lwc-buttons-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .lwc-btn-primary {
+    display: inline-block;
+    background-color: #c5a059;
+    color: #050505;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #c5a059;
+  }
+
+  .lwc-btn-primary:hover {
+    background-color: #d8b26a;
+    color: #000000;
+    box-shadow: 0 4px 20px rgba(197, 160, 89, 0.3);
+  }
+
+  .lwc-btn-secondary {
+    display: inline-block;
+    background-color: rgba(15, 15, 15, 0.8);
+    color: #c5a059;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(197, 160, 89, 0.4);
+  }
+
+  .lwc-btn-secondary:hover {
+    background-color: rgba(197, 160, 89, 0.15);
+    border-color: #c5a059;
+    color: #ffffff;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 991px) {
+    .lumina-conversation-section { padding: 50px 0; }
+    .lwc-container { padding: 0 24px; }
+    .lwc-grid-wrap {
+      flex-direction: column;
+      gap: 35px;
+    }
+    .lwc-col-video, .lwc-col-content {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    .lwc-title { font-size: 34px; }
+    .lwc-subtitle { font-size: 19px; }
+  }
+
+  @media (max-width: 575px) {
+    .lwc-title { font-size: 28px; }
+    .lwc-buttons-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .lwc-btn-primary, .lwc-btn-secondary {
+      text-align: center;
+    }
+  }
+</style>
+
+<div id="conversations" class="lumina-conversation-section">
+  <div class="lwc-container">
+    {%- if section.settings.section_label != blank -%}
+      <div class="lwc-header-label">{{ section.settings.section_label }}</div>
+    {%- endif -%}
+
+    <div class="lwc-grid-wrap">
+
+      <!-- LEFT COLUMN: Video Player / Frame -->
+      <div class="lwc-col-video">
+        <div class="lwc-video-frame">
+          {%- if section.settings.video_url != blank -%}
+            <video id="lwc-video-{{ section.id }}" controls poster="{{ section.settings.cover_image | image_url: width: 1000 }}">
+              <source src="{% if section.settings.video_url contains 'http' %}{{ section.settings.video_url }}{% else %}{{ section.settings.video_url | file_url }}{% endif %}" type="video/mp4">
+              <source src="{{ '3_lumina_world_manifesto_talk.mp4' | file_url }}" type="video/mp4">
+              <source src="{{ 'video 1 presentation.mp4' | file_url }}" type="video/mp4">
+            </video>
+          {%- else -%}
+            <video id="lwc-video-{{ section.id }}" controls poster="{{ section.settings.cover_image | default: 'lumina-world-hero-4.png' | asset_url }}">
+              <source src="{{ '3_lumina_world_manifesto_talk.mp4' | file_url }}" type="video/mp4">
+              <source src="{{ 'video 1 presentation.mp4' | file_url }}" type="video/mp4">
+              <source src="https://cdn.shopify.com/videos/c/o/v/06637b7d08654c609c15feae7fb90035.mp4" type="video/mp4">
+            </video>
+          {%- endif -%}
+
+          <div class="lwc-play-overlay" onclick="const v=document.getElementById('lwc-video-{{ section.id }}'); if(v){ v.play(); this.style.display='none'; }">
+            <div class="lwc-play-btn">
+              <svg viewBox="0 0 24 24"><polygon points="8 5 19 12 8 19 8 5"></polygon></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Conversation Info & Actions -->
+      <div class="lwc-col-content">
+        {%- if section.settings.eyebrow != blank -%}
+          <div class="lwc-eyebrow">{{ section.settings.eyebrow }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.title != blank -%}
+          <h2 class="lwc-title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.subtitle != blank -%}
+          <div class="lwc-subtitle">{{ section.settings.subtitle }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.description != blank -%}
+          <div class="lwc-description">{{ section.settings.description }}</div>
+        {%- endif -%}
+
+        <div class="lwc-buttons-row">
+          {%- if section.settings.btn_1_label != blank -%}
+            <a href="{{ section.settings.btn_1_link | default: '#' }}" class="lwc-btn-primary">
+              {{ section.settings.btn_1_label }}
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.btn_2_label != blank -%}
+            <a href="{{ section.settings.btn_2_link | default: '#' }}" class="lwc-btn-secondary">
+              {{ section.settings.btn_2_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Lumina Featured Talk",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Top Section Label",
+      "default": "CONVERSATION IN THE FOREGROUND"
+    },
+    {
+      "type": "header",
+      "content": "Left Side Video Settings"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "MP4 Video URL",
+      "info": "Upload an MP4 video in Shopify Files or enter video URL."
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Video Cover Image / Poster"
+    },
+    {
+      "type": "header",
+      "content": "Right Side Content Settings"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Category Eyebrow",
+      "default": "SCIENCE AND LONGEVITY"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title",
+      "default": "The new science of skin longevity"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Author Subtitle",
+      "default": "cu Prof. Dr. Friedrich W. Bauer"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description Text",
+      "default": "A conversation about cellular intelligence, epigenetics and the future of harmonious aging."
+    },
+    {
+      "type": "header",
+      "content": "Action Buttons"
+    },
+    {
+      "type": "text",
+      "id": "btn_1_label",
+      "label": "Primary Button Label",
+      "default": "WATCH CONVERSATION"
+    },
+    {
+      "type": "url",
+      "id": "btn_1_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "btn_2_label",
+      "label": "Secondary Button Label",
+      "default": "READ TRANSCRIPT"
+    },
+    {
+      "type": "url",
+      "id": "btn_2_link",
+      "label": "Secondary Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lumina Featured Talk"
+    }
+  ]
+}
+{% endschema %}

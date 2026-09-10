@@ -1,0 +1,513 @@
+{% render 'golden-hour-vars' %}
+{%- style -%}
+  #shopify-section-{{ section.id }} .gh-benefits-wrap {
+    background-color: var(--gh-dark-bg);
+    {% if section.settings.background_image_desktop %}
+      background-image: url('{{ section.settings.background_image_desktop | image_url: width: 2000 }}');
+      background-size: cover;
+      background-position: center;
+    {% else %}
+      background-image: url('{{ "Beneficii.png" | asset_url }}');
+      background-size: cover;
+      background-position: center;
+    {% endif %}
+    color: var(--gh-text-light);
+    padding: {{ section.settings.padding_top_desktop }}px 24px {{ section.settings.padding_bottom_desktop }}px;
+    position: relative;
+    overflow: hidden;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 768px) {
+    #shopify-section-{{ section.id }} .gh-benefits-wrap {
+      padding: {{ section.settings.padding_top_mobile }}px 16px {{ section.settings.padding_bottom_mobile }}px;
+      {% if section.settings.background_image_mobile %}
+        background-image: url('{{ section.settings.background_image_mobile | image_url: width: 1000 }}');
+        background-size: cover;
+        background-position: center;
+      {% else %}
+        background-image: url('{{ "Beneficii-m.png" | asset_url }}');
+        background-size: cover;
+        background-position: center;
+      {% endif %}
+    }
+  }
+  .gh-benefits-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+  }
+  .gh-benefits-title-small {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gh-text-muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .gh-benefits-title {
+    font-size: {{ section.settings.title_size_desktop }}px;
+    color: var(--gh-golden);
+    margin-bottom: 16px;
+    font-weight: 300;
+    font-family: serif;
+  }
+  @media screen and (max-width: 1024px) {
+    .gh-benefits-title {
+      font-size: calc({{ section.settings.title_size_desktop }}px * 0.85);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .gh-benefits-title {
+      font-size: {{ section.settings.title_size_mobile }}px;
+    }
+  }
+  .gh-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: {{ section.settings.grid_gap_desktop }}px;
+    max-width: 100%;
+    margin: 0 auto 40px;
+  }
+  @media screen and (max-width: 1400px) {
+    .gh-benefits-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .gh-benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: {{ section.settings.grid_gap_mobile }}px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .gh-benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+  }
+  .gh-benefit-card {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: {{ section.settings.card_padding_desktop }}px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: var(--gh-transition);
+    height: auto;
+  }
+  .gh-benefit-card:hover {
+    background: rgba(255,255,255,0.02);
+    border-color: var(--gh-border-gold);
+  }
+  .gh-card-index {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--gh-text-muted);
+    margin-bottom: 12px;
+  }
+  .gh-card-icon {
+    width: {{ section.settings.icon_size_desktop }}px;
+    height: {{ section.settings.icon_size_desktop }}px;
+    margin-bottom: 14px;
+    color: var(--gh-golden);
+  }
+  .gh-card-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    stroke-width: 1;
+    fill: none;
+  }
+  .gh-card-title {
+    font-size: {{ section.settings.card_title_size_desktop }}px;
+    font-weight: 400;
+    color: var(--gh-golden);
+    margin-bottom: 10px;
+    font-family: serif;
+    line-height: 1.3;
+  }
+  .gh-card-desc {
+    font-size: {{ section.settings.card_desc_size_desktop }}px;
+    line-height: 1.5;
+    color: var(--gh-text-muted);
+  }
+  @media screen and (max-width: 1024px) {
+    .gh-benefit-card {
+      padding: calc({{ section.settings.card_padding_desktop }}px * 0.8);
+    }
+    .gh-card-icon {
+      width: calc({{ section.settings.icon_size_desktop }}px * 0.85);
+      height: calc({{ section.settings.icon_size_desktop }}px * 0.85);
+    }
+    .gh-card-title {
+      font-size: calc({{ section.settings.card_title_size_desktop }}px * 0.9);
+    }
+    .gh-card-desc {
+      font-size: calc({{ section.settings.card_desc_size_desktop }}px * 0.9);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .gh-benefit-card {
+      padding: {{ section.settings.card_padding_mobile }}px;
+      height: auto;
+    }
+    .gh-card-icon {
+      width: {{ section.settings.icon_size_mobile }}px;
+      height: {{ section.settings.icon_size_mobile }}px;
+    }
+    .gh-card-title {
+      font-size: {{ section.settings.card_title_size_mobile }}px;
+    }
+    .gh-card-desc {
+      font-size: {{ section.settings.card_desc_size_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="gh-benefits-wrap" id="{{ section.id | split: '__' | last }}" data-section-id="{{ section.id }}">
+  <div class="gh-benefits-header">
+    <div class="gh-benefits-title-small">BENEFITS FOR GOLDEN HOUR MEMBERS</div>
+    <h2 class="gh-benefits-title">{{ section.settings.heading }}</h2>
+  </div>
+
+  <div class="gh-benefits-grid">
+    {%- for block in section.blocks -%}
+      <div class="gh-benefit-card" {{ block.shopify_attributes }}>
+
+        <h3 class="gh-card-title">{{ block.settings.title }}</h3>
+        <p class="gh-card-desc">{{ block.settings.description }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Golden Hour - Benefits",
+  "settings": [
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum Width (px)",
+      "min": 800,
+      "max": 2000,
+      "step": 50,
+      "default": 1450
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Title",
+      "default": "More than rewards. A deeper connection."
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_desktop",
+      "label": "Background Image (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "label": "Title Size (Desktop px)",
+      "min": 24,
+      "max": 56,
+      "step": 2,
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Top Padding (Desktop px)",
+      "min": 40,
+      "max": 180,
+      "step": 10,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Bottom Padding (Desktop px)",
+      "min": 40,
+      "max": 180,
+      "step": 10,
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Background Image (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "Title Size (Mobile px)",
+      "min": 18,
+      "max": 36,
+      "step": 1,
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top Padding (Mobile px)",
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom Padding (Mobile px)",
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Card Settings (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "card_padding_desktop",
+      "label": "Card Padding (Desktop px)",
+      "min": 10,
+      "max": 48,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_desktop",
+      "label": "Grid Gap (Desktop px)",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "icon_size_desktop",
+      "label": "Icon Size (Desktop px)",
+      "min": 16,
+      "max": 56,
+      "step": 2,
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "card_title_size_desktop",
+      "label": "Card Title Size (Desktop px)",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "card_desc_size_desktop",
+      "label": "Card Description Size (Desktop px)",
+      "min": 9,
+      "max": 18,
+      "step": 1,
+      "default": 11
+    },
+    {
+      "type": "header",
+      "content": "Card Settings (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "card_padding_mobile",
+      "label": "Card Padding (Mobile px)",
+      "min": 10,
+      "max": 48,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_mobile",
+      "label": "Grid Gap (Mobile px)",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "icon_size_mobile",
+      "label": "Icon Size (Mobile px)",
+      "min": 16,
+      "max": 56,
+      "step": 2,
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "card_title_size_mobile",
+      "label": "Card Title Size (Mobile px)",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "card_desc_size_mobile",
+      "label": "Card Description Size (Mobile px)",
+      "min": 9,
+      "max": 18,
+      "step": 1,
+      "default": 13
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_icon",
+          "label": "Custom Icon Image (Overrides SVG Icon)"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Fallback SVG Icon",
+          "options": [
+            {
+              "value": "key",
+              "label": "Key"
+            },
+            {
+              "value": "gift",
+              "label": "Gift"
+            },
+            {
+              "value": "tag",
+              "label": "Tag"
+            },
+            {
+              "value": "leaves",
+              "label": "Leaves"
+            },
+            {
+              "value": "book",
+              "label": "Book"
+            },
+            {
+              "value": "calendar",
+              "label": "Calendar"
+            },
+            {
+              "value": "user",
+              "label": "User"
+            },
+            {
+              "value": "star",
+              "label": "Star"
+            }
+          ],
+          "default": "star"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Beneficiu"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Description beneficiu"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Golden Hour - Benefits",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "key",
+            "title": "Priority Access",
+            "description": "Be among the first to discover Lumina's new releases, seasonal collections and limited editions."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "gift",
+            "title": "Exclusive Gifts",
+            "description": "Enjoy carefully selected surprises and gifts, created especially for the Golden Hour community."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "tag",
+            "title": "Curated Offers",
+            "description": "Access benefits and offers available exclusively to Golden Hour members."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "leaves",
+            "title": "Seasonal Rituals",
+            "description": "Receive recommendations and rituals adapted to the needs of your skin, in harmony with each season."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "book",
+            "title": "Lumina Journal",
+            "description": "Discover articles, inspiration and stories about the beauty of rituals and conscious skin care."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "calendar",
+            "title": "Exclusive Events",
+            "description": "Receive invitations to launches, experiences and events dedicated to the Lumina community."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "user",
+            "title": "Personalized recommendations",
+            "description": "Get inspired by suggestions and rituals chosen according to the season and your skin's needs."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "star",
+            "title": "Experiences before everyone else",
+            "description": "Test new products and concepts for the first time and discover the Lumina universe before the official launch."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

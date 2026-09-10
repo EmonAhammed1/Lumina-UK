@@ -1,0 +1,164 @@
+{%- assign sticky = section.settings.enable_sticky -%}
+<style>
+  .tech-subnav-container {
+    background: #000;
+    border-bottom: 1px solid #333;
+    z-index: 1000;
+  }
+  .tech-subnav-container.is-sticky {
+    position: sticky;
+    top: {{ section.settings.sticky_offset | default: '0' }}px;
+  }
+  .tech-subnav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 15px 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tech-subnav a {
+    text-decoration: none;
+    color: var(--color-body-text, #FAF6F0);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+  }
+  .tech-subnav a:hover {
+    color: var(--g-main, #B8963E);
+  }
+  @media (max-width: 767px) {
+    .tech-subnav {
+      justify-content: flex-start;
+      padding: 15px 20px;
+    }
+  }
+</style>
+
+<div class="tech-subnav-container {% if sticky %}is-sticky{% endif %}" id="technology-sub-nav" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="tech-subnav">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.target_id }}" {{ block.shopify_attributes }}>{{ block.settings.title }}</a>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.tech-subnav a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId.startsWith('#')) {
+        e.preventDefault();
+        const targetEl = document.querySelector(targetId);
+        if(targetEl) {
+          const offset = {{ section.settings.sticky_offset | default: '0' }};
+          const elementPosition = targetEl.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Technology Sub-Nav",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_sticky",
+      "label": "Enable Sticky Navigation",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "sticky_offset",
+      "label": "Sticky Top Offset (px)",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 60,
+      "info": "Adjust to account for the main site header height."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Anchor Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label",
+          "default": "Overview"
+        },
+        {
+          "type": "text",
+          "id": "target_id",
+          "label": "Target Section ID",
+          "default": "#technology-hero",
+          "info": "Must include the '#' symbol, e.g. #technology-hero"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Technology Sub-Nav",
+      "blocks": [
+        {
+          "type": "link",
+          "settings": {
+            "title": "Overview",
+            "target_id": "#technology-hero"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "title": "Nanofibers Technology",
+            "target_id": "#technology-nanofibres"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "title": "How It Works",
+            "target_id": "#technology-how-it-works"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "title": "Formula",
+            "target_id": "#technology-formula"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "title": "How to Use",
+            "target_id": "#technology-how-to-use"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "title": "Rituals",
+            "target_id": "#technology-rituals"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

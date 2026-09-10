@@ -1,0 +1,582 @@
+{% render 'golden-hour-vars' %}
+{%- style -%}
+  #shopify-section-{{ section.id }} .gh-hero-wrap {
+    position: relative;
+    width: 100%;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    height: {{ section.settings.height_desktop }}vh;
+    min-height: 500px;
+    background-color: var(--gh-dark-bg);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 5%;
+  }
+  @media screen and (max-width: 1024px) {
+    #shopify-section-{{ section.id }} .gh-hero-wrap {
+      padding: 0 40px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    #shopify-section-{{ section.id }} .gh-hero-wrap {
+      height: {{ section.settings.height_mobile }}vh;
+      padding: 0 20px 50px 20px;
+      align-items: flex-end;
+    }
+  }
+  .gh-hero-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  .gh-hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .gh-hero-desktop-video { display: block; }
+  .gh-hero-mobile-video { display: none; }
+  @media screen and (max-width: 768px) {
+    .gh-hero-desktop-video { display: none; }
+    .gh-hero-mobile-video { display: block; }
+  }
+  
+  .gh-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(17, 16, 15, 0.8) 0%, rgba(17, 16, 15, 0.4) 50%, rgba(17, 16, 15, 0) 100%);
+    z-index: 2;
+  }
+  @media screen and (max-width: 768px) {
+    .gh-hero-overlay {
+      background: linear-gradient(to top, rgba(17, 16, 15, 0.8) 0%, rgba(17, 16, 15, 0.5) 50%, rgba(17, 16, 15, 0) 100%);
+    }
+  }
+
+  .gh-hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 600px;
+    margin-top: -50px;
+  }
+  .gh-hero-subtitle {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    color: var(--gh-text-muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  .gh-hero-title {
+    font-size: {{ section.settings.title_size_desktop }}px;
+    font-weight: 300;
+    color: var(--gh-golden);
+    margin-bottom: 24px;
+    font-family: serif;
+  }
+  @media screen and (max-width: 1024px) {
+    .gh-hero-title {
+      font-size: 60px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .gh-hero-title {
+      font-size: 48px;
+    }
+    .gh-hero-content { margin-top: 0; }
+  }
+  .gh-hero-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--gh-text-light);
+    margin-bottom: 40px;
+  }
+  .gh-hero-btn {
+    display: inline-block;
+    padding: 15px 31px;
+    background-color: var(--gh-golden);
+    color: var(--gh-dark-bg);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    border: 1px solid var(--gh-golden);
+    transition: var(--gh-transition);
+  }
+  .gh-hero-btn:hover {
+    background-color: transparent;
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  @media screen and (max-width: 768px) {
+    .gh-hero-btn {
+      padding: 12px 24px;
+      font-size: 13px;
+    }
+    .gh-hero-subtitle,
+    .gh-hero-text,
+    .gh-hero-btn {
+      display: none !important;
+    }
+  }
+
+
+
+  .gh-audio-toggle {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 44px;
+    height: 44px;
+    background: rgba(17, 16, 15, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid {{ section.settings.button_color | default: '#F9E29C' }};
+    color: {{ section.settings.button_color | default: '#F9E29C' }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding: 0;
+  }
+  .gh-audio-toggle:hover {
+    background: rgba(249, 226, 156, 0.2);
+    transform: scale(1.05);
+  }
+  .gh-audio-toggle:active {
+    transform: scale(0.95);
+  }
+  .gh-audio-toggle svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    display: block;
+  }
+  @media screen and (max-width: 768px) {
+    .gh-audio-toggle {
+      display: flex !important;
+      bottom: 24px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      background: rgba(17, 16, 15, 0.7);
+    }
+  }
+{%- endstyle -%}
+
+<div class="gh-hero-wrap" id="{{ section.id | split: '__' | last }}" data-section-id="{{ section.id }}">
+  <div class="gh-hero-video-container">
+    {%- if section.settings.video != blank -%}
+      {%- if section.settings.video.sources != blank -%}
+        {{ section.settings.video | video_tag: autoplay: true, loop: true, playsinline: true, muted: true, class: 'gh-hero-video gh-hero-desktop-video', id: 'gh-video-desktop', image_size: '1920x' }}
+      {%- else -%}
+        <video class="gh-hero-video gh-hero-desktop-video" id="gh-video-desktop" autoplay loop muted playsinline poster="{{ 'test-5.png' | asset_url }}">
+          <source src="{% if section.settings.video contains 'http' %}{{ section.settings.video }}{% else %}{{ section.settings.video | file_url }}{% endif %}" type="video/mp4">
+          <source src="{{ 'The Golden Hour HERO.mp4' | file_url }}" type="video/mp4">
+          <source src="{{ 'The_Golden_Hour_HERO.mp4' | file_url }}" type="video/mp4">
+          <source src="{{ '1_golden_hour_hero.mp4' | file_url }}" type="video/mp4">
+          <source src="https://cdn.shopify.com/videos/c/o/v/daa8f8991d7e47419cbd9ff37f3f6f05.mp4" type="video/mp4">
+        </video>
+      {%- endif -%}
+    {%- elsif section.settings.bg_image_desktop != blank -%}
+      <img src="{{ section.settings.bg_image_desktop | image_url: width: 1920 }}" class="gh-hero-video gh-hero-desktop-video" alt="{{ section.settings.title }}">
+    {%- else -%}
+      <video class="gh-hero-video gh-hero-desktop-video" id="gh-video-desktop" autoplay loop muted playsinline poster="{{ 'test-5.png' | asset_url }}">
+        <source src="{{ 'The Golden Hour HERO.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ 'The_Golden_Hour_HERO.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ '1_golden_hour_hero.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ 'daa8f8991d7e47419cbd9ff37f3f6f05.mp4' | file_url }}" type="video/mp4">
+        <source src="https://cdn.shopify.com/videos/c/o/v/daa8f8991d7e47419cbd9ff37f3f6f05.mp4" type="video/mp4">
+      </video>
+    {%- endif -%}
+
+    {%- if section.settings.video_mobile != blank -%}
+      {%- if section.settings.video_mobile.sources != blank -%}
+        {{ section.settings.video_mobile | video_tag: autoplay: true, loop: true, playsinline: true, muted: true, class: 'gh-hero-video gh-hero-mobile-video', id: 'gh-video-mobile', image_size: '800x' }}
+      {%- else -%}
+        <video class="gh-hero-video gh-hero-mobile-video" id="gh-video-mobile" autoplay loop muted playsinline poster="{{ 'test-5.png' | asset_url }}">
+          <source src="{% if section.settings.video_mobile contains 'http' %}{{ section.settings.video_mobile }}{% else %}{{ section.settings.video_mobile | file_url }}{% endif %}" type="video/mp4">
+          <source src="{{ 'The Golden Hour HERO mobile phone format.mp4' | file_url }}" type="video/mp4">
+          <source src="{{ 'The_Golden_Hour_HERO_mobile_phone_format.mp4' | file_url }}" type="video/mp4">
+          <source src="{{ 'The Golden Hour HERO.mp4' | file_url }}" type="video/mp4">
+        </video>
+      {%- endif -%}
+    {%- elsif section.settings.bg_image_mobile != blank -%}
+      <img src="{{ section.settings.bg_image_mobile | image_url: width: 800 }}" class="gh-hero-video gh-hero-mobile-video" alt="{{ section.settings.title }}">
+    {%- else -%}
+      <video class="gh-hero-video gh-hero-mobile-video" id="gh-video-mobile" autoplay loop muted playsinline poster="{{ 'test-5.png' | asset_url }}">
+        <source src="{{ 'The Golden Hour HERO mobile phone format.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ 'The_Golden_Hour_HERO_mobile_phone_format.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ 'The Golden Hour HERO.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ 'The_Golden_Hour_HERO.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ '1_golden_hour_hero.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ 'daa8f8991d7e47419cbd9ff37f3f6f05.mp4' | file_url }}" type="video/mp4">
+        <source src="https://cdn.shopify.com/videos/c/o/v/daa8f8991d7e47419cbd9ff37f3f6f05.mp4" type="video/mp4">
+      </video>
+    {%- endif -%}
+  </div>
+
+  <div class="gh-hero-overlay"></div>
+
+  <div class="gh-hero-content">
+    {%- if section.settings.subtitle != blank -%}
+      <div class="gh-hero-subtitle">{{ section.settings.subtitle }}</div>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <h1 class="gh-hero-title">{{ section.settings.title }}</h1>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <div class="gh-hero-text">{{ section.settings.text }}</div>
+    {%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <a href="{{ section.settings.button_link | default: '#' }}" class="gh-hero-btn">{{ section.settings.button_label }}</a>
+    {%- endif -%}
+  </div>
+
+  <button type="button" class="gh-audio-toggle" id="gh-audio-toggle-{{ section.id }}" aria-label="Toggle audio">
+    <svg viewBox="0 0 24 24" id="gh-icon-muted" aria-hidden="true">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <line x1="23" y1="9" x2="17" y2="15"></line>
+      <line x1="17" y1="9" x2="23" y2="15"></line>
+    </svg>
+    <svg viewBox="0 0 24 24" id="gh-icon-unmuted" style="display:none;" aria-hidden="true">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </svg>
+  </button>
+</div>
+
+<script>
+  (function() {
+    let audioContext = null;
+    let userExplicitlyMuted = false;
+
+    function getAudioContext() {
+      if (!audioContext && (window.AudioContext || window.webkitAudioContext)) {
+        try {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        } catch (e) {}
+      }
+      if (audioContext && audioContext.state === 'suspended') {
+        audioContext.resume().catch(function() {});
+      }
+      return audioContext;
+    }
+
+    function initGoldenHourHeroAudio() {
+      const section = document.querySelector('[data-section-id="{{ section.id }}"]');
+      if (!section) return;
+
+      const toggleBtn = section.querySelector('#gh-audio-toggle-{{ section.id }}');
+      const desktopVideo = section.querySelector('#gh-video-desktop');
+      const mobileVideo = section.querySelector('#gh-video-mobile');
+      const iconMuted = section.querySelector('#gh-icon-muted');
+      const iconUnmuted = section.querySelector('#gh-icon-unmuted');
+
+      function getActiveVideo() {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+          if (desktopVideo && !desktopVideo.paused) {
+            desktopVideo.muted = true;
+          }
+          return mobileVideo || desktopVideo;
+        } else {
+          if (mobileVideo && !mobileVideo.paused) {
+            mobileVideo.muted = true;
+          }
+          return desktopVideo || mobileVideo;
+        }
+      }
+
+      function updateIcon(isMuted) {
+        if (!iconMuted || !iconUnmuted) return;
+        if (isMuted) {
+          iconMuted.style.display = 'block';
+          iconUnmuted.style.display = 'none';
+        } else {
+          iconMuted.style.display = 'none';
+          iconUnmuted.style.display = 'block';
+        }
+      }
+
+      function playActiveVideoWithSound() {
+        if (userExplicitlyMuted) return;
+        getAudioContext();
+        const vid = getActiveVideo();
+        if (!vid) return;
+
+        vid.muted = false;
+        vid.volume = 0.35;
+        vid.loop = true;
+
+        const playPromise = vid.play();
+        if (playPromise !== undefined) {
+          playPromise.then(function() {
+            updateIcon(false);
+          }).catch(function() {
+            // Autoplay unmuted was restricted by browser on cold load
+            // Keep video playing and unmute immediately on any touch/interaction
+            vid.muted = true;
+            vid.play().catch(function() {});
+            updateIcon(true);
+          });
+        }
+      }
+
+      function forceUnmuteAndPlay() {
+        if (userExplicitlyMuted) return;
+        getAudioContext();
+        const vid = getActiveVideo();
+        if (vid) {
+          vid.muted = false;
+          vid.volume = 0.35;
+          vid.play().then(function() {
+            updateIcon(false);
+          }).catch(function() {});
+        }
+      }
+
+      // Continuous loop protection - keeps playing continuously
+      [desktopVideo, mobileVideo].forEach(function(v) {
+        if (v) {
+          v.addEventListener('ended', function() {
+            if (!userExplicitlyMuted) {
+              v.currentTime = 0;
+              v.play().catch(function() {});
+            }
+          });
+          v.addEventListener('pause', function() {
+            if (!userExplicitlyMuted && !document.hidden) {
+              setTimeout(function() {
+                if (!userExplicitlyMuted && v.paused) {
+                  v.play().catch(function() {});
+                }
+              }, 150);
+            }
+          });
+        }
+      });
+
+      // Immediate attempt on load
+      playActiveVideoWithSound();
+
+      // Multi-layer interaction capture for instant sound start on touch/scroll
+      const interactionEvents = [
+        'touchstart', 'touchend', 'touchmove',
+        'pointerdown', 'pointerup', 'pointermove',
+        'click', 'mousedown', 'mouseup',
+        'scroll', 'wheel', 'keydown',
+        'pageshow', 'visibilitychange'
+      ];
+
+      function handleUserGesture() {
+        if (userExplicitlyMuted) return;
+        const vid = getActiveVideo();
+        if (vid && vid.muted) {
+          forceUnmuteAndPlay();
+        }
+      }
+
+      interactionEvents.forEach(function(evt) {
+        window.addEventListener(evt, handleUserGesture, { capture: true, passive: true });
+        document.addEventListener(evt, handleUserGesture, { capture: true, passive: true });
+      });
+
+      // Toggle button click listener
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          getAudioContext();
+          const vid = getActiveVideo();
+          if (!vid) return;
+
+          if (vid.muted) {
+            userExplicitlyMuted = false;
+            vid.muted = false;
+            vid.volume = 0.35;
+            vid.play().then(function() {
+              updateIcon(false);
+            }).catch(function(err) {
+              console.log('Audio play error:', err);
+            });
+          } else {
+            userExplicitlyMuted = true;
+            vid.muted = true;
+            updateIcon(true);
+          }
+        });
+      }
+
+      // Sync state on window resize
+      window.addEventListener('resize', function() {
+        const vid = getActiveVideo();
+        if (vid) {
+          if (!userExplicitlyMuted && !vid.muted) {
+            vid.play().catch(function() {});
+          }
+          updateIcon(vid.muted);
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGoldenHourHeroAudio);
+    } else {
+      initGoldenHourHeroAudio();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Golden Hour - Hero",
+  "settings": [
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum Width (px)",
+      "min": 1000,
+      "max": 4000,
+      "step": 500,
+      "default": 4000
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "A MOMENT THAT BELONGS ONLY TO YOU."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "GOLDEN HOUR"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>There is a moment every day when the light becomes softer, warmer and closer to the skin.</p><p>Light Golden Hour is the community of those who discover the rituals, novelties and experiences of Light before everyone else.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "KEEP THE LIGHT CLOSE TO YOU"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video (Desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_desktop",
+      "label": "Fallback Image (Desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster",
+      "label": "Video Poster Image (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "height_desktop",
+      "label": "Height (Desktop % of Viewport)",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "button_bottom_desktop",
+      "label": "Scroll Button Bottom Offset (Desktop px)",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "Video (Mobile)"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Fallback Image (Mobile)"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_mobile",
+      "label": "Video Poster Image (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "height_mobile",
+      "label": "Height (Mobile % of Viewport)",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "button_bottom_mobile",
+      "label": "Scroll Button Bottom Offset (Mobile px)",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Controls Color",
+      "default": "#F9E29C"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Golden Hour - Hero"
+    }
+  ]
+}
+{% endschema %}

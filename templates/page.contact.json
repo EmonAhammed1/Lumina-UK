@@ -1,0 +1,268 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tech_mockup_hero_m8kPrc": {
+      "type": "tech-mockup-hero",
+      "settings": {
+        "bg_video": "",
+        "overlay_opacity": 0,
+        "subtitle": "LET'S TALK",
+        "title": "ENTER THE LIGHT",
+        "text": "For questions, collaborations, press or simply to write us, we are here. Choose the reason for your message, and it will reach the right person.",
+        "btn_label": "CONTACT US →",
+        "btn_link": "shopify://collections"
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "get-in-touch": {
+      "type": "get-in-touch",
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "title": "Foarte specializat",
+            "description": "Our specialists are here to help you with expert advice and solutions.",
+            "icon": "check"
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "title": "Quick Response",
+            "description": "We aim to respond within 24 hours so you don't have to wait long.",
+            "icon": "bolt"
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "title": "Reliable Technology",
+            "description": "We are backed by modern science and continuous innovation.",
+            "icon": "star"
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3"
+      ],
+      "custom_css": [],
+      "settings": {
+        "setwidth": "container",
+        "bgsection": "#0d0d0d",
+        "text_color": "#999999",
+        "heading_color": "#e5b869",
+        "title": "Contact Us",
+        "subtitle": "We are here to help you. Contact us anytime.",
+        "card_bg": "#121212",
+        "card_border": "#222222",
+        "paddingsection": "80px 0px 80px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "e7285e43-2bb7-46e5-a5e4-538568d8723e": {
+      "type": "image-content",
+      "blocks": {
+        "template--16736981025086__e7285e43-2bb7-46e5-a5e4-538568d8723e-1666759876b5fa9979-0": {
+          "type": "image_block",
+          "settings": {}
+        },
+        "template--16736981025086__e7285e43-2bb7-46e5-a5e4-538568d8723e-1666759876b5fa9979-1": {
+          "type": "text_block",
+          "settings": {
+            "width": "75%",
+            "bgtext": "rgba(0,0,0,0)",
+            "title_color": "rgba(0,0,0,0)",
+            "subtitle": "Questions?",
+            "title": "We are here to help you with sizes, styles and everything else.",
+            "size_text": "h3",
+            "text": "",
+            "answer_content": "",
+            "style_btn": "btn-theme",
+            "button": "Read Frequently Asked Questions",
+            "link": "shopify://pages/faqs",
+            "enable_padding": false,
+            "align": "left"
+          }
+        }
+      },
+      "block_order": [
+        "template--16736981025086__e7285e43-2bb7-46e5-a5e4-538568d8723e-1666759876b5fa9979-0",
+        "template--16736981025086__e7285e43-2bb7-46e5-a5e4-538568d8723e-1666759876b5fa9979-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "full",
+        "bgsection": "#f7f7f7",
+        "rangebg": 0,
+        "bgbefore": "rgba(0,0,0,0)",
+        "bg_pos": "left",
+        "enable_padding": false,
+        "align_center": true,
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 60px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "863c2be4-cbba-4ba1-ba39-64e0fe639fc6": {
+      "type": "contact-form",
+      "custom_css": [
+        ".customstyletemplate--30552431755603__c025329d-7132-4163-b678-b778c06ac8f9.border-customspecificity: ( 0, 2, 0) {border-color: #cd5454 !important;}"
+      ],
+      "settings": {
+        "animation": "",
+        "bgsection": "#0d0d0d",
+        "title_top": "",
+        "title": "Do you have any questions?",
+        "des": "Use the form below to contact the sales team",
+        "align-heading": "center",
+        "answer_content": "",
+        "paddingsection": "80px 0px 80px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "e47bb256-2659-485f-9896-382aaec96e87": {
+      "type": "map",
+      "settings": {
+        "heading": "Our store",
+        "address": "<p>office@luminaeuropa.com<br/>+40 747 282 174<br/></p><p>Mon - Fri, 10am - 9pm<br/>Saturday, 11am - 9pm<br/>Sunday, 11am - 5pm</p>",
+        "map_address": "301 Front St W, Toronto",
+        "button_text": "Get directions",
+        "show_pin": true,
+        "api_key": "",
+        "map_code": "<div class=\"mapouter\"><div class=\"gmap_canvas\">\n<iframe width=\"600\" height=\"500\" id=\"gmap_canvas\" src=\"https://maps.google.com/maps?q=Bucharest%2C%20Romania&t=&z=13&ie=UTF8&iwloc=&output=embed\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" loading=\"lazy\" allowfullscreen></iframe><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style>\n<a href=\"https://www.embedgooglemap.net\">google maps code generator</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>\n</div></div>",
+        "background_image_position": "center center"
+      }
+    },
+    "contact-info-glow": {
+      "type": "contact-info-glow",
+      "blocks": {
+        "item_1": {
+          "type": "info_item",
+          "settings": {
+            "title": "Call us",
+            "value": "+40 747 282 174",
+            "link": "tel:+40 747 282 174",
+            "icon": "phone"
+          }
+        },
+        "item_2": {
+          "type": "info_item",
+          "settings": {
+            "title": "Open",
+            "value": "Lun-Vin: 9:00 – 18:00",
+            "link": "",
+            "icon": "clock"
+          }
+        },
+        "item_3": {
+          "type": "info_item",
+          "settings": {
+            "title": "E-mail",
+            "value": "office@luminaeuropa.com",
+            "link": "mailto:office@luminaeuropa.com",
+            "icon": "mail"
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3"
+      ],
+      "settings": {
+        "bgsection": "#050505",
+        "box_bg": "#0d0d0d",
+        "box_border": "#e5b86933",
+        "text_color": "#ffffff",
+        "heading_color": "#e5b869",
+        "paddingsection": "50px 0px 50px 0px",
+        "paddingmobile": "30px 0px 30px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "a1490854-4f8f-471c-864a-2fb0e79e264b": {
+      "type": "faq-accordion",
+      "blocks": {
+        "template--16736981025086__a1490854-4f8f-471c-864a-2fb0e79e264b-1666770139cd483e01-0": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "How long will delivery take?",
+            "faq_des": "<p> All orders are shipped within 12-36 hours from our warehouse. Delivery time depends on the option chosen, but all orders are tracked to your door. </p>"
+          }
+        },
+        "template--16736981025086__a1490854-4f8f-471c-864a-2fb0e79e264b-1666770139cd483e01-1": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "How do I know if my order is confirmed?",
+            "faq_des": "<p> This is an example of an answer you could provide. It's good to be as detailed as possible in your answers to increase overall confidence. </p>"
+          }
+        },
+        "template--16736981025086__a1490854-4f8f-471c-864a-2fb0e79e264b-1666770139cd483e01-2": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Can I change the delivery address after placing the order?",
+            "faq_des": "<p> This is an example of an answer you could provide. It's good to be as detailed as possible in your answers to increase overall confidence. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--16736981025086__a1490854-4f8f-471c-864a-2fb0e79e264b-1666770139cd483e01-0",
+        "template--16736981025086__a1490854-4f8f-471c-864a-2fb0e79e264b-1666770139cd483e01-1",
+        "template--16736981025086__a1490854-4f8f-471c-864a-2fb0e79e264b-1666770139cd483e01-2"
+      ],
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container",
+        "bgsection": "#0d0d0d",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_pos": "center center",
+        "title_top": "",
+        "title": "FAQs",
+        "des": "Below are some of our frequently asked questions",
+        "align-heading": "center",
+        "title_size": "h6",
+        "e_first_open": false,
+        "e_reverse": true,
+        "e_small": true,
+        "left_html": "",
+        "e_right": false,
+        "paddingsection": "80px 0px 80px 0px",
+        "paddingmobile": "60px 0px 60px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    }
+  },
+  "order": [
+    "tech_mockup_hero_m8kPrc",
+    "main",
+    "get-in-touch",
+    "e7285e43-2bb7-46e5-a5e4-538568d8723e",
+    "863c2be4-cbba-4ba1-ba39-64e0fe639fc6",
+    "e47bb256-2659-485f-9896-382aaec96e87",
+    "contact-info-glow",
+    "a1490854-4f8f-471c-864a-2fb0e79e264b"
+  ]
+}

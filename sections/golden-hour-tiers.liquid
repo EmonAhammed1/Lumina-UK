@@ -1,0 +1,513 @@
+{% render 'golden-hour-vars' %}
+{%- style -%}
+  #shopify-section-{{ section.id }} .gh-tiers-wrap {
+    background-color: var(--gh-dark-bg);
+    color: var(--gh-text-light);
+    padding: {{ section.settings.padding_top_desktop }}px 24px {{ section.settings.padding_bottom_desktop }}px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    min-height: {{ section.settings.section_height_desktop }}px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  {% if section.settings.bg_image != blank %}
+  #shopify-section-{{ section.id }} .gh-tiers-wrap {
+    background-image: url('{{ section.settings.bg_image | image_url: width: 2400 }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  {% else %}
+  #shopify-section-{{ section.id }} .gh-tiers-wrap {
+    background-image: url('{{ "section-back.png" | asset_url }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  {% endif %}
+  @media screen and (max-width: 768px) {
+    #shopify-section-{{ section.id }} .gh-tiers-wrap {
+      padding: {{ section.settings.padding_top_mobile }}px 16px {{ section.settings.padding_bottom_mobile }}px;
+      min-height: {{ section.settings.section_height_mobile }}px;
+    }
+  }
+  .gh-tiers-inner {
+    max-width: {{ section.settings.max_width }}px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .gh-tiers-header {
+    text-align: center;
+    margin: 0 auto 40px;
+  }
+  .gh-tiers-title {
+    font-size: {{ section.settings.heading_size_desktop }}px;
+    color: var(--gh-golden);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+  @media screen and (max-width: 1024px) {
+    .gh-tiers-title {
+      font-size: calc({{ section.settings.heading_size_desktop }}px * 0.85);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .gh-tiers-title {
+      font-size: {{ section.settings.heading_size_mobile }}px;
+    }
+  }
+  .gh-tiers-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: {{ section.settings.gap_desktop }}px;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  @media screen and (max-width: 990px) {
+    .gh-tiers-grid {
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+  }
+  .gh-tier-col {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 24px;
+    max-width: 460px;
+  }
+  @media screen and (max-width: 768px) {
+    .gh-tier-col {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+  .gh-tier-circle-wrap {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+    width: 140px;
+  }
+  .gh-tier-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--gh-transition);
+    animation: gh-float 6s ease-in-out infinite;
+  }
+  @keyframes gh-float {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-10px) scale(1.02); }
+  }
+  .gh-tier-circle.color-golden {
+    background: radial-gradient(circle, #F9E29C 0%, rgba(249, 226, 156, 0.2) 60%, transparent 100%);
+    box-shadow: 0 0 60px rgba(249, 226, 156, 0.35);
+  }
+  .gh-tier-circle.color-afterglow {
+    background: radial-gradient(circle, #E2B69C 0%, #BA98B8 50%, transparent 100%);
+    box-shadow: 0 0 60px rgba(186, 152, 184, 0.35);
+  }
+  .gh-tier-circle.color-first-light {
+    background: radial-gradient(circle, #FDFBFA 0%, rgba(253, 251, 250, 0.25) 60%, transparent 100%);
+    box-shadow: 0 0 60px rgba(253, 251, 250, 0.3);
+  }
+  .gh-tier-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--gh-golden);
+    position: relative;
+    z-index: 2;
+  }
+  .gh-tier-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    stroke-width: 1;
+    fill: none;
+  }
+  .gh-nanofiber-svg {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    pointer-events: none;
+    opacity: 0.5;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .gh-nanofiber-path {
+    fill: none;
+    stroke: var(--gh-golden);
+    stroke-width: 0.8;
+    stroke-dasharray: 4 6;
+    animation: gh-dash 15s linear infinite;
+  }
+  @keyframes gh-dash {
+    to { stroke-dashoffset: -100; }
+  }
+  .gh-tier-content {
+    flex: 1;
+  }
+  .gh-tier-name {
+    font-size: {{ section.settings.name_size_desktop }}px;
+    font-weight: 400;
+    color: var(--gh-golden);
+    margin-bottom: 8px;
+    font-family: serif;
+  }
+  @media screen and (max-width: 1024px) {
+    .gh-tier-name {
+      font-size: calc({{ section.settings.name_size_desktop }}px * 0.85);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .gh-tier-name {
+      font-size: {{ section.settings.name_size_mobile }}px;
+    }
+  }
+  .gh-tier-tagline {
+    font-size: 16px;
+    font-style: italic;
+    font-family: serif;
+    color: var(--gh-text-light);
+    margin-bottom: 12px;
+  }
+  .gh-tier-desc {
+    font-size: {{ section.settings.desc_size_desktop }}px;
+    line-height: 1.6;
+    color: var(--gh-text-muted);
+  }
+  @media screen and (max-width: 768px) {
+    .gh-tier-desc {
+      font-size: {{ section.settings.desc_size_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="gh-tiers-wrap" id="{{ section.id | split: '__' | last }}" data-section-id="{{ section.id }}">
+  <div class="gh-tiers-inner">
+    <div class="gh-tiers-header">
+      <h2 class="gh-tiers-title">{{ section.settings.heading }}</h2>
+    </div>
+
+    <div class="gh-tiers-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'tier' -%}
+          <div class="gh-tier-col" {{ block.shopify_attributes }}>
+            <div class="gh-tier-circle-wrap">
+              {%- if block.settings.main_graphic != blank -%}
+                <img src="{{ block.settings.main_graphic | image_url: width: 300 }}" alt="{{ block.settings.title }}" style="width: 100%; max-width: 140px; height: auto; object-fit: contain; animation: gh-float 6s ease-in-out infinite;">
+              {%- else -%}
+                <svg class="gh-nanofiber-svg" viewBox="0 0 260 260">
+                  <circle class="gh-nanofiber-path" cx="130" cy="130" r="110"/>
+                  <circle class="gh-nanofiber-path" cx="130" cy="130" r="120" style="stroke-opacity: 0.4;"/>
+                  <path class="gh-nanofiber-path" d="M130 20 C 170 70, 240 130, 130 240"/>
+                  <path class="gh-nanofiber-path" d="M20 130 C 70 90, 130 30, 240 130"/>
+                </svg>
+                <div class="gh-tier-circle color-{{ block.settings.color_theme }}">
+                  <div class="gh-tier-icon">
+                    {% if block.settings.icon == 'star' %}
+                      <svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    {% elsif block.settings.icon == 'flower' %}
+                      <svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 12L8 8m4 4l4-4m-4 4l-4 4m4-4l4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    {% elsif block.settings.icon == 'sun' %}
+                      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    {% else %}
+                      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+                    {% endif %}
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+
+            <div class="gh-tier-content">
+              <h3 class="gh-tier-name">{{ block.settings.title }}</h3>
+              <div class="gh-tier-tagline">{{ block.settings.tagline }}</div>
+              <p class="gh-tier-desc">{{ block.settings.description }}</p>
+            </div>
+          </div>
+        {%- elsif block.type == 'product_image' -%}
+          <!-- Block kept in schema to avoid template crash, but HTML rendering removed so placeholder disappears -->
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Golden Hour - Tiers",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum Content Width (px)",
+      "min": 800,
+      "max": 2000,
+      "step": 50,
+      "default": 1450
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Povestea ta Lumina Golden Hour"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_height_desktop",
+      "label": "Minimum Height (Desktop px)",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "gap_desktop",
+      "label": "Space between tier blocks (px)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Heading Size (Desktop px)",
+      "min": 10,
+      "max": 56,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "name_size_desktop",
+      "label": "Tier Name Size (Desktop px)",
+      "min": 20,
+      "max": 40,
+      "step": 2,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "desc_size_desktop",
+      "label": "Description Size (Desktop px)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Top Padding (Desktop px)",
+      "min": 0,
+      "max": 180,
+      "step": 10,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Bottom Padding (Desktop px)",
+      "min": 0,
+      "max": 180,
+      "step": 10,
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_height_mobile",
+      "label": "Minimum Height (Mobile px)",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading Size (Mobile px)",
+      "min": 10,
+      "max": 36,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "name_size_mobile",
+      "label": "Tier Name Size (Mobile px)",
+      "min": 18,
+      "max": 32,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desc_size_mobile",
+      "label": "Description Size (Mobile px)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top Padding (Mobile px)",
+      "min": 0,
+      "max": 120,
+      "step": 10,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom Padding (Mobile px)",
+      "min": 0,
+      "max": 120,
+      "step": 10,
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Membership Tier",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "main_graphic",
+          "label": "Custom Tier Graphic (Overrides glowing circle)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tier Name",
+          "default": "Golden Hour"
+        },
+        {
+          "type": "text",
+          "id": "tagline",
+          "label": "Tagline",
+          "default": "The beginning of the ritual."
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "You enter the Lumina community and have access to first releases, inspiration, rituals and surprises prepared for Golden Hour members."
+        },
+        {
+          "type": "select",
+          "id": "color_theme",
+          "label": "Light Tone (Fallback)",
+          "options": [
+            {
+              "value": "golden",
+              "label": "Golden Light (Yellow)"
+            },
+            {
+              "value": "afterglow",
+              "label": "Afterglow (Yellow + Purple)"
+            },
+            {
+              "value": "first-light",
+              "label": "First Light (Pale Yellow)"
+            }
+          ],
+          "default": "golden"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon (Fallback)",
+          "options": [
+            {
+              "value": "star",
+              "label": "Star"
+            },
+            {
+              "value": "flower",
+              "label": "Flower"
+            },
+            {
+              "value": "sun",
+              "label": "Sun"
+            }
+          ],
+          "default": "star"
+        }
+      ]
+    },
+    {
+      "type": "product_image",
+      "name": "Product Image",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Golden Hour - Tiers",
+      "blocks": [
+        {
+          "type": "tier",
+          "settings": {
+            "title": "Golden Hour",
+            "tagline": "The beginning of the ritual.",
+            "description": "You enter the Lumina community and have access to first releases, inspiration, rituals and surprises prepared for Golden Hour members.",
+            "color_theme": "golden",
+            "icon": "star"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "title": "Afterglow",
+            "tagline": "The light that remains.",
+            "description": "Your loyalty is rewarded with extended benefits, exclusive gifts and priority access to collections and experiences dedicated to the community.",
+            "color_theme": "afterglow",
+            "icon": "flower"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

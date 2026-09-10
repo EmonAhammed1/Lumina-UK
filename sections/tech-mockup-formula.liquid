@@ -1,0 +1,271 @@
+{% render 'golden-hour-vars' %}
+<style>
+  #shopify-section-{{ section.id }} .tm-form-wrap {
+    padding: 100px 24px;
+    background-color: #000;
+  }
+  .tm-form-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 40px;
+  }
+  .tm-form-left {
+    flex: 0 0 320px;
+  }
+  .tm-form-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .tm-form-title {
+    font-size: clamp(2rem, 3.5vw, 2.5rem);
+    color: var(--gh-golden);
+    font-family: serif;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .tm-form-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gh-text-muted);
+  }
+  .tm-form-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  .tm-form-center-img {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  .tm-form-right {
+    flex: 0 0 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .tm-form-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .tm-form-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gh-golden);
+  }
+  .tm-form-icon img,
+  .tm-form-icon svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .tm-form-text-wrap {
+    flex: 1;
+  }
+  .tm-form-feat-title {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .tm-form-feat-desc {
+    font-size: 13px;
+    color: var(--gh-text-muted);
+    line-height: 1.4;
+  }
+  @media screen and (max-width: 1024px) {
+    .tm-form-container {
+      flex-direction: column;
+      text-align: center;
+    }
+    .tm-form-left {
+      flex: none;
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+    .tm-form-right {
+      flex: none;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      text-align: left;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .tm-form-right {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div id="{{ section.id | split: '__' | last }}" class="tm-form-wrap">
+  <div class="tm-form-container">
+    <div class="tm-form-left">
+      <div class="tm-form-subtitle">{{ section.settings.subtitle }}</div>
+      <h2 class="tm-form-title">{{ section.settings.title | newline_to_br }}</h2>
+      <div class="tm-form-desc">{{ section.settings.text }}</div>
+    </div>
+    
+    <div class="tm-form-center">
+      {% if section.settings.video != blank %}
+        {% if section.settings.video.sources != blank %}
+          {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'tm-form-center-img' }}
+        {% else %}
+          <video autoplay loop muted playsinline preload="metadata" class="tm-form-center-img">
+            <source src="{% if section.settings.video contains 'http' %}{{ section.settings.video }}{% else %}{{ section.settings.video | file_url }}{% endif %}" type="video/mp4">
+            <source src="{{ 'Visual 2 Decomposition.mp4' | file_url }}" type="video/mp4">
+            <source src="{{ '2_nanofibre_activation_rewards.mp4' | file_url }}" type="video/mp4">
+          </video>
+        {% endif %}
+      {% elsif section.settings.video_url != blank %}
+        <video autoplay loop muted playsinline preload="metadata" class="tm-form-center-img">
+          <source src="{% if section.settings.video_url contains 'http' %}{{ section.settings.video_url }}{% else %}{{ section.settings.video_url | file_url }}{% endif %}" type="video/mp4">
+          <source src="{{ 'Visual 2 Decomposition.mp4' | file_url }}" type="video/mp4">
+        </video>
+      {% elsif section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 800 }}" alt="Formula" class="tm-form-center-img" loading="lazy">
+      {% else %}
+        <video autoplay loop muted playsinline preload="metadata" class="tm-form-center-img" poster="{{ 'pure_transfer.jpg' | asset_url }}">
+          <source src="{{ 'Visual 2 Decomposition.mp4' | file_url }}" type="video/mp4">
+          <source src="{{ 'Visual_2_Decomposition.mp4' | file_url }}" type="video/mp4">
+          <source src="{{ '2_nanofibre_activation_rewards.mp4' | file_url }}" type="video/mp4">
+          <source src="{{ 'a3f8b7ec2b264fbda558acd951f1b106.mp4' | file_url }}" type="video/mp4">
+          <source src="https://cdn.shopify.com/videos/c/o/v/a3f8b7ec2b264fbda558acd951f1b106.mp4" type="video/mp4">
+        </video>
+      {% endif %}
+    </div>
+
+    <div class="tm-form-right">
+      {% for block in section.blocks %}
+        <div class="tm-form-feature" {{ block.shopify_attributes }}>
+          <div class="tm-form-icon">
+            {% if block.settings.icon != blank %}
+              <img src="{{ block.settings.icon | image_url: width: 64 }}" alt="{{ block.settings.title }}" loading="lazy">
+            {% else %}
+              {% case forloop.index %}
+                {% when 1 %}
+                  <img src="{{ 'star.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+                {% when 2 %}
+                  <img src="{{ 'leaf.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+                {% when 3 %}
+                  <img src="{{ 'lotus.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+                {% else %}
+                  <img src="{{ 'moon.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% endcase %}
+            {% endif %}
+          </div>
+          <div class="tm-form-text-wrap">
+            <div class="tm-form-feat-title">{{ block.settings.title }}</div>
+            <div class="tm-form-feat-desc">{{ block.settings.text }}</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Mockup - Formula",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "TECHNOLOGY & FORMULA"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "Engineered for purity.\nDesigned for performance."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Our proprietary nanofibre structure meets high-performance actives, carefully selected for their purity, stability and skin affinity."
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Center Video (Overrides Image)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Center Image (Diamond/Crystal)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "HIGH PURITY ACTIVES"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Clinically selected for efficacy"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mockup - Formula",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "HIGH PURITY ACTIVES",
+            "text": "Clinically selected for efficacy"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "STABLE DELIVERY",
+            "text": "Protected within the fibre matrix"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "SKIN AFFINITY",
+            "text": "Biocompatible, gentle, non-irritating"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "VISIBLE RESULTS",
+            "text": "Hydrated, smoother, more radiant skin"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

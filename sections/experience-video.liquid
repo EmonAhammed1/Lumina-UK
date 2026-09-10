@@ -1,0 +1,554 @@
+<!-- sections/experience-video.liquid -->
+{%- liquid
+  assign setwidth = section.settings.setwidth
+  assign gold_color = section.settings.gold_color | default: '#c5a059'
+  assign animation = section.settings.animation
+  assign desc_color = section.settings.desc_color | default: '#cccccc'
+  assign link_video = section.settings.link_video
+  assign video_url = section.settings.video_url
+  assign aspect_ratio = section.settings.aspect_ratio | default: '16-9'
+-%}
+
+{%- render 'style-section' -%}
+
+<style>
+  .custom-video-{{ section.id }} {
+    background-color: #000000;
+    color: #ffffff;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    overflow: hidden;
+  }
+  
+  .video-header-{{ section.id }} {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .video-title-{{ section.id }} {
+    font-family: var(--g-font-2), "Cormorant Garamond", serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: {{ gold_color }};
+    line-height: 1.3;
+    letter-spacing: 0.03em;
+    margin-bottom: 15px;
+  }
+  
+  .video-sep-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto 20px auto;
+  }
+  
+  .video-sep-line-{{ section.id }} {
+    flex: 1;
+    height: 1px;
+    background-color: rgba(197, 160, 89, 0.2);
+  }
+  
+  .video-sep-sparkle-{{ section.id }} {
+    width: 14px;
+    height: 14px;
+    color: {{ gold_color }};
+  }
+
+  .video-subtitle-{{ section.id }} {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: {{ gold_color }};
+    font-weight: 700;
+    font-family: var(--g-font-2), sans-serif;
+    margin-bottom: 15px;
+    display: inline-block;
+  }
+
+  .video-desc-{{ section.id }} {
+    color: {{ desc_color }};
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Player wrapper */
+  .video-player-container-{{ section.id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid rgba(197, 160, 89, 0.25);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #0d0d0f;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-sizing: border-box;
+  }
+  
+  .video-player-container-{{ section.id }}:hover {
+    border-color: {{ gold_color }};
+    box-shadow: 0 25px 50px rgba(197, 160, 89, 0.15);
+  }
+
+  .video-ratio-16-9-{{ section.id }} {
+    aspect-ratio: 16/9;
+  }
+  
+  .video-ratio-21-9-{{ section.id }} {
+    aspect-ratio: 21/9;
+  }
+  
+  .video-ratio-4-3-{{ section.id }} {
+    aspect-ratio: 4/3;
+  }
+
+  .video-element-{{ section.id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .video-iframe-{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    z-index: 2;
+  }
+
+  /* Shimmer Loader Styling */
+  .video-shimmer-{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #0d0d0f 25%, #1e1e24 50%, #0d0d0f 75%);
+    background-size: 200% 100%;
+    animation: video-shimmer-animation-{{ section.id }} 1.5s infinite;
+    z-index: 4;
+    transition: opacity 0.5s ease;
+  }
+  
+  @keyframes video-shimmer-animation-{{ section.id }} {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+  
+  .video-loaded .video-shimmer-{{ section.id }} {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Custom overlay play button for non-autoplay or interactive video */
+  .video-overlay-play-{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    transition: background 0.3s ease;
+  }
+  
+  .video-overlay-play-{{ section.id }}.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .play-btn-circle-{{ section.id }} {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid {{ gold_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: {{ gold_color }};
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  }
+  
+  .video-overlay-play-{{ section.id }}:hover .play-btn-circle-{{ section.id }} {
+    transform: scale(1.1);
+    background: {{ gold_color }};
+    color: #000000;
+    border-color: {{ gold_color }};
+    box-shadow: 0 0 30px rgba(197, 160, 89, 0.4);
+  }
+  
+  .play-btn-circle-{{ section.id }} svg {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+    margin-left: 4px; /* offset play icon center */
+  }
+
+  /* Mobile scaling */
+  @media (max-width: 767px) {
+    .video-title-{{ section.id }} {
+      font-size: 30px;
+    }
+    .play-btn-circle-{{ section.id }} {
+      width: 60px;
+      height: 60px;
+    }
+    .play-btn-circle-{{ section.id }} svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+</style>
+
+<div class="custom-video-{{ section.id }}" data-aos="{{ animation }}">
+  <div class="{{ setwidth }}">
+    
+    <!-- Title Area -->
+    <div class="video-header-{{ section.id }}">
+      {%- if section.settings.section_title != blank -%}
+        <h2 class="video-title-{{ section.id }}">{{ section.settings.section_title }}</h2>
+      {%- endif -%}
+      
+      {%- if section.settings.show_separator -%}
+        <div class="video-sep-{{ section.id }}">
+          <span class="video-sep-line-{{ section.id }}"></span>
+          <svg class="video-sep-sparkle-{{ section.id }}" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7z"/>
+          </svg>
+          <span class="video-sep-line-{{ section.id }}"></span>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.subtitle != blank -%}
+        <span class="video-subtitle-{{ section.id }}">{{ section.settings.subtitle }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.desc != blank -%}
+        <div class="video-desc-{{ section.id }} font-family-2">
+          {{ section.settings.desc }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Video Player Box -->
+    <div class="video-player-container-{{ section.id }} video-ratio-{{ aspect_ratio }}-{{ section.id }}" id="video-container-{{ section.id }}">
+      
+      <!-- Shimmer Loader -->
+      <div class="video-shimmer-{{ section.id }}"></div>
+
+      {%- if link_video != blank -%}
+        <!-- Direct MP4 Video Tag -->
+        <video id="video-{{ section.id }}" 
+               class="video-element-{{ section.id }}"
+               {% if section.settings.autoplay %}autoplay{% endif %}
+               {% if section.settings.muted %}muted{% endif %}
+               {% if section.settings.loop %}loop{% endif %}
+               {% if section.settings.controls %}controls{% endif %}
+               playsinline
+               {% if section.settings.cover_image != blank %}poster="{{ section.settings.cover_image | image_url: width: 1400 }}"{% endif %}>
+          {%- if link_video contains 'http' -%}
+            <source src="{{ link_video }}" type="video/mp4">
+          {%- else -%}
+            <source src="{{ link_video | file_url }}" type="video/mp4">
+          {%- endif -%}
+          <source src="{{ '1_golden_hour_hero.mp4' | file_url }}" type="video/mp4">
+          <source src="https://cdn.shopify.com/videos/c/o/v/daa8f8991d7e47419cbd9ff37f3f6f05.mp4" type="video/mp4">
+        </video>
+
+        <!-- Custom Play Overlay (if not autoplaying or if custom play interaction is enabled) -->
+        {%- unless section.settings.autoplay -%}
+          <div class="video-overlay-play-{{ section.id }}" id="video-overlay-{{ section.id }}" onclick="playDirectVideo{{ section.id | replace: '-', '_' }}()">
+            <div class="play-btn-circle-{{ section.id }}">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+        {%- endunless -%}
+
+      {%- elsif video_url != blank -%}
+        <!-- YouTube / Vimeo Embed -->
+        {%- if video_url.type == 'youtube' -%}
+          <iframe id="iframe-{{ section.id }}"
+                  class="video-iframe-{{ section.id }}"
+                  src="https://www.youtube.com/embed/{{ video_url.id }}?autoplay={% if section.settings.autoplay %}1{% else %}0{% endif %}&mute={% if section.settings.muted %}1{% else %}0{% endif %}&loop={% if section.settings.loop %}1{% else %}0{% endif %}&playlist={{ video_url.id }}&controls={% if section.settings.controls %}1{% else %}0{% endif %}&rel=0&playsinline=1"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+          </iframe>
+        {%- elsif video_url.type == 'vimeo' -%}
+          <iframe id="iframe-{{ section.id }}"
+                  class="video-iframe-{{ section.id }}"
+                  src="https://player.vimeo.com/video/{{ video_url.id }}?autoplay={% if section.settings.autoplay %}1{% else %}0{% endif %}&muted={% if section.settings.muted %}1{% else %}0{% endif %}&loop={% if section.settings.loop %}1{% else %}0{% endif %}&controls={% if section.settings.controls %}1{% else %}0{% endif %}"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowfullscreen>
+          </iframe>
+        {%- endif -%}
+      {%- else -%}
+        <!-- Fallback Video -->
+        <video id="video-{{ section.id }}" 
+               class="video-element-{{ section.id }}"
+               autoplay muted loop playsinline
+               poster="{{ 'test-5.png' | asset_url }}">
+          <source src="{{ '1_golden_hour_hero.mp4' | file_url }}" type="video/mp4">
+          <source src="https://cdn.shopify.com/videos/c/o/v/daa8f8991d7e47419cbd9ff37f3f6f05.mp4" type="video/mp4">
+        </video>
+      {%- endif -%}
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function() {
+    const videoContainer = document.getElementById('video-container-{{ section.id }}');
+    const videoElement = document.getElementById('video-{{ section.id }}');
+    const iframeElement = document.getElementById('iframe-{{ section.id }}');
+
+    console.log('[Lumina Video] Initializing video handlers for section: {{ section.id }}');
+
+    // Handle HTML5 video events
+    if (videoElement) {
+      // Check if video is already loaded
+      if (videoElement.readyState >= 3) {
+        console.log('[Lumina Video] HTML5 Video already loaded.');
+        videoContainer.classList.add('video-loaded');
+      } else {
+        videoElement.addEventListener('loadeddata', () => {
+          console.log('[Lumina Video] HTML5 Video loadeddata triggered.');
+          videoContainer.classList.add('video-loaded');
+        });
+      }
+
+      videoElement.addEventListener('play', () => {
+        console.log('[Lumina Video] HTML5 Video play triggered.');
+        const overlay = document.getElementById('video-overlay-{{ section.id }}');
+        if (overlay) overlay.classList.add('hide');
+      });
+
+      videoElement.addEventListener('error', (e) => {
+        console.error('[Lumina Video] HTML5 Video load error:', e);
+        videoContainer.classList.add('video-loaded'); // clear shimmer
+      });
+    }
+
+    // Handle Iframe (YouTube/Vimeo) loading state
+    if (iframeElement) {
+      iframeElement.addEventListener('load', () => {
+        console.log('[Lumina Video] Iframe loaded successfully.');
+        videoContainer.classList.add('video-loaded');
+      });
+      // Fallback load safety
+      setTimeout(() => {
+        if (!videoContainer.classList.contains('video-loaded')) {
+          console.log('[Lumina Video] Iframe load safety timeout triggered.');
+          videoContainer.classList.add('video-loaded');
+        }
+      }, 3500);
+    }
+
+    // If no video elements exist
+    if (!videoElement && !iframeElement) {
+      setTimeout(() => {
+        videoContainer.classList.add('video-loaded');
+      }, 500);
+    }
+  })();
+
+  // Handle direct video play click
+  function playDirectVideo{{ section.id | replace: '-', '_' }}() {
+    const video = document.getElementById('video-{{ section.id }}');
+    const overlay = document.getElementById('video-overlay-{{ section.id }}');
+    if (video) {
+      console.log('[Lumina Video] Playing video manually.');
+      video.play();
+      if (overlay) overlay.classList.add('hide');
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Experience Video",
+  "class": "index-section-experience-video",
+  "settings": [
+    {
+      "type": "select",
+      "id": "animation",
+      "options": [
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "fade-up",
+          "label": "Fade Up"
+        },
+        {
+          "value": "zoom-in",
+          "label": "Zoom In"
+        }
+      ],
+      "default": "fade-up",
+      "label": "Select Animation"
+    },
+    {
+      "type": "select",
+      "id": "setwidth",
+      "label": "Section Width",
+      "default": "container-fluid",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "gold_color",
+      "label": "Gold Highlight Color",
+      "default": "#c5a059"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Where the light begins"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_separator",
+      "label": "Show Sparkle Separator",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "TECHNOLOGICAL DEMONSTRATION"
+    },
+    {
+      "type": "richtext",
+      "id": "desc",
+      "label": "Description",
+      "default": "<p>Everything starts with a touch.<br>Hydro Mist prepares the skin. The dry mask sits easily and the nanofibers begin to transform, releasing the active ingredients in a smooth, silent, precise ritual.<br>You're not just seeing a technology. See the moment when care becomes light.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Video Source"
+    },
+    {
+      "type": "text",
+      "id": "link_video",
+      "label": "Direct MP4 Video URL",
+      "info": "Upload an MP4 file in Shopify Files and paste the URL here. (Recommended for silent loops)"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "YouTube / Vimeo URL",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Poster / Cover Image"
+    },
+    {
+      "type": "header",
+      "content": "Playback Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "muted",
+      "label": "Muted",
+      "default": true,
+      "info": "Note: Browsers block autoplaying videos that are not muted."
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop Video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "controls",
+      "label": "Show Controls",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Video Aspect Ratio",
+      "default": "16-9",
+      "options": [
+        {
+          "value": "16-9",
+          "label": "16:9 widescreen"
+        },
+        {
+          "value": "21-9",
+          "label": "21:9 cinematic"
+        },
+        {
+          "value": "4-3",
+          "label": "4:3 standard"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Description Color",
+      "default": "#cccccc"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Experience Video",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

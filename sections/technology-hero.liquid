@@ -1,0 +1,288 @@
+{%- liquid
+  assign overlay_opacity = section.settings.overlay_opacity | divided_by: 100.0
+  assign position_text = section.settings.position_text | default: 'bot-left'
+
+  case position_text
+    when 'top-left'
+      assign align_class = 'pos-top-left'
+    when 'top-center'
+      assign align_class = 'pos-top-center'
+    when 'top-right'
+      assign align_class = 'pos-top-right'
+    when 'mid-left'
+      assign align_class = 'pos-mid-left'
+    when 'mid-center'
+      assign align_class = 'pos-mid-center'
+    when 'mid-right'
+      assign align_class = 'pos-mid-right'
+    when 'bot-left'
+      assign align_class = 'pos-bot-left'
+    when 'bot-center'
+      assign align_class = 'pos-bot-center'
+    when 'bot-right'
+      assign align_class = 'pos-bot-right'
+    else
+      assign align_class = 'pos-bot-left'
+  endcase
+-%}
+<style>
+  #technology-hero {
+    position: relative;
+    width: 100%;
+    min-height: 85vh;
+    display: flex;
+    overflow: hidden;
+    color: #fff;
+    padding: 70px 8%;
+    box-sizing: border-box;
+  }
+  #technology-hero.pos-top-left { align-items: flex-start; justify-content: flex-start; text-align: left; }
+  #technology-hero.pos-top-center { align-items: flex-start; justify-content: center; text-align: center; }
+  #technology-hero.pos-top-right { align-items: flex-start; justify-content: flex-end; text-align: right; }
+  #technology-hero.pos-mid-left { align-items: center; justify-content: flex-start; text-align: left; }
+  #technology-hero.pos-mid-center { align-items: center; justify-content: center; text-align: center; }
+  #technology-hero.pos-mid-right { align-items: center; justify-content: flex-end; text-align: right; }
+  #technology-hero.pos-bot-left { align-items: flex-end; justify-content: flex-start; text-align: left; }
+  #technology-hero.pos-bot-center { align-items: flex-end; justify-content: center; text-align: center; }
+  #technology-hero.pos-bot-right { align-items: flex-end; justify-content: flex-end; text-align: right; }
+
+  .tech-hero-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 1;
+  }
+  .tech-hero-bg video, .tech-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .tech-hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0, {{ overlay_opacity }});
+    z-index: 2;
+  }
+  .tech-hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 680px;
+    margin: 0;
+  }
+  .tech-hero-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    color: var(--g-main, #B8963E);
+  }
+  .tech-hero-heading {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 20px;
+    color: var(--g-color-heading, #fff);
+    line-height: 1.1;
+  }
+  .tech-hero-text {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    color: var(--color-body-text, #FAF6F0);
+  }
+  .tech-hero-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+  }
+  .tech-hero-btn:hover {
+    background-color: #fff;
+    color: #000;
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 767px) {
+    #technology-hero {
+      min-height: 90svh;
+      padding: 40px 24px 60px 24px;
+    }
+    .tech-hero-heading {
+      font-size: clamp(2.2rem, 8vw, 2.8rem);
+    }
+    .tech-hero-content {
+      padding: 0;
+    }
+    .desktop-video { display: none; }
+    .mobile-image { display: block; }
+  }
+  @media (min-width: 768px) {
+    .desktop-video { display: block; }
+    .mobile-image { display: none; }
+  }
+</style>
+
+<div id="technology-hero" class="{{ align_class }}" data-section-id="{{ section.id }}">
+  <div class="tech-hero-bg">
+    {% if section.settings.bg_video != blank %}
+      <video class="desktop-video" autoplay loop muted playsinline preload="metadata" poster="{{ section.settings.mobile_image | image_url: width: 1000 }}">
+        <source src="{{ section.settings.bg_video }}" type="video/mp4">
+      </video>
+    {% else %}
+      <video class="desktop-video" autoplay loop muted playsinline preload="metadata" poster="{{ 'Screenshot_2026-03-31_at_15.38.29.png' | asset_url }}">
+        <source src="{{ '1_golden_hour_hero.mp4' | file_url }}" type="video/mp4">
+        <source src="https://cdn.shopify.com/videos/c/o/v/daa8f8991d7e47419cbd9ff37f3f6f05.mp4" type="video/mp4">
+      </video>
+    {% endif %}
+    {% if section.settings.mobile_image != blank %}
+      <img class="mobile-image" src="{{ section.settings.mobile_image | image_url: width: 1000 }}" alt="Hero Background">
+    {% else %}
+      <img class="mobile-image" src="{{ 'Screenshot_2026-03-31_at_15.38.29.png' | asset_url }}" alt="Hero Background">
+    {% endif %}
+  </div>
+  <div class="tech-hero-overlay"></div>
+  <div class="tech-hero-content" data-aos="fade-up" data-aos-duration="700">
+    {% if section.settings.label != blank %}
+      <div class="tech-hero-label">{{ section.settings.label }}</div>
+    {% endif %}
+    {% if section.settings.heading != blank %}
+      <h1 class="tech-hero-heading">{{ section.settings.heading }}</h1>
+    {% endif %}
+    {% if section.settings.text != blank %}
+      <div class="tech-hero-text">{{ section.settings.text }}</div>
+    {% endif %}
+    {% if section.settings.button_label != blank %}
+      <a href="{{ section.settings.button_link }}" class="tech-hero-btn">{{ section.settings.button_label }}</a>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.tech-hero-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const targetHref = this.getAttribute('href');
+      if (targetHref && targetHref.startsWith('#')) {
+        e.preventDefault();
+        const targetEl = document.querySelector(targetHref);
+        if (targetEl) {
+          const offset = document.querySelector('.tech-subnav-container') ? 60 : 0;
+          const elementPosition = targetEl.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Technology Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "bg_video",
+      "label": "Background Video URL (MP4)",
+      "info": "Full path to mp4 file"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Fallback / Poster Image",
+      "info": "Used on mobile instead of video, or as a poster while video loads."
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "select",
+      "id": "position_text",
+      "label": "Text position",
+      "default": "bot-left",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "Top Left"
+        },
+        {
+          "value": "top-center",
+          "label": "Top Center"
+        },
+        {
+          "value": "top-right",
+          "label": "Top Right"
+        },
+        {
+          "value": "mid-left",
+          "label": "Middle Left"
+        },
+        {
+          "value": "mid-center",
+          "label": "Middle Center"
+        },
+        {
+          "value": "mid-right",
+          "label": "Middle Right"
+        },
+        {
+          "value": "bot-left",
+          "label": "Bottom Left"
+        },
+        {
+          "value": "bot-center",
+          "label": "Bottom Center"
+        },
+        {
+          "value": "bot-right",
+          "label": "Bottom Right"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Small Label",
+      "default": "Advanced Nanofibers Skincare"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Where Science Becomes Ritual"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Intro Text",
+      "default": "<p>Every Lumina ritual begins with an advanced nanofibre structure designed to hold carefully selected active ingredients in an elegant, dry format until the moment of activation.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Explore the Technology"
+    },
+    {
+      "type": "text",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "#technology-nanofibres",
+      "info": "Use a section ID (e.g. #technology-nanofibres) to scroll to it."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Technology Hero"
+    }
+  ]
+}
+{% endschema %}

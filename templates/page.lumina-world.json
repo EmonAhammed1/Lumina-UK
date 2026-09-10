@@ -1,0 +1,638 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tech_mockup_hero_qxXYDp": {
+      "type": "tech-mockup-hero",
+      "settings": {
+        "bg_video": "",
+        "overlay_opacity": 0,
+        "subtitle": "BEAUTY HAS MORE STORIES",
+        "title": "LUMINA WORLD",
+        "text": "We explore beauty beyond the mirror—through science, culture, ritual, history, art and people. A place for ideas that deserve more than a few seconds of attention.",
+        "btn_label": "ENTER LUMINA WORLD →",
+        "btn_link": "shopify://collections"
+      }
+    },
+    "lumina_world_hero": {
+      "type": "lumina-world-hero",
+      "settings": {
+        "eyebrow": "WELCOME TO",
+        "title": "LUMINA WORLD",
+        "subtitle_italic": "More than skin care.",
+        "description": "A place where science, culture and mindful living meet.",
+        "btn_label": "DISCOVER LUMINA WORLD",
+        "btn_link": "/",
+        "video_label": "WATCH THE BRAND FILM",
+        "video_url": "#"
+      }
+    },
+    "lumina_manifesto_banner": {
+      "type": "lumina-world-manifesto",
+      "settings": {
+        "eyebrow": "MANIFESTUL",
+        "title": "A digital magazine",
+        "title_gold": "cu un scop.",
+        "paragraph_1": "LUMINA WORLD is our editorial space for ideas that illuminate. A place for conversations with remarkable minds, stories from the frontiers of beauty and science, and inspiration for living with intention.",
+        "paragraph_2": "Carefully curated. Shared with a purpose.",
+        "btn_label": "EXPLORE THE MANIFESTO",
+        "btn_link": "/",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/1fb4e74b7ace4ca59697582166b7e86a.mp4"
+      }
+    },
+    "lumina_featured_talk": {
+      "type": "lumina-world-featured-conversation",
+      "settings": {
+        "section_label": "CONVERSATION IN THE FOREGROUND",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/1fb4e74b7ace4ca59697582166b7e86a.mp4",
+        "cover_image": "shopify://shop_images/Katerina-Vodsedalkova.jpg",
+        "eyebrow": "SCIENCE AND LONGEVITY",
+        "title": "The new science of skin longevity",
+        "subtitle": "Ing. Kateřina Vodseďálková, Ph.D.",
+        "description": "A conversation with Katerina, CEO of NanoPharma, about nanofibres, innovation and what it means to build beauty technology from within science.",
+        "btn_1_label": "WATCH CONVERSATION",
+        "btn_1_link": "/",
+        "btn_2_label": "READ TRANSCRIPT",
+        "btn_2_link": "/"
+      }
+    },
+    "lumina_talk_slider": {
+      "type": "lumina-world-conversations-slider",
+      "blocks": {
+        "conversation_MaQfeM": {
+          "type": "conversation",
+          "settings": {
+            "image": "shopify://shop_images/Katerina-Vodsedalkova.jpg",
+            "video_url": "",
+            "category": "SCIENCE",
+            "name": "Ing. Kateřina Vodseďálková, Ph.D.",
+            "role": "CEO NanoPharma a.s."
+          }
+        },
+        "speaker_1": {
+          "type": "conversation",
+          "settings": {
+            "image": "shopify://shop_images/Johana-Kulhankova-1.jpg",
+            "video_url": "",
+            "category": "SCIENCE",
+            "name": "Ing. Johana Kulhánková, Ph.D.",
+            "role": "Product Manager NanoPharma a.s."
+          }
+        },
+        "speaker_2": {
+          "type": "conversation",
+          "settings": {
+            "image": "shopify://shop_images/IMG_8533-1-e1769960555292-640x690.png",
+            "video_url": "",
+            "category": "SCIENCE",
+            "name": "Ing. Marek Cihak",
+            "role": "Marketing Manager, NanoPharma a.s."
+          }
+        },
+        "speaker_3": {
+          "type": "conversation",
+          "settings": {
+            "image": "shopify://shop_images/coming-soon-background-with-focus-light-effect-design_1017-27277.avif",
+            "video_url": "",
+            "category": "",
+            "name": "",
+            "role": ""
+          }
+        },
+        "conversation_XTX4Jf": {
+          "type": "conversation",
+          "settings": {
+            "image": "shopify://shop_images/coming-soon-background-with-focus-light-effect-design_1017-27277.avif",
+            "video_url": "",
+            "category": "",
+            "name": "",
+            "role": ""
+          }
+        },
+        "conversation_734iXF": {
+          "type": "conversation",
+          "settings": {
+            "image": "shopify://shop_images/coming-soon-background-with-focus-light-effect-design_1017-27277.avif",
+            "video_url": "",
+            "category": "",
+            "name": "",
+            "role": ""
+          }
+        }
+      },
+      "block_order": [
+        "conversation_MaQfeM",
+        "speaker_1",
+        "speaker_2",
+        "speaker_3",
+        "conversation_XTX4Jf",
+        "conversation_734iXF"
+      ],
+      "settings": {
+        "section_title": "LATEST CONVERSATIONS",
+        "view_all_label": "ALL CONVERSATIONS",
+        "view_all_link": "/"
+      }
+    },
+    "lumina_journal_grid": {
+      "type": "lumina-world-journal-grid",
+      "blocks": {
+        "article_1": {
+          "type": "article_card",
+          "settings": {
+            "article": "news/de-ce-sa-alegi-masti-de-fata-cu-nanofibre",
+            "category": "EUROPA",
+            "title": "Izvoarele ascunse ale Transilvaniei",
+            "link": "/"
+          }
+        },
+        "article_2": {
+          "type": "article_card",
+          "settings": {
+            "article": "news/de-ce-sa-alegi-masti-de-fata-cu-nanofibre",
+            "category": "CRAFT",
+            "title": "Arta sticlelor lucrate manual",
+            "link": "/"
+          }
+        },
+        "article_3": {
+          "type": "article_card",
+          "settings": {
+            "article": "news/de-ce-sa-alegi-masti-de-fata-cu-nanofibre",
+            "category": "INGREDIENTS",
+            "title": "Bakuchiol: Retinolul delicat",
+            "link": "/"
+          }
+        },
+        "article_4": {
+          "type": "article_card",
+          "settings": {
+            "article": "news/de-ce-sa-alegi-masti-de-fata-cu-nanofibre",
+            "category": "CULTURE",
+            "title": "Opera, emotion and beauty",
+            "link": "/"
+          }
+        },
+        "article_5": {
+          "type": "article_card",
+          "settings": {
+            "article": "news/de-ce-sa-alegi-masti-de-fata-cu-nanofibre",
+            "category": "WELFARE",
+            "title": "The evening light ritual",
+            "link": "/"
+          }
+        },
+        "article_6": {
+          "type": "article_card",
+          "settings": {
+            "article": "news/de-ce-sa-alegi-masti-de-fata-cu-nanofibre",
+            "category": "SCIENCE",
+            "title": "Blue light and skin health",
+            "link": "/"
+          }
+        }
+      },
+      "block_order": [
+        "article_1",
+        "article_2",
+        "article_3",
+        "article_4",
+        "article_5",
+        "article_6"
+      ],
+      "settings": {
+        "section_title": "JOURNAL",
+        "explore_label": "EXPLORE THE JOURNAL",
+        "explore_link": "/",
+        "featured_article": "news/de-ce-lumina-europa",
+        "featured_category": "SCIENCE",
+        "featured_title": "Exosomes: Nature's messengers for renewal",
+        "featured_excerpt": "Microvesicles that may hold the key to cellular communication, repair and radiant skin.",
+        "featured_link": "/",
+        "show_submission_btn": true,
+        "submission_btn_text": "SUBMIT YOUR STORY",
+        "modal_eyebrow": "BE PART OF THE JOURNAL",
+        "modal_title": "Submit Your Story",
+        "modal_desc": "Share your own perspective, experience or research to be published in Lumina Journal."
+      }
+    },
+    "lumina_europe_light": {
+      "type": "lumina-world-europe-light",
+      "settings": {
+        "eyebrow": "SPECIAL EDITORIAL PROJECT",
+        "image_top": "shopify://shop_images/005fd866-af00-4ebb-9929-c91ff4b2f104.webp",
+        "image_bottom": "shopify://shop_images/3d4be4d0-8c8a-470b-a9ac-d81885c71637.webp",
+        "paragraph_1": "<p><strong>Europe Under the Same Light</strong>is a journey through Europe, told through the people who call it home. Starting<strong>November 2026</strong>, the project will take to the streets of European cities to listen, ask questions and discover what connects us across borders, languages ​​and generations. </p>",
+        "paragraph_2": "Through intimate street conversations, portraits and authentic stories, we will explore identity, belonging, beauty, culture and the future we build together.",
+        "tagline_sub": "Different cities. Different faces. Different stories.",
+        "tagline_main": "One Europe. Under the same light.",
+        "launch_text": "RELEASE IN NOVEMBER 2026"
+      }
+    },
+    "lumina_articles_grid": {
+      "type": "lumina-world-articles-grid",
+      "blocks": {
+        "art_1": {
+          "type": "article_card",
+          "settings": {
+            "article": "news/de-ce-lumina-europa",
+            "category": "SCIENCE",
+            "date": "12 MAI 2025",
+            "title": "Skin barrier: More than a shield",
+            "excerpt": "Why understanding the skin barrier changes everything in skin care.",
+            "link": ""
+          }
+        },
+        "art_2": {
+          "type": "article_card",
+          "settings": {
+            "article": "news/de-ce-sa-alegi-masti-de-fata-cu-nanofibre",
+            "category": "CULTURE",
+            "date": "5 MAI 2025",
+            "title": "Timeless cities, ageless beauty",
+            "excerpt": "What European cities teach us about beauty, heritage and time.",
+            "link": ""
+          }
+        },
+        "art_3": {
+          "type": "article_card",
+          "settings": {
+            "article": "news/de-ce-lumina-europa",
+            "category": "OAMENI",
+            "date": "28 APRILIE 2025",
+            "title": "The voices of a new generation",
+            "excerpt": "Young Europeans on identity, purpose and future.",
+            "link": ""
+          }
+        },
+        "art_4": {
+          "type": "article_card",
+          "settings": {
+            "article": "news/de-ce-sa-alegi-masti-de-fata-cu-nanofibre",
+            "category": "SUSTAINABILITY",
+            "date": "20 APRILIE 2025",
+            "title": "Beauty and responsibility",
+            "excerpt": "Why authentic luxury respects the world we come from.",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "art_1",
+        "art_2",
+        "art_3",
+        "art_4"
+      ],
+      "settings": {
+        "eyebrow": "LUMINA WORLD",
+        "title": "ARTICLES",
+        "subtitle": "Ideas. Perspectives. Conversations that shape the world we live in.",
+        "view_all_label": "ALL ARTICLES",
+        "view_all_link": "/"
+      }
+    },
+    "lumina_gallery_GdDJaf": {
+      "type": "lumina-gallery",
+      "blocks": {
+        "gallery_image_xWhVNb": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-1.png",
+            "author_name": "Elena Vancea",
+            "location": "Florence, Italy",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com/luminaeuropa",
+            "subheading": "IN THE FOREGROUND",
+            "heading": "Humanity\nin the Light",
+            "link_text": "VIEW GALLERY ->",
+            "link_url": "shopify://pages/gallery"
+          }
+        },
+        "gallery_image_xWTzhc": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-2.png",
+            "author_name": "Marco Rossi",
+            "location": "Roma, Italia",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com/luminaeuropa",
+            "subheading": "IN THE FOREGROUND",
+            "heading": "Humanity\nin the Light",
+            "link_text": "VIEW GALLERY ->",
+            "link_url": "/pages/galerie"
+          }
+        },
+        "gallery_image_T4V6yU": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-3.png",
+            "author_name": "Sophie Laurent",
+            "location": "Paris, France",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com/luminaeuropa",
+            "subheading": "IN THE FOREGROUND",
+            "heading": "Humanity\nin the Light",
+            "link_text": "VIEW GALLERY ->",
+            "link_url": "/pages/galerie"
+          }
+        },
+        "gallery_image_pQk8pW": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-4.png",
+            "author_name": "Andrei Popa",
+            "location": "Brasov, Romania",
+            "social_platform": "facebook",
+            "social_url": "https://facebook.com",
+            "subheading": "IN THE FOREGROUND",
+            "heading": "Humanity\nin the Light",
+            "link_text": "VIEW GALLERY ->",
+            "link_url": "/pages/galerie"
+          }
+        },
+        "gallery_image_d6AfjH": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-5.png",
+            "author_name": "Lucas Meyer",
+            "location": "München, Germania",
+            "social_platform": "threads",
+            "social_url": "https://threads.com/@luminaeuropa",
+            "subheading": "IN THE FOREGROUND",
+            "heading": "Humanity\nin the Light",
+            "link_text": "VIEW GALLERY ->",
+            "link_url": "/pages/galerie"
+          }
+        },
+        "gallery_image_PeKLeU": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-6.png",
+            "author_name": "Chiara Bianchi",
+            "location": "Venice, Italy",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com/luminaeuropa",
+            "subheading": "IN THE FOREGROUND",
+            "heading": "Humanity\nin the Light",
+            "link_text": "VIEW GALLERY ->",
+            "link_url": "/pages/galerie"
+          }
+        },
+        "gallery_image_W87k4C": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-7.png",
+            "author_name": "Gabriel Ionescu",
+            "location": "Sibiu, Romania",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com/luminaeuropa",
+            "subheading": "IN THE FOREGROUND",
+            "heading": "Humanity\nin the Light",
+            "link_text": "VIEW GALLERY ->",
+            "link_url": "/pages/galerie"
+          }
+        },
+        "gallery_image_BBHWQ8": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-8.png",
+            "author_name": "Mateo Silva",
+            "location": "Lisabona, Portugalia",
+            "social_platform": "tiktok",
+            "social_url": "https://tiktok.com/@luminaeuropa",
+            "subheading": "IN THE FOREGROUND",
+            "heading": "Humanity\nin the Light",
+            "link_text": "VIEW GALLERY ->",
+            "link_url": "/pages/galerie"
+          }
+        },
+        "gallery_image_t8iyfC": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-9.png",
+            "author_name": "Anna Lind",
+            "location": "Stockholm, Suedia",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com/luminaeuropa",
+            "subheading": "IN THE FOREGROUND",
+            "heading": "Humanity\nin the Light",
+            "link_text": "VIEW GALLERY ->",
+            "link_url": "/pages/galerie"
+          }
+        },
+        "gallery_image_CWdJUG": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-10.png",
+            "author_name": "David Varga",
+            "location": "Budapesta, Ungaria",
+            "social_platform": "pinterest",
+            "social_url": "https://pinterest.com/luminaeuropa",
+            "subheading": "IN THE FOREGROUND",
+            "heading": "Humanity\nin the Light",
+            "link_text": "VIEW GALLERY ->",
+            "link_url": "/pages/galerie"
+          }
+        },
+        "gallery_image_D9Wbwr": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-11.png",
+            "author_name": "Clara Dupont",
+            "location": "Nice, France",
+            "social_platform": "instagram",
+            "social_url": "https://instagram.com/luminaeuropa",
+            "subheading": "IN THE FOREGROUND",
+            "heading": "Humanity\nin the Light",
+            "link_text": "VIEW GALLERY ->",
+            "link_url": "/pages/galerie"
+          }
+        },
+        "gallery_image_Ezjepb": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/img-12.png",
+            "author_name": "Stefan Radu",
+            "location": "Cluj-Napoca, Romania",
+            "social_platform": "youtube",
+            "social_url": "https://youtube.com/@LuminaEuropa",
+            "subheading": "IN THE FOREGROUND",
+            "heading": "Humanity\nin the Light",
+            "link_text": "VIEW GALLERY ->",
+            "link_url": "/pages/galerie"
+          }
+        },
+        "share_feature_k6UTrr": {
+          "type": "share_feature",
+          "settings": {
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a1 1 0 0 1 1-1z\"></path>\n  <circle cx=\"12\" cy=\"12\" r=\"3.5\"></circle>\n</svg>",
+            "title": "CAPTURE",
+            "text": "Authentic<br>moments from your everyday life."
+          }
+        },
+        "share_feature_WnR4M7": {
+          "type": "share_feature",
+          "settings": {
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z\"></path>\n  <circle cx=\"12\" cy=\"10\" r=\"2.5\"></circle>\n</svg>",
+            "title": "TELL US WHERE",
+            "text": "City, country<br>and a few words."
+          }
+        },
+        "share_feature_bDdDEp": {
+          "type": "share_feature",
+          "settings": {
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M22 2L11 13\"></path>\n  <path d=\"M22 2L15 22L11 13L2 9L22 2Z\"></path>\n</svg>",
+            "title": "SUBMIT",
+            "text": "We will look into it and<br>contact you."
+          }
+        },
+        "share_feature_TAFpNF": {
+          "type": "share_feature",
+          "settings": {
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M15 3c0 3 1 4 4 4c-3 0-4 1-4 4c0-3-1-4-4-4c3 0 4-1 4-4z\"></path>\n  <path d=\"M8 11c0 2 0.7 2.7 2.7 2.7C8.7 13.7 8 14.4 8 16.4c0-2-0.7-2.7-2.7-2.7C7.3 13.7 8 13 8 11z\"></path>\n  <path d=\"M18 14c0 1.4 0.5 1.9 1.9 1.9c-1.4 0-1.9 0.5-1.9 1.9c0-1.4-0.5-1.9-1.9-1.9c1.4 0 1.9-0.5 1.9-1.9z\"></path>\n</svg>",
+            "title": "INSPIRE",
+            "text": "Your story can<br>inspire others."
+          }
+        }
+      },
+      "block_order": [
+        "gallery_image_xWhVNb",
+        "gallery_image_xWTzhc",
+        "gallery_image_T4V6yU",
+        "gallery_image_pQk8pW",
+        "gallery_image_d6AfjH",
+        "gallery_image_PeKLeU",
+        "gallery_image_W87k4C",
+        "gallery_image_BBHWQ8",
+        "gallery_image_t8iyfC",
+        "gallery_image_CWdJUG",
+        "gallery_image_D9Wbwr",
+        "gallery_image_Ezjepb",
+        "share_feature_k6UTrr",
+        "share_feature_WnR4M7",
+        "share_feature_bDdDEp",
+        "share_feature_TAFpNF"
+      ],
+      "name": "Lumina Gallery",
+      "settings": {
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "load_more_label": "VIEW FULL GALLERY",
+        "load_more_url": "shopify://pages/gallery",
+        "upload_btn_label": "SUBMIT YOUR PHOTO",
+        "share_bg_color": "#050505",
+        "share_subheading": "BE PART OF THE STORY",
+        "share_heading": "Share the Light",
+        "share_text": "Send us your moments from all over Europe. The light you see. The stories you live. We can include them in our gallery.",
+        "share_btn_text": "SUBMIT YOUR PHOTO ->"
+      }
+    },
+    "lumina_social_inspiration_exMmfW": {
+      "type": "lumina-social-inspiration",
+      "blocks": {
+        "social_card_7reQaM": {
+          "type": "social_card",
+          "settings": {
+            "icon_image": "shopify://shop_images/instagram.png",
+            "platform": "INSTAGRAM",
+            "handle": "@luminaeuropa",
+            "label": "",
+            "bg_image": "shopify://shop_images/smi-1.png",
+            "link_url": "https://www.instagram.com/luminaeuropa/"
+          }
+        },
+        "social_card_YgeNqm": {
+          "type": "social_card",
+          "settings": {
+            "icon_image": "shopify://shop_images/threads.png",
+            "platform": "THREADS",
+            "handle": "@luminaeuropa",
+            "label": "",
+            "bg_image": "shopify://shop_images/smi-2.png",
+            "link_url": "https://www.threads.com/@luminaeuropa"
+          }
+        },
+        "social_card_XWgtpf": {
+          "type": "social_card",
+          "settings": {
+            "icon_image": "shopify://shop_images/facebook.png",
+            "platform": "FACEBOOK",
+            "handle": "@Lumina-Europa",
+            "label": "",
+            "bg_image": "shopify://shop_images/smi-3.png",
+            "link_url": "https://www.facebook.com/people/Lumina-Europa/61574274156616/"
+          }
+        },
+        "social_card_LcKpLr": {
+          "type": "social_card",
+          "settings": {
+            "icon_image": "shopify://shop_images/youtube.png",
+            "platform": "YOUTUBE",
+            "handle": "@LuminaEuropa",
+            "label": "",
+            "bg_image": "shopify://shop_images/smi-4.png",
+            "link_url": "https://www.youtube.com/@LuminaEuropa"
+          }
+        },
+        "social_card_6prMTi": {
+          "type": "social_card",
+          "settings": {
+            "icon_image": "shopify://shop_images/tiktok.png",
+            "platform": "TIKTOK",
+            "handle": "@luminaeuropa",
+            "label": "",
+            "bg_image": "shopify://shop_images/smi-5.png",
+            "link_url": "https://www.tiktok.com/@luminaeuropa"
+          }
+        },
+        "social_card_wEFALB": {
+          "type": "social_card",
+          "settings": {
+            "icon_image": "shopify://shop_images/pinterest.png",
+            "platform": "PINTEREST",
+            "handle": "@luminaeuropa",
+            "label": "",
+            "bg_image": "shopify://shop_images/smi-6.png",
+            "link_url": "https://www.pinterest.com/luminaeuropa/"
+          }
+        }
+      },
+      "block_order": [
+        "social_card_7reQaM",
+        "social_card_YgeNqm",
+        "social_card_XWgtpf",
+        "social_card_LcKpLr",
+        "social_card_6prMTi",
+        "social_card_wEFALB"
+      ],
+      "name": "Social Inspiration",
+      "settings": {
+        "bg_color": "#000000",
+        "subheading": "FOLLOW THE LIGHT",
+        "heading": "Chosen inspiration\nfrom our universe.",
+        "text": "Carefully selected content. Not an automatic flow.",
+        "link_text": "VIEW ALL CHANNELS ->",
+        "link_url": ""
+      }
+    }
+  },
+  "order": [
+    "tech_mockup_hero_qxXYDp",
+    "lumina_world_hero",
+    "lumina_manifesto_banner",
+    "lumina_featured_talk",
+    "lumina_talk_slider",
+    "lumina_journal_grid",
+    "lumina_europe_light",
+    "lumina_articles_grid",
+    "lumina_gallery_GdDJaf",
+    "lumina_social_inspiration_exMmfW"
+  ]
+}

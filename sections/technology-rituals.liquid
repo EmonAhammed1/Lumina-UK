@@ -1,0 +1,218 @@
+<style>
+  #technology-rituals {
+    padding: 80px 0;
+    background-color: var(--color-bg, #000);
+  }
+  .tech-rituals-heading {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 20px;
+    color: var(--g-color-heading, #fff);
+  }
+  .tech-rituals-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    font-size: 1.1rem;
+    color: var(--color-body-text, #FAF6F0);
+    line-height: 1.6;
+  }
+  .tech-rituals-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .tech-ritual-card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .tech-ritual-image {
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .tech-ritual-image img {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .tech-ritual-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--g-color-heading, #fff);
+  }
+  .tech-ritual-text {
+    font-size: 1rem;
+    color: var(--color-body-text, #FAF6F0);
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+  .tech-ritual-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--g-main, #B8963E);
+    border: 1px solid var(--g-main, #B8963E);
+    background-color: transparent;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    align-self: center;
+  }
+  .tech-ritual-btn:hover {
+    background-color: var(--g-main, #B8963E);
+    border-color: var(--g-main, #B8963E);
+    color: #000;
+    transform: translateY(-2px);
+  }
+
+  @media (min-width: 576px) {
+    .tech-rituals-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .tech-rituals-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>
+
+<div id="technology-rituals" data-section-id="{{ section.id }}">
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <h2 class="tech-rituals-heading" data-aos="fade-up" data-aos-duration="700">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.intro != blank %}
+      <div class="tech-rituals-intro" data-aos="fade-up" data-aos-duration="700" data-aos-delay="100">{{ section.settings.intro }}</div>
+    {% endif %}
+    
+    <div class="tech-rituals-grid">
+      {% for block in section.blocks %}
+        <div class="tech-ritual-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="{{ forloop.index | times: 100 }}" {{ block.shopify_attributes }}>
+          <div class="tech-ritual-image">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+            {% else %}
+              {% case forloop.index %}
+                {% when 1 %}
+                  <img src="{{ 'img-7.png' | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                {% when 2 %}
+                  <img src="{{ 'img-8.png' | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                {% when 3 %}
+                  <img src="{{ 'img-9.png' | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                {% else %}
+                  <img src="{{ 'img-10.png' | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+              {% endcase %}
+            {% endif %}
+          </div>
+          <h3 class="tech-ritual-title">{{ block.settings.title }}</h3>
+          <div class="tech-ritual-text">{{ block.settings.text }}</div>
+          {% if block.settings.button_label != blank %}
+            <a href="{{ block.settings.button_link }}" class="tech-ritual-btn">{{ block.settings.button_label }}</a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Technology Rituals",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Designed to Work in Harmony"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro Text",
+      "default": "<p>Every Lumina mask is a focused moment of care. Choose the ritual according to your skin, the rhythm of your day and the result you wish to feel.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ritual-card",
+      "name": "Ritual Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Ritual Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Morning Ritual"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Body Text",
+          "default": "Hydration and freshness for the beginning of the day."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Discover Morning Care"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Technology Rituals",
+      "blocks": [
+        {
+          "type": "ritual-card",
+          "settings": {
+            "title": "Morning Ritual",
+            "text": "Hydration and freshness for the beginning of the day.",
+            "button_label": "Discover Morning Care"
+          }
+        },
+        {
+          "type": "ritual-card",
+          "settings": {
+            "title": "Evening Ritual",
+            "text": "A quiet moment of comfort, renewal and restoration.",
+            "button_label": "Discover Evening Care"
+          }
+        },
+        {
+          "type": "ritual-card",
+          "settings": {
+            "title": "Recovery Ritual",
+            "text": "Focused care for moments when the skin feels tired or unsettled.",
+            "button_label": "Discover Recovery"
+          }
+        },
+        {
+          "type": "ritual-card",
+          "settings": {
+            "title": "Radiance Ritual",
+            "text": "A considered ritual before an occasion or whenever the skin needs renewed luminosity.",
+            "button_label": "Discover Radiance"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

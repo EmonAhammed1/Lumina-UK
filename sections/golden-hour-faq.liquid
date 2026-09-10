@@ -1,0 +1,304 @@
+{% render 'golden-hour-vars' %}
+{%- style -%}
+  #shopify-section-{{ section.id }} .gh-faq-wrap {
+    background-color: var(--gh-dark-bg);
+    color: var(--gh-text-light);
+    padding: {{ section.settings.padding_top_desktop }}px 24px {{ section.settings.padding_bottom_desktop }}px;
+  }
+  @media screen and (max-width: 768px) {
+    #shopify-section-{{ section.id }} .gh-faq-wrap {
+      padding: {{ section.settings.padding_top_mobile }}px 16px {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+  .gh-faq-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+  }
+  .gh-faq-title {
+    font-size: {{ section.settings.heading_size_desktop }}px;
+    color: var(--gh-golden);
+    font-weight: 300;
+  }
+  @media screen and (max-width: 768px) {
+    .gh-faq-title {
+      font-size: {{ section.settings.heading_size_mobile }}px;
+    }
+  }
+  .gh-faq-list {
+    max-width: 860px;
+    margin: 0 auto;
+    border-top: 1px solid var(--gh-border-gold);
+  }
+  .gh-faq-item {
+    border-bottom: 1px solid var(--gh-border-gold);
+  }
+  .gh-faq-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 28px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    color: var(--gh-golden);
+    font-size: {{ section.settings.q_size_desktop }}px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  .gh-faq-trigger:hover {
+    color: var(--gh-text-light);
+  }
+  @media screen and (max-width: 768px) {
+    .gh-faq-trigger {
+      font-size: {{ section.settings.q_size_mobile }}px;
+      padding: 20px 0;
+    }
+  }
+  .gh-faq-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    color: var(--gh-golden);
+    flex-shrink: 0;
+    margin-left: 20px;
+  }
+  .gh-faq-item.is-open .gh-faq-icon {
+    transform: rotate(45deg);
+  }
+  .gh-faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .gh-faq-inner {
+    padding-bottom: 28px;
+    color: var(--gh-text-muted);
+    font-size: {{ section.settings.a_size_desktop }}px;
+    line-height: 1.6;
+  }
+  @media screen and (max-width: 768px) {
+    .gh-faq-inner {
+      font-size: {{ section.settings.a_size_mobile }}px;
+      padding-bottom: 20px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="gh-faq-wrap" id="{{ section.id | split: '__' | last }}" data-section-id="{{ section.id }}">
+  <div class="gh-faq-header">
+    <h2 class="gh-faq-title">{{ section.settings.heading }}</h2>
+  </div>
+
+  <div class="gh-faq-list">
+    {%- for block in section.blocks -%}
+      <div class="gh-faq-item" {{ block.shopify_attributes }}>
+        <button type="button" class="gh-faq-trigger" aria-expanded="false">
+          <span>{{ block.settings.question }}</span>
+          <svg class="gh-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 5v14M5 12l14 0"/>
+          </svg>
+        </button>
+        <div class="gh-faq-content">
+          <div class="gh-faq-inner">
+            {{ block.settings.answer }}
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const items = document.querySelectorAll('#shopify-section-{{ section.id }} .gh-faq-item');
+    items.forEach(item => {
+      const btn = item.querySelector('.gh-faq-trigger');
+      const content = item.querySelector('.gh-faq-content');
+      if (btn && content) {
+        btn.addEventListener('click', function() {
+          const isOpen = item.classList.contains('is-open');
+          items.forEach(other => {
+            other.classList.remove('is-open');
+            other.querySelector('.gh-faq-content').style.maxHeight = '0px';
+            other.querySelector('.gh-faq-trigger').setAttribute('aria-expanded', 'false');
+          });
+          if (!isOpen) {
+            item.classList.add('is-open');
+            content.style.maxHeight = content.scrollHeight + 'px';
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Golden Hour - FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Heading Size (Desktop px)",
+      "min": 24,
+      "max": 56,
+      "step": 2,
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "q_size_desktop",
+      "label": "Question Size (Desktop px)",
+      "min": 16,
+      "max": 30,
+      "step": 1,
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "a_size_desktop",
+      "label": "Answer Size (Desktop px)",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Top Padding (Desktop px)",
+      "min": 40,
+      "max": 180,
+      "step": 10,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Bottom Padding (Desktop px)",
+      "min": 40,
+      "max": 180,
+      "step": 10,
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading Size (Mobile px)",
+      "min": 18,
+      "max": 36,
+      "step": 1,
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "q_size_mobile",
+      "label": "Question Size (Mobile px)",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "a_size_mobile",
+      "label": "Answer Size (Mobile px)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top Padding (Mobile px)",
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom Padding (Mobile px)",
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Q&A Pair",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Question?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Answer to the question."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Golden Hour - FAQ",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Is it free to be a part of Golden Hour?",
+            "answer": "Yes. Joining the Lumina Golden Hour community is completely free."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How can I sign up?",
+            "answer": "It is enough to create an account or register using the form on this page."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I opt out at any time?",
+            "answer": "Of course. You can unsubscribe or close your account at any time."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How does Golden Rewards work?",
+            "answer": "As you become part of the community and choose Lumina rituals, you will have access to exclusive benefits, surprises and experiences."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

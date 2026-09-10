@@ -1,0 +1,279 @@
+{% render 'golden-hour-vars' %}
+<style>
+  #shopify-section-{{ section.id }} .tm-journey-wrap {
+    padding: 80px 24px;
+    background-color: #000;
+    color: var(--gh-text-light);
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .tm-journey-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 40px;
+  }
+  .tm-journey-left {
+    flex: 0 0 300px;
+  }
+  .tm-journey-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .tm-journey-title {
+    font-size: clamp(2rem, 3.5vw, 2.5rem);
+    color: var(--gh-golden);
+    font-family: serif;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .tm-journey-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gh-text-muted);
+  }
+  .tm-journey-right {
+    flex: 1;
+    min-width: 0;
+  }
+  .tm-journey-track {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .tm-journey-line {
+    position: absolute;
+    top: 50px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gh-golden), transparent);
+    opacity: 0.5;
+    z-index: 1;
+  }
+  .tm-journey-node {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tm-journey-orb {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #111;
+    margin-bottom: 24px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(249, 226, 156, 0.1);
+  }
+  .tm-journey-orb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+  }
+  .tm-journey-num {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--gh-golden);
+    margin-bottom: 4px;
+  }
+  .tm-journey-name {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gh-golden);
+    margin-bottom: 8px;
+  }
+  .tm-journey-desc {
+    font-size: 11px;
+    color: var(--gh-text-muted);
+    line-height: 1.4;
+    max-width: 140px;
+  }
+  @media screen and (max-width: 1024px) {
+    .tm-journey-container {
+      flex-direction: column;
+    }
+    .tm-journey-left {
+      flex: none;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .tm-journey-track {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px 16px;
+    }
+    .tm-journey-line {
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      right: auto;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, var(--gh-golden), transparent);
+    }
+    .tm-journey-orb {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 16px;
+    }
+    .tm-journey-desc {
+      max-width: 120px;
+    }
+  }
+</style>
+
+<div id="{{ section.id | split: '__' | last }}" class="tm-journey-wrap">
+  <div class="tm-journey-container">
+    <div class="tm-journey-left">
+      <div class="tm-journey-subtitle">{{ section.settings.subtitle }}</div>
+      <h2 class="tm-journey-title">{{ section.settings.title | newline_to_br }}</h2>
+      <div class="tm-journey-text">{{ section.settings.text }}</div>
+    </div>
+    
+    <div class="tm-journey-right">
+      <div class="tm-journey-track">
+        <div class="tm-journey-line"></div>
+        {% for block in section.blocks %}
+          <div class="tm-journey-node" {{ block.shopify_attributes }}>
+            <div class="tm-journey-orb">
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | image_url: width: 200 }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% else %}
+                {% assign orb_fallback = 'orb-' | append: forloop.index | append: '.png' %}
+                <img src="{{ orb_fallback | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% endif %}
+            </div>
+            <div class="tm-journey-num">{{ block.settings.number }}</div>
+            <div class="tm-journey-name">{{ block.settings.title }}</div>
+            <div class="tm-journey-desc">{{ block.settings.text }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Mockup - Journey",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "THE NANOFIBRE JOURNEY"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Into a world\nyou can't see."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "One fibre. Thousands of possibilities. Engineered at the microscopic level to transform your skin at the human level."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "node",
+      "name": "Journey Node",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Orb Image"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number (e.g. 01)",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "BORN"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Crafted with precision at the nanoscale."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mockup - Journey",
+      "blocks": [
+        {
+          "type": "node",
+          "settings": {
+            "number": "01",
+            "title": "BORN",
+            "text": "Crafted with precision at the nanoscale."
+          }
+        },
+        {
+          "type": "node",
+          "settings": {
+            "number": "02",
+            "title": "ACTIVATED",
+            "text": "Awakening the structure with water or mist."
+          }
+        },
+        {
+          "type": "node",
+          "settings": {
+            "number": "03",
+            "title": "DISSOLVED",
+            "text": "Nanofiberss dissolve in seconds, releasing encapsulated actives."
+          }
+        },
+        {
+          "type": "node",
+          "settings": {
+            "number": "04",
+            "title": "DELIVERED",
+            "text": "Actives are delivered evenly and deeply to the skin."
+          }
+        },
+        {
+          "type": "node",
+          "settings": {
+            "number": "05",
+            "title": "TRANSFORMED",
+            "text": "Skin is hydrated, revitalized and visibly renewed."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

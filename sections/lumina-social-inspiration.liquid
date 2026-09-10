@@ -1,0 +1,158 @@
+{{ 'lumina-social-inspiration.css' | asset_url | stylesheet_tag }}
+
+<div id="follow-lumina" class="lumina-social" style="--social-bg-color: {{ section.settings.bg_color }};">
+  <div class="lumina-social__left">
+    {%- if section.settings.subheading != blank -%}
+      <div class="lumina-social__subheading">{{ section.settings.subheading }}</div>
+    {%- endif -%}
+    
+    {%- if section.settings.heading != blank -%}
+      <h2 class="lumina-social__heading">{{ section.settings.heading | newline_to_br }}</h2>
+    {%- endif -%}
+    
+    {%- if section.settings.text != blank -%}
+      <p class="lumina-social__text">{{ section.settings.text }}</p>
+    {%- endif -%}
+    
+    {%- if section.settings.link_text != blank -%}
+      <a href="{{ section.settings.link_url }}" class="lumina-social__link">{{ section.settings.link_text }}</a>
+    {%- endif -%}
+  </div>
+  
+  <div class="lumina-social__right">
+    {%- for block in section.blocks -%}
+      {%- capture block_images -%}
+        {%- if block.settings.post_image_1 != blank -%}{{ block.settings.post_image_1 | image_url: width: 1000 }},{%- endif -%}
+        {%- if block.settings.post_image_2 != blank -%}{{ block.settings.post_image_2 | image_url: width: 1000 }},{%- endif -%}
+        {%- if block.settings.post_image_3 != blank -%}{{ block.settings.post_image_3 | image_url: width: 1000 }},{%- endif -%}
+        {%- if block.settings.post_image_4 != blank -%}{{ block.settings.post_image_4 | image_url: width: 1000 }},{%- endif -%}
+        {%- if block.settings.post_image_5 != blank -%}{{ block.settings.post_image_5 | image_url: width: 1000 }}{%- endif -%}
+      {%- endcapture -%}
+      <a href="{{ block.settings.link_url }}" class="lumina-social__card" target="_blank" {{ block.shopify_attributes }}>
+        {%- if block.settings.bg_image != blank -%}
+          {{ block.settings.bg_image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'lumina-social__card-bg' }}
+        {%- else -%}
+          {%- assign soc_mod = forloop.index | modulo: 5 | plus: 1 -%}
+          <img src="{{ 'lumina-world-hero-' | append: soc_mod | append: '.png' | asset_url }}" loading="lazy" class="lumina-social__card-bg" alt="">
+        {%- endif -%}
+        
+        <div class="lumina-social__card-gradient"></div>
+        
+        <div class="lumina-social__card-content">
+          {%- if block.settings.icon_image != blank -%}
+            {{ block.settings.icon_image | image_url: width: 100 | image_tag: loading: 'lazy', class: 'lumina-social__icon' }}
+          {%- endif -%}
+          
+          {%- if block.settings.platform != blank -%}
+            <h4 class="lumina-social__platform">{{ block.settings.platform }}</h4>
+          {%- endif -%}
+          
+          {%- if block.settings.handle != blank -%}
+            <h5 class="lumina-social__handle">{{ block.settings.handle }}</h5>
+          {%- endif -%}
+          
+          {%- if block.settings.label != blank -%}
+            <p class="lumina-social__label">{{ block.settings.label }}</p>
+          {%- endif -%}
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Social Inspiration",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "FOLLOW LUMINA"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Curated inspiration\nfrom our universe."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Carefully curated content. Never an automated feed."
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text",
+      "default": "VIEW ALL PLATFORMELE ->"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "social_card",
+      "name": "Social Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "platform",
+          "label": "Platform Name",
+          "default": "INSTAGRAM"
+        },
+        {
+          "type": "text",
+          "id": "handle",
+          "label": "Handle / Subtext",
+          "default": "@lumina.skin"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Bottom Label",
+          "default": "Curated"
+        },
+        {
+          "type": "image_picker",
+          "id": "bg_image",
+          "label": "Background Image"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Social Inspiration",
+      "blocks": [
+        { "type": "social_card", "settings": { "platform": "INSTAGRAM" } },
+        { "type": "social_card", "settings": { "platform": "THREADS" } },
+        { "type": "social_card", "settings": { "platform": "FACEBOOK" } },
+        { "type": "social_card", "settings": { "platform": "YOUTUBE" } },
+        { "type": "social_card", "settings": { "platform": "TIKTOK" } },
+        { "type": "social_card", "settings": { "platform": "PINTEREST" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

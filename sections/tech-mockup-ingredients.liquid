@@ -1,0 +1,650 @@
+{% render 'golden-hour-vars' %}
+<style>
+  #shopify-section-{{ section.id }} .tm-ingr-wrap {
+    padding: 100px 0;
+    background-color: #000;
+  }
+  .tm-ingr-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .tm-ingr-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    gap: 20px;
+  }
+  .tm-ingr-header-left {
+    flex: 1;
+  }
+  .tm-ingr-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .tm-ingr-title {
+    font-size: clamp(2rem, 3.5vw, 2.5rem);
+    color: var(--gh-golden);
+    font-family: serif;
+    font-weight: 300;
+    line-height: 1.1;
+  }
+  .tm-ingr-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .tm-ingr-link {
+    font-size: 11px;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+  }
+  .tm-ingr-carousel-wrap {
+    position: relative;
+  }
+  .tm-ingr-desktop-arrows {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .tm-ingr-arrow-desktop {
+    background: transparent;
+    border: 1px solid var(--gh-golden);
+    color: var(--gh-golden);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .tm-ingr-arrow-desktop:hover {
+    background: rgba(249, 226, 156, 0.1);
+  }
+  .tm-ingr-arrow-desktop svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+  .tm-ingr-arrow-mobile {
+    display: none;
+    position: absolute;
+    top: 140px;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--gh-golden);
+    color: var(--gh-golden);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .tm-ingr-arrow-mobile svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+  .tm-ingr-arrow-prev { left: 4px; }
+  .tm-ingr-arrow-next { right: 4px; }
+  .tm-ingr-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 24px;
+    padding-bottom: 40px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-snap-type: x mandatory;
+  }
+  .tm-ingr-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  .tm-ingr-item {
+    flex: 0 0 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    scroll-snap-align: start;
+  }
+  .tm-ingr-image {
+    width: 220px;
+    height: 220px;
+    background: #111;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(249, 226, 156, 0.05);
+  }
+  .tm-ingr-image img {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+  }
+  .tm-ingr-plus {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--gh-golden);
+    color: var(--gh-golden);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 1;
+    background: #000;
+    cursor: pointer;
+    animation: gh-glow 3s infinite ease-in-out;
+    transition: transform 0.3s ease;
+  }
+  .tm-ingr-plus:hover {
+    transform: scale(1.1);
+  }
+  @keyframes gh-glow {
+    0%, 100% { 
+      box-shadow: 0 0 10px 2px rgba(249, 226, 156, 0.5), inset 0 0 8px rgba(249, 226, 156, 0.4); 
+    }
+    50% { 
+      box-shadow: 0 0 25px 6px rgba(249, 226, 156, 0.9), inset 0 0 15px rgba(249, 226, 156, 0.8); 
+    }
+  }
+  .tm-ingr-item-title {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gh-golden);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .tm-ingr-item-desc {
+    font-size: 11px;
+    color: var(--gh-text-muted);
+    line-height: 1.5;
+  }
+  @media screen and (max-width: 768px) {
+    .tm-ingr-desktop-arrows {
+      display: none;
+    }
+    .tm-ingr-arrow-mobile {
+      display: flex;
+    }
+    .tm-ingr-scroll {
+      scroll-behavior: smooth;
+      gap: 16px;
+    }
+    .tm-ingr-item {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      align-items: center;
+      text-align: center;
+    }
+    .tm-ingr-item-title {
+      justify-content: center;
+      font-size: 15px;
+      margin-top: 8px;
+    }
+    .tm-ingr-item-desc {
+      font-size: 13px;
+    }
+    .tm-ingr-image {
+      width: 280px;
+      height: 280px;
+    }
+  }
+  
+  .tm-ingr-item { cursor: pointer; }
+  .tm-ingr-modal {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .tm-ingr-modal.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .tm-ingr-modal-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+  }
+  .tm-ingr-modal-content {
+    position: relative;
+    background: #0a0a0a;
+    border: 1px solid rgba(249, 226, 156, 0.2);
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    padding: 40px 24px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    z-index: 2;
+  }
+  .tm-ingr-modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: transparent;
+    border: none;
+    color: var(--gh-text-muted);
+    cursor: pointer;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    transition: color 0.3s;
+  }
+  .tm-ingr-modal-close:hover { color: var(--gh-golden); }
+  .tm-ingr-modal-close svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; }
+  
+  .tm-ingr-modal-header h3 {
+    font-size: 16px;
+    color: var(--gh-golden);
+    font-family: serif;
+    text-align: center;
+    margin-bottom: 24px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  
+  .tm-ingr-modal-carousel-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .tm-ingr-modal-arrow {
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--gh-golden);
+    color: var(--gh-golden);
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    transition: all 0.3s;
+  }
+  .tm-ingr-modal-arrow:hover { background: rgba(249, 226, 156, 0.1); }
+  .tm-ingr-modal-arrow svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; }
+  .tm-ingr-modal-arrow.prev-arrow { left: -18px; }
+  .tm-ingr-modal-arrow.next-arrow { right: -18px; }
+  
+  .tm-ingr-modal-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 16px;
+    scrollbar-width: none;
+    width: 100%;
+  }
+  .tm-ingr-modal-scroll::-webkit-scrollbar { display: none; }
+  
+  .tm-ingr-modal-product {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .tm-ingr-product-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: #111;
+    margin-bottom: 20px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .tm-ingr-product-image img {
+    position: absolute; top:0; left:0; width:100%; height:100%;
+    object-fit: cover;
+  }
+  .tm-ingr-product-title {
+    font-size: 14px;
+    color: var(--gh-text-light);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .tm-ingr-product-price {
+    font-size: 13px;
+    color: var(--gh-text-muted);
+    margin-bottom: 20px;
+  }
+  .tm-ingr-product-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: var(--gh-golden);
+    color: #000;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: opacity 0.3s;
+    border-radius: 2px;
+  }
+  .tm-ingr-product-btn:hover { opacity: 0.8; }
+  
+  @media screen and (max-width: 768px) {
+    .tm-ingr-modal-content {
+      width: 100%;
+      height: auto;
+      max-height: 90vh;
+      border-radius: 16px 16px 0 0;
+      position: absolute;
+      bottom: 0;
+      padding: 30px 24px 40px;
+    }
+    .tm-ingr-modal-arrow.prev-arrow { left: 0; }
+    .tm-ingr-modal-arrow.next-arrow { right: 0; }
+  }
+</style>
+
+<div id="technology-ingredients" class="tm-ingr-wrap">
+  <div class="tm-ingr-container">
+    <div class="tm-ingr-header">
+      <div class="tm-ingr-header-left">
+        <div class="tm-ingr-subtitle">{{ section.settings.subtitle }}</div>
+        <h2 class="tm-ingr-title">{{ section.settings.title | newline_to_br }}</h2>
+      </div>
+      <div class="tm-ingr-header-right">
+        {% if section.settings.btn_label != blank %}
+          <a href="{{ section.settings.btn_link | default: '#' }}" class="tm-ingr-link">
+            {{ section.settings.btn_label }}
+          </a>
+        {% endif %}
+        <div class="tm-ingr-desktop-arrows">
+          <button class="tm-ingr-arrow-desktop tm-ingr-arrow-prev-desktop" aria-label="Previous">
+            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="tm-ingr-arrow-desktop tm-ingr-arrow-next-desktop" aria-label="Next">
+            <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="tm-ingr-carousel-wrap">
+      <button class="tm-ingr-arrow-mobile tm-ingr-arrow-prev" aria-label="Previous">
+        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="tm-ingr-scroll">
+      {% for block in section.blocks %}
+        <div class="tm-ingr-item" {{ block.shopify_attributes }} onclick="openIngrModal('{{ block.id }}')">
+          <div class="tm-ingr-image">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.title }}" loading="lazy">
+            {% else %}
+              {% assign title_handle = block.settings.title | handleize %}
+              {% if title_handle contains 'acid' or title_handle contains 'hialuronic' %}
+                <img src="{{ 'HYALURONIC_ACID.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% elsif title_handle contains 'centella' %}
+                <img src="{{ 'CENTELLA_ASIATICA.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% elsif title_handle contains 'colagen' or title_handle contains 'collagen' %}
+                <img src="{{ 'COLLAGEN_AMINO_ACIDS.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% elsif title_handle contains 'vitamina-c' %}
+                <img src="{{ 'VITAMIN_C.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% elsif title_handle contains 'vitamina-a' or title_handle contains 'retinol' %}
+                <img src="{{ 'VITAMIN_A.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% elsif title_handle contains 'niacinamida' or title_handle contains 'niacinamide' %}
+                <img src="{{ 'NIACINAMIDE_82eed169-40d6-4fc7-b67e-9ad404f25789.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% elsif title_handle contains 'pantenol' or title_handle contains 'panthenol' %}
+                <img src="{{ 'PANTHENOL.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% elsif title_handle contains 'lactobionic' %}
+                <img src="{{ 'LACTOBIONIC_ACID.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% elsif title_handle contains 'liftonin' %}
+                <img src="{{ 'LIFTONIN_QI.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% elsif title_handle contains 'uree' or title_handle contains 'urea' %}
+                <img src="{{ 'UREA.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% elsif title_handle contains 'arginina' or title_handle contains 'arginine' %}
+                <img src="{{ 'ARGININE.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% elsif title_handle contains 'alantoina' or title_handle contains 'allantoin' %}
+                <img src="{{ 'ALLANTOINE.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% elsif title_handle contains 'gluconolactona' %}
+                <img src="{{ 'GLUCONOLACTONE.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% else %}
+                <img src="{{ 'HYALURONIC_ACID.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% endif %}
+            {% endif %}
+            <div class="tm-ingr-plus">+</div>
+          </div>
+          <div class="tm-ingr-item-title">{{ block.settings.title }}</div>
+          <div class="tm-ingr-item-desc">{{ block.settings.text }}</div>
+        </div>
+      {% endfor %}
+      </div>
+      <button class="tm-ingr-arrow-mobile tm-ingr-arrow-next" aria-label="Next">
+        <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  {% for block in section.blocks %}
+    {% if block.settings.products != blank %}
+      <div class="tm-ingr-modal" id="ingr-modal-{{ block.id }}">
+        <div class="tm-ingr-modal-overlay" onclick="closeIngrModal('{{ block.id }}')"></div>
+        <div class="tm-ingr-modal-content">
+          <button class="tm-ingr-modal-close" onclick="closeIngrModal('{{ block.id }}')">
+            <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2"/></svg>
+          </button>
+          <div class="tm-ingr-modal-header">
+            <h3>Products with {{ block.settings.title }}</h3>
+          </div>
+          
+          <div class="tm-ingr-modal-carousel-wrap">
+            {% if block.settings.products.count > 1 %}
+              <button class="tm-ingr-modal-arrow prev-arrow" onclick="scrollIngrModal('{{ block.id }}', -1)">
+                <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+            {% endif %}
+            
+            <div class="tm-ingr-modal-scroll" id="ingr-scroll-{{ block.id }}">
+              {% for product in block.settings.products %}
+                <div class="tm-ingr-modal-product">
+                  <a href="{{ product.url }}" class="tm-ingr-product-image">
+                    <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}">
+                  </a>
+                  <div class="tm-ingr-product-info">
+                    <a href="{{ product.url }}" class="tm-ingr-product-title">{{ product.title }}</a>
+                    <div class="tm-ingr-product-price">{{ product.price | money }}</div>
+                    <a href="{{ product.url }}" class="tm-ingr-product-btn">View Product</a>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+            {% if block.settings.products.count > 1 %}
+              <button class="tm-ingr-modal-arrow next-arrow" onclick="scrollIngrModal('{{ block.id }}', 1)">
+                <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Mockup - Ingredients",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "INGREDIENTS"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Powerful. Pure. Purposeful."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "VIEW ALL INGREDIENTS"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (Round orb)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "HYALURONIC ACID"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Deep hydration and plumping"
+        },
+        {
+          "type": "product_list",
+          "id": "products",
+          "label": "Assigned Products",
+          "info": "Select the products/bundles to show in the popup."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mockup - Ingredients",
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "HYALURONIC ACID",
+            "text": "Deep hydration and plumping"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "ECTOIN",
+            "text": "Protects and strengthens the skin barrier"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "NIACINAMIDE",
+            "text": "Improves tone, clarity and texture"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "CENTELLA ASIATICA",
+            "text": "Soothes, repairs and calms"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "PEPTIDE COMPLEX",
+            "text": "Supports firmness and elasticity"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "ANTIOXIDANT COMPLEX",
+            "text": "Defends against environmental stress"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+  function openIngrModal(blockId) {
+    const modal = document.getElementById('ingr-modal-' + blockId);
+    if (modal) {
+      modal.classList.add('is-active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  
+  function closeIngrModal(blockId) {
+    const modal = document.getElementById('ingr-modal-' + blockId);
+    if (modal) {
+      modal.classList.remove('is-active');
+      document.body.style.overflow = '';
+    }
+  }
+  
+  function scrollIngrModal(blockId, direction) {
+    const scroll = document.getElementById('ingr-scroll-' + blockId);
+    if (scroll) {
+      scroll.scrollBy({ left: scroll.offsetWidth * direction, behavior: 'smooth' });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('#shopify-section-{{ section.id }}');
+    if (!section) return;
+    
+    const scrollContainer = section.querySelector('.tm-ingr-scroll');
+    const prevBtns = section.querySelectorAll('.tm-ingr-arrow-prev, .tm-ingr-arrow-prev-desktop');
+    const nextBtns = section.querySelectorAll('.tm-ingr-arrow-next, .tm-ingr-arrow-next-desktop');
+    
+    if (scrollContainer) {
+      prevBtns.forEach(btn => btn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -scrollContainer.offsetWidth, behavior: 'smooth' });
+      }));
+      nextBtns.forEach(btn => btn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: scrollContainer.offsetWidth, behavior: 'smooth' });
+      }));
+    }
+  });
+</script>

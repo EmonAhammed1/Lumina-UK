@@ -1,0 +1,339 @@
+{% render 'golden-hour-vars' %}
+<style>
+  #shopify-section-{{ section.id }} .tm-hiw-wrap {
+    padding: 80px 24px;
+    background-color: #050505;
+  }
+  .tm-hiw-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 40px;
+  }
+  .tm-hiw-left {
+    flex: 0 0 300px;
+  }
+  .tm-hiw-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .tm-hiw-title {
+    font-size: clamp(2rem, 3.5vw, 2.5rem);
+    color: var(--gh-golden);
+    font-family: serif;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+  .tm-hiw-link {
+    font-size: 11px;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tm-hiw-link svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+  .tm-hiw-right {
+    flex: 1;
+    min-width: 0;
+  }
+  .tm-hiw-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+  @media screen and (max-width: 1200px) {
+    .tm-hiw-grid { grid-template-columns: repeat(3, 1fr); row-gap: 32px; }
+  }
+  @media screen and (max-width: 900px) {
+    .tm-hiw-container { flex-direction: column; }
+    .tm-hiw-left { flex: none; margin-bottom: 40px; }
+  }
+  .tm-hiw-carousel-wrap {
+    position: relative;
+  }
+  .tm-hiw-arrow {
+    display: none;
+    position: absolute;
+    top: 35%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--gh-golden);
+    color: var(--gh-golden);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .tm-hiw-arrow svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+  .tm-hiw-prev { left: -10px; }
+  .tm-hiw-next { right: -10px; }
+  @media screen and (max-width: 768px) {
+    .tm-hiw-arrow {
+      display: flex;
+    }
+    .tm-hiw-grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 20px;
+      gap: 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .tm-hiw-grid::-webkit-scrollbar {
+      display: none;
+    }
+    .tm-hiw-card {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      padding: 0 5px;
+      box-sizing: border-box;
+    }
+  }
+  .tm-hiw-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .tm-hiw-image {
+    width: 100%;
+    position: relative;
+    padding-bottom: 140%; /* vertical aspect ratio */
+    background: #111;
+    border: 1px solid rgba(249, 226, 156, 0.1);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .tm-hiw-image img {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+  }
+  .tm-hiw-number {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    font-size: 24px;
+    color: var(--gh-golden);
+    font-family: serif;
+    font-weight: 300;
+  }
+  .tm-hiw-card-title {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gh-golden);
+    margin-bottom: 8px;
+  }
+  .tm-hiw-card-desc {
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--gh-text-muted);
+  }
+</style>
+
+<div id="{{ section.id | split: '__' | last }}" class="tm-hiw-wrap">
+  <div class="tm-hiw-container">
+    <div class="tm-hiw-left">
+      <div class="tm-hiw-subtitle">{{ section.settings.subtitle }}</div>
+      <h2 class="tm-hiw-title">{{ section.settings.title | newline_to_br }}</h2>
+      {% if section.settings.btn_label != blank %}
+        <a href="{{ section.settings.btn_link | default: '#' }}" class="tm-hiw-link">
+          {{ section.settings.btn_label }}
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="tm-hiw-right">
+      <div class="tm-hiw-carousel-wrap">
+        <button class="tm-hiw-arrow tm-hiw-prev" aria-label="Previous">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="tm-hiw-grid">
+          {% for block in section.blocks %}
+            <div class="tm-hiw-card" {{ block.shopify_attributes }}>
+              <div class="tm-hiw-image">
+                {% if block.settings.image != blank %}
+                  <img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.title }}" loading="lazy">
+                {% else %}
+                  {% case forloop.index %}
+                    {% when 1 %}
+                      <img src="{{ '1._unfold.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+                    {% when 2 %}
+                      <img src="{{ '2._activate.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+                    {% when 3 %}
+                      <img src="{{ '3apply.jpg' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+                    {% when 4 %}
+                      <img src="{{ '5._remove.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+                    {% else %}
+                      <img src="{{ '6._finish.png' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+                  {% endcase %}
+                {% endif %}
+                <div class="tm-hiw-number">{{ block.settings.number }}</div>
+              </div>
+              <div class="tm-hiw-card-title">{{ block.settings.title }}</div>
+              <div class="tm-hiw-card-desc">{{ block.settings.text }}</div>
+            </div>
+          {% endfor %}
+        </div>
+        <button class="tm-hiw-arrow tm-hiw-next" aria-label="Next">
+          <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var section = document.querySelector('#shopify-section-{{ section.id }}');
+    if (!section) return;
+    var grid = section.querySelector('.tm-hiw-grid');
+    var prevBtn = section.querySelector('.tm-hiw-prev');
+    var nextBtn = section.querySelector('.tm-hiw-next');
+
+    if (prevBtn && nextBtn && grid) {
+      prevBtn.addEventListener('click', function() {
+        grid.scrollBy({ left: -grid.offsetWidth, behavior: 'smooth' });
+      });
+      nextBtn.addEventListener('click', function() {
+        grid.scrollBy({ left: grid.offsetWidth, behavior: 'smooth' });
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Mockup - How It Works",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "HOW IT WORKS"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "Five stages.\nOne intelligent technology."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "DISCOVER MORE"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stage",
+      "name": "Stage Card",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "1"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "ENCAPSULATED"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Actives are safely protected within the nanofibre matrix."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mockup - How It Works",
+      "blocks": [
+        {
+          "type": "stage",
+          "settings": {
+            "number": "1",
+            "title": "ENCAPSULATED",
+            "text": "Actives are safely protected within the nanofibre matrix."
+          }
+        },
+        {
+          "type": "stage",
+          "settings": {
+            "number": "2",
+            "title": "ACTIVATED",
+            "text": "Water or mist activates the matrix."
+          }
+        },
+        {
+          "type": "stage",
+          "settings": {
+            "number": "3",
+            "title": "RELEASED",
+            "text": "The fibres dissolve, releasing the actives."
+          }
+        },
+        {
+          "type": "stage",
+          "settings": {
+            "number": "4",
+            "title": "APPLIED",
+            "text": "The formula adheres closely and evenly."
+          }
+        },
+        {
+          "type": "stage",
+          "settings": {
+            "number": "5",
+            "title": "EXPERIENCED",
+            "text": "Skin feels renewed, hydrated and radiant."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

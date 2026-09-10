@@ -1,0 +1,1114 @@
+<!-- sections/experience-under-microscope.liquid -->
+{%- liquid
+  assign animation = section.settings.animation
+  assign setwidth = section.settings.setwidth
+  assign bg_color = section.settings.bg_color | default: '#010101'
+  assign accent_color = section.settings.accent_color | default: '#b8963e'
+  assign text_color = section.settings.text_color | default: '#ffffff'
+  assign desc_color = section.settings.desc_color | default: '#cccccc'
+  assign border_color = section.settings.border_color | default: 'rgba(255, 255, 255, 0.08)'
+-%}
+
+{%- render 'style-section' -%}
+
+<style>
+  .customstyle{{ section.id }} {
+    background-color: {{ bg_color }};
+    color: {{ text_color }};
+    padding-top: 80px;
+    padding-bottom: 80px;
+    overflow: hidden;
+  }
+  
+  .customstyle{{ section.id }} .microscope-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  
+  .customstyle{{ section.id }} .microscope-media-col {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .customstyle{{ section.id }} .microscope-info-col {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-left: 55px;
+    padding-right: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  /* Left Panel: Media Explorer Container */
+  .customstyle{{ section.id }} .microscope-media-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #0c0c0e;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .customstyle{{ section.id }} .microscope-media-display {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+  .customstyle{{ section.id }} .media-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), visibility 0.6s;
+  }
+  
+  .customstyle{{ section.id }} .media-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+  }
+  
+  .customstyle{{ section.id }} .bg-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .customstyle{{ section.id }} .bg-media-placeholder {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: radial-gradient(circle at center, #1a1a1f 0%, #0d0d0f 100%);
+  }
+
+  /* Overlay Vignette */
+  .customstyle{{ section.id }} .microscope-media-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(1, 1, 1, 0.2) 0%, rgba(1, 1, 1, 0.6) 100%);
+    z-index: 3;
+    pointer-events: none;
+  }
+  
+  /* Vertical Timeline */
+  .customstyle{{ section.id }} .microscope-timeline {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    align-items: flex-start;
+  }
+  
+  .customstyle{{ section.id }} .timeline-line-wrap {
+    position: absolute;
+    left: 7px;
+    top: 10px;
+    bottom: 10px;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  
+  .customstyle{{ section.id }} .timeline-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 0%;
+    background: {{ accent_color }};
+    box-shadow: 0 0 10px {{ accent_color }};
+    transition: height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .customstyle{{ section.id }} .timeline-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  .customstyle{{ section.id }} .item-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2.5px solid rgba(255, 255, 255, 0.3);
+    background: #010101;
+    z-index: 2;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-sizing: border-box;
+  }
+  
+  .customstyle{{ section.id }} .timeline-item:hover .item-dot {
+    border-color: {{ accent_color }};
+    transform: scale(1.1);
+  }
+  
+  .customstyle{{ section.id }} .timeline-item.active .item-dot {
+    border-color: {{ accent_color }};
+    background: {{ accent_color }};
+    box-shadow: 0 0 12px {{ accent_color }};
+  }
+  
+  .customstyle{{ section.id }} .item-label-wrap {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(1px);
+  }
+  
+  .customstyle{{ section.id }} .item-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 4px;
+    font-family: var(--g-font-2), sans-serif;
+    transition: color 0.3s;
+  }
+  
+  .customstyle{{ section.id }} .timeline-item.active .item-label {
+    color: {{ accent_color }};
+  }
+  
+  .customstyle{{ section.id }} .item-title {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.3);
+    font-family: var(--g-font-2), sans-serif;
+    transition: color 0.3s;
+  }
+  
+  .customstyle{{ section.id }} .timeline-item.active .item-title {
+    color: #ffffff;
+  }
+  
+  /* Magnifying Circle Inset */
+  .customstyle{{ section.id }} .magnifier-inset {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 2px solid {{ accent_color }};
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    z-index: 4;
+    background-color: #0d0d0f;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .customstyle{{ section.id }} .magnifier-inset:hover {
+    transform: translateX(-50%) scale(1.05);
+  }
+  
+  .customstyle{{ section.id }} .magnifier-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Scroll Explore Indicator */
+  .customstyle{{ section.id }} .scroll-explore {
+    position: absolute;
+    left: 40px;
+    bottom: 40px;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .customstyle{{ section.id }} .scroll-explore:hover {
+    color: {{ accent_color }};
+  }
+  
+  .customstyle{{ section.id }} .scroll-text {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-family: var(--g-font-2), sans-serif;
+  }
+  
+  .customstyle{{ section.id }} .scroll-icon-wrap {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s;
+  }
+  
+  .customstyle{{ section.id }} .scroll-icon-wrap svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.5;
+  }
+  
+  /* Right Panel: Information Column Styles */
+  .customstyle{{ section.id }} .micro-subtitle {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: {{ accent_color }};
+    font-weight: 700;
+    font-family: var(--g-font-2), sans-serif;
+    margin-bottom: 15px;
+    display: inline-block;
+  }
+  
+  .customstyle{{ section.id }} .micro-title {
+    font-size: 38px;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-family: var(--g-font-1), serif;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  
+  /* Decorative Diamond Divider */
+  .customstyle{{ section.id }} .micro-divider {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 12px;
+  }
+  
+  .customstyle{{ section.id }} .micro-divider::before,
+  .customstyle{{ section.id }} .micro-divider::after {
+    content: "";
+    flex: 0 1 40px;
+    height: 1px;
+    background: rgba(184, 150, 62, 0.4);
+  }
+  
+  .customstyle{{ section.id }} .micro-divider-diamond {
+    width: 7px;
+    height: 7px;
+    background: {{ accent_color }};
+    transform: rotate(45deg);
+  }
+  
+  .customstyle{{ section.id }} .micro-desc {
+    color: {{ desc_color }};
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    font-family: var(--g-font-2), sans-serif;
+  }
+  
+  /* Feature List Styles */
+  .customstyle{{ section.id }} .feature-list-wrap {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+  }
+  
+  .customstyle{{ section.id }} .feature-item-row {
+    display: flex;
+    gap: 20px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid {{ border_color }};
+    align-items: flex-start;
+  }
+  
+  .customstyle{{ section.id }} .feature-item-row:first-child {
+    padding-top: 0;
+  }
+  
+  .customstyle{{ section.id }} .feature-item-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .customstyle{{ section.id }} .feature-icon-container {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid {{ accent_color }};
+    background-color: rgba(184, 150, 62, 0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: {{ accent_color }};
+    transition: all 0.3s ease;
+  }
+  
+  .customstyle{{ section.id }} .feature-item-row:hover .feature-icon-container {
+    background-color: {{ accent_color }};
+    color: #000000;
+    box-shadow: 0 0 15px rgba(184, 150, 62, 0.3);
+  }
+  
+  .customstyle{{ section.id }} .feature-icon-container svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .customstyle{{ section.id }} .feature-content h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: {{ accent_color }};
+    letter-spacing: 0.1em;
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    font-family: var(--g-font-2), sans-serif;
+  }
+  
+  .customstyle{{ section.id }} .feature-content p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: {{ desc_color }};
+    margin: 0;
+    font-family: var(--g-font-2), sans-serif;
+  }
+  
+  /* Outline Link Button */
+  .customstyle{{ section.id }} .btn-micro-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid {{ accent_color }};
+    background: transparent;
+    color: {{ accent_color }} !important;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    padding: 15px 36px;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    align-self: flex-start;
+    font-family: var(--g-font-2), sans-serif;
+  }
+  
+  .customstyle{{ section.id }} .btn-micro-cta:hover {
+    background-color: {{ accent_color }};
+    color: #000000 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(184, 150, 62, 0.25);
+  }
+  
+  .customstyle{{ section.id }} .btn-micro-cta svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    fill: none;
+    transition: transform 0.3s;
+  }
+  
+  .customstyle{{ section.id }} .btn-micro-cta:hover svg {
+    transform: translateX(4px);
+  }
+  
+  /* Responsive Breakpoints */
+  @media (max-width: 991px) {
+    .customstyle{{ section.id }} {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+    
+    .customstyle{{ section.id }} .microscope-media-col {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-bottom: 45px;
+    }
+    
+    .customstyle{{ section.id }} .microscope-info-col {
+      flex: 0 0 100%;
+      max-width: 100%;
+      padding-left: 15px;
+    }
+    
+    .customstyle{{ section.id }} .microscope-media-container {
+      aspect-ratio: 4 / 3;
+    }
+    
+    .customstyle{{ section.id }} .microscope-timeline {
+      left: 30px;
+    }
+    
+    .customstyle{{ section.id }} .scroll-explore {
+      left: 30px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .customstyle{{ section.id }} {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+    
+    .customstyle{{ section.id }} .microscope-media-container {
+      aspect-ratio: 1 / 1;
+    }
+    
+    .customstyle{{ section.id }} .microscope-timeline {
+      left: 20px;
+      gap: 25px;
+    }
+    
+    .customstyle{{ section.id }} .item-label-wrap {
+      display: none; /* Hide labels on mobile to prevent overflow */
+    }
+    
+    .customstyle{{ section.id }} .magnifier-inset {
+      width: 100px;
+      height: 100px;
+      bottom: 20px;
+    }
+    
+    .customstyle{{ section.id }} .scroll-explore {
+      left: 20px;
+      bottom: 20px;
+    }
+    
+    .customstyle{{ section.id }} .micro-title {
+      font-size: 28px;
+    }
+  }
+</style>
+
+<div class="customstyle{{ section.id }} microscope-section-trigger experience-under-microscope-section" data-aos="{{ animation }}">
+  <div class="{{ setwidth }}">
+    <div class="microscope-row">
+      
+      <!-- Left Column: Interactive Microscopic Media Explorer -->
+      <div class="microscope-media-col" data-aos="{{ animation }}" data-aos-delay="100">
+        <div class="microscope-media-container">
+          
+          <!-- Background display slide layers -->
+          <div class="microscope-media-display">
+            
+            <!-- Slide 1 (MICRO) -->
+            <div class="media-slide active" data-slide="1">
+              {%- if section.settings.stage_1_video_url != blank and section.settings.stage_1_video_url contains 'http' -%}
+                <video src="{{ section.settings.stage_1_video_url }}" autoplay loop muted playsinline class="bg-media"></video>
+              {%- elsif section.settings.stage_1_video_url != blank -%}
+                <video src="{{ section.settings.stage_1_video_url | file_url }}" autoplay loop muted playsinline class="bg-media"></video>
+              {%- elsif section.settings.stage_1_image != blank -%}
+                <img src="{{ section.settings.stage_1_image | image_url: width: 1000 }}" alt="Microscope view - Micro" class="bg-media" loading="lazy">
+              {%- else -%}
+                <video autoplay loop muted playsinline class="bg-media" poster="{{ 'nano-fiber-stracture.webp' | asset_url }}">
+                  <source src="{{ 'Visual 2 Decomposition.mp4' | file_url }}" type="video/mp4">
+                  <source src="{{ '2_nanofibre_activation_rewards.mp4' | file_url }}" type="video/mp4">
+                  <source src="{{ 'a3f8b7ec2b264fbda558acd951f1b106.mp4' | file_url }}" type="video/mp4">
+                  <source src="https://cdn.shopify.com/videos/c/o/v/a3f8b7ec2b264fbda558acd951f1b106.mp4" type="video/mp4">
+                </video>
+              {%- endif -%}
+            </div>
+            
+            <!-- Slide 2 (ACTIVE) -->
+            <div class="media-slide" data-slide="2">
+              {%- if section.settings.stage_2_video_url != blank and section.settings.stage_2_video_url contains 'http' -%}
+                <video src="{{ section.settings.stage_2_video_url }}" autoplay loop muted playsinline class="bg-media"></video>
+              {%- elsif section.settings.stage_2_video_url != blank -%}
+                <video src="{{ section.settings.stage_2_video_url | file_url }}" autoplay loop muted playsinline class="bg-media"></video>
+              {%- elsif section.settings.stage_2_image != blank -%}
+                <img src="{{ section.settings.stage_2_image | image_url: width: 1000 }}" alt="Microscope view - Active" class="bg-media" loading="lazy">
+              {%- else -%}
+                <img src="{{ 'active-ingredients.webp' | asset_url }}" alt="Microscope view - Active" class="bg-media" loading="lazy">
+              {%- endif -%}
+            </div>
+            
+            <!-- Slide 3 (DEEP) -->
+            <div class="media-slide" data-slide="3">
+              {%- if section.settings.stage_3_video_url != blank and section.settings.stage_3_video_url contains 'http' -%}
+                <video src="{{ section.settings.stage_3_video_url }}" autoplay loop muted playsinline class="bg-media"></video>
+              {%- elsif section.settings.stage_3_video_url != blank -%}
+                <video src="{{ section.settings.stage_3_video_url | file_url }}" autoplay loop muted playsinline class="bg-media"></video>
+              {%- elsif section.settings.stage_3_image != blank -%}
+                <img src="{{ section.settings.stage_3_image | image_url: width: 1000 }}" alt="Microscope view - Deep" class="bg-media" loading="lazy">
+              {%- else -%}
+                <img src="{{ 'deep-penetration.webp' | asset_url }}" alt="Microscope view - Deep" class="bg-media" loading="lazy">
+              {%- endif -%}
+            </div>
+            
+            <!-- Slide 4 (RESULT) -->
+            <div class="media-slide" data-slide="4">
+              {%- if section.settings.stage_4_video_url != blank and section.settings.stage_4_video_url contains 'http' -%}
+                <video src="{{ section.settings.stage_4_video_url }}" autoplay loop muted playsinline class="bg-media"></video>
+              {%- elsif section.settings.stage_4_video_url != blank -%}
+                <video src="{{ section.settings.stage_4_video_url | file_url }}" autoplay loop muted playsinline class="bg-media"></video>
+              {%- elsif section.settings.stage_4_image != blank -%}
+                <img src="{{ section.settings.stage_4_image | image_url: width: 1000 }}" alt="Microscope view - Result" class="bg-media" loading="lazy">
+              {%- else -%}
+                <img src="{{ 'ChatGPT_Image_Aug_10_2026_03_22_12_PM.png' | asset_url }}" alt="Microscope view - Result" class="bg-media" loading="lazy">
+              {%- endif -%}
+            </div>
+            
+          </div>
+          
+          <!-- Vignette Overlay -->
+          <div class="microscope-media-overlay"></div>
+          
+          <!-- Vertical Timeline Navigation -->
+          <div class="microscope-timeline">
+            <div class="timeline-line-wrap">
+              <div class="timeline-progress"></div>
+            </div>
+            
+            <!-- Step 1 -->
+            <button class="timeline-item active" data-stage="1" aria-label="Explore Microscope view stage 1">
+              <span class="item-dot"></span>
+              <span class="item-label-wrap">
+                <span class="item-label">{{ section.settings.stage_1_label | default: "MICRO" }}</span>
+                <span class="item-title">{{ section.settings.stage_1_title | default: "Nanofibers Structure" }}</span>
+              </span>
+            </button>
+            
+            <!-- Step 2 -->
+            <button class="timeline-item" data-stage="2" aria-label="Explore Microscope view stage 2">
+              <span class="item-dot"></span>
+              <span class="item-label-wrap">
+                <span class="item-label">{{ section.settings.stage_2_label | default: "ACTIVE" }}</span>
+                <span class="item-title">{{ section.settings.stage_2_title | default: "Ingredient Delivery" }}</span>
+              </span>
+            </button>
+            
+            <!-- Step 3 -->
+            <button class="timeline-item" data-stage="3" aria-label="Explore Microscope view stage 3">
+              <span class="item-dot"></span>
+              <span class="item-label-wrap">
+                <span class="item-label">{{ section.settings.stage_3_label | default: "DEEP" }}</span>
+                <span class="item-title">{{ section.settings.stage_3_title | default: "Skin Penetration" }}</span>
+              </span>
+            </button>
+            
+            <!-- Step 4 -->
+            <button class="timeline-item" data-stage="4" aria-label="Explore Microscope view stage 4">
+              <span class="item-dot"></span>
+              <span class="item-label-wrap">
+                <span class="item-label">{{ section.settings.stage_4_label | default: "RESULT" }}</span>
+                <span class="item-title">{{ section.settings.stage_4_title | default: "Visible Transformation" }}</span>
+              </span>
+            </button>
+          </div>
+          
+          <!-- Magnifier Circular Preview Inset -->
+          <div class="magnifier-inset">
+            {%- if section.settings.magnifier_image != blank -%}
+              <img src="{{ section.settings.magnifier_image | image_url: width: 300 }}" alt="Zoomed nanofibre structure" class="magnifier-img" loading="lazy">
+            {%- else -%}
+              <!-- Inline SVG placeholder showing high quality B&W nanofibre strands -->
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="background:#0c0c0e;" class="magnifier-img">
+                <path d="M 10,40 C 40,30 90,60 120,40 C 150,20 180,50 195,45" stroke="#ffffff" stroke-width="1" fill="none" opacity="0.3"/>
+                <path d="M 5,90 C 45,115 80,75 130,95 C 160,110 185,80 198,92" stroke="#eeeeee" stroke-width="1.2" fill="none" opacity="0.45"/>
+                <path d="M 12,145 C 50,120 75,160 125,135 C 155,115 175,150 190,140" stroke="#cccccc" stroke-width="0.8" fill="none" opacity="0.25"/>
+                <path d="M 40,5 C 70,60 55,120 70,195" stroke="#ffffff" stroke-width="1.4" fill="none" opacity="0.35"/>
+                <path d="M 110,8 C 135,50 115,130 138,192" stroke="#eeeeee" stroke-width="1.1" fill="none" opacity="0.4"/>
+                <path d="M 155,2 C 140,75 165,115 150,198" stroke="#dddddd" stroke-width="0.9" fill="none" opacity="0.2"/>
+              </svg>
+            {%- endif -%}
+          </div>
+          
+          <!-- Scroll to Explore Prompt -->
+          <a href="#microscope-detail-trigger-{{ section.id }}" class="scroll-explore" aria-label="Explore microscope structure description">
+            <span class="scroll-text">{{ section.settings.scroll_label | default: "SCROLL TO EXPLORE" }}</span>
+            <span class="scroll-icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5" /></svg>
+            </span>
+          </a>
+          
+        </div>
+      </div>
+      
+      <!-- Right Column: Scientific Details and Spec Columns -->
+      <div id="microscope-detail-trigger-{{ section.id }}" class="microscope-info-col" data-aos="{{ animation }}" data-aos-delay="200">
+        
+        {%- if section.settings.subtitle != blank -%}
+          <span class="micro-subtitle">{{ section.settings.subtitle }}</span>
+        {%- endif -%}
+        
+        {%- if section.settings.title != blank -%}
+          <h2 class="micro-title font-family-1">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        
+        <!-- Diamond Divider -->
+        <div class="micro-divider">
+          <span class="micro-divider-diamond"></span>
+        </div>
+        
+        {%- if section.settings.desc != blank -%}
+          <div class="micro-desc rte font-family-2">
+            {{ section.settings.desc }}
+          </div>
+        {%- endif -%}
+        
+        <!-- Features List -->
+        <div class="feature-list-wrap">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'feature' -%}
+              <div class="feature-item-row" {{ block.shopify_attributes }}>
+                
+                <!-- Circular Icon Outline Container -->
+                <div class="feature-icon-container">
+                  {%- if block.settings.icon == 'molecule' -%}
+                    <!-- Molecule/Network SVG -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <circle cx="12" cy="12" r="3" />
+                      <circle cx="5" cy="5" r="2" />
+                      <circle cx="19" cy="5" r="2" />
+                      <circle cx="5" cy="19" r="2" />
+                      <circle cx="19" cy="19" r="2" />
+                      <line x1="6.5" y1="6.5" x2="10.5" y2="10.5" />
+                      <line x1="17.5" y1="6.5" x2="13.5" y2="10.5" />
+                      <line x1="6.5" y1="17.5" x2="10.5" y2="13.5" />
+                      <line x1="17.5" y1="17.5" x2="13.5" y2="13.5" />
+                    </svg>
+                  {%- elsif block.settings.icon == 'delivery' -%}
+                    <!-- Delivery/Active Penetration SVG -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M12 21a6 6 0 0 0 6-6c0-4-6-11-6-11S6 11 6 15a6 6 0 0 0 6 6z" />
+                      <path d="M12 10v7M9 14l3 3 3-3" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  {%- elsif block.settings.icon == 'leaf' -%}
+                    <!-- Leaf/Preservative-Free SVG -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M2 22C2 12 10 4 22 2c0 10-8 18-20 20z" />
+                      <path d="M9 15l6-6" />
+                    </svg>
+                  {%- else -%}
+                    <!-- Generic Bullet SVG -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <circle cx="12" cy="12" r="5" />
+                    </svg>
+                  {%- endif -%}
+                </div>
+                
+                <!-- Feature Title & Details -->
+                <div class="feature-content">
+                  {%- if block.settings.title != blank -%}
+                    <h3>{{ block.settings.title }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.description != blank -%}
+                    <p>{{ block.settings.description }}</p>
+                  {%- endif -%}
+                </div>
+                
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        
+        <!-- CTA Outline Button -->
+        {%- if section.settings.btn_label != blank and section.settings.btn_link != blank -%}
+          <a href="{{ section.settings.btn_link }}" class="btn-micro-cta">
+            {{ section.settings.btn_label }}
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        {%- endif -%}
+        
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    function initMicroscopeTimeline(sectionId) {
+      const section = document.querySelector('.customstyle' + sectionId);
+      if (!section) return;
+      
+      const timelineItems = section.querySelectorAll('.timeline-item');
+      const mediaSlides = section.querySelectorAll('.media-slide');
+      const progress = section.querySelector('.timeline-progress');
+      
+      function updateProgress() {
+        const activeIndex = Array.from(timelineItems).findIndex(item => item.classList.contains('active'));
+        if (activeIndex === -1) return;
+        const percent = (activeIndex / (timelineItems.length - 1)) * 100;
+        if (progress) {
+          progress.style.height = percent + '%';
+        }
+      }
+      
+      timelineItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+          timelineItems.forEach(i => i.classList.remove('active'));
+          mediaSlides.forEach(s => s.classList.remove('active'));
+          
+          item.classList.add('active');
+          const targetSlide = section.querySelector(`.media-slide[data-slide="${index + 1}"]`);
+          if (targetSlide) {
+            targetSlide.classList.add('active');
+          }
+          
+          updateProgress();
+        });
+      });
+      
+      updateProgress();
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      initMicroscopeTimeline('{{ section.id }}');
+    });
+    
+    document.addEventListener('shopify:section:load', (e) => {
+      if (e.detail.sectionId === '{{ section.id }}') {
+        initMicroscopeTimeline('{{ section.id }}');
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Experience Microscope",
+  "class": "index-section-experience-under-microscope",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "select",
+      "id": "animation",
+      "options": [
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "fade-up",
+          "label": "Fade Up"
+        },
+        {
+          "value": "zoom-in",
+          "label": "Zoom In"
+        }
+      ],
+      "default": "fade-up",
+      "label": "Select Animation"
+    },
+    {
+      "type": "select",
+      "id": "setwidth",
+      "label": "Full Width Wrapper",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Section Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "SUB MICROSCOP"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Science you can see. Results you can feel."
+    },
+    {
+      "type": "richtext",
+      "id": "desc",
+      "label": "Description",
+      "default": "<p>Our patented nanofibre technology is designed for precise delivery, activating only on contact with wet skin – ensuring the maximum performance of each pure ingredient.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Explorer Controls"
+    },
+    {
+      "type": "text",
+      "id": "scroll_label",
+      "label": "Scroll Label",
+      "default": "SCROLL TO EXPLORE"
+    },
+    {
+      "type": "image_picker",
+      "id": "magnifier_image",
+      "label": "Circular Magnifier Image"
+    },
+    {
+      "type": "header",
+      "content": "Stage 1 (MICRO)"
+    },
+    {
+      "type": "text",
+      "id": "stage_1_label",
+      "label": "Stage 1 Label",
+      "default": "MICRO"
+    },
+    {
+      "type": "text",
+      "id": "stage_1_title",
+      "label": "Stage 1 Subtitle",
+      "default": "Structure of Nanofibers"
+    },
+    {
+      "type": "image_picker",
+      "id": "stage_1_image",
+      "label": "Stage 1 Main Image"
+    },
+    {
+      "type": "text",
+      "id": "stage_1_video_url",
+      "label": "Stage 1 External Video URL (mp4)",
+      "default": "https://cdn.shopify.com/videos/c/o/v/e3f98bcbeb284f078f969195472fb265.mp4"
+    },
+    {
+      "type": "header",
+      "content": "Stage 2 (ACTIVE)"
+    },
+    {
+      "type": "text",
+      "id": "stage_2_label",
+      "label": "Stage 2 Label",
+      "default": "ACTIVE"
+    },
+    {
+      "type": "text",
+      "id": "stage_2_title",
+      "label": "Stage 2 Subtitle",
+      "default": "Ingredient Delivery"
+    },
+    {
+      "type": "image_picker",
+      "id": "stage_2_image",
+      "label": "Stage 2 Main Image"
+    },
+    {
+      "type": "text",
+      "id": "stage_2_video_url",
+      "label": "Stage 2 External Video URL (mp4)"
+    },
+    {
+      "type": "header",
+      "content": "Stage 3 (DEEP)"
+    },
+    {
+      "type": "text",
+      "id": "stage_3_label",
+      "label": "Stage 3 Label",
+      "default": "DEEP"
+    },
+    {
+      "type": "text",
+      "id": "stage_3_title",
+      "label": "Stage 3 Subtitle",
+      "default": "Skin penetration"
+    },
+    {
+      "type": "image_picker",
+      "id": "stage_3_image",
+      "label": "Stage 3 Main Image"
+    },
+    {
+      "type": "text",
+      "id": "stage_3_video_url",
+      "label": "Stage 3 External Video URL (mp4)"
+    },
+    {
+      "type": "header",
+      "content": "Stage 4 (RESULT)"
+    },
+    {
+      "type": "text",
+      "id": "stage_4_label",
+      "label": "Stage 4 Label",
+      "default": "RESULT"
+    },
+    {
+      "type": "text",
+      "id": "stage_4_title",
+      "label": "Stage 4 Subtitle",
+      "default": "Visible Transformation"
+    },
+    {
+      "type": "image_picker",
+      "id": "stage_4_image",
+      "label": "Stage 4 Main Image"
+    },
+    {
+      "type": "text",
+      "id": "stage_4_video_url",
+      "label": "Stage 4 External Video URL (mp4)"
+    },
+    {
+      "type": "header",
+      "content": "CTA Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "DISCOVER TEHNOLOGIA"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Theme Colors Customizer"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#010101"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent / Gold Color",
+      "default": "#b8963e"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Description / Muted Color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Borders Color",
+      "default": "rgba(255, 255, 255, 0.08)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Bullet",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Select Icon",
+          "options": [
+            {
+              "value": "molecule",
+              "label": "Chemical Molecule"
+            },
+            {
+              "value": "delivery",
+              "label": "Active Delivery"
+            },
+            {
+              "value": "leaf",
+              "label": "Preservative-Free Leaf"
+            }
+          ],
+          "default": "molecule"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title",
+          "default": "PATENTED NANOFIBER TECHNOLOGY"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Feature Description",
+          "default": "Ultra-fine nanofibers create a smart structure that remains dry and stable until activated."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Experience Microscope Explorer",
+      "category": "Technology",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "molecule",
+            "title": "PATENTED NANOFIBER TECHNOLOGY",
+            "description": "Ultra-fine nanofibers create a smart structure that remains dry and stable until activated."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "delivery",
+            "title": "ACTIVE DELIVERY",
+            "description": "On contact with wet skin, the fibers dissolve instantly, delivering the active ingredients directly to where they are needed most."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "leaf",
+            "title": "FORMAT WITHOUT PRESERVATIVES",
+            "description": "Our dry format eliminates the need for parabens, added fragrances and unnecessary preservatives - perfect for sensitive skin."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

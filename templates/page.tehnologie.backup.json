@@ -1,0 +1,406 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "sub_nav": {
+      "type": "technology-sub-nav",
+      "blocks": {
+        "link_1": {
+          "type": "link",
+          "settings": {
+            "title": "Overview",
+            "target_id": "#technology-hero"
+          }
+        },
+        "link_2": {
+          "type": "link",
+          "settings": {
+            "title": "Nanofibre Technology",
+            "target_id": "#technology-nanofibres"
+          }
+        },
+        "link_3": {
+          "type": "link",
+          "settings": {
+            "title": "How It Works",
+            "target_id": "#technology-how-it-works"
+          }
+        },
+        "link_4": {
+          "type": "link",
+          "settings": {
+            "title": "Formula",
+            "target_id": "#technology-formula"
+          }
+        },
+        "link_5": {
+          "type": "link",
+          "settings": {
+            "title": "How to Use",
+            "target_id": "#technology-how-to-use"
+          }
+        },
+        "link_6": {
+          "type": "link",
+          "settings": {
+            "title": "Rituals",
+            "target_id": "#technology-rituals"
+          }
+        }
+      },
+      "block_order": [
+        "link_1",
+        "link_2",
+        "link_3",
+        "link_4",
+        "link_5",
+        "link_6"
+      ],
+      "settings": {
+        "enable_sticky": true,
+        "sticky_offset": 60
+      }
+    },
+    "hero": {
+      "type": "technology-hero",
+      "settings": {
+        "bg_video": "https://cdn.shopify.com/videos/c/o/v/daa8f8991d7e47419cbd9ff37f3f6f05.mp4",
+        "mobile_image": "shopify://shop_images/mobile_banner-1.webp",
+        "overlay_opacity": 40,
+        "position_text": "bot-left",
+        "label": "Advanced Nanofibre Skincare",
+        "heading": "Where Science Becomes Ritual",
+        "text": "<p>Every Lumina ritual begins with an advanced nanofibre structure designed to hold carefully selected active ingredients in an elegant, dry format until the moment of activation.</p>",
+        "button_label": "Explore the Technology",
+        "button_link": "#technology-nanofibres"
+      }
+    },
+    "nanofibres": {
+      "type": "technology-nanofibres",
+      "settings": {
+        "image_position": "left",
+        "image": "shopify://shop_images/Comparison.pdf_2_423ab0bc-92da-4152-8a99-1d06914edfc5.png",
+        "heading": "A Structure of Extraordinary Fineness",
+        "text": "<p>Nanofibres are extremely fine fibres arranged into a light, delicate matrix. In Lumina masks, this microscopic structure carries the formula in a dry format rather than suspending it in a conventional liquid-soaked sheet. When activated with the recommended amount of water or facial mist, the structure begins to dissolve, releasing the formula across the skin.</p>",
+        "highlight_text": "Dry until activated. Precise by design."
+      }
+    },
+    "how_it_works": {
+      "type": "technology-how-it-works",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "image": "shopify://shop_images/1.png",
+            "title": "Encapsulated",
+            "text": "Active ingredients are incorporated into an ultra-fine, dry nanofibre structure."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "image": "shopify://shop_images/2.png",
+            "title": "Activated",
+            "text": "Water or facial mist begins to dissolve the delicate matrix."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "image": "shopify://shop_images/3.png",
+            "title": "Released",
+            "text": "The formula is distributed across the area where the mask is applied."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "number": "04",
+            "image": "shopify://shop_images/4.png",
+            "title": "Experienced",
+            "text": "The fibres disappear as the skincare ritual becomes part of the skin experience."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4"
+      ],
+      "settings": {
+        "subheading": "LUMINA EUROPA",
+        "heading": "From Fibre to Skin",
+        "intro": ""
+      }
+    },
+    "why_nanofibre": {
+      "type": "technology-why-nanofibre",
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Precision.png",
+            "card_bg": "#111111",
+            "title": "Precision",
+            "text": "The formula is integrated into an ultra-fine structure designed for controlled activation and focused application."
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Freshness.png",
+            "card_bg": "#111111",
+            "title": "Freshness Before Activation",
+            "text": "The dry presentation keeps the ritual separate from water until the moment it is prepared for use."
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Experience.png",
+            "card_bg": "#111111",
+            "title": "A Different Experience",
+            "text": "Lightweight, delicate and transformative, the material creates a ritual unlike a conventional liquid-soaked sheet mask."
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3"
+      ],
+      "settings": {
+        "heading": "Why Lumina Chose Nanofibre Technology"
+      }
+    },
+    "formula": {
+      "type": "technology-formula",
+      "blocks": {
+        "ing_1": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Hyaluronic Acid",
+            "url": ""
+          }
+        },
+        "ing_2": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Vitamin C",
+            "url": ""
+          }
+        },
+        "ing_3": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Vitamin E",
+            "url": ""
+          }
+        },
+        "ing_4": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Niacinamide",
+            "url": ""
+          }
+        },
+        "ing_5": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Azelaic Acid",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "ing_1",
+        "ing_2",
+        "ing_3",
+        "ing_4",
+        "ing_5"
+      ],
+      "settings": {
+        "image_position": "left",
+        "image": "shopify://shop_images/Togather.png",
+        "heading": "Technology and Formula, Developed Together",
+        "text": "<p>Nanofibre technology is not separate from the formula it carries. The structure, active ingredients and method of activation must work together to create the intended experience. Each Lumina ritual combines the precision of the material with ingredients selected for a particular skin need—from hydration and comfort to radiance and renewal.</p>",
+        "button_label": "Explore the Collection",
+        "button_link": ""
+      }
+    },
+    "how_to_use": {
+      "type": "technology-how-to-use",
+      "blocks": {
+        "frame_1": {
+          "type": "frame",
+          "settings": {
+            "image": "shopify://shop_images/Prepare.png",
+            "title": "Prepare",
+            "text": "Begin with clean, dry skin."
+          }
+        },
+        "frame_2": {
+          "type": "frame",
+          "settings": {
+            "image": "shopify://shop_images/Position.png",
+            "title": "Position",
+            "text": "Remove the dry mask carefully and place it over the intended area."
+          }
+        },
+        "frame_3": {
+          "type": "frame",
+          "settings": {
+            "image": "shopify://shop_images/Activate.png",
+            "title": "Activate",
+            "text": "Apply the recommended amount of water or mist until the nanofibre structure begins to dissolve."
+          }
+        },
+        "frame_4": {
+          "type": "frame",
+          "settings": {
+            "image": "shopify://shop_images/Complete.png",
+            "title": "Complete",
+            "text": "Allow the formula to settle into the skin and follow the instructions provided with your chosen mask."
+          }
+        }
+      },
+      "block_order": [
+        "frame_1",
+        "frame_2",
+        "frame_3",
+        "frame_4"
+      ],
+      "settings": {
+        "heading": "A Ritual Activated in Moments",
+        "enable_button": true,
+        "button_label": "View Full Application Guide",
+        "button_link": ""
+      }
+    },
+    "rituals": {
+      "type": "technology-rituals",
+      "blocks": {
+        "ritual_1": {
+          "type": "ritual-card",
+          "settings": {
+            "image": "shopify://shop_images/Morning.png",
+            "title": "Morning Ritual",
+            "text": "Hydration and freshness for the beginning of the day.",
+            "button_label": "Discover Morning Care",
+            "button_link": ""
+          }
+        },
+        "ritual_2": {
+          "type": "ritual-card",
+          "settings": {
+            "image": "shopify://shop_images/Evening.png",
+            "title": "Evening Ritual",
+            "text": "A quiet moment of comfort, renewal and restoration.",
+            "button_label": "Discover Evening Care",
+            "button_link": ""
+          }
+        },
+        "ritual_3": {
+          "type": "ritual-card",
+          "settings": {
+            "image": "shopify://shop_images/Recovery.png",
+            "title": "Recovery Ritual",
+            "text": "Focused care for moments when the skin feels tired or unsettled.",
+            "button_label": "Discover Recovery",
+            "button_link": ""
+          }
+        },
+        "ritual_4": {
+          "type": "ritual-card",
+          "settings": {
+            "image": "shopify://shop_images/Radiance.png",
+            "title": "Radiance Ritual",
+            "text": "A considered ritual before an occasion or whenever the skin needs renewed luminosity.",
+            "button_label": "Discover Radiance",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "ritual_1",
+        "ritual_2",
+        "ritual_3",
+        "ritual_4"
+      ],
+      "settings": {
+        "heading": "Designed to Work in Harmony",
+        "intro": "<p>Every Lumina mask is a focused moment of care. Choose the ritual according to your skin, the rhythm of your day and the result you wish to feel.</p>"
+      }
+    },
+    "scientific_foundation": {
+      "type": "technology-scientific-foundation",
+      "blocks": {
+        "cred_1": {
+          "type": "credibility-item",
+          "settings": {
+            "text": "Science Partner 1"
+          }
+        },
+        "cred_2": {
+          "type": "credibility-item",
+          "settings": {
+            "text": "Formulation Lab"
+          }
+        },
+        "cred_3": {
+          "type": "credibility-item",
+          "settings": {
+            "text": "Dermatology Verified"
+          }
+        }
+      },
+      "block_order": [
+        "cred_1",
+        "cred_2",
+        "cred_3"
+      ],
+      "settings": {
+        "heading": "Developed with Scientific Precision",
+        "text": "<p>Lumina Europa works with specialist technology and formulation partners to bring advanced nanofibre skincare into a refined, accessible ritual. Further information about the technology, ingredients and supporting documentation will be introduced as the Lumina scientific library develops.</p>",
+        "enable_button": true,
+        "button_label": "Explore Our Scientific Library",
+        "button_link": ""
+      }
+    },
+    "cta": {
+      "type": "technology-cta",
+      "settings": {
+        "bg_video": "",
+        "overlay_opacity": 40,
+        "heading": "Technology Only Matters When It Becomes Part of Your Ritual.",
+        "button_1_label": "Discover Your Ritual",
+        "button_1_link": "shopify://pages/creeaza-ți-rutina",
+        "button_2_label": "Explore the Collection",
+        "button_2_link": "shopify://collections/all"
+      }
+    }
+  },
+  "order": [
+    "sub_nav",
+    "hero",
+    "nanofibres",
+    "how_it_works",
+    "why_nanofibre",
+    "formula",
+    "how_to_use",
+    "rituals",
+    "scientific_foundation",
+    "cta"
+  ]
+}

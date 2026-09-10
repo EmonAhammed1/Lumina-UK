@@ -1,0 +1,533 @@
+<!-- sections/experience-features.liquid -->
+{%- liquid
+  assign animation = section.settings.animation
+  assign setwidth = section.settings.setwidth
+  assign banner_image = section.settings.banner_image
+  assign min_height_mobile = section.settings.min_height_mobile
+  assign image_zoom = section.settings.image_zoom | default: 1.0
+  assign image_align_x = section.settings.image_align_x | default: 50
+  assign image_align_y = section.settings.image_align_y | default: 50
+  assign bg_text_col = section.settings.bg_text_col
+  
+  assign color_heading = section.settings.color_heading
+  assign color_text = section.settings.color_text
+  assign color_line = section.settings.color_line
+-%}
+
+{%- render 'style-section' -%}
+
+<style>
+  .customstyle{{ section.id }} {
+    overflow: hidden;
+    background-color: {{ bg_text_col }};
+  }
+  .customstyle{{ section.id }} .row-flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .customstyle{{ section.id }} .experience-features-col {
+    background-color: {{ bg_text_col }};
+    display: flex;
+    align-items: center;
+  }
+  .customstyle{{ section.id }} .experience-feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 15px;
+  }
+  .customstyle{{ section.id }} .feature-icon-wrap {
+    width: 90px;
+    height: 90px;
+    border: 1px solid {{ color_line }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: transparent;
+  }
+  .customstyle{{ section.id }} .feature-icon-wrap:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 15px rgba(184, 150, 62, 0.25);
+    border-color: {{ color_heading }};
+  }
+  .customstyle{{ section.id }} .feature-icon-wrap img {
+    max-width: 45px;
+    max-height: 45px;
+    object-fit: contain;
+  }
+  .customstyle{{ section.id }} .feature-icon-wrap svg {
+    width: 40px;
+    height: 40px;
+    fill: none;
+    stroke: {{ color_line }};
+    stroke-width: 1.5;
+    transition: stroke 0.4s ease;
+  }
+  .customstyle{{ section.id }} .feature-icon-wrap:hover svg {
+    stroke: {{ color_heading }};
+  }
+  .customstyle{{ section.id }} .feature-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: {{ color_heading }};
+    font-family: var(--g-font-2);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .customstyle{{ section.id }} .feature-line {
+    height: 1px;
+    width: 25px;
+    background-color: {{ color_line }};
+    margin: 0 auto 16px auto;
+  }
+  .customstyle{{ section.id }} .feature-desc {
+    color: {{ color_text }};
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 240px;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+  .customstyle{{ section.id }} .experience-banner-col {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .customstyle{{ section.id }} .experience-banner-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    flex-grow: 1;
+  }
+  .customstyle{{ section.id }} .experience-banner-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(to right, {{ bg_text_col }} 0%, rgba(1, 1, 1, 0) 20%, rgba(1, 1, 1, 0) 80%, {{ bg_text_col }} 100%),
+                linear-gradient(to bottom, rgba(1, 1, 1, 0) 80%, {{ bg_text_col }} 100%),
+                linear-gradient(to top, {{ bg_text_col }} 0%, rgba(1, 1, 1, 0) 10%);
+  }
+  .customstyle{{ section.id }} .banner-image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .customstyle{{ section.id }} .experience-banner-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: {{ image_align_x }}% {{ image_align_y }}% !important;
+    transform: scale({{ image_zoom }}) !important;
+    transform-origin: {{ image_align_x }}% {{ image_align_y }}% !important;
+    transition: transform 0.8s ease !important;
+  }
+  .customstyle{{ section.id }}:hover .experience-banner-img {
+    transform: scale(calc({{ image_zoom }} + 0.05)) !important;
+  }
+  
+  @media (min-width: 992px) {
+    .customstyle{{ section.id }} .experience-banner-col {
+      align-self: stretch;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .customstyle{{ section.id }} .experience-feature-item {
+      align-items: flex-start;
+      text-align: left;
+    }
+    .customstyle{{ section.id }} .feature-icon-wrap {
+      margin: 0 0 20px 0;
+    }
+    .customstyle{{ section.id }} .feature-line {
+      margin: 0 0 16px 0;
+    }
+    .customstyle{{ section.id }} .feature-desc {
+      margin: 0;
+      max-width: 100%;
+    }
+  }
+  
+  @media (max-width: 991px) {
+    .customstyle{{ section.id }} .experience-banner-col {
+      min-height: {{ min_height_mobile }}px;
+      margin-top: 35px;
+    }
+    .customstyle{{ section.id }} .experience-banner-container::after {
+      background: linear-gradient(to bottom, {{ bg_text_col }} 0%, rgba(1, 1, 1, 0) 20%, rgba(1, 1, 1, 0) 80%, {{ bg_text_col }} 100%),
+                  linear-gradient(to right, {{ bg_text_col }} 0%, rgba(1, 1, 1, 0) 10%, rgba(1, 1, 1, 0) 90%, {{ bg_text_col }} 100%);
+    }
+  }
+</style>
+
+<div class="customstyle{{ section.id }} experience-features-section" data-aos="{{ animation }}">
+  <div class="{{ setwidth }}">
+    <div class="section-block p-0">
+      <div class="row no-gutters row-flex align-items-center">
+        
+        <!-- Features List Column (Left) -->
+        <div class="col-12 col-lg-9 py-5 pl-lg-0 pr-lg-5 experience-features-col">
+          <div class="w-100">
+            <div class="row justify-content-start text-lg-left text-center">
+              {%- for block in section.blocks -%}
+                <div class="col-6 col-md-3 mb-4 mb-md-0 experience-feature-item" {{ block.shopify_attributes }} data-aos="{{ animation }}" data-aos-delay="{{ forloop.index | times: 100 }}">
+                  <div class="feature-icon-wrap">
+                    {%- if block.settings.icon != blank -%}
+                      <img src="{{ block.settings.icon | image_url: width: 120 }}" alt="{{ block.settings.title | escape }}" class="lazyload" loading="lazy">
+                    {%- else -%}
+                      <!-- Fallback custom premium SVG icons -->
+                      {%- case forloop.index -%}
+                        {%- when 1 -%}
+                          <!-- Nanofiber Molecule Hexagon -->
+                          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor">
+                            <polygon points="32,8 52,20 52,44 32,56 12,44 12,20" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polygon points="32,20 42,26 42,38 32,44 22,38 22,26" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="32" y1="8" x2="32" y2="20" stroke-linecap="round"/>
+                            <line x1="52" y1="20" x2="42" y2="26" stroke-linecap="round"/>
+                            <line x1="52" y1="44" x2="42" y2="38" stroke-linecap="round"/>
+                            <line x1="32" y1="56" x2="32" y2="44" stroke-linecap="round"/>
+                            <line x1="12" y1="44" x2="22" y2="38" stroke-linecap="round"/>
+                            <line x1="12" y1="20" x2="22" y2="26" stroke-linecap="round"/>
+                            <circle cx="32" cy="8" r="3" fill="currentColor"/>
+                            <circle cx="52" cy="20" r="3" fill="currentColor"/>
+                            <circle cx="52" cy="44" r="3" fill="currentColor"/>
+                            <circle cx="32" cy="56" r="3" fill="currentColor"/>
+                            <circle cx="12" cy="44" r="3" fill="currentColor"/>
+                            <circle cx="12" cy="20" r="3" fill="currentColor"/>
+                          </svg>
+                        {%- when 2 -%}
+                          <!-- Deep Absorption Drop and Skin -->
+                          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor">
+                            <path d="M32,8 C32,8 42,20 42,28 C42,33.5 37.5,38 32,38 C26.5,38 22,33.5 22,28 C22,20 32,8 32,8 Z" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10,46 Q16,43 22,46 T34,46 T46,46 T58,46" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10,52 Q16,49 22,52 T34,52 T46,52 T58,52" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="22" y1="46" x2="22" y2="58" stroke-linecap="round" stroke-dasharray="2 3"/>
+                            <line x1="32" y1="38" x2="32" y2="58" stroke-linecap="round" stroke-dasharray="2 3"/>
+                            <line x1="42" y1="46" x2="42" y2="58" stroke-linecap="round" stroke-dasharray="2 3"/>
+                            <path d="M14,18 L16,20 L14,22 M50,14 L52,16 L50,18" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        {%- when 3 -%}
+                          <!-- Face Lifting Outline -->
+                          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor">
+                            <path d="M20 28 C 20 20, 24 16, 32 16 C 40 16, 44 20, 44 28" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M18 28 H 46" stroke-linecap="round"/>
+                            <path d="M22 28 C 22 42, 32 48, 32 48 C 32 48, 42 42, 42 28" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 40 C 14 46, 20 52, 32 52 C 44 52, 50 46, 52 40" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M52 40 L 56 36 M52 40 L 48 36" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 40 L 8 36 M12 40 L 16 36" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        {%- when 4 -%}
+                          <!-- Radiant Sparkles -->
+                          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor">
+                            <path d="M32,12 C32,22 34,24 44,24 C34,24 32,26 32,36 C32,26 30,24 20,24 C30,24 32,22 32,12 Z" fill="currentColor" stroke="currentColor" stroke-linejoin="round"/>
+                            <path d="M48,34 C48,39 49,40 54,40 C49,40 48,41 48,46 C48,41 47,40 42,40 C47,40 48,39 48,34 Z" fill="currentColor" stroke="currentColor" stroke-linejoin="round"/>
+                            <path d="M18,36 C18,39 19,40 22,40 C19,40 18,41 18,44 C18,41 17,40 14,40 C17,40 18,39 18,36 Z" stroke-linejoin="round"/>
+                          </svg>
+                      {%- endcase -%}
+                    {%- endif -%}
+                  </div>
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="feature-title">{{ block.settings.title }}</h3>
+                  {%- endif -%}
+                  <div class="feature-line"></div>
+                  {%- if block.settings.description != blank -%}
+                    <p class="feature-desc">{{ block.settings.description }}</p>
+                  {%- endif -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+        
+        <!-- Banner Image Column (Right) -->
+        <div class="col-12 col-lg-3 experience-banner-col">
+          <div class="experience-banner-container" data-aos="{{ animation }}" data-aos-delay="500">
+            <div class="banner-image-wrapper">
+              {%- if banner_image != blank -%}
+                {%- assign img_url = banner_image | image_url: width: 1 | replace: 'width=1', 'width={width}' -%}
+                <img class="experience-banner-img lazyload"
+                     src="{{ banner_image | image_url: width: 300 }}"
+                     data-src="{{ img_url }}"
+                     data-widths="[360, 540, 720, 900]"
+                     data-aspectratio="{{ banner_image.aspect_ratio }}"
+                     data-sizes="auto"
+                     alt="{{ banner_image.alt | escape }}"
+                     loading="lazy"
+                     width="{{ banner_image.width }}"
+                     height="{{ banner_image.height }}">
+              {%- else -%}
+                <!-- Fallback or placeholder image when banner not set -->
+                <img class="experience-banner-img lazyload"
+                     src="{{ 'test-2.png' | asset_url }}"
+                     data-src="{{ 'test-2.png' | asset_url }}"
+                     alt="Lumina Europa"
+                     loading="lazy">
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Experience Features",
+  "class": "index-section-experience-features",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "select",
+      "id": "animation",
+      "options": [
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "fade-up",
+          "label": "Fade Up"
+        },
+        {
+          "value": "fade-down",
+          "label": "Fade Down"
+        },
+        {
+          "value": "fade-left",
+          "label": "Fade Left"
+        },
+        {
+          "value": "fade-right",
+          "label": "Fade Right"
+        },
+        {
+          "value": "zoom-in",
+          "label": "Zoom In"
+        },
+        {
+          "value": "zoom-out",
+          "label": "Zoom Out"
+        }
+      ],
+      "default": "fade-up",
+      "label": "Select Animation"
+    },
+    {
+      "type": "select",
+      "id": "setwidth",
+      "label": "Full Width Wrapper",
+      "default": "container-fluid",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image (Right)"
+    },
+    {
+      "type": "range",
+      "id": "min_height_mobile",
+      "min": 250,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Min Height Image (Mobile)",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "image_zoom",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "Image Zoom",
+      "default": 1.0
+    },
+    {
+      "type": "range",
+      "id": "image_align_x",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image Position Horizontal (X)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "image_align_y",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image Position Vertical (Y)",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Section Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_text_col",
+      "label": "Background Features Column",
+      "default": "#010101"
+    },
+    {
+      "type": "color",
+      "id": "bgsection",
+      "label": "Background Section Outer",
+      "default": "#010101"
+    },
+    {
+      "type": "color",
+      "id": "color_heading",
+      "label": "Feature Title Color",
+      "default": "#b8963e"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Feature Description Color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "color_line",
+      "label": "Line & Circle Border Color",
+      "default": "#b8963e"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "text",
+      "id": "paddingsection",
+      "label": "Padding Section",
+      "default": "0px 0px 0px 0px",
+      "info": "Padding: Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "paddingmobile",
+      "label": "Padding Section Mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Padding: Top Right Bottom Left"
+    },
+    {
+      "type": "header",
+      "content": "Section Margin"
+    },
+    {
+      "type": "text",
+      "id": "marginsection",
+      "label": "Margin Section",
+      "default": "0px 0px 0px 0px",
+      "info": "Margin: Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "marginmobile",
+      "label": "Margin Mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Margin: Top Right Bottom Left"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Column",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon Image",
+          "info": "Upload custom icon. If empty, the default premium SVG line icon will be shown."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Feature description text goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Experience Features",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "NANOFIBER TECHNOLOGY",
+            "description": "Ultra-fine fibers create thousands of micro-channels for maximum absorption."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "DEEP ABSORPTION",
+            "description": "Delivers active ingredients deep into the skin for powerful and visible results."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "VISIBLE LIFTING AND FIRMNESS",
+            "description": "Improves elasticity, smoothes fine lines and restores youthful contours."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "RADIANT TRANSFORMATION",
+            "description": "Moisturizes, brightens and revitalizes skin for a healthy, luminous glow."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

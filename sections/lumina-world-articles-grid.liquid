@@ -1,0 +1,578 @@
+<!-- sections/lumina-world-articles-grid.liquid -->
+<style>
+  .lumina-articles-section {
+    background-color: #040404;
+    color: #ffffff;
+    position: relative;
+    padding: 75px 0;
+    width: 100%;
+    border-top: 1px solid rgba(197, 160, 89, 0.25);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+    overflow: hidden;
+    scroll-margin-top: 90px;
+  }
+
+  .lwag-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 45px;
+    box-sizing: border-box;
+  }
+
+  /* Header Section with Earth Background Artwork */
+  .lwag-header-box {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+  }
+
+  .lwag-header-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+  }
+
+  .lwag-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #c5a059;
+    font-weight: 500;
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .lwag-main-heading {
+    font-family: var(--g-font-2), "Cormorant Garamond", "Times New Roman", serif;
+    font-size: 56px;
+    line-height: 1.05;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0 0 14px 0;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .lwag-subtitle {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 300;
+    margin: 0;
+  }
+
+  /* Right Earth Map Graphic Background */
+  .lwag-earth-artwork {
+    position: absolute;
+    top: -40px;
+    right: -20px;
+    width: 550px;
+    height: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    opacity: 0.45;
+    pointer-events: none;
+    mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+    z-index: 1;
+  }
+
+  /* Filter Navigation Bar */
+  .lwag-filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+    padding-bottom: 16px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .lwag-nav-tabs {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .lwag-tab-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 6px 0;
+    position: relative;
+    transition: color 0.3s ease;
+    text-decoration: none;
+  }
+
+  .lwag-tab-btn:hover,
+  .lwag-tab-btn.active {
+    color: #ffffff;
+  }
+
+  .lwag-tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -17px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #c5a059;
+  }
+
+  .lwag-view-all {
+    color: #c5a059;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .lwag-view-all:hover {
+    color: #d8b26a;
+    transform: translateX(3px);
+  }
+
+  /* 4 Columns Article Cards Grid */
+  .lwag-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    width: 100%;
+  }
+
+  .lwag-article-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #080808;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .lwag-article-card:hover {
+    border-color: rgba(197, 160, 89, 0.6);
+    transform: translateY(-4px);
+  }
+
+  /* Card Image Header */
+  .lwag-card-img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-color: #000000;
+    overflow: hidden;
+  }
+
+  .lwag-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .lwag-article-card:hover .lwag-card-img-wrap img {
+    transform: scale(1.05);
+  }
+
+  /* Card Body Info */
+  .lwag-card-body {
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .lwag-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .lwag-card-category {
+    color: #c5a059;
+    font-weight: 600;
+  }
+
+  .lwag-card-date {
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 400;
+  }
+
+  .lwag-card-title {
+    font-family: var(--g-font-2), "Cormorant Garamond", "Times New Roman", serif;
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0 0 12px 0;
+    letter-spacing: 0.01em;
+  }
+
+  .lwag-card-excerpt {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+
+  .lwag-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #c5a059;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .lwag-card-link svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    transition: transform 0.3s ease;
+  }
+
+  .lwag-article-card:hover .lwag-card-link svg {
+    transform: translateX(4px);
+  }
+
+  /* Responsive Layout */
+  @media (max-width: 1200px) {
+    .lwag-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 991px) {
+    .lumina-articles-section { padding: 50px 0; }
+    .lwag-container { padding: 0 20px; }
+    .lwag-main-heading { font-size: 42px; }
+    .lwag-earth-artwork { display: none; }
+  }
+
+  @media (max-width: 575px) {
+    .lwag-cards-grid {
+      grid-template-columns: 1fr;
+    }
+    .lwag-main-heading { font-size: 34px; }
+    .lwag-nav-tabs {
+      gap: 16px;
+      overflow-x: auto;
+      width: 100%;
+      padding-bottom: 6px;
+    }
+  }
+</style>
+
+<div id="articles" class="lumina-articles-section">
+  <div class="lwag-container">
+
+    <!-- Header Box -->
+    <div class="lwag-header-box">
+      <div class="lwag-header-content">
+        {%- if section.settings.eyebrow != blank -%}
+          <div class="lwag-eyebrow">{{ section.settings.eyebrow }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.title != blank -%}
+          <h2 class="lwag-main-heading">{{ section.settings.title }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.subtitle != blank -%}
+          <p class="lwag-subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+
+      <img src="{{ 'lumina-europe-light-map.png' | asset_url }}" alt="Lumina Earth Artwork" class="lwag-earth-artwork" loading="lazy">
+    </div>
+
+    <!-- Filter Tabs Bar -->
+    <div class="lwag-filter-bar">
+      <div class="lwag-nav-tabs">
+        <button class="lwag-tab-btn active" onclick="filterLuminaArticles('all', this)">ALL</button>
+        <button class="lwag-tab-btn" onclick="filterLuminaArticles('science', this)">SCIENCE</button>
+        <button class="lwag-tab-btn" onclick="filterLuminaArticles('culture', this)">CULTURE</button>
+        <button class="lwag-tab-btn" onclick="filterLuminaArticles('people', this)">PEOPLE</button>
+        <button class="lwag-tab-btn" onclick="filterLuminaArticles('society', this)">SOCIETY</button>
+        <button class="lwag-tab-btn" onclick="filterLuminaArticles('travel', this)">TRAVEL</button>
+        <button class="lwag-tab-btn" onclick="filterLuminaArticles('wellness', this)">WELLNESS</button>
+        <button class="lwag-tab-btn" onclick="filterLuminaArticles('sustainability', this)">SUSTAINABILITY</button>
+      </div>
+
+      {%- if section.settings.view_all_label != blank -%}
+        <a href="{{ section.settings.view_all_link | default: '/blogs/news' }}" class="lwag-view-all">
+          {{ section.settings.view_all_label }} &rarr;
+        </a>
+      {%- endif -%}
+    </div>
+
+    <!-- 4-Column Articles Cards Grid -->
+    <div class="lwag-cards-grid" id="lwag-cards-container">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign art = block.settings.article
+
+          if art != blank
+            assign card_title = art.title
+            assign card_url = art.url
+            assign card_image = art.image
+            if card_image == blank
+              assign card_image = block.settings.image
+            endif
+            assign card_excerpt = block.settings.excerpt
+            if card_excerpt == blank
+              assign card_excerpt = art.excerpt_or_content | strip_html | truncate: 90
+            endif
+            assign card_category = block.settings.category
+            if card_category == blank and art.tags.size > 0
+              assign card_category = art.tags.first
+            endif
+            if card_category == blank
+              assign card_category = "SCIENCE"
+            endif
+            assign card_date = block.settings.date
+            if card_date == blank
+              assign card_date = art.published_at | date: "%d %B %Y"
+            endif
+          else
+            assign card_title = block.settings.title | default: "Titlu Articol"
+            assign card_url = block.settings.link | default: "#"
+            assign card_image = block.settings.image
+            assign card_excerpt = block.settings.excerpt | default: "Discover stories from the frontiers of science, beauty and culture."
+            assign card_category = block.settings.category | default: "SCIENCE"
+            assign card_date = block.settings.date | default: "12 MAI 2025"
+          endif
+        -%}
+
+        <a href="{{ card_url | default: '#' }}" class="lwag-article-card" data-category="{{ card_category | downcase }}" {{ block.shopify_attributes }}>
+          <div class="lwag-card-img-wrap">
+            {%- if card_image != blank -%}
+              <img src="{{ card_image | image_url: width: 600 }}" alt="{{ card_title | escape }}" loading="lazy">
+            {%- else -%}
+              {%- assign article_img_mod = forloop.index | modulo: 5 | plus: 1 -%}
+              {%- assign fallback_art_img = 'lumina-world-hero-' | append: article_img_mod | append: '.png' -%}
+              <img src="{{ fallback_art_img | asset_url }}" alt="{{ card_title | escape }}" loading="lazy">
+            {%- endif -%}
+          </div>
+
+          <div class="lwag-card-body">
+            <div>
+              <div class="lwag-card-meta">
+                <span class="lwag-card-category">{{ card_category }}</span>
+                <span class="lwag-card-date">{{ card_date }}</span>
+              </div>
+
+              {%- if card_title != blank -%}
+                <h3 class="lwag-card-title">{{ card_title }}</h3>
+              {%- endif -%}
+
+              {%- if card_excerpt != blank -%}
+                <p class="lwag-card-excerpt">{{ card_excerpt }}</p>
+              {%- endif -%}
+            </div>
+
+            <div class="lwag-card-link">
+              READ ARTICLE
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </div>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function filterLuminaArticles(category, btn) {
+    var tabs = document.querySelectorAll('.lwag-tab-btn');
+    tabs.forEach(function(t){ t.classList.remove('active'); });
+    if(btn) btn.classList.add('active');
+
+    function norm(str) {
+      return (str || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+    }
+
+    var catNorm = norm(category);
+
+    var cards = document.querySelectorAll('#lwag-cards-container .lwag-article-card');
+    cards.forEach(function(card){
+      var cardCat = norm(card.getAttribute('data-category'));
+      if(catNorm === 'all' || catNorm === 'toate' || cardCat.indexOf(catNorm) !== -1 || (catNorm === 'stiinta' && cardCat.indexOf('science') !== -1) || (catNorm === 'cultura' && cardCat.indexOf('culture') !== -1) || (catNorm === 'oameni' && cardCat.indexOf('people') !== -1) || (catNorm === 'societate' && cardCat.indexOf('society') !== -1) || (catNorm === 'calatorii' && cardCat.indexOf('travel') !== -1) || (catNorm === 'bunastare' && cardCat.indexOf('wellbeing') !== -1) || (catNorm === 'sustenabilitate' && cardCat.indexOf('sustainability') !== -1)) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Lumina Articles Grid",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Top Eyebrow",
+      "default": "LUMINA WORLD"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title",
+      "default": "ARTICLES"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Dialogues, perspectives and scientific insights exploring light, skin, time and life."
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "View All Link Label",
+      "default": "VIEW ALL"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "article_card",
+      "name": "Article Card",
+      "settings": [
+        {
+          "type": "article",
+          "id": "article",
+          "label": "Select Shopify Article (Optional)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Fallback Card Image"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category / Tag",
+          "default": "SCIENCE"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date String",
+          "default": "MAY 12, 2025"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Article Title",
+          "default": "Skin barrier: More than a shield"
+        },
+        {
+          "type": "textarea",
+          "id": "excerpt",
+          "label": "Short Excerpt",
+          "default": "Why understanding the skin barrier changes everything in skin care."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "Dr. Elena Vance"
+        },
+        {
+          "type": "text",
+          "id": "read_time",
+          "label": "Reading Time",
+          "default": "5 min read"
+        },
+        {
+          "type": "url",
+          "id": "custom_url",
+          "label": "Custom URL (if no article selected)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lumina Articles Grid",
+      "blocks": [
+        {
+          "type": "article_card",
+          "settings": {
+            "category": "SCIENCE",
+            "date": "MAY 12, 2025",
+            "title": "Skin barrier: More than a shield",
+            "excerpt": "Why understanding the skin barrier changes everything in skin care."
+          }
+        },
+        {
+          "type": "article_card",
+          "settings": {
+            "category": "CULTURE",
+            "date": "MAY 5, 2025",
+            "title": "Timeless cities, ageless beauty",
+            "excerpt": "What European cities teach us about beauty, heritage and time."
+          }
+        },
+        {
+          "type": "article_card",
+          "settings": {
+            "category": "PEOPLE",
+            "date": "APRIL 28, 2025",
+            "title": "The voices of a new generation",
+            "excerpt": "Young Europeans on identity, purpose and future."
+          }
+        },
+        {
+          "type": "article_card",
+          "settings": {
+            "category": "SUSTAINABILITY",
+            "date": "APRIL 20, 2025",
+            "title": "Beauty and responsibility",
+            "excerpt": "Why authentic luxury respects the world we come from."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,282 @@
+{% render 'golden-hour-vars' %}
+<style>
+  #shopify-section-{{ section.id }} .tm-why-wrap {
+    padding: 80px 24px;
+    background-color: #000;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .tm-why-header {
+    margin-bottom: 40px;
+  }
+  .tm-why-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+  }
+  .tm-why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media screen and (max-width: 1024px) {
+    .tm-why-grid { grid-template-columns: repeat(1, 1fr); }
+  }
+  .tm-why-carousel-wrap {
+    position: relative;
+  }
+  .tm-why-arrow {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--gh-golden);
+    color: var(--gh-golden);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .tm-why-arrow svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+  .tm-why-prev { left: -10px; }
+  .tm-why-next { right: -10px; }
+  @media screen and (max-width: 768px) {
+    .tm-why-arrow {
+      display: flex;
+    }
+    .tm-why-grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 16px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .tm-why-grid::-webkit-scrollbar {
+      display: none;
+    }
+    .tm-why-card {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+    }
+  }
+  .tm-why-card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    background: #0a0a0a;
+    border: 1px solid rgba(249, 226, 156, 0.15);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .tm-why-card:hover {
+    border-color: rgba(249, 226, 156, 0.4);
+    box-shadow: 0 4px 20px rgba(249, 226, 156, 0.05);
+  }
+  .tm-why-card-content {
+    flex: 1;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .tm-why-card-title {
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gh-golden);
+    margin-bottom: 16px;
+  }
+  .tm-why-card-desc {
+    font-size: 13px;
+    color: var(--gh-text-light);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .tm-why-card-link {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gh-golden);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: auto;
+  }
+  .tm-why-card-link svg {
+    width: 12px;
+    height: 12px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+  .tm-why-card-image {
+    flex: 1;
+    min-width: 40%;
+    position: relative;
+    background: #111;
+  }
+  .tm-why-card-image img {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  @media screen and (max-width: 600px) {
+    .tm-why-card { flex-direction: column; }
+    .tm-why-card-image { padding-bottom: 60%; }
+  }
+</style>
+
+<div id="{{ section.id | split: '__' | last }}" class="tm-why-wrap">
+  <div class="tm-why-header">
+    <div class="tm-why-subtitle">{{ section.settings.subtitle }}</div>
+  </div>
+
+  <div class="tm-why-carousel-wrap">
+    <button class="tm-why-arrow tm-why-prev" aria-label="Previous">
+      <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="tm-why-grid">
+      {% for block in section.blocks %}
+        <div class="tm-why-card" {{ block.shopify_attributes }}>
+          <div class="tm-why-card-content">
+            <div class="tm-why-card-title">{{ block.settings.title }}</div>
+            <div class="tm-why-card-desc">{{ block.settings.text }}</div>
+            {% if block.settings.btn_label != blank %}
+              <a href="{{ block.settings.btn_link | default: '#' }}" class="tm-why-card-link">
+                {{ block.settings.btn_label }}
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            {% endif %}
+          </div>
+          <div class="tm-why-card-image">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title }}" loading="lazy">
+            {% else %}
+              {% assign why_img_fallback = 'img-' | append: forloop.index | append: '.png' %}
+              <img src="{{ why_img_fallback | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <button class="tm-why-arrow tm-why-next" aria-label="Next">
+      <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var section = document.querySelector('#shopify-section-{{ section.id }}');
+    if (!section) return;
+    var grid = section.querySelector('.tm-why-grid');
+    var prevBtn = section.querySelector('.tm-why-prev');
+    var nextBtn = section.querySelector('.tm-why-next');
+
+    if (prevBtn && nextBtn && grid) {
+      prevBtn.addEventListener('click', function() {
+        grid.scrollBy({ left: -grid.offsetWidth, behavior: 'smooth' });
+      });
+      nextBtn.addEventListener('click', function() {
+        grid.scrollBy({ left: grid.offsetWidth, behavior: 'smooth' });
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Mockup - Why Nanofiberss",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "WHY NANOFIBRES"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Reason Card",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "PRECISION"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Extremely thin fibres create a second-skin fit for optimal delivery."
+        },
+        {
+          "type": "text",
+          "id": "btn_label",
+          "label": "Button Label",
+          "default": "LEARN MORE"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mockup - Why Nanofiberss",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "title": "PRECISION",
+            "text": "Extremely thin fibres create a second-skin fit for optimal delivery.",
+            "btn_label": "LEARN MORE"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "FRESHNESS",
+            "text": "Actives are protected until the moment of activation.",
+            "btn_label": "LEARN MORE"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "EXPERIENCE",
+            "text": "Advanced technology meets sensorial luxury in every ritual.",
+            "btn_label": "LEARN MORE"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

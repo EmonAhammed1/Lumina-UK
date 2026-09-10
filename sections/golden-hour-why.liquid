@@ -1,0 +1,187 @@
+{% render 'golden-hour-vars' %}
+{%- style -%}
+  #shopify-section-{{ section.id }} .gh-why-wrap {
+    background-color: var(--gh-dark-bg);
+    color: var(--gh-text-light);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: {{ section.settings.min_height_desktop }}vh;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+  @media screen and (max-width: 768px) {
+    #shopify-section-{{ section.id }} .gh-why-wrap {
+      min-height: {{ section.settings.min_height_mobile }}vh;
+      padding: 60px 16px;
+    }
+  }
+  .gh-why-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+  .gh-why-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #11100F;
+    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    z-index: 2;
+  }
+  .gh-why-content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    text-align: center;
+    color: var(--gh-first-light);
+  }
+  .gh-why-text {
+    font-size: {{ section.settings.text_size_desktop }}px;
+    line-height: 1.45;
+    font-weight: 300;
+    margin-bottom: 40px;
+  }
+  @media screen and (max-width: 768px) {
+    .gh-why-text {
+      font-size: {{ section.settings.text_size_mobile }}px;
+      margin-bottom: 24px;
+    }
+  }
+  .gh-why-scroll {
+    position: relative;
+    z-index: 3;
+    margin-top: 40px;
+  }
+{%- endstyle -%}
+
+<div class="gh-why-wrap" id="{{ section.id | split: '__' | last }}" data-section-id="{{ section.id }}">
+  {%- if section.settings.video != blank and section.settings.video.sources != blank -%}
+    {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, class: 'gh-why-bg-video' }}
+  {%- elsif section.settings.video != blank -%}
+    <video class="gh-why-bg-video" autoplay loop muted playsinline poster="{{ 'section-bg.png' | asset_url }}">
+      <source src="{% if section.settings.video contains 'http' %}{{ section.settings.video }}{% else %}{{ section.settings.video | file_url }}{% endif %}" type="video/mp4">
+      <source src="{{ 'video 2 walking down the hillmp4.mp4' | file_url }}" type="video/mp4">
+      <source src="{{ 'video_2_walking_down_the_hillmp4.mp4' | file_url }}" type="video/mp4">
+      <source src="{{ 'kling_20260710_VIDEO_Cinematic__2868_0.mp4' | file_url }}" type="video/mp4">
+    </video>
+  {%- else -%}
+    <video class="gh-why-bg-video" autoplay loop muted playsinline poster="{{ 'section-bg.png' | asset_url }}">
+      <source src="{{ 'video 2 walking down the hillmp4.mp4' | file_url }}" type="video/mp4">
+      <source src="{{ 'video_2_walking_down_the_hillmp4.mp4' | file_url }}" type="video/mp4">
+      <source src="{{ 'kling_20260710_VIDEO_Cinematic__2868_0.mp4' | file_url }}" type="video/mp4">
+      <source src="{{ 'The Golden Hour HERO.mp4' | file_url }}" type="video/mp4">
+    </video>
+  {%- endif -%}
+
+  <div class="gh-why-overlay"></div>
+
+  <div class="gh-why-content">
+    <div class="gh-why-text">
+      {{ section.settings.text }}
+    </div>
+  </div>
+
+  <div class="gh-why-scroll">
+    <a href="#gh-section-3" class="gh-scroll-btn" aria-label="Scroll Down">
+      <svg class="gh-scroll-arrow" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Golden Hour - Why",
+  "settings": [
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum Width (px)",
+      "min": 800,
+      "max": 2000,
+      "step": 50,
+      "default": 1450
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Background Video"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text Block",
+      "default": "<p>Golden Hour was created for those who choose intention over noise.</p>"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity (%)",
+      "min": 10,
+      "max": 90,
+      "step": 5,
+      "default": 55
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+    {
+      "type": "range",
+      "id": "min_height_desktop",
+      "label": "Min Height (Desktop % of Viewport)",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "default": 85
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "label": "Text Size (Desktop px)",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "default": 34
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "min_height_mobile",
+      "label": "Min Height (Mobile % of Viewport)",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "label": "Text Size (Mobile px)",
+      "min": 16,
+      "max": 32,
+      "step": 1,
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "Golden Hour - Why Exists"
+    }
+  ]
+}
+{% endschema %}

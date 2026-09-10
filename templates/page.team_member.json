@@ -1,0 +1,142 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "s_team_member_premium",
+      "blocks": {
+        "member_1": {
+          "type": "member",
+          "settings": {
+            "image": "shopify://shop_images/Founder.webp",
+            "role": "FOUNDER & SCIENTIFIC DIRECTOR",
+            "name": "Paul",
+            "description": "With over 15 years of experience in dermatological research and nanotechnology, Dr. Marin founded Lumina Europa with the vision of transforming skin care through scientific innovation.",
+            "exp_title_1": "15+ Ani de Cercetare",
+            "exp_desc_1": "Expert in dermatology and skin science",
+            "exp_icon_1": "flask",
+            "exp_title_2": "Specialist in Nanofiber Technology",
+            "exp_desc_2": "Pioneer in advanced ingredient delivery systems",
+            "exp_icon_2": "molecule",
+            "exp_title_3": "Leader in Innovation",
+            "exp_desc_3": "It develops revolutionary formulas based on science",
+            "exp_icon_3": "award"
+          }
+        },
+        "member_2": {
+          "type": "member",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-03-31_at_15.38.29.png",
+            "role": "HEAD OF PRODUCT DEVELOPMENT",
+            "name": "Alexandra Ionescu",
+            "description": "Alexandra leads product innovation with a passion for clean beauty and performance formulas that deliver visible and real results.",
+            "exp_title_1": "Expert in Product Innovation",
+            "exp_desc_1": "Specialist in advanced skin care formulas",
+            "exp_icon_1": "flask",
+            "exp_title_2": "10+ Years Experience",
+            "exp_desc_2": "In cosmetic chemistry and product development",
+            "exp_icon_2": "molecule",
+            "exp_title_3": "Clean Beauty Advocate",
+            "exp_desc_3": "Dedicated to safety, efficiency and sustainability",
+            "exp_icon_3": "leaf"
+          }
+        },
+        "member_3": {
+          "type": "member",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-03-31_at_15.37.07_430x_05b938d8-e642-4393-90bd-50a305515a7c.webp",
+            "role": "CLINICAL RESEARCH MANAGER",
+            "name": "Maria Popescu",
+            "description": "Maria oversees all clinical trials and testing protocols to ensure that each product meets the highest standards of safety and efficacy.",
+            "exp_title_1": "Expert in Clinical Research",
+            "exp_desc_1": "Design and manage rigorous clinical trials",
+            "exp_icon_1": "shield",
+            "exp_title_2": "Background Dermatologic",
+            "exp_desc_2": "It ensures the safety and effectiveness of the products",
+            "exp_icon_2": "shield",
+            "exp_title_3": "Decizii Bazate pe Dovezi",
+            "exp_desc_3": "Data-backed results and transparent testing",
+            "exp_icon_3": "chart"
+          }
+        },
+        "member_4": {
+          "type": "member",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-03-31_at_14.26.19_430x_f348fd8c-e4e8-46b6-bcde-1060ef1275ca.webp",
+            "role": "SPECIALIST IN NANOTECHNOLOGY",
+            "name": "Andrei Dumitru",
+            "description": "Andrei is the mastermind behind nanofiber technology, developing advanced delivery systems for superior absorption and maximum efficiency.",
+            "exp_title_1": "Expert in Nanotechnology",
+            "exp_desc_1": "Specialist in nanofibers and materials science",
+            "exp_icon_1": "molecule",
+            "exp_title_2": "Advanced Delivery Systems",
+            "exp_desc_2": "Improves potency and bioavailability of ingredients",
+            "exp_icon_2": "molecule",
+            "exp_title_3": "Cercetare & Dezvoltare",
+            "exp_desc_3": "Focused on continuous innovation",
+            "exp_icon_3": "award"
+          }
+        },
+        "member_5": {
+          "type": "member",
+          "settings": {
+            "role": "CUSTOMER EXPERIENCE DIRECTOR",
+            "name": "Bianca Stan",
+            "description": "Bianca ensures that every client has an exceptional experience with Lumina Europa, from discovery to long-term results.",
+            "exp_title_1": "Customer Experience Expert",
+            "exp_desc_1": "Build relationships of trust and loyalty",
+            "exp_icon_1": "heart",
+            "exp_title_2": "Skin Care Consultant",
+            "exp_desc_2": "Passionate about helping clients achieve their goals",
+            "exp_icon_2": "chat",
+            "exp_title_3": "Commitment to Quality",
+            "exp_desc_3": "Dedicated to customer satisfaction and trust",
+            "exp_icon_3": "star"
+          }
+        },
+        "member_6": {
+          "type": "member",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-03-31_at_14.31.38.png",
+            "role": "OPERATIONS MANAGER",
+            "name": "Vlad Popa",
+            "description": "Vlad ensures that all our operations run flawlessly, maintaining the highest standards of quality and efficiency at every stage of the process.",
+            "exp_title_1": "Operations Expert",
+            "exp_desc_1": "Optimize processes for maximum efficiency",
+            "exp_icon_1": "cog",
+            "exp_title_2": "Quality assurance",
+            "exp_desc_2": "Maintain the highest standards at every stage",
+            "exp_icon_2": "shield",
+            "exp_title_3": "Team leader",
+            "exp_desc_3": "Build and motivate high performing teams",
+            "exp_icon_3": "award"
+          }
+        }
+      },
+      "block_order": [
+        "member_1",
+        "member_2",
+        "member_3",
+        "member_4",
+        "member_5",
+        "member_6"
+      ],
+      "settings": {
+        "bgsection": "#000000",
+        "title_top": "OUR TEAM",
+        "title": "The specialists behind Lumina Europa",
+        "des": "A team of scientists, innovators and skin care specialists dedicated to bringing nanofiber technology to the highest standards."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

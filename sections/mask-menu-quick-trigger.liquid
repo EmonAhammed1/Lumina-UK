@@ -1,0 +1,355 @@
+{%- comment -%}
+  sections/mask-menu-quick-trigger.liquid
+
+  A standalone sticky edge-tab that slides out a custom sidebar menu on hover.
+  Perfect for quick access to the masks collection on product pages.
+{%- endcomment -%}
+
+<div id="MaskSidebarWrapper" class="mask-sidebar-wrapper">
+  
+  <!-- The Trigger Tab -->
+  <button
+    type="button"
+    id="MaskMenuQuickTrigger"
+    class="mask-menu-quick-trigger"
+    aria-label="Open Mask Menu"
+  >
+    <span class="mask-menu-quick-trigger__arrow" aria-hidden="true">&#8250;</span>
+  </button>
+
+  <!-- The Slide-out Sidebar -->
+  <div id="MaskSidebar" class="mask-sidebar">
+    <div class="mask-sidebar__header">
+      <h3 class="mask-sidebar__title">{{ section.settings.sidebar_title | default: 'Masks Collection' }}</h3>
+      <div class="mask-sidebar__divider"></div>
+      <button type="button" id="MaskSidebarClose" class="mask-sidebar__close" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    
+    <div class="mask-sidebar__content">
+      {%- assign mask_menu = linklists[section.settings.menu] -%}
+      {%- if mask_menu.links.size > 0 -%}
+        <ul class="mask-sidebar__menu list-unstyled">
+          {%- for link in mask_menu.links -%}
+            <li class="mask-sidebar__item">
+              <a href="{{ link.url }}" class="mask-sidebar__link {% if link.active %}mask-sidebar__link--active{% endif %}">
+                <span class="mask-sidebar__link-text">{{ link.title }}</span>
+                <span class="mask-sidebar__link-arrow">&#8250;</span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- else -%}
+        <p class="mask-sidebar__empty">Please select a menu in section settings.</p>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div id="MaskSidebarOverlay" class="mask-sidebar-overlay"></div>
+</div>
+
+<style>
+  .mask-sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    z-index: 9999;
+  }
+
+  /* Trigger Button */
+  .mask-menu-quick-trigger {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 96px;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    background: #0d0d0f;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.4);
+    opacity: 0.85;
+    transition: opacity 0.3s ease, width 0.3s cubic-bezier(0.25, 1, 0.5, 1), left 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+    z-index: 10001;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: none;
+  }
+  .mask-menu-quick-trigger:hover,
+  .mask-menu-quick-trigger:focus-visible {
+    opacity: 1;
+    width: 32px;
+    background: #151518;
+    color: #b8963e;
+  }
+  .mask-menu-quick-trigger__arrow {
+    font-size: 22px;
+    line-height: 1;
+    transition: transform 0.3s ease;
+  }
+  .mask-menu-quick-trigger:hover .mask-menu-quick-trigger__arrow {
+    transform: translateX(2px);
+  }
+
+  /* Sidebar Container */
+  .mask-sidebar {
+    position: fixed;
+    top: 0;
+    left: -400px;
+    width: 360px;
+    max-width: 90vw;
+    height: 100%;
+    background: linear-gradient(145deg, #0f0f12 0%, #050505 100%);
+    box-shadow: 10px 0 40px rgba(0,0,0,0.8);
+    z-index: 10002;
+    transition: left 0.5s cubic-bezier(0.25, 1, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-right: 1px solid rgba(184, 150, 62, 0.15); /* Gold tinted border */
+  }
+  
+  /* When Active */
+  .mask-sidebar-wrapper.is-active .mask-sidebar {
+    left: 0;
+  }
+  .mask-sidebar-wrapper.is-active .mask-menu-quick-trigger {
+    opacity: 0;
+    pointer-events: none;
+    left: -40px;
+  }
+  .mask-sidebar-wrapper.is-active .mask-sidebar-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Overlay */
+  .mask-sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    z-index: 10000;
+  }
+
+  /* Sidebar Internals */
+  .mask-sidebar__header {
+    position: relative;
+    padding: 40px 30px 25px;
+    text-align: left;
+    background: rgba(255,255,255,0.01);
+  }
+  .mask-sidebar__title {
+    margin: 0;
+    font-size: 2.1rem;
+    font-family: var(--g-font-1), serif;
+    font-weight: 400;
+    background: linear-gradient(to right, #f3ca7e, #dfa857, #f3ca7e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(223, 168, 87, 0.1); /* Subtle gold glow to increase legibility */
+  }
+  .mask-sidebar__divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(184, 150, 62, 0.5);
+    margin: 15px 0 0 0;
+  }
+  .mask-sidebar__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: rgba(255,255,255,0.4);
+    transition: all 0.3s ease;
+    padding: 0;
+  }
+  .mask-sidebar__close svg {
+    width: 20px;
+    height: 20px;
+  }
+  .mask-sidebar__close:hover {
+    color: #dfa857; 
+    transform: rotate(90deg);
+  }
+  
+  .mask-sidebar__content {
+    padding: 10px 30px 40px;
+    flex-grow: 1;
+  }
+  .mask-sidebar__menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .mask-sidebar__item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+  .mask-sidebar__item:last-child {
+    border-bottom: none;
+  }
+  .mask-sidebar__link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: all 0.4s ease;
+    font-size: 13px;
+    font-family: var(--g-font-2), sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    position: relative;
+  }
+  .mask-sidebar__link-arrow {
+    font-size: 18px;
+    color: rgba(184, 150, 62, 0);
+    transform: translateX(-10px);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.2, 1);
+  }
+  
+  .mask-sidebar__link:hover {
+    color: #ffffff;
+    padding-left: 8px;
+  }
+  .mask-sidebar__link:hover .mask-sidebar__link-arrow {
+    color: #dfa857;
+    transform: translateX(0);
+  }
+  
+  .mask-sidebar__link--active {
+    color: #dfa857;
+  }
+  .mask-sidebar__link--active .mask-sidebar__link-arrow {
+    color: #dfa857;
+    transform: translateX(0);
+  }
+  
+  .mask-sidebar__empty {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    font-family: var(--g-font-2), sans-serif;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .mask-menu-quick-trigger {
+      height: 76px;
+      width: 18px;
+      border-radius: 0 6px 6px 0;
+    }
+    .mask-menu-quick-trigger:hover,
+    .mask-menu-quick-trigger:focus-visible {
+      width: 24px;
+    }
+    .mask-sidebar {
+      width: 300px;
+      max-width: 85vw;
+    }
+    .mask-sidebar__header {
+      padding: 24px 20px 20px;
+    }
+    .mask-sidebar__content {
+      padding: 24px 20px;
+    }
+    .mask-sidebar__link {
+      padding: 12px 16px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var wrapper = document.getElementById('MaskSidebarWrapper');
+    var trigger = document.getElementById('MaskMenuQuickTrigger');
+    var sidebar = document.getElementById('MaskSidebar');
+    var closeBtn = document.getElementById('MaskSidebarClose');
+    var overlay = document.getElementById('MaskSidebarOverlay');
+
+    if (!wrapper || !trigger || !sidebar) return;
+
+    function openSidebar() {
+      wrapper.classList.add('is-active');
+    }
+
+    function closeSidebar() {
+      wrapper.classList.remove('is-active');
+    }
+
+    // Click to open/close
+    trigger.addEventListener('click', openSidebar);
+    closeBtn.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    // Hover to open (desktop only)
+    var isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (isFinePointer) {
+      var hoverTimer;
+      trigger.addEventListener('mouseenter', function () {
+        hoverTimer = setTimeout(openSidebar, 150);
+      });
+      trigger.addEventListener('mouseleave', function () {
+        clearTimeout(hoverTimer);
+      });
+      
+      // Auto close when mouse leaves the sidebar area
+      sidebar.addEventListener('mouseleave', function () {
+        closeSidebar();
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Mask Menu Sidebar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "sidebar_title",
+      "label": "Sidebar Title",
+      "default": "Masks Collection"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu to Display",
+      "default": "main-menu"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mask Menu Sidebar"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,296 @@
+{% render 'golden-hour-vars' %}
+<style>
+  #shopify-section-{{ section.id }} .tm-freq-wrap {
+    padding: 80px 24px;
+    background-color: #000;
+  }
+  .tm-freq-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 40px;
+  }
+  .tm-freq-left {
+    flex: 0 0 300px;
+  }
+  .tm-freq-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .tm-freq-title {
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    color: var(--gh-golden);
+    font-family: serif;
+    font-weight: 300;
+    line-height: 1.1;
+  }
+  .tm-freq-right {
+    flex: 1;
+  }
+  .tm-freq-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  @media screen and (max-width: 1200px) {
+    .tm-freq-grid { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
+  }
+  @media screen and (max-width: 900px) {
+    .tm-freq-container { flex-direction: column; }
+    .tm-freq-left { flex: none; margin-bottom: 40px; }
+  }
+  .tm-freq-carousel-wrap {
+    position: relative;
+  }
+  .tm-freq-arrow-mobile {
+    display: none;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--gh-golden);
+    color: var(--gh-golden);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .tm-freq-arrow-mobile svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+  .tm-freq-arrow-prev { left: 4px; }
+  .tm-freq-arrow-next { right: 4px; }
+
+  @media screen and (max-width: 768px) {
+    .tm-freq-arrow-mobile {
+      display: flex;
+    }
+    .tm-freq-grid {
+      display: flex;
+      overflow-x: auto;
+      gap: 16px;
+      padding-bottom: 20px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+    .tm-freq-grid::-webkit-scrollbar {
+      display: none;
+    }
+    .tm-freq-card {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+    }
+  }
+  .tm-freq-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    text-decoration: none;
+    color: inherit;
+  }
+  .tm-freq-img-wrap {
+    width: 100%;
+    position: relative;
+    padding-bottom: 125%; /* 4:5 aspect ratio */
+    background: #0a0a0a;
+    border: 1px solid rgba(249, 226, 156, 0.15);
+    margin-bottom: 24px;
+    transition: border-color 0.3s ease;
+  }
+  .tm-freq-card:hover .tm-freq-img-wrap {
+    border-color: rgba(249, 226, 156, 0.4);
+  }
+  .tm-freq-img-wrap img {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .tm-freq-card-title {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gh-golden);
+    margin-bottom: 8px;
+  }
+  .tm-freq-card-freq {
+    font-size: 12px;
+    color: var(--gh-text-light);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+  .tm-freq-card-desc {
+    font-size: 12px;
+    color: var(--gh-text-muted);
+    line-height: 1.5;
+  }
+</style>
+
+<div id="{{ section.id | split: '__' | last }}" class="tm-freq-wrap">
+  <div class="tm-freq-container">
+    <div class="tm-freq-left">
+      <div class="tm-freq-subtitle">{{ section.settings.subtitle }}</div>
+      <h2 class="tm-freq-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="tm-freq-right">
+      <div class="tm-freq-carousel-wrap">
+        <button class="tm-freq-arrow-mobile tm-freq-arrow-prev" aria-label="Previous">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="tm-freq-grid">
+          {% for block in section.blocks %}
+          {%- assign product = block.settings.product -%}
+          <a href="{{ product.url | default: '#' }}" class="tm-freq-card" {{ block.shopify_attributes }}>
+            <div class="tm-freq-img-wrap">
+              {% if product != blank and product.featured_image %}
+                <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}" loading="lazy">
+              {% else %}
+                {% case forloop.index %}
+                  {% when 1 %}
+                    <img src="{{ 'ChatGPT_Image_Aug_10_2026_03_22_12_PM.png' | asset_url }}" alt="Lumina Product" loading="lazy">
+                  {% when 2 %}
+                    <img src="{{ 'WhatsApp_Image_2026-07-09_at_14.32.17.jpg' | asset_url }}" alt="Lumina Product" loading="lazy">
+                  {% when 3 %}
+                    <img src="{{ 'pure_by_design.jpg' | asset_url }}" alt="Lumina Product" loading="lazy">
+                  {% else %}
+                    <img src="{{ 'pure_transfer.jpg' | asset_url }}" alt="Lumina Product" loading="lazy">
+                {% endcase %}
+              {% endif %}
+            </div>
+            <div class="tm-freq-card-title">{{ block.settings.title | default: product.title | default: 'Product Title' }}</div>
+            <div class="tm-freq-card-freq">{{ block.settings.frequency }}</div>
+            <div class="tm-freq-card-desc">{{ block.settings.text }}</div>
+          </a>
+        {% endfor %}
+        </div>
+        <button class="tm-freq-arrow-mobile tm-freq-arrow-next" aria-label="Next">
+          <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('#shopify-section-{{ section.id }}');
+    if (!section) return;
+    
+    const scrollContainer = section.querySelector('.tm-freq-grid');
+    const prevBtn = section.querySelector('.tm-freq-arrow-prev');
+    const nextBtn = section.querySelector('.tm-freq-arrow-next');
+    
+    if (scrollContainer && prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -scrollContainer.offsetWidth, behavior: 'smooth' });
+      });
+      nextBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: scrollContainer.offsetWidth, behavior: 'smooth' });
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Mockup - Frequency",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "RECOMMENDED FREQUENCY"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Choose your ritual. Follow your rhythm."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product Frequency",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Override Title (Optional)",
+          "info": "Leave blank to use the product's title."
+        },
+        {
+          "type": "text",
+          "id": "frequency",
+          "label": "Frequency",
+          "default": "2-3 times per week"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mockup - Frequency",
+      "blocks": [
+        {
+          "type": "product",
+          "settings": {
+            "title": "HYDRATION",
+            "frequency": "2-3 times per week",
+            "text": "Boosts moisture and radiance."
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "title": "RECOVERY",
+            "frequency": "2-3 times per week",
+            "text": "Boosts and strengthens."
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "title": "RADIANCE",
+            "frequency": "2-3 times per week",
+            "text": "Revitalizes dull and tired skin."
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "title": "RENEWAL",
+            "frequency": "1-2 times per week",
+            "text": "Refines texture and tone."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

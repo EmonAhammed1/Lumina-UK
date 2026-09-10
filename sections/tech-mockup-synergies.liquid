@@ -1,0 +1,331 @@
+{% render 'golden-hour-vars' %}
+<style>
+  #shopify-section-{{ section.id }} .tm-syn-wrap {
+    padding: 100px 24px;
+    background-color: #050505;
+  }
+  .tm-syn-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 40px;
+  }
+  .tm-syn-left {
+    flex: 0 0 300px;
+  }
+  .tm-syn-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .tm-syn-title {
+    font-size: clamp(2rem, 3.5vw, 2.5rem);
+    color: var(--gh-golden);
+    font-family: serif;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .tm-syn-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gh-text-muted);
+    margin-bottom: 24px;
+  }
+  .tm-syn-link {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gh-golden);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tm-syn-link svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+  .tm-syn-right {
+    flex: 1;
+    min-width: 0;
+  }
+  .tm-syn-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  @media screen and (max-width: 1024px) {
+    .tm-syn-grid { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
+  }
+  @media screen and (max-width: 900px) {
+    .tm-syn-container { flex-direction: column; }
+    .tm-syn-left { flex: none; margin-bottom: 40px; }
+  }
+  .tm-syn-carousel-wrap {
+    position: relative;
+  }
+  .tm-syn-arrow-mobile {
+    display: none;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--gh-golden);
+    color: var(--gh-golden);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .tm-syn-arrow-mobile svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+  .tm-syn-arrow-prev { left: 4px; }
+  .tm-syn-arrow-next { right: 4px; }
+
+  @media screen and (max-width: 768px) {
+    .tm-syn-arrow-mobile {
+      display: flex;
+    }
+    .tm-syn-grid {
+      display: flex;
+      overflow-x: auto;
+      gap: 16px;
+      padding-bottom: 20px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+    .tm-syn-grid::-webkit-scrollbar {
+      display: none;
+    }
+    .tm-syn-card {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+    }
+  }
+  .tm-syn-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .tm-syn-image {
+    width: 100%;
+    position: relative;
+    padding-bottom: 133%; /* 3:4 aspect ratio */
+    background: #111;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .tm-syn-image img {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  .tm-syn-card:hover .tm-syn-image img {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  .tm-syn-card-title {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gh-golden);
+    margin-bottom: 12px;
+  }
+  .tm-syn-card-desc {
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--gh-text-muted);
+  }
+</style>
+
+<div id="{{ section.id | split: '__' | last }}" class="tm-syn-wrap">
+  <div class="tm-syn-container">
+    <div class="tm-syn-left">
+      <div class="tm-syn-subtitle">{{ section.settings.subtitle }}</div>
+      <h2 class="tm-syn-title">{{ section.settings.title }}</h2>
+      <div class="tm-syn-desc">{{ section.settings.text }}</div>
+      {% if section.settings.btn_label != blank %}
+        <a href="{{ section.settings.btn_link | default: '#' }}" class="tm-syn-link">
+          {{ section.settings.btn_label }}
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      {% endif %}
+    </div>
+    
+    <div class="tm-syn-right">
+      <div class="tm-syn-carousel-wrap">
+        <button class="tm-syn-arrow-mobile tm-syn-arrow-prev" aria-label="Previous">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="tm-syn-grid">
+          {% for block in section.blocks %}
+          <div class="tm-syn-card" {{ block.shopify_attributes }}>
+            <div class="tm-syn-image">
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% else %}
+                {% assign syn_fallback = 'img-' | append: forloop.index | append: '.png' %}
+                <img src="{{ syn_fallback | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% endif %}
+
+            </div>
+            <div class="tm-syn-card-title">{{ block.settings.title }}</div>
+            <div class="tm-syn-card-desc">{{ block.settings.text }}</div>
+          </div>
+        {% endfor %}
+        </div>
+        <button class="tm-syn-arrow-mobile tm-syn-arrow-next" aria-label="Next">
+          <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('#shopify-section-{{ section.id }}');
+    if (!section) return;
+    
+    const scrollContainer = section.querySelector('.tm-syn-grid');
+    const prevBtn = section.querySelector('.tm-syn-arrow-prev');
+    const nextBtn = section.querySelector('.tm-syn-arrow-next');
+    
+    if (scrollContainer && prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -scrollContainer.offsetWidth, behavior: 'smooth' });
+      });
+      nextBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: scrollContainer.offsetWidth, behavior: 'smooth' });
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Mockup - Synergies",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "RITUAL SYNERGIES"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Designed to work in harmony."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Every step enhances the next. Together, they create a ritual that is both effective and deeply personal."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "DISCOVER THE RESEARCH"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Synergy Step",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number (e.g. 1)",
+          "default": "1"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "PREPARE"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Begin with clean, fresh skin. A clear canvas for optimal delivery."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mockup - Synergies",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "number": "1",
+            "title": "PREPARE",
+            "text": "Begin with clean, fresh skin. A clear canvas for optimal delivery."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "2",
+            "title": "ACTIVATE",
+            "text": "Mist activates the nanofibre matrix, releasing pure actives at the moment you need them."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "3",
+            "title": "ENHANCE",
+            "text": "Choose the ritual that matches your skin's needs and the rhythm of your day."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "4",
+            "title": "CONTINUE",
+            "text": "Let the skin absorb and protect what matters most."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

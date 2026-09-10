@@ -1,0 +1,230 @@
+<style>
+  #technology-formula {
+    padding: 80px 0;
+    background-color: var(--color-bg, #000);
+  }
+  .tech-formula-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .tech-formula-image-col, .tech-formula-text-col {
+    width: 100%;
+    padding: 20px;
+  }
+  .tech-formula-image-wrapper {
+    position: relative;
+    padding-bottom: 120%;
+    overflow: hidden;
+  }
+  .tech-formula-image-wrapper img {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .tech-formula-heading {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 20px;
+    color: var(--g-color-heading, #fff);
+  }
+  .tech-formula-body {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: var(--color-body-text, #FAF6F0);
+  }
+  .tech-formula-ingredients {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    margin-bottom: 40px;
+  }
+  .tech-formula-ingredient {
+    font-size: 1rem;
+    color: var(--g-main, #B8963E);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    padding: 5px 0;
+  }
+  .tech-formula-ingredient:hover {
+    text-decoration: underline;
+  }
+  .tech-formula-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--g-main, #B8963E);
+    border: 1px solid var(--g-main, #B8963E);
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+  }
+  .tech-formula-btn:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: #000;
+    transform: translateY(-2px);
+  }
+
+  @media (min-width: 768px) {
+    .tech-formula-image-col, .tech-formula-text-col {
+      width: 50%;
+    }
+    .tech-formula-row.image-right {
+      flex-direction: row-reverse;
+    }
+    .tech-formula-text-col {
+      padding: 40px 60px;
+    }
+  }
+</style>
+
+<div id="technology-formula" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="tech-formula-row {% if section.settings.image_position == 'right' %}image-right{% endif %}">
+      <div class="tech-formula-image-col" data-aos="fade-up" data-aos-duration="700">
+        <div class="tech-formula-image-wrapper">
+          {% if section.settings.image != blank %}
+            <img src="{{ section.settings.image | image_url: width: 800 }}" alt="{{ section.settings.image.alt | escape }}" loading="lazy">
+          {% else %}
+            <img src="{{ 'pure_transfer.jpg' | asset_url }}" alt="Formula" loading="lazy">
+          {% endif %}
+        </div>
+      </div>
+      <div class="tech-formula-text-col" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">
+        {% if section.settings.heading != blank %}
+          <h2 class="tech-formula-heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="tech-formula-body">{{ section.settings.text }}</div>
+        {% endif %}
+        
+        <div class="tech-formula-ingredients">
+          {% for block in section.blocks %}
+            {% if block.settings.url != blank %}
+              <a href="{{ block.settings.url }}" class="tech-formula-ingredient" {{ block.shopify_attributes }}>{{ block.settings.title }}</a>
+            {% else %}
+              <span class="tech-formula-ingredient" {{ block.shopify_attributes }}>{{ block.settings.title }}</span>
+            {% endif %}
+          {% endfor %}
+        </div>
+        
+        {% if section.settings.button_label != blank %}
+          <a href="{{ section.settings.button_link }}" class="tech-formula-btn">{{ section.settings.button_label }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Technology Formula",
+  "settings": [
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Desktop Image Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Ingredient Composition Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Technology and Formula, Developed Together"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Body Text",
+      "default": "<p>Nanofibers technology is not separate from the formula it carries. The structure, active ingredients and method of activation must work together to create the intended experience. Each Lumina ritual combines the precision of the material with ingredients selected for a particular skin need—from hydration and comfort to radiance and renewal.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Explore the Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient Highlight",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Ingredient Name",
+          "default": "Hyaluronic Acid"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Optional Link",
+          "info": "Leave empty for simple text."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Technology Formula",
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Hyaluronic Acid"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Vitamin C"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Vitamin E"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Niacinamide"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Azelaic Acid"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,432 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */{
+  "sections": {
+    "main": {
+      "type": "product-template-1",
+      "blocks": {
+        "10baeeb8-3d3b-4115-8375-8a90ab8f58e9": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "subtitle"
+          }
+        },
+        "989bce2f-7961-4267-8e6c-40ff4bb0ed64": {
+          "type": "title",
+          "settings": {
+            "e_label": true
+          }
+        },
+        "63b4b894-da0f-497b-aaef-b11f3e5f55ff": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "c5c11045-e3b5-47e4-80d1-25e86ec844cc": {
+          "type": "price",
+          "settings": {}
+        },
+        "9cd2d8a0-a8b4-46d7-b3a7-b1609af99285": {
+          "type": "fakeviewer",
+          "settings": {
+            "fake_view_min": 12,
+            "fake_view_max": 30,
+            "fake_view_duration": 3,
+            "fake_view_text_prefix": "👀",
+            "fake_view_text_suffix": "customers view this product"
+          }
+        },
+        "2cf20ef7-ba29-4dd5-8c98-df0b96ba3c5b": {
+          "type": "text",
+          "settings": {
+            "text": "🔥 30 sold in the last 18 hours",
+            "text_style": "body"
+          }
+        },
+        "1affb493-1e14-4893-9876-be8d348ee475": {
+          "type": "shortdesc",
+          "disabled": true,
+          "settings": {}
+        },
+        "ff32ea77-bcea-43d3-8e38-55894c9d938a": {
+          "type": "separator",
+          "settings": {}
+        },
+        "8288910a-1ad6-47df-b127-118bc1d2ce24": {
+          "type": "buttons",
+          "settings": {
+            "enable_local_pickup": true,
+            "enable_hurrify": true,
+            "enable_payment_button": true,
+            "waitlist": true,
+            "product_selector": "radio",
+            "sw_color_product": true,
+            "color_circle": true,
+            "size_color": "small-38"
+          }
+        },
+        "ab3c624e-4b26-4bb4-b6bc-f283badc9347": {
+          "type": "separator",
+          "settings": {}
+        },
+        "73a647c7-afc5-4d87-aaea-1438dd5ecb92": {
+          "type": "icon_with_text",
+          "settings": {
+            "block_style": "ver",
+            "icon_1": "truck",
+            "icon_text_1": "Free delivery",
+            "icon_2": "lock",
+            "icon_text_2": "Secure payment",
+            "icon_3": "shield",
+            "icon_text_3": "2 years warranty",
+            "icon_4": "none",
+            "icon_text_4": ""
+          }
+        },
+        "be13b3d2-2e01-4728-a83f-6488d1b7d4fa": {
+          "type": "block_banner",
+          "settings": {
+            "banner_text": "Rewards",
+            "banner_des": "Join to earn 84 points on this product",
+            "banner_icon_svg": "<svg role=\"presentation\" fill=\"none\" focusable=\"false\" stroke-width=\"0.8\" width=\"24\" height=\"24\" class=\"icon icon-picto-percent\" viewbox=\"0 0 24 24\">\n        <path d=\"M12 22.714c6.857 0 10.714-3.857 10.714-10.714S18.857 1.286 12 1.286 1.286 5.143 1.286 12 5.143 22.714 12 22.714Z\" fill=\"currentColor\" fill-opacity=\".12\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n        <path d=\"m7.714 16.286 8.571-8.572\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n        <path d=\"M8.571 9.429a.857.857 0 1 0 0-1.715.857.857 0 0 0 0 1.715v0ZM15.428 16.286a.857.857 0 1 0 0-1.715.857.857 0 0 0 0 1.715Z\" fill=\"currentColor\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n      </svg>",
+            "banner_txt_color": "#094a6e",
+            "banner_bg_color": "linear-gradient(180deg, rgba(238, 247, 241, 1), rgba(238, 247, 241, 1) 100%)",
+            "banner_radius": 0
+          }
+        },
+        "11f6643a-6bb6-4db9-a512-9c0eefc8c3b8": {
+          "type": "countdown",
+          "settings": {
+            "title_heading": "🔥 Discount ends in !"
+          }
+        },
+        "1431e891-e819-4fa1-8416-0cb3956f0e39": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "enable_tab": true,
+            "title_tab": "Description"
+          }
+        },
+        "2830007b-b9f5-4f33-86cf-680e0a91ca8d": {
+          "type": "tabcustom",
+          "disabled": true,
+          "settings": {
+            "title_tab": "Delivery information",
+            "icon": "truck",
+            "answer_content": "<p> - No customs duties in the EU.<br/>- Ships in 1-2 business days.<br/>- Shipped in our eco-friendly recyclable and biodegradable boxes. </p>",
+            "page": ""
+          }
+        },
+        "0a71f30d-dba2-4bca-a64d-c3cc2ed17e7d": {
+          "type": "tabcustom",
+          "disabled": true,
+          "settings": {
+            "title_tab": "Care guide",
+            "icon": "leaf",
+            "answer_content": "<p> Hand wash warm. Dry at low temperature. This product has been factory washed after sewing to minimize material shrinkage. </p>",
+            "page": ""
+          }
+        },
+        "8d4704f6-d81d-4390-9ec5-af58698bef51": {
+          "type": "salepoint",
+          "disabled": true,
+          "settings": {
+            "icon": "globe",
+            "free_word": "55% in, 45% rayon"
+          }
+        },
+        "b7034bf2-48fd-492f-a089-3169873730db": {
+          "type": "salepoint",
+          "disabled": true,
+          "settings": {
+            "icon": "lock",
+            "free_word": "Secure payment"
+          }
+        },
+        "842b653e-7ccb-4f45-ad7c-8619b58f56ee": {
+          "type": "separator",
+          "disabled": true,
+          "settings": {}
+        },
+        "bf089f50-667c-4417-a84a-9478625741a1": {
+          "type": "list-info",
+          "settings": {
+            "block_style": "hoz",
+            "product_vendor_enable": true,
+            "product_type_enable": true,
+            "variant_sku_enable": true,
+            "variant_available_enable": false
+          }
+        },
+        "7120c076-9673-4f15-a579-5efa29fefb6f": {
+          "type": "separator",
+          "settings": {}
+        },
+        "13c388e5-8dd3-4462-9284-ec3f2c9aabc6": {
+          "type": "salepoint",
+          "settings": {
+            "icon": "globe",
+            "free_word": "Estimated Delivery: 12-26 days (International), 3-6 days (US)"
+          }
+        },
+        "1be7473b-00b2-4ad9-a7c0-356b86de67a7": {
+          "type": "shipping",
+          "settings": {}
+        },
+        "83a6f5b6-88e4-4eb3-9899-a085ea9c58bd": {
+          "type": "shippingtime",
+          "settings": {
+            "shipping_button": "Delivery information",
+            "page_shipping": "delivery-service"
+          }
+        },
+        "883720d7-3346-4495-85a0-add8b3d7a51f": {
+          "type": "trust-badge",
+          "settings": {
+            "trust-heading": "The guarantee of a secure completion",
+            "width_image": 66
+          }
+        },
+        "2d534ed0-517d-48ca-8370-8659965f32c4": {
+          "type": "share",
+          "settings": {}
+        },
+        "a405ef88-bdbe-486d-9fb3-6c91aa4e1509": {
+          "type": "tabfix",
+          "disabled": true,
+          "settings": {
+            "enable_tabvertical": false,
+            "gtab_des": "Description",
+            "gtab_review_enable": true,
+            "gtab_review": "Review",
+            "stab_title1": "Tab 1",
+            "stab_content1": "<p>111</p>",
+            "stab_title2": "",
+            "stab_content2": "",
+            "stab_title3": "",
+            "stab_content3": "",
+            "stab_title4": "",
+            "stab_content4": ""
+          }
+        },
+        "51f9d856-95f4-4741-bf4d-afe15438ff29": {
+          "type": "related-product",
+          "disabled": true,
+          "settings": {
+            "title_heading": "Related products",
+            "size_text": "h6",
+            "product_limit": 3
+          }
+        }
+      },
+      "block_order": [
+        "10baeeb8-3d3b-4115-8375-8a90ab8f58e9",
+        "989bce2f-7961-4267-8e6c-40ff4bb0ed64",
+        "63b4b894-da0f-497b-aaef-b11f3e5f55ff",
+        "c5c11045-e3b5-47e4-80d1-25e86ec844cc",
+        "9cd2d8a0-a8b4-46d7-b3a7-b1609af99285",
+        "2cf20ef7-ba29-4dd5-8c98-df0b96ba3c5b",
+        "1affb493-1e14-4893-9876-be8d348ee475",
+        "ff32ea77-bcea-43d3-8e38-55894c9d938a",
+        "8288910a-1ad6-47df-b127-118bc1d2ce24",
+        "ab3c624e-4b26-4bb4-b6bc-f283badc9347",
+        "73a647c7-afc5-4d87-aaea-1438dd5ecb92",
+        "be13b3d2-2e01-4728-a83f-6488d1b7d4fa",
+        "11f6643a-6bb6-4db9-a512-9c0eefc8c3b8",
+        "1431e891-e819-4fa1-8416-0cb3956f0e39",
+        "2830007b-b9f5-4f33-86cf-680e0a91ca8d",
+        "0a71f30d-dba2-4bca-a64d-c3cc2ed17e7d",
+        "8d4704f6-d81d-4390-9ec5-af58698bef51",
+        "b7034bf2-48fd-492f-a089-3169873730db",
+        "842b653e-7ccb-4f45-ad7c-8619b58f56ee",
+        "bf089f50-667c-4417-a84a-9478625741a1",
+        "7120c076-9673-4f15-a579-5efa29fefb6f",
+        "13c388e5-8dd3-4462-9284-ec3f2c9aabc6",
+        "1be7473b-00b2-4ad9-a7c0-356b86de67a7",
+        "83a6f5b6-88e4-4eb3-9899-a085ea9c58bd",
+        "883720d7-3346-4495-85a0-add8b3d7a51f",
+        "2d534ed0-517d-48ca-8370-8659965f32c4",
+        "a405ef88-bdbe-486d-9fb3-6c91aa4e1509",
+        "51f9d856-95f4-4741-bf4d-afe15438ff29"
+      ],
+      "settings": {
+        "setwidth": "container",
+        "media_style": "media-bottom",
+        "media_size": "normal",
+        "image_size": "auto",
+        "enable_video_looping": true,
+        "stock_enable": true,
+        "sizeguide_enable": false,
+        "sizeguide_title": "Size guide",
+        "sizeguide_page": "size-guide",
+        "crosssell_title": "Cross selling",
+        "upsell_accept": "Add to cart",
+        "upsell_decline": "No thanks",
+        "upsell_time": 3,
+        "enable": true,
+        "mix_1": "#094a6e",
+        "mix_2": "#ffffff",
+        "text_cl": "#ffffff",
+        "cart_bg": "#ffffff",
+        "cart_cl": "#094a6e",
+        "cart_cl_hover": "#ffffff"
+      }
+    },
+    "product-requently": {
+      "type": "product-bundle",
+      "settings": {
+        "animation": "fade-up",
+        "bgsection": "#ffffff",
+        "bundle_title": "Frequently purchased together",
+        "size_text": "h4",
+        "limit_bundle": 3,
+        "enable_border": true,
+        "btn_add": "Add selected items",
+        "paddingsection": "40px 0px 40px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "product-content": {
+      "type": "product-content",
+      "blocks": {
+        "6889c9ba-caef-4edd-9757-6711505cb095": {
+          "type": "description",
+          "settings": {
+            "title_tab": "Description"
+          }
+        },
+        "b69a53cf-5bc1-4b18-add3-92af436f966c": {
+          "type": "content",
+          "settings": {
+            "title_tab": "How to use",
+            "answer_content": "<p> When using our gentle shampoo, wet the hair, then massage the scalp in circular motions. Soap and rinse. </p>",
+            "page": ""
+          }
+        },
+        "450a0011-a13e-4bad-9fbb-454bc0a862b4": {
+          "type": "content",
+          "settings": {
+            "title_tab": "Key ingredients",
+            "answer_content": "<p><strong>Squalane supplements what they were born with</strong></p><p>When babies are born, their skin is nourished by squalene, a superhero moisturizing ingredient and the best protection Mother Nature can provide. Through pure chemistry, we created our own version of squalene derived from sugar cane, called squal<em>ane</em>. In our plant-based shampoo, squalane acts as a silicone-free emollient, providing hair and scalp with natural, ultra-light hydration. </p>",
+            "page": ""
+          }
+        },
+        "f4c1b859-6506-4354-b686-25d6efffda01": {
+          "type": "content",
+          "settings": {
+            "title_tab": "Rezultate clinice",
+            "answer_content": "<ul><li><strong>96% </strong>felt Daily Nourishing Shampoo thoroughly cleansed without stripping natural moisture.* </li><li><strong>92%</strong> felt Daily Nourishing Shampoo worked for their/their child's hair type.* </li><li><strong>94%</strong> felt Daily Nourishing Shampoo left their/their child's hair feeling soft and clean.* </li><li><strong>96%</strong> felt Daily Nourishing Shampoo was gentle yet effective in cleansing hair.* </li><li><strong>92%</strong> felt their/their child's hair looked shiny and healthy after using Daily Nourishing Shampoo.* </li><li><strong>96%</strong> felt their/their child's scalp felt clean and replenished after using Daily Nourishing Shampoo.*</li></ul>",
+            "page": ""
+          }
+        },
+        "147e9960-c5fe-44f4-8469-9583a9752a0a": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "title_tab": "Reviews"
+          }
+        },
+        "2e69c5c0-ab83-4cda-9c38-1aaab6fdf1cc": {
+          "type": "related-product",
+          "settings": {
+            "title_heading": "Buy with",
+            "size_text": "h6",
+            "product_limit": 3
+          }
+        }
+      },
+      "block_order": [
+        "6889c9ba-caef-4edd-9757-6711505cb095",
+        "b69a53cf-5bc1-4b18-add3-92af436f966c",
+        "450a0011-a13e-4bad-9fbb-454bc0a862b4",
+        "f4c1b859-6506-4354-b686-25d6efffda01",
+        "147e9960-c5fe-44f4-8469-9583a9752a0a",
+        "2e69c5c0-ab83-4cda-9c38-1aaab6fdf1cc"
+      ],
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container",
+        "tab_size": "large",
+        "enable_left": true,
+        "paddingsection": "48px 0px 20px 0px",
+        "paddingmobile": "32px 0px 32px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "16956665928504d885": {
+      "type": "apps",
+      "blocks": {
+        "fc8a78d7-718e-46c1-b694-84579038acfb": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "fc8a78d7-718e-46c1-b694-84579038acfb"
+      ],
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "paddingsection": "40px 0px 20px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px",
+        "bgsection": "#f8f8f8"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container",
+        "heading": "You might also like",
+        "heading_size": "h3",
+        "heading_align": "center",
+        "products_to_show": 10,
+        "spaceBetween": 30,
+        "perviewDesktop": 4,
+        "nowrap": true,
+        "arrows": true,
+        "scrollbar": true,
+        "padding_top": 80,
+        "padding_bottom": 32
+      }
+    },
+    "product-recent": {
+      "type": "recently-viewed",
+      "settings": {
+        "enable": true,
+        "animation": "fade-up",
+        "setwidth": "container",
+        "title_top": "",
+        "title": "Vizualizate recent",
+        "des": "",
+        "align-heading": "center",
+        "limit": 6,
+        "paddingsection": "0px 0px 60px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product-requently",
+    "product-content",
+    "16956665928504d885",
+    "product-recommendations",
+    "product-recent"
+  ]
+}

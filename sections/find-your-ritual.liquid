@@ -1,0 +1,688 @@
+{%- assign gold_color = '#c5a059' -%}
+{%- assign bg_color = '#0d0d0f' -%}
+
+<style>
+  /* Base styles */
+  .ritual-section {
+    background-color: {{ section.settings.bg_color | default: bg_color }};
+    {% if section.settings.bg_image != blank %}
+    background-image: url('{{ section.settings.bg_image | img_url: "master" }}');
+    {% else %}
+    background-image: url('{{ "quiz-section.png" | asset_url }}');
+    {% endif %}
+    padding: 80px 0;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  @media (max-width: 767px) {
+    .ritual-section {
+      padding: 40px 0;
+      {% if section.settings.bg_image != blank %}
+      background-position: center;
+      {% endif %}
+    }
+  }
+  .ritual-container {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+  .ritual-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  @media (max-width: 767px) {
+    .ritual-header {
+      margin-bottom: 30px;
+    }
+  }
+  .ritual-subtitle {
+    color: {{ gold_color }};
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .ritual-title {
+    font-size: 36px;
+    font-weight: 400;
+    font-family: var(--font-heading-family);
+    margin: 0;
+    color: #fff;
+  }
+  .ritual-desc {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ccc;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  @media (max-width: 767px) {
+    .ritual-title {
+      font-size: 28px;
+    }
+  }
+  
+  /* Quiz Container */
+  .ritual-quiz-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: start;
+    min-height: auto;
+  }
+  
+  /* Screens */
+  .ritual-screen {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    max-width: 600px;
+    transform: translateY(20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+    height: 0;
+    overflow: hidden;
+  }
+  .ritual-screen.is-active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 2;
+    height: auto;
+    overflow: visible;
+  }
+  
+  /* Question Text */
+  .ritual-question {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 300;
+    color: {{ gold_color }};
+  }
+  
+  /* Buttons */
+  .ritual-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .ritual-btn {
+    background: transparent;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 8px;
+    padding: 20px 25px;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(255, 223, 137, 0.2), 0 0 15px rgba(197, 160, 89, 0.4);
+  }
+  .ritual-btn:hover {
+    background: rgba(197, 160, 89, 0.05);
+    border-color: rgba(197, 160, 89, 0.8);
+    box-shadow: 0 0 12px rgba(255, 223, 137, 0.5), 0 0 25px rgba(197, 160, 89, 0.7);
+    transform: translateY(-2px);
+  }
+  
+  /* Step 1 Button Specific */
+  .ritual-btn-step1 {
+    justify-content: space-between;
+    padding: 0;
+  }
+  .ritual-btn-step1 .btn-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 25px;
+    z-index: 2;
+  }
+  .ritual-btn-step1 .btn-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+  .ritual-btn-step1 .btn-bg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 60%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.8;
+    mask-image: linear-gradient(to right, transparent, black 40%);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 40%);
+    transition: opacity 0.3s ease;
+  }
+  .ritual-btn-step1:hover .btn-bg {
+    opacity: 1;
+  }
+  .ritual-btn-step1 .ritual-btn-arrow {
+    z-index: 2;
+    margin-right: 25px;
+  }
+  
+  /* Step 2 Button Specific */
+  .ritual-btn-step2 {
+    justify-content: flex-start;
+    padding: 15px 20px;
+    text-align: left;
+  }
+  .ritual-btn-step2 .btn-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .ritual-btn-step2 .btn-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .ritual-btn-step2 .btn-title {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+  .ritual-btn-step2 .btn-subtitle {
+    font-size: 14px;
+    color: #ccc;
+    margin-top: 4px;
+  }
+  .ritual-btn-step2 .ritual-btn-arrow {
+    margin-left: auto;
+  }
+
+  .ritual-btn-arrow {
+    color: {{ gold_color }};
+    font-size: 20px;
+  }
+
+  /* Grid for Step 2 */
+  .ritual-options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  @media (max-width: 600px) {
+    .ritual-options-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Result Screen */
+  .ritual-result-card {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+  .ritual-product-image {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    background-color: transparent;
+    padding: 20px;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+  }
+  .ritual-product-info {
+    padding: 30px;
+  }
+  .ritual-product-vendor {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: {{ gold_color }};
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .ritual-product-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 15px;
+  }
+  .ritual-product-price {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 25px;
+  }
+  .ritual-buy-btn {
+    display: inline-block;
+    background-color: {{ gold_color }};
+    color: #000;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 15px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 223, 137, 0.4), 0 0 20px rgba(197, 160, 89, 0.6);
+  }
+  .ritual-buy-btn:hover {
+    background-color: #fff;
+    color: #000;
+    box-shadow: 0 0 15px rgba(255, 223, 137, 0.7), 0 0 30px rgba(197, 160, 89, 0.9);
+    transform: translateY(-2px);
+  }
+  .ritual-restart {
+    margin-top: 20px;
+    text-align: center;
+  }
+  .ritual-restart-btn {
+    display: inline-block;
+    background: transparent;
+    border: 1px solid {{ gold_color }};
+    color: {{ gold_color }};
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 223, 137, 0.4), 0 0 20px rgba(197, 160, 89, 0.6);
+  }
+  .ritual-restart-btn:hover {
+    background: {{ gold_color }};
+    color: #000;
+    box-shadow: 0 0 15px rgba(255, 223, 137, 0.7), 0 0 30px rgba(197, 160, 89, 0.9);
+    transform: translateY(-2px);
+  }
+</style>
+
+<div class="ritual-section" id="RitualQuiz-{{ section.id }}">
+  <div class="ritual-container">
+    <div class="ritual-header">
+      <div class="ritual-subtitle">{{ section.settings.subtitle }}</div>
+      <h2 class="ritual-title">{{ section.settings.title }}</h2>
+      {% if section.settings.description != blank %}
+        <div class="ritual-desc">{{ section.settings.description }}</div>
+      {% endif %}
+    </div>
+
+    <div class="ritual-quiz-container">
+      
+      <!-- STEP 1: Select Area -->
+      <div class="ritual-screen is-active" id="ritual-step-1">
+        <h3 class="ritual-question">Which area would you like to treat?</h3>
+        <div class="ritual-options">
+          {% assign step_1_blocks = section.blocks | where: "type", "step_1" %}
+          {% if step_1_blocks.size > 0 %}
+            {% for block in step_1_blocks %}
+              <button class="ritual-btn ritual-btn-step1" data-area="{{ block.settings.area_value }}" {{ block.shopify_attributes }}>
+                <div class="btn-content">
+                  {% if block.settings.icon != blank %}
+                    <img src="{{ block.settings.icon | img_url: '80x' }}" class="btn-icon" alt="">
+                  {% endif %}
+                  <span class="btn-text">{{ block.settings.title }}</span>
+                </div>
+                {% if block.settings.bg_image != blank %}
+                  <img src="{{ block.settings.bg_image | img_url: '400x' }}" class="btn-bg" alt="">
+                {% else %}
+                  {% case block.settings.area_value %}
+                    {% when 'face' %}
+                      <img src="{{ 'Ten.png' | asset_url }}" class="btn-bg" alt="">
+                    {% when 'eyes' %}
+                      <img src="{{ 'Eyes.png' | asset_url }}" class="btn-bg" alt="">
+                    {% when 'neck' %}
+                      <img src="{{ 'Gat.png' | asset_url }}" class="btn-bg" alt="">
+                    {% when 'decollete' %}
+                      <img src="{{ 'Décolleté.png' | asset_url }}" class="btn-bg" alt="">
+                  {% endcase %}
+                {% endif %}
+              </button>
+            {% endfor %}
+          {% else %}
+            <!-- Fallback if no blocks added -->
+            <button class="ritual-btn" data-area="face">Face</button>
+            <button class="ritual-btn" data-area="eyes">Eyes</button>
+            <button class="ritual-btn" data-area="neck">Neck</button>
+            <button class="ritual-btn" data-area="decollete">Décolleté</button>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- STEP 2: Select Goal (For Face Only) -->
+      <div class="ritual-screen" id="ritual-step-2">
+        <h3 class="ritual-question">What is your primary skincare goal?</h3>
+        <div class="ritual-options ritual-options-grid">
+          {%- assign face_goals_rendered = '' -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'product_match' and block.settings.area == 'face' -%}
+              {%- assign goal_handle = block.settings.goal | handleize -%}
+              {%- unless face_goals_rendered contains goal_handle -%}
+                <button class="ritual-btn ritual-btn-step2" data-goal="{{ goal_handle }}" {{ block.shopify_attributes }}>
+                  {% if block.settings.goal_icon != blank %}
+                    <img src="{{ block.settings.goal_icon | img_url: '80x' }}" class="btn-icon" alt="">
+                  {% endif %}
+                  <div class="btn-text-wrapper">
+                    <span class="btn-title">{{ block.settings.goal }}</span>
+                    {% if block.settings.goal_subtitle != blank %}
+                      <span class="btn-subtitle">{{ block.settings.goal_subtitle }}</span>
+                    {% endif %}
+                  </div>
+                  <span class="ritual-btn-arrow">→</span>
+                </button>
+                {%- assign face_goals_rendered = face_goals_rendered | append: goal_handle | append: ',' -%}
+              {%- endunless -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        <div class="ritual-restart mt-3">
+          <button class="ritual-restart-btn" onclick="ritualGoToStep(1)">← Back</button>
+        </div>
+      </div>
+
+      <!-- RESULT: Product Card -->
+      <div class="ritual-screen" id="ritual-result">
+        <h3 class="ritual-question">Your Perfect Ritual:</h3>
+        
+        <div id="ritual-product-display">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="ritual-restart">
+          <button class="ritual-restart-btn" onclick="ritualGoToStep(1)">Retake Quiz</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // Product data array populated by Liquid
+  var ritualProducts = [
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'product_match' -%}
+        {%- assign prod = all_products[block.settings.product] -%}
+        {%- if prod != blank -%}
+        {
+          area: {{ block.settings.area | json }},
+          goal: {{ block.settings.goal | handleize | json }},
+          title: {{ prod.title | json }},
+          vendor: {{ prod.vendor | json }},
+          price: '{{ prod.price | money }}',
+          image: '{{ prod.featured_image | img_url: "800x" }}',
+          url: {{ prod.url | json }}
+        },
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  ];
+
+  function ritualGoToStep(step) {
+    document.querySelectorAll('.ritual-screen').forEach(s => s.classList.remove('is-active'));
+    if (step === 1) {
+      document.getElementById('ritual-step-1').classList.add('is-active');
+    } else if (step === 2) {
+      document.getElementById('ritual-step-2').classList.add('is-active');
+    } else if (step === 3) {
+      document.getElementById('ritual-result').classList.add('is-active');
+    }
+  }
+
+  function ritualShowProduct(match) {
+    if (!match) return;
+    
+    var html = `
+      <div class="ritual-result-card">
+        <img src="${match.image}" alt="${match.title}" class="ritual-product-image">
+        <div class="ritual-product-info">
+          <div class="ritual-product-vendor">${match.vendor}</div>
+          <div class="ritual-product-title">${match.title}</div>
+          <div class="ritual-product-price">${match.price}</div>
+          <a href="${match.url}" class="ritual-buy-btn">View Details</a>
+        </div>
+      </div>
+    `;
+    
+    document.getElementById('ritual-product-display').innerHTML = html;
+    ritualGoToStep(3);
+  }
+
+  // Bind Step 1 Buttons
+  document.querySelectorAll('#ritual-step-1 .ritual-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      var area = this.getAttribute('data-area');
+      if (area === 'face') {
+        ritualGoToStep(2);
+      } else {
+        // Direct match for non-face areas
+        var match = ritualProducts.find(p => p.area === area);
+        if (match) ritualShowProduct(match);
+      }
+    });
+  });
+
+  // Bind Step 2 Buttons
+  document.querySelectorAll('#ritual-step-2 .ritual-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      var goal = this.getAttribute('data-goal');
+      var match = ritualProducts.find(p => p.area === 'face' && p.goal === goal);
+      if (match) ritualShowProduct(match);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Find Your Ritual Quiz",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Personalize your care"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Find Your Perfect Ritual"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Each area of ​​your skin has unique needs. Choose the area you want to treat..."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#0d0d0f"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Section Background Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step_1",
+      "name": "Step 1 Option (Area)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "area_value",
+          "label": "Area ID",
+          "options": [
+            {
+              "value": "face",
+              "label": "Face"
+            },
+            {
+              "value": "eyes",
+              "label": "Eyes"
+            },
+            {
+              "value": "neck",
+              "label": "Neck"
+            },
+            {
+              "value": "decollete",
+              "label": "Décolleté"
+            }
+          ],
+          "default": "face"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label",
+          "default": "Face"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon (SVG/PNG)"
+        },
+        {
+          "type": "image_picker",
+          "id": "bg_image",
+          "label": "Button Background Image"
+        }
+      ]
+    },
+    {
+      "type": "product_match",
+      "name": "Step 2 Option (Product)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "area",
+          "label": "Care Area (Step 1)",
+          "options": [
+            {
+              "value": "face",
+              "label": "Face"
+            },
+            {
+              "value": "eyes",
+              "label": "Eyes"
+            },
+            {
+              "value": "neck",
+              "label": "Neck"
+            },
+            {
+              "value": "decollete",
+              "label": "Décolleté"
+            }
+          ],
+          "default": "face"
+        },
+        {
+          "type": "text",
+          "id": "goal",
+          "label": "Primary Goal (Step 2 - Face)",
+          "info": "e.g. 'Calming for'"
+        },
+        {
+          "type": "text",
+          "id": "goal_subtitle",
+          "label": "Goal Subtitle",
+          "info": "e.g. 'Sensitive Skin'"
+        },
+        {
+          "type": "image_picker",
+          "id": "goal_icon",
+          "label": "Goal Icon (SVG/PNG)"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Recommended Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Find Your Ritual Quiz",
+      "blocks": [
+        {
+          "type": "step_1",
+          "settings": {
+            "area_value": "face",
+            "title": "Face"
+          }
+        },
+        {
+          "type": "step_1",
+          "settings": {
+            "area_value": "eyes",
+            "title": "Eyes"
+          }
+        },
+        {
+          "type": "step_1",
+          "settings": {
+            "area_value": "neck",
+            "title": "Neck"
+          }
+        },
+        {
+          "type": "step_1",
+          "settings": {
+            "area_value": "decollete",
+            "title": "Décolleté"
+          }
+        },
+        {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Hidratare",
+            "goal_subtitle": "Deep"
+          }
+        },
+        {
+          "type": "product_match",
+          "settings": {
+            "area": "eyes"
+          }
+        },
+        {
+          "type": "product_match",
+          "settings": {
+            "area": "neck"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

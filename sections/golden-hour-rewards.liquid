@@ -1,0 +1,277 @@
+{% render 'golden-hour-vars' %}
+{%- style -%}
+  #shopify-section-{{ section.id }} .gh-rewards-wrap {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--gh-dark-bg);
+    color: var(--gh-text-light);
+    height: {{ section.settings.section_height_desktop }}px;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 990px) {
+    #shopify-section-{{ section.id }} .gh-rewards-wrap {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .gh-rewards-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  @media screen and (max-width: 990px) {
+    .gh-rewards-media {
+      position: relative;
+      height: {{ section.settings.section_height_mobile }}px;
+    }
+  }
+  .gh-rewards-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .gh-rewards-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      var(--gh-dark-bg) 0%,
+      rgba(10, 8, 6, 0.92) 22%,
+      rgba(10, 8, 6, 0.55) 40%,
+      rgba(10, 8, 6, 0) 62%
+    );
+  }
+  @media screen and (max-width: 990px) {
+    .gh-rewards-overlay {
+      display: none;
+    }
+  }
+  .gh-rewards-text-col {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 520px;
+    padding: 0 40px;
+  }
+  @media screen and (max-width: 990px) {
+    .gh-rewards-text-col {
+      padding: 40px 20px;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  .gh-rewards-heading-small {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .gh-rewards-heading {
+    font-size: {{ section.settings.heading_size_desktop }}px;
+    color: var(--gh-golden);
+    margin-bottom: 18px;
+    font-weight: 300;
+    font-family: serif;
+    line-height: 1.2;
+  }
+  @media screen and (max-width: 1024px) {
+    .gh-rewards-heading {
+      font-size: calc({{ section.settings.heading_size_desktop }}px * 0.85);
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .gh-rewards-heading {
+      font-size: {{ section.settings.heading_size_mobile }}px;
+      margin-bottom: 14px;
+    }
+  }
+  .gh-rewards-body {
+    font-size: {{ section.settings.body_size_desktop }}px;
+    line-height: 1.6;
+    color: var(--gh-text-muted);
+    margin-bottom: 20px;
+  }
+  @media screen and (max-width: 1024px) {
+    .gh-rewards-body {
+      font-size: calc({{ section.settings.body_size_desktop }}px * 0.9);
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .gh-rewards-body {
+      font-size: {{ section.settings.body_size_mobile }}px;
+    }
+  }
+  .gh-rewards-link {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--gh-transition);
+  }
+  .gh-rewards-link:hover {
+    opacity: 0.7;
+  }
+{%- endstyle -%}
+
+<div class="gh-rewards-wrap" id="{{ section.id | split: '__' | last }}" data-section-id="{{ section.id }}">
+  <div class="gh-rewards-media">
+    {%- if section.settings.video != blank and section.settings.video.sources != blank -%}
+      {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, class: 'gh-rewards-video' }}
+    {%- elsif section.settings.video != blank -%}
+      <video class="gh-rewards-video" autoplay loop muted playsinline poster="{{ 'pure_transfer.jpg' | asset_url }}">
+        <source src="{% if section.settings.video contains 'http' %}{{ section.settings.video }}{% else %}{{ section.settings.video | file_url }}{% endif %}" type="video/mp4">
+        <source src="{{ 'video 4 nanofiber mask on the face.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ 'video_4_nanofiber_mask_on_the_face.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ '2_nanofibre_activation_rewards.mp4' | file_url }}" type="video/mp4">
+      </video>
+    {%- else -%}
+      <video class="gh-rewards-video" autoplay loop muted playsinline poster="{{ 'pure_transfer.jpg' | asset_url }}">
+        <source src="{{ 'video 4 nanofiber mask on the face.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ 'video_4_nanofiber_mask_on_the_face.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ '2_nanofibre_activation_rewards.mp4' | file_url }}" type="video/mp4">
+        <source src="{{ 'a3f8b7ec2b264fbda558acd951f1b106.mp4' | file_url }}" type="video/mp4">
+        <source src="https://cdn.shopify.com/videos/c/o/v/a3f8b7ec2b264fbda558acd951f1b106.mp4" type="video/mp4">
+      </video>
+    {%- endif -%}
+  </div>
+  <div class="gh-rewards-overlay"></div>
+  <div class="gh-rewards-text-col">
+    <div class="gh-rewards-heading-small">GOLDEN REWARDS</div>
+    {%- if section.settings.heading != blank -%}
+      <h2 class="gh-rewards-heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    <div class="gh-rewards-body">
+      {{ section.settings.content }}
+    </div>
+    {%- if section.settings.link_label != blank -%}
+      <a href="{{ section.settings.link_url | default: '#' }}" class="gh-rewards-link">
+        {{ section.settings.link_label }} &rarr;
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Golden Hour - Rewards",
+  "settings": [
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum Width (px)",
+      "min": 800,
+      "max": 2000,
+      "step": 50,
+      "default": 1450
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Every choice is rewarded."
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content (Romanian)",
+      "default": "<p>As you discover new rituals and return with us, you unlock benefits designed to make every experience even more special.</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link Label",
+      "default": "DISCOVER GOLDEN REWARDS"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Accompanying Video"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_height_desktop",
+      "label": "Banner Height (Desktop px)",
+      "min": 180,
+      "max": 600,
+      "step": 10,
+      "default": 260
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Heading Size (Desktop px)",
+      "min": 24,
+      "max": 56,
+      "step": 2,
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "body_size_desktop",
+      "label": "Body Text Size (Desktop px)",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_height_mobile",
+      "label": "Banner Height (Mobile px)",
+      "min": 220,
+      "max": 600,
+      "step": 10,
+      "default": 380
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading Size (Mobile px)",
+      "min": 18,
+      "max": 36,
+      "step": 1,
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "body_size_mobile",
+      "label": "Body Text Size (Mobile px)",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "default": 15
+    }
+  ],
+  "presets": [
+    {
+      "name": "Golden Hour - Rewards"
+    }
+  ]
+}
+{% endschema %}

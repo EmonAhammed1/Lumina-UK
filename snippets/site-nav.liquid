@@ -1,0 +1,49 @@
+<!-- site-nav.liquid v2-not-eam -->
+<ul class="meganav__list">
+  {% for childlink in link.links %}
+  <li class="site-nav__dropdown-container site-nav__dropdown-container--second-level">
+    {% assign t = childlink.title | downcase %}
+    {% if t contains 'team' or t contains 'echip' %}
+      {% continue %}
+    {% endif %}
+    {% assign childlink_url = childlink.url %}
+    {% if t contains 'conversat' %}
+      {% assign childlink_url = '/pages/lumina-world#conversations' %}
+    {% elsif t contains 'articl' or t contains 'articol' %}
+      {% assign childlink_url = '/pages/lumina-world#articles' %}
+    {% elsif t contains 'journal' or t contains 'jurnal' or t contains 'blog' %}
+      {% assign childlink_url = '/pages/lumina-world#journal' %}
+    {% elsif t contains 'film' or t contains 'manifest' %}
+      {% assign childlink_url = '/pages/lumina-world#films' %}
+    {% elsif t contains 'galler' or t contains 'galeri' %}
+      {% assign childlink_url = '/pages/lumina-world#gallery' %}
+    {% elsif t contains 'follow' or t contains 'urmar' or t contains 'social' %}
+      {% assign childlink_url = '/pages/lumina-world#follow-lumina' %}
+    {% endif %}
+    {% if childlink.links != blank %}
+    <a href="{{ childlink_url }}" class="meganav__link meganav__link-toggle site-nav__link-toggle meganav__link--has-list{% if childlink.active %} meganav__link--active{% endif %}" {% if childlink.active %} aria-current="page"{% endif %}>
+      {% render 'processMenuTitle' , itemName: childlink.title %}
+      {% render 'processMenuLabel' , itemName: childlink.title %}
+      {% render 'icon-arrow-right' %}
+    </a>
+    <div class="site-nav__dropdown site-nav__dropdown--third-level">
+      <ul class="meganav__list">
+        {% for grandchildlink in childlink.links %}
+        <li class="site-nav__dropdown-container site-nav__dropdown-container--third-level">
+          <a href="{{ grandchildlink.url }}" class="meganav__link {% if grandchildlink.active %} meganav__link--active{% endif %}"{% if grandchildlink.active %} aria-current="page"{% endif %}>
+            {% render 'processMenuTitle' , itemName: grandchildlink.title %}
+            {% render 'processMenuLabel' , itemName: grandchildlink.title %}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% else %}
+    <a href="{{ childlink_url }}" class="meganav__link {% if childlink.active %} meganav__link--active{% endif %}"{% if childlink.active %} aria-current="page"{% endif %}>
+      {% render 'processMenuTitle' , itemName: childlink.title %}
+      {% render 'processMenuLabel' , itemName: childlink.title %}
+    </a>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>

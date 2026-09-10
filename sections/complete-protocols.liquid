@@ -1,0 +1,1478 @@
+<div class="cp-section cp-section-{{ section.id }}{% if section.settings.break_out_full_width %} cp-break-out{% endif %}">
+  <div class="cp-container" style="max-width: {{ section.settings.max_width }}px;">
+
+    <div class="cp-heading-wrap">
+      {% if section.settings.heading != blank %}
+        <div class="cp-heading-line-row">
+          <span class="cp-line cp-line-left"></span>
+          <h2 class="cp-heading">{{ section.settings.heading }}</h2>
+          <span class="cp-line cp-line-right"></span>
+        </div>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="cp-subheading">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    <div class="cp-slider-outer">
+      {% if section.settings.enable_arrows %}
+        <button type="button" class="cp-arrow cp-arrow-prev" aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {% endif %}
+
+      <div class="cp-track" data-cp-track>
+        {% for block in section.blocks %}
+          {% if block.type == 'card' %}
+            <div class="cp-card" {{ block.shopify_attributes }}>
+              <div class="cp-card-media">
+                <a href="{{ block.settings.card_link | default: '#' }}" class="cp-card-image-link" aria-label="{{ block.settings.title | escape }}">
+                  {% if block.settings.image != blank %}
+                    <img
+                      class="cp-card-image"
+                      src="{{ block.settings.image | image_url: width: 900 }}"
+                      srcset="{{ block.settings.image | image_url: width: 450 }} 450w, {{ block.settings.image | image_url: width: 900 }} 900w, {{ block.settings.image | image_url: width: 1200 }} 1200w"
+                      sizes="(max-width: 749px) 90vw, 320px"
+                      alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    <div class="cp-card-image cp-card-image--placeholder">{{ 'image' | placeholder_svg_tag: 'cp-placeholder-svg' }}</div>
+                  {% endif %}
+                </a>
+              </div>
+
+              <div class="cp-card-content">
+                {% if block.settings.show_icon and block.settings.icon != blank %}
+                  <div class="cp-icon-wrap">
+                    <img class="cp-icon" src="{{ block.settings.icon | image_url: width: 100 }}" alt="" loading="lazy" width="40" height="40">
+                  </div>
+                {% endif %}
+
+                {% if block.settings.title != blank %}
+                  <h3 class="cp-card-title">{{ block.settings.title }}</h3>
+                {% endif %}
+
+                {% if block.settings.description != blank %}
+                  <p class="cp-card-desc">{{ block.settings.description }}</p>
+                {% endif %}
+
+                {% if block.settings.price != blank %}
+                  <div class="cp-card-price">{{ block.settings.price }}</div>
+                {% endif %}
+
+                {% if block.settings.button_text != blank %}
+                  <a href="{{ block.settings.card_link | default: '#' }}" class="cp-card-btn">
+                    <span>{{ block.settings.button_text }}</span>
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="cp-btn-arrow">
+                      <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      {% if section.settings.enable_arrows %}
+        <button type="button" class="cp-arrow cp-arrow-next" aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {% endif %}
+    </div>
+
+    {% if section.settings.enable_arrows %}
+      <div class="cp-dots" data-cp-dots></div>
+    {% endif %}
+
+    {% if section.settings.bottom_text != blank %}
+      <div class="cp-bottom-banner">
+        <p>{{ section.settings.bottom_text }}</p>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+<style>
+  .cp-section-{{ section.id }} {
+    --cp-bg: {{ section.settings.bg_color }};
+    --cp-max-width: {{ section.settings.max_width }}px;
+
+    --cp-pad-top-d: {{ section.settings.padding_top_desktop }}px;
+    --cp-pad-bottom-d: {{ section.settings.padding_bottom_desktop }}px;
+    --cp-pad-top-m: {{ section.settings.padding_top_mobile }}px;
+    --cp-pad-bottom-m: {{ section.settings.padding_bottom_mobile }}px;
+
+    --cp-margin-top-d: {{ section.settings.margin_top_desktop }}px;
+    --cp-margin-bottom-d: {{ section.settings.margin_bottom_desktop }}px;
+    --cp-margin-top-m: {{ section.settings.margin_top_mobile }}px;
+    --cp-margin-bottom-m: {{ section.settings.margin_bottom_mobile }}px;
+
+    --cp-heading-color: {{ section.settings.heading_color }};
+    --cp-heading-size-d: {{ section.settings.heading_size_desktop }}px;
+    --cp-heading-size-m: {{ section.settings.heading_size_mobile }}px;
+    --cp-heading-weight: {{ section.settings.heading_weight }};
+    --cp-line-color: {{ section.settings.line_color }};
+
+    --cp-sub-color: {{ section.settings.subheading_color }};
+    --cp-sub-size-d: {{ section.settings.subheading_size_desktop }}px;
+    --cp-sub-size-m: {{ section.settings.subheading_size_mobile }}px;
+    --cp-sub-weight: {{ section.settings.subheading_weight }};
+
+    --cp-columns-d: {{ section.settings.columns_desktop }};
+    --cp-columns-m: {{ section.settings.columns_mobile }};
+    --cp-gap-d: {{ section.settings.gap_desktop }}px;
+    --cp-gap-m: {{ section.settings.gap_mobile }}px;
+
+    --cp-card-bg: {{ section.settings.card_bg_color }};
+    --cp-card-border: {{ section.settings.card_border_color }};
+    --cp-card-radius: {{ section.settings.card_radius }}px;
+    --cp-card-padding: {{ section.settings.card_padding }}px;
+    --cp-image-radius: {{ section.settings.image_radius }}px;
+    --cp-image-ratio: {{ section.settings.image_aspect_ratio }};
+    --cp-image-fit: {{ section.settings.image_fit }};
+    --cp-image-padding: {{ section.settings.image_padding }}px;
+    --cp-image-bg: {{ section.settings.image_bg_color }};
+
+    --cp-icon-size: {{ section.settings.icon_size }}px;
+
+    --cp-title-color: {{ section.settings.title_color }};
+    --cp-title-size-d: {{ section.settings.title_size_desktop }}px;
+    --cp-title-size-m: {{ section.settings.title_size_mobile }}px;
+    --cp-title-weight: {{ section.settings.title_weight }};
+
+    --cp-desc-color: {{ section.settings.desc_color }};
+    --cp-desc-size-d: {{ section.settings.desc_size_desktop }}px;
+    --cp-desc-size-m: {{ section.settings.desc_size_mobile }}px;
+    --cp-desc-weight: {{ section.settings.desc_weight }};
+
+    --cp-price-color: {{ section.settings.price_color }};
+    --cp-price-size-d: {{ section.settings.price_size_desktop }}px;
+    --cp-price-size-m: {{ section.settings.price_size_mobile }}px;
+    --cp-price-weight: {{ section.settings.price_weight }};
+
+    --cp-btn-bg: {{ section.settings.button_bg }};
+    --cp-btn-text: {{ section.settings.button_text_color }};
+    --cp-btn-border: {{ section.settings.button_border_color }};
+    --cp-btn-bg-hover: {{ section.settings.button_bg_hover }};
+    --cp-btn-text-hover: {{ section.settings.button_text_hover }};
+    --cp-btn-size-d: {{ section.settings.button_size_desktop }}px;
+    --cp-btn-size-m: {{ section.settings.button_size_mobile }}px;
+    --cp-btn-weight: {{ section.settings.button_weight }};
+    --cp-btn-radius: {{ section.settings.button_radius }}px;
+
+    --cp-arrow-bg: {{ section.settings.arrow_bg_color }};
+    --cp-arrow-color: {{ section.settings.arrow_icon_color }};
+    --cp-arrow-size: {{ section.settings.arrow_size }}px;
+
+    --cp-banner-border: {{ section.settings.banner_border_color }};
+    --cp-banner-color: {{ section.settings.banner_text_color }};
+    --cp-banner-size-d: {{ section.settings.banner_size_desktop }}px;
+    --cp-banner-size-m: {{ section.settings.banner_size_mobile }}px;
+    --cp-banner-weight: {{ section.settings.banner_weight }};
+
+    padding-top: var(--cp-pad-top-d);
+    padding-bottom: var(--cp-pad-bottom-d);
+    margin-top: var(--cp-margin-top-d);
+    margin-bottom: var(--cp-margin-bottom-d);
+    background: var(--cp-bg);
+  }
+
+  @media screen and (max-width: 749px) {
+    .cp-section-{{ section.id }} {
+      padding-top: var(--cp-pad-top-m);
+      padding-bottom: var(--cp-pad-bottom-m);
+      margin-top: var(--cp-margin-top-m);
+      margin-bottom: var(--cp-margin-bottom-m);
+    }
+  }
+
+  /* ---------- Base styles (shared, scoped to this section) ---------- */
+  .cp-section-{{ section.id }} .cp-section-inner,
+  .cp-section-{{ section.id }} {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cp-section-{{ section.id }} .cp-container {
+    max-width: var(--cp-max-width, 1200px) !important;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Use this when your theme wraps sections in its own max-width container
+     and the "Max width" setting above seems to have no visible effect. */
+  .cp-section-{{ section.id }}.cp-break-out {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+
+  /* Heading */
+  .cp-section-{{ section.id }} .cp-heading-wrap {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .cp-section-{{ section.id }} .cp-heading-line-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+
+  .cp-section-{{ section.id }} .cp-line {
+    flex: 1 1 60px;
+    max-width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cp-line-color, #8a6a2f));
+  }
+  .cp-section-{{ section.id }} .cp-line-right {
+    background: linear-gradient(90deg, var(--cp-line-color, #8a6a2f), transparent);
+  }
+
+  .cp-section-{{ section.id }} .cp-heading {
+    color: var(--cp-heading-color);
+    font-size: var(--cp-heading-size-m);
+    font-weight: var(--cp-heading-weight);
+    margin: 0;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .cp-section-{{ section.id }} .cp-subheading {
+    color: var(--cp-sub-color);
+    font-size: var(--cp-sub-size-m);
+    font-weight: var(--cp-sub-weight);
+    margin: 0 auto;
+    max-width: 640px;
+    line-height: 1.5;
+  }
+
+  /* Slider */
+  .cp-section-{{ section.id }} .cp-slider-outer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cp-section-{{ section.id }} .cp-track {
+    display: flex;
+    gap: var(--cp-gap-m);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    flex: 1 1 auto;
+    padding-bottom: 6px;
+  }
+
+  .cp-section-{{ section.id }} .cp-track::-webkit-scrollbar {
+    height: 4px;
+  }
+  .cp-section-{{ section.id }} .cp-track::-webkit-scrollbar-thumb {
+    background: var(--cp-line-color, #8a6a2f);
+    border-radius: 4px;
+  }
+
+  .cp-section-{{ section.id }} .cp-card {
+    scroll-snap-align: start;
+    flex: 0 0 calc((100% - (var(--cp-columns-m) - 1) * var(--cp-gap-m)) / var(--cp-columns-m));
+    background: var(--cp-card-bg);
+    border: 1px solid var(--cp-card-border);
+    border-radius: var(--cp-card-radius);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    overflow: hidden;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .cp-section-{{ section.id }} .cp-card:hover {
+    border-color: var(--cp-heading-color, #d4af6a);
+  }
+
+  .cp-section-{{ section.id }} .cp-card-media {
+    padding: var(--cp-image-padding);
+  }
+
+  .cp-section-{{ section.id }} .cp-card-image-link {
+    display: block;
+    width: 100%;
+    aspect-ratio: var(--cp-image-ratio);
+    overflow: hidden;
+    border-radius: var(--cp-image-radius);
+    background: var(--cp-image-bg);
+  }
+
+  .cp-section-{{ section.id }} .cp-card-image,
+  .cp-section-{{ section.id }} .cp-card-image--placeholder {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: var(--cp-image-fit);
+    object-position: center;
+  }
+
+  .cp-section-{{ section.id }} .cp-card-image--placeholder svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .cp-section-{{ section.id }} .cp-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 var(--cp-card-padding) var(--cp-card-padding);
+    flex: 1;
+  }
+
+  .cp-section-{{ section.id }} .cp-icon-wrap {
+    width: var(--cp-icon-size);
+    height: var(--cp-icon-size);
+    border-radius: 50%;
+    border: 1px solid var(--cp-line-color, #8a6a2f);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px 0 10px;
+  }
+
+  .cp-section-{{ section.id }} .cp-icon {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+  }
+
+  .cp-section-{{ section.id }} .cp-card-title {
+    color: var(--cp-title-color);
+    font-size: var(--cp-title-size-m);
+    font-weight: var(--cp-title-weight);
+    margin: 4px 0 8px;
+  }
+
+  .cp-section-{{ section.id }} .cp-card-desc {
+    color: var(--cp-desc-color);
+    font-size: var(--cp-desc-size-m);
+    font-weight: var(--cp-desc-weight);
+    line-height: 1.5;
+    margin: 0 0 14px;
+  }
+
+  .cp-section-{{ section.id }} .cp-card-price {
+    color: var(--cp-price-color);
+    font-size: var(--cp-price-size-m);
+    font-weight: var(--cp-price-weight);
+    margin-bottom: 16px;
+  }
+
+  .cp-section-{{ section.id }} .cp-card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border: 1px solid var(--cp-btn-border);
+    background: var(--cp-btn-bg);
+    color: var(--cp-btn-text);
+    font-size: var(--cp-btn-size-m);
+    font-weight: var(--cp-btn-weight);
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    border-radius: var(--cp-btn-radius);
+    width: 100%;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+
+  .cp-section-{{ section.id }} .cp-card-btn:hover {
+    background: var(--cp-btn-bg-hover);
+    color: var(--cp-btn-text-hover);
+  }
+
+  .cp-section-{{ section.id }} .cp-btn-arrow {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  /* Arrows */
+  .cp-section-{{ section.id }} .cp-arrow {
+    flex: 0 0 auto;
+    width: var(--cp-arrow-size);
+    height: var(--cp-arrow-size);
+    border-radius: 50%;
+    border: 1px solid var(--cp-arrow-color);
+    background: var(--cp-arrow-bg);
+    color: var(--cp-arrow-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+    z-index: 2;
+  }
+
+  .cp-section-{{ section.id }} .cp-arrow svg {
+    width: 45%;
+    height: 45%;
+  }
+
+  .cp-section-{{ section.id }} .cp-arrow:hover {
+    background: var(--cp-arrow-color);
+    color: var(--cp-arrow-bg);
+  }
+
+  .cp-section-{{ section.id }} .cp-arrow[disabled] {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .cp-section-{{ section.id }} .cp-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 16px;
+  }
+
+  .cp-section-{{ section.id }} .cp-dots .cp-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cp-line-color, #8a6a2f);
+    opacity: 0.4;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+  }
+
+  .cp-section-{{ section.id }} .cp-dots .cp-dot.is-active {
+    opacity: 1;
+  }
+
+  /* Bottom banner */
+  .cp-section-{{ section.id }} .cp-bottom-banner {
+    margin-top: 40px;
+    border: 1px solid var(--cp-banner-border);
+    border-radius: 4px;
+    padding: 16px 20px;
+    text-align: center;
+  }
+
+  .cp-section-{{ section.id }} .cp-bottom-banner p {
+    margin: 0;
+    color: var(--cp-banner-color);
+    font-size: var(--cp-banner-size-m);
+    font-weight: var(--cp-banner-weight);
+    letter-spacing: 1px;
+  }
+
+  /* ---------- Desktop overrides (>=750px) ---------- */
+  @media screen and (min-width: 750px) {
+    .cp-section-{{ section.id }} .cp-heading {
+      font-size: var(--cp-heading-size-d);
+    }
+    .cp-section-{{ section.id }} .cp-subheading {
+      font-size: var(--cp-sub-size-d);
+    }
+    .cp-section-{{ section.id }} .cp-track {
+      gap: var(--cp-gap-d);
+    }
+    .cp-section-{{ section.id }} .cp-card {
+      flex: 0 0 calc((100% - (var(--cp-columns-d) - 1) * var(--cp-gap-d)) / var(--cp-columns-d));
+    }
+    .cp-section-{{ section.id }} .cp-card-title {
+      font-size: var(--cp-title-size-d);
+    }
+    .cp-section-{{ section.id }} .cp-card-desc {
+      font-size: var(--cp-desc-size-d);
+    }
+    .cp-section-{{ section.id }} .cp-card-price {
+      font-size: var(--cp-price-size-d);
+    }
+    .cp-section-{{ section.id }} .cp-card-btn {
+      font-size: var(--cp-btn-size-d);
+    }
+    .cp-section-{{ section.id }} .cp-bottom-banner p {
+      font-size: var(--cp-banner-size-d);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .cp-section-{{ section.id }} .cp-heading {
+      white-space: normal;
+    }
+    .cp-section-{{ section.id }} .cp-card-btn {
+      width: auto;
+      padding: 12px 22px;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    function initCpSliders(root) {
+      var scope = root || document;
+      scope.querySelectorAll('.cp-slider-outer').forEach(function (outer) {
+        if (outer.dataset.cpInit) return;
+        outer.dataset.cpInit = 'true';
+
+        var track = outer.querySelector('[data-cp-track]');
+        if (!track) return;
+
+        var prevBtn = outer.querySelector('.cp-arrow-prev');
+        var nextBtn = outer.querySelector('.cp-arrow-next');
+        var container = outer.closest('.cp-container');
+        var dotsWrap = container ? container.querySelector('[data-cp-dots]') : null;
+
+        function getStep() {
+          var card = track.querySelector('.cp-card');
+          if (!card) return 300;
+          var style = getComputedStyle(track);
+          var gap = parseFloat(style.gap || style.columnGap || 0) || 0;
+          return card.getBoundingClientRect().width + gap;
+        }
+
+        function updateArrowState() {
+          if (!prevBtn || !nextBtn) return;
+          var maxScroll = track.scrollWidth - track.clientWidth - 2;
+          prevBtn.disabled = track.scrollLeft <= 2;
+          nextBtn.disabled = track.scrollLeft >= maxScroll;
+        }
+
+        function buildDots() {
+          if (!dotsWrap) return;
+          dotsWrap.innerHTML = '';
+          var cards = track.querySelectorAll('.cp-card');
+          cards.forEach(function (_, i) {
+            var dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'cp-dot' + (i === 0 ? ' is-active' : '');
+            dot.setAttribute('aria-label', 'Go to card ' + (i + 1));
+            dot.addEventListener('click', function () {
+              track.scrollTo({ left: i * getStep(), behavior: 'smooth' });
+            });
+            dotsWrap.appendChild(dot);
+          });
+        }
+
+        function updateDots() {
+          if (!dotsWrap) return;
+          var dots = dotsWrap.querySelectorAll('.cp-dot');
+          var index = Math.round(track.scrollLeft / getStep());
+          dots.forEach(function (dot, i) {
+            dot.classList.toggle('is-active', i === index);
+          });
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', function () {
+            track.scrollBy({ left: -getStep(), behavior: 'smooth' });
+          });
+        }
+        if (nextBtn) {
+          nextBtn.addEventListener('click', function () {
+            track.scrollBy({ left: getStep(), behavior: 'smooth' });
+          });
+        }
+
+        track.addEventListener('scroll', function () {
+          updateArrowState();
+          updateDots();
+        }, { passive: true });
+
+        window.addEventListener('resize', function () {
+          updateArrowState();
+          updateDots();
+        });
+
+        buildDots();
+        updateArrowState();
+        updateDots();
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () {
+        initCpSliders(document);
+      });
+    } else {
+      initCpSliders(document);
+    }
+
+    document.addEventListener('shopify:section:load', function (e) {
+      initCpSliders(e.target);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Complete Protocols",
+  "tag": "section",
+  "class": "cp-section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Protocoale complete"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Complete rituals, visible results. Choose the protocol that suits you."
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_text",
+      "label": "Bottom banner text",
+      "default": "DISCOVER LIGHT. LIVE THE RITUAL. BECOME THE BEST VERSION OF YOU."
+    },
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max width (px)",
+      "min": 900,
+      "max": 2400,
+      "step": 20,
+      "default": 1200
+    },
+    {
+      "type": "checkbox",
+      "id": "break_out_full_width",
+      "label": "Break out of theme's width limit",
+      "info": "Turn this ON if increasing Max width above doesn't seem to make the section wider — your theme may be wrapping sections in its own container.",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding top (desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding bottom (desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "label": "Margin top (desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "label": "Margin bottom (desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top (mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom (mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "label": "Margin top (mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "label": "Margin bottom (mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Heading style"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#d4af6a"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Heading size (desktop)",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading size (mobile)",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "default": 24,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading font weight",
+      "default": "500",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "line_color",
+      "label": "Decorative line color",
+      "default": "#8a6a2f"
+    },
+    {
+      "type": "header",
+      "content": "Subheading style"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#e6e2d8"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size_desktop",
+      "label": "Subheading size (desktop)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "default": 15,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size_mobile",
+      "label": "Subheading size (mobile)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 13,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "subheading_weight",
+      "label": "Subheading font weight",
+      "default": "400",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Grid / Slider layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Cards visible (desktop)",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "label": "Cards visible (mobile)",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "gap_desktop",
+      "label": "Gap between cards (desktop)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 24,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "label": "Gap between cards (mobile)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_arrows",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg_color",
+      "label": "Arrow background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "arrow_icon_color",
+      "label": "Arrow icon color",
+      "default": "#d4af6a"
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "label": "Arrow button size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card background",
+      "default": "#0f0f0f"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border color",
+      "default": "#3a2f1a"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card border radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 6,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card content padding (below image)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Image settings (fixes uneven image sizes)"
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "Image aspect ratio (fixed for all cards)",
+      "default": "4/5",
+      "options": [
+        {
+          "value": "1/1",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "4/5",
+          "label": "Portrait (4:5)"
+        },
+        {
+          "value": "3/4",
+          "label": "Portrait (3:4)"
+        },
+        {
+          "value": "2/3",
+          "label": "Portrait (2:3)"
+        },
+        {
+          "value": "5/4",
+          "label": "Landscape (5:4)"
+        },
+        {
+          "value": "4/3",
+          "label": "Landscape (4:3)"
+        },
+        {
+          "value": "16/9",
+          "label": "Landscape (16:9)"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "default": "cover",
+      "info": "Cover: fills the box, may crop edges. Contain: shows the whole product image, may add background space.",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover (fill & crop)"
+        },
+        {
+          "value": "contain",
+          "label": "Contain (show full image)"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "image_padding",
+      "label": "Space around image inside card",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 4,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "image_bg_color",
+      "label": "Image box background (visible with Contain)",
+      "default": "#0f0f0f"
+    },
+    {
+      "type": "header",
+      "content": "Card title style"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#d4af6a"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "label": "Title size (desktop)",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "Title size (mobile)",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "default": 17,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Title font weight",
+      "default": "500",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Card description style"
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Description color",
+      "default": "#cfcac0"
+    },
+    {
+      "type": "range",
+      "id": "desc_size_desktop",
+      "label": "Description size (desktop)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 13,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "desc_size_mobile",
+      "label": "Description size (mobile)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "desc_weight",
+      "label": "Description font weight",
+      "default": "400",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Card price style"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price color",
+      "default": "#d4af6a"
+    },
+    {
+      "type": "range",
+      "id": "price_size_desktop",
+      "label": "Price size (desktop)",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "default": 18,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "price_size_mobile",
+      "label": "Price size (mobile)",
+      "min": 12,
+      "max": 26,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "price_weight",
+      "label": "Price font weight",
+      "default": "600",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#00000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#d4af6a"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button border color",
+      "default": "#8a6a2f"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_hover",
+      "label": "Button background (hover)",
+      "default": "#d4af6a"
+    },
+    {
+      "type": "color",
+      "id": "button_text_hover",
+      "label": "Button text color (hover)",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "button_size_desktop",
+      "label": "Button font size (desktop)",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "button_size_mobile",
+      "label": "Button font size (mobile)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 11,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "button_weight",
+      "label": "Button font weight",
+      "default": "600",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 2,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Bottom banner style"
+    },
+    {
+      "type": "color",
+      "id": "banner_border_color",
+      "label": "Banner border color",
+      "default": "#3a2f1a"
+    },
+    {
+      "type": "color",
+      "id": "banner_text_color",
+      "label": "Banner text color",
+      "default": "#d4af6a"
+    },
+    {
+      "type": "range",
+      "id": "banner_size_desktop",
+      "label": "Banner text size (desktop)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "banner_size_mobile",
+      "label": "Banner text size (mobile)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 10,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "banner_weight",
+      "label": "Banner font weight",
+      "default": "500",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Protocol Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card image"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Show icon",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon (small circle icon above title)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Discovery Protocol"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Complete care for rediscovering inner light."
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price text",
+          "default": "179,90 Lei"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "DISCOVER PROTOCOLUL"
+        },
+        {
+          "type": "url",
+          "id": "card_link",
+          "label": "Bundle / product link (Easy Bundle link)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Complete Protocols",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "title": "Discovery Protocol",
+            "description": "Complete care for rediscovering inner light.",
+            "price": "179,90 Lei",
+            "button_text": "DISCOVER PROTOCOLUL"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "30 Days Hydrating",
+            "description": "Intense hydration for 30 days of radiance.",
+            "price": "199,90 Lei",
+            "button_text": "DISCOVER PROTOCOLUL"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Anti-Aging Protocol",
+            "description": "Advanced ritual for firmness, smoothness and regeneration.",
+            "price": "219,90 Lei",
+            "button_text": "DISCOVER PROTOCOLUL"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Red Carpet Protocol",
+            "description": "Instant glow for your special moments.",
+            "price": "229,90 Lei",
+            "button_text": "DISCOVER PROTOCOLUL"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

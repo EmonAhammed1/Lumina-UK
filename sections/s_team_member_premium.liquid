@@ -1,0 +1,1316 @@
+
+{%- liquid
+  assign bg_color = section.settings.bgsection | default: '#000000'
+  assign text_color = '#ffffff'
+  assign gold_color = '#D4AF37'
+  assign card_bg = '#050505'
+-%}
+
+<div class="steam-premium__section-wrapper" id="section-{{ section.id }}" style="background-color: {{ bg_color }}; color: {{ text_color }};">
+  
+  <!-- HERO SECTION -->
+  <div class="steam-premium__hero">
+    <div class="steam-premium__container">
+      <div class="steam-premium__hero-grid">
+        <div class="steam-premium__hero-content" data-reveal="fade-up">
+          <span class="steam-premium__hero-tag">{{ section.settings.title_top | uppercase }}</span>
+          <h1 class="steam-premium__hero-title">
+            The specialists behind <span class="text-gold">Lumina Europa</span>
+          </h1>
+          <p class="steam-premium__hero-subtitle">
+            {{ section.settings.des }}
+          </p>
+          <div class="steam-premium__hero-divider"></div>
+        </div>
+        <div class="steam-premium__hero-visual">
+          <canvas id="hero-particles-canvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEAM SECTION -->
+  <div class="steam-premium__team-grid-section">
+    <div class="steam-premium__container">
+      <div class="steam-premium__grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'member' -%}
+            <div class="steam-member-premium__card reveal-card" {{ block.shopify_attributes }}>
+              <div class="steam-member-premium__card-inner">
+                
+                <!-- Left Side: Portrait Image -->
+                <div class="steam-member-premium__portrait">
+                  <div class="steam-member-premium__image-wrapper">
+                    {%- liquid
+                      case forloop.index
+                        when 1
+                          assign fallback_img = 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=600'
+                        when 2
+                          assign fallback_img = 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600'
+                        when 3
+                          assign fallback_img = 'https://images.unsplash.com/photo-1581579438747-1dc8d1e0ca96?auto=format&fit=crop&q=80&w=600'
+                        when 4
+                          assign fallback_img = 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600'
+                        when 5
+                          assign fallback_img = 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600'
+                        else
+                          assign fallback_img = 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600'
+                      endcase
+
+                      if block.settings.image != blank
+                        assign img_url = block.settings.image | image_url: width: 600
+                      else
+                        assign img_url = fallback_img
+                      endif
+                    -%}
+                    <img src="{{ img_url }}" 
+                         alt="{{ block.settings.name }}" 
+                         loading="lazy"
+                         class="steam-member-premium__img"
+                         onerror="this.onerror=null; this.src='{{ fallback_img }}';">
+                    <div class="steam-member-premium__image-overlay"></div>
+                  </div>
+                </div>
+
+                <!-- Right Side: Details -->
+                <div class="steam-member-premium__info">
+                  <span class="steam-member-premium__role">{{ block.settings.role | uppercase }}</span>
+                  <h3 class="steam-member-premium__name">{{ block.settings.name }}</h3>
+                  <p class="steam-member-premium__desc">{{ block.settings.description }}</p>
+                  
+                  <!-- Expertise list -->
+                  <div class="steam-member-premium__expertises">
+                    {%- if block.settings.exp_title_1 != blank -%}
+                      <div class="steam-member-premium__exp-item">
+                        <div class="steam-member-premium__exp-icon-wrap">
+                          {%- if block.settings.exp_image_1 != blank -%}
+                            <img src="{{ block.settings.exp_image_1 | image_url: width: 60 }}" alt="{{ block.settings.exp_title_1 }}" style="width: 18px; height: 18px; object-fit: contain; filter: brightness(0) saturate(100%) invert(84%) sepia(21%) saturate(1512%) hue-rotate(5deg) brightness(93%) contrast(85%);">
+                          {%- else -%}
+                            {%- render 'premium-icons', icon_name: block.settings.exp_icon_1 -%}
+                          {%- endif -%}
+                        </div>
+                        <div class="steam-member-premium__exp-text">
+                          <h4 class="steam-member-premium__exp-title">{{ block.settings.exp_title_1 }}</h4>
+                          <p class="steam-member-premium__exp-desc">{{ block.settings.exp_desc_1 }}</p>
+                        </div>
+                      </div>
+                    {%- endif -%}
+
+                    {%- if block.settings.exp_title_2 != blank -%}
+                      <div class="steam-member-premium__exp-item">
+                        <div class="steam-member-premium__exp-icon-wrap">
+                          {%- if block.settings.exp_image_2 != blank -%}
+                            <img src="{{ block.settings.exp_image_2 | image_url: width: 60 }}" alt="{{ block.settings.exp_title_2 }}" style="width: 18px; height: 18px; object-fit: contain; filter: brightness(0) saturate(100%) invert(84%) sepia(21%) saturate(1512%) hue-rotate(5deg) brightness(93%) contrast(85%);">
+                          {%- else -%}
+                            {%- render 'premium-icons', icon_name: block.settings.exp_icon_2 -%}
+                          {%- endif -%}
+                        </div>
+                        <div class="steam-member-premium__exp-text">
+                          <h4 class="steam-member-premium__exp-title">{{ block.settings.exp_title_2 }}</h4>
+                          <p class="steam-member-premium__exp-desc">{{ block.settings.exp_desc_2 }}</p>
+                        </div>
+                      </div>
+                    {%- endif -%}
+
+                    {%- if block.settings.exp_title_3 != blank -%}
+                      <div class="steam-member-premium__exp-item">
+                        <div class="steam-member-premium__exp-icon-wrap">
+                          {%- if block.settings.exp_image_3 != blank -%}
+                            <img src="{{ block.settings.exp_image_3 | image_url: width: 60 }}" alt="{{ block.settings.exp_title_3 }}" style="width: 18px; height: 18px; object-fit: contain; filter: brightness(0) saturate(100%) invert(84%) sepia(21%) saturate(1512%) hue-rotate(5deg) brightness(93%) contrast(85%);">
+                          {%- else -%}
+                            {%- render 'premium-icons', icon_name: block.settings.exp_icon_3 -%}
+                          {%- endif -%}
+                        </div>
+                        <div class="steam-member-premium__exp-text">
+                          <h4 class="steam-member-premium__exp-title">{{ block.settings.exp_title_3 }}</h4>
+                          <p class="steam-member-premium__exp-desc">{{ block.settings.exp_desc_3 }}</p>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA SECTION -->
+  <div class="steam-premium__cta">
+    <div class="steam-premium__container">
+      <div class="steam-premium__cta-banner">
+        <div class="steam-premium__cta-bg">
+          <img src="{{ 'lumina-experience-reborn.png' | asset_url }}" 
+               alt="Beauty luxury background" 
+               loading="lazy"
+               class="steam-premium__cta-img"
+               onerror="this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=1200';">
+          <div class="steam-premium__cta-overlay"></div>
+          
+          <!-- CTA SVG gold particles overlay -->
+          <div class="steam-premium__cta-particles">
+            <svg viewBox="0 0 800 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 0,200 Q 200,100 400,200 T 800,200" fill="none" stroke="rgba(212, 175, 55, 0.4)" stroke-width="1.5" stroke-dasharray="5 5">
+                <animate attributeName="stroke-dashoffset" values="0;100" dur="15s" repeatCount="indefinite" />
+              </path>
+              <path d="M 0,150 Q 300,250 500,150 T 800,250" fill="none" stroke="rgba(212, 175, 55, 0.25)" stroke-width="1" stroke-dasharray="10 5">
+                <animate attributeName="stroke-dashoffset" values="100;0" dur="20s" repeatCount="indefinite" />
+              </path>
+            </svg>
+          </div>
+        </div>
+
+        <div class="steam-premium__cta-content" data-reveal="fade-up">
+          <h2 class="steam-premium__cta-title">Beauty underpinned by <span class="text-gold">science</span></h2>
+          <p class="steam-premium__cta-desc">
+            Meet the multidisciplinary team of experts pioneering advanced nanofiber skincare biotechnology.
+          </p>
+          <a href="/collections/all" class="steam-premium__cta-btn">
+            DISCOVER PRODUSELE NOASTRE
+            <span class="btn-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- STYLES -->
+<style>
+  /* Header customization for this template */
+  body:has(#section-{{ section.id }}) .site-header,
+  body:has(#section-{{ section.id }}) .site-header .header-bottom,
+  body:has(#section-{{ section.id }}) .site-header .header-bottom__right,
+  body:has(#section-{{ section.id }}) .site-header .toggle-menu-mobile {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-bottom: none !important;
+    transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), backdrop-filter 0.4s ease, border-color 0.4s ease !important;
+  }
+  
+  body:has(#section-{{ section.id }}) .site-header {
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15) !important;
+    position: absolute !important;
+    width: 100% !important;
+    z-index: 1000 !important;
+  }
+  
+  body:has(#section-{{ section.id }}) .site-header.scrolled-custom,
+  body:has(#section-{{ section.id }}) .site-header.scrolled-custom .header-bottom {
+    background: rgba(0, 0, 0, 0.85) !important;
+    background-color: rgba(0, 0, 0, 0.85) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+  }
+  
+  body:has(#section-{{ section.id }}) .site-header.scrolled-custom {
+    border-bottom: 1px solid rgba(212, 175, 55, 0.35) !important;
+  }
+
+  body:has(#section-{{ section.id }}) {
+    background-color: #000000 !important;
+  }
+
+  body:has(#section-{{ section.id }}) .main-content,
+  body:has(#section-{{ section.id }}) #MainContent,
+  body:has(#section-{{ section.id }}) .page-container {
+    background-color: #000000 !important;
+  }
+
+  body:has(#section-{{ section.id }}) .breadcrumb {
+    display: none !important;
+  }
+
+  /* Fonts */
+  .steam-premium__hero-title,
+  .steam-member-premium__name,
+  .steam-premium__cta-title {
+    font-family: var(--g-font-1), "Playfair Display", "Cormorant Garamond", Georgia, serif !important;
+    font-weight: 400 !important;
+  }
+
+  .steam-premium__hero-tag,
+  .steam-premium__hero-subtitle,
+  .steam-member-premium__role,
+  .steam-member-premium__desc,
+  .steam-member-premium__exp-title,
+  .steam-member-premium__exp-desc,
+  .steam-premium__cta-desc,
+  .steam-premium__cta-btn {
+    font-family: var(--g-font-2), "Inter", "DM Sans", Arial, sans-serif !important;
+  }
+
+  /* Container */
+  .steam-premium__container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding: 0 20px !important;
+  }
+  @media only screen and (min-width: 990px) {
+    .steam-premium__container {
+      max-width: 1600px !important;
+      padding-left: var(--g-gutter, 30px) !important;
+      padding-right: var(--g-gutter, 30px) !important;
+    }
+  }
+
+  /* Global helper classes */
+  .text-gold {
+    color: #D4AF37 !important;
+  }
+
+  /* Section Wrapper */
+  .steam-premium__section-wrapper {
+    overflow: hidden;
+    padding-top: 0 !important;
+  }
+
+  /* Hero Section styling */
+  .steam-premium__hero {
+    padding: 110px 0 40px !important; /* Elegant gap below absolute header */
+    position: relative;
+  }
+
+  .steam-premium__hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .steam-premium__hero-tag {
+    color: #D4AF37;
+    font-size: 13px;
+    letter-spacing: 4px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .steam-premium__hero-title {
+    font-size: 54px;
+    line-height: 1.15;
+    color: #ffffff;
+    margin-bottom: 24px;
+  }
+
+  .steam-premium__hero-subtitle {
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 580px;
+    margin-bottom: 32px;
+  }
+
+  .steam-premium__hero-divider {
+    height: 1px;
+    width: 0;
+    background: linear-gradient(90deg, #D4AF37, transparent);
+    animation: expandDivider 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation-delay: 400ms;
+  }
+
+  .steam-premium__hero-visual {
+    position: relative;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #hero-particles-canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  @keyframes expandDivider {
+    to { width: 100%; }
+  }
+
+  /* Team Section Grid */
+  .steam-premium__team-grid-section {
+    padding: 40px 0 100px;
+  }
+
+  .steam-premium__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  /* Card Design */
+  .steam-member-premium__card {
+    background-color: #050505;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 18px;
+    padding: 40px;
+    box-sizing: border-box;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                border-color 0.4s ease, 
+                box-shadow 0.4s ease;
+    will-change: transform;
+    opacity: 0;
+    transform: translateY(60px);
+  }
+
+  .steam-member-premium__card.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .steam-member-premium__card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(212, 175, 55, 0.8);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.08), 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .steam-member-premium__card-inner {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 30px;
+    height: 100%;
+  }
+
+  /* Card Portrait Image */
+  .steam-member-premium__portrait {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .steam-member-premium__image-wrapper {
+    position: relative;
+    padding-top: 130%; /* 4:5 Aspect Ratio */
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    background-color: #0d0d0d;
+  }
+
+  .steam-member-premium__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .steam-member-premium__image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0), rgba(0,0,0,0.5)),
+                linear-gradient(to top, rgba(0,0,0,0.7), transparent 60%);
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+  }
+
+  .steam-member-premium__card:hover .steam-member-premium__img {
+    transform: scale(1.05);
+  }
+
+  .steam-member-premium__card:hover .steam-member-premium__image-overlay {
+    box-shadow: inset 0 0 40px rgba(212, 175, 55, 0.25);
+  }
+
+  /* Card Info (Right) */
+  .steam-member-premium__info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .steam-member-premium__role {
+    color: #D4AF37;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .steam-member-premium__name {
+    font-size: 26px;
+    color: #ffffff;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .steam-member-premium__desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 24px;
+  }
+
+  /* Expertise list */
+  .steam-member-premium__expertises {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: auto;
+  }
+
+  .steam-member-premium__exp-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .steam-member-premium__exp-icon-wrap {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #D4AF37;
+    background-color: rgba(212, 175, 55, 0.03);
+    margin-top: 2px;
+  }
+
+  .steam-member-premium__exp-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .steam-member-premium__exp-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 2px 0;
+  }
+
+  .steam-member-premium__exp-desc {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* CTA Section Styling */
+  .steam-premium__cta {
+    padding: 40px 0 100px;
+  }
+
+  .steam-premium__cta-banner {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #050505;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    padding: 100px 60px;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+  }
+
+  .steam-premium__cta-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .steam-premium__cta-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.45;
+  }
+
+  .steam-premium__cta-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 10% 50%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.9));
+  }
+
+  .steam-premium__cta-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .steam-premium__cta-particles svg {
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+  }
+
+  .steam-premium__cta-content {
+    position: relative;
+    z-index: 3;
+    max-width: 600px;
+  }
+
+  .steam-premium__cta-title {
+    font-size: 42px;
+    color: #ffffff;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .steam-premium__cta-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 32px;
+  }
+
+  .steam-premium__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: #D4AF37;
+    color: #000000;
+    padding: 16px 36px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                box-shadow 0.3s ease, 
+                background-color 0.3s ease;
+    border: none;
+    outline: none;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+  }
+
+  .steam-premium__cta-btn:hover {
+    transform: scale(1.03);
+    background-color: #f7d560;
+    color: #000000;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    text-decoration: none;
+  }
+
+  .btn-arrow {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+
+  .steam-premium__cta-btn:hover .btn-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Entrance Animation for Hero */
+  [data-reveal="fade-up"] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  [data-reveal="fade-up"].reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive styling */
+  @media (max-width: 1199px) {
+    .steam-premium__grid {
+      grid-template-columns: 1fr;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .steam-premium__hero-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      text-align: center;
+    }
+
+    .steam-premium__hero-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .steam-premium__hero-divider {
+      margin: 0 auto;
+    }
+
+    .steam-premium__hero-visual {
+      height: 200px;
+    }
+
+    .steam-premium__cta-banner {
+      padding: 60px 40px;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .steam-premium__cta-overlay {
+      background: rgba(0,0,0,0.85);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .steam-premium__section-wrapper {
+      padding-top: 0 !important;
+    }
+
+    .steam-premium__hero {
+      padding: 90px 0 20px !important;
+    }
+
+    .steam-premium__hero-title {
+      font-size: 36px;
+    }
+
+    .steam-member-premium__card {
+      padding: 24px;
+    }
+
+    .steam-member-premium__card-inner {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .steam-member-premium__portrait {
+      max-width: 250px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .steam-member-premium__info {
+      text-align: center;
+    }
+
+    .steam-member-premium__exp-item {
+      text-align: left;
+    }
+
+    .steam-premium__cta-title {
+      font-size: 30px;
+    }
+
+    .steam-premium__cta-btn {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    /* Touch devices action feedback */
+    .steam-member-premium__card:active {
+      transform: scale(0.98);
+    }
+    .steam-premium__cta-btn:active {
+      transform: scale(0.96);
+    }
+  }
+</style>
+
+<!-- SCRIPTS -->
+<script>
+  // 1. Transparent Header on Scroll Handler
+  (function() {
+    function initHeaderScroll() {
+      const header = document.querySelector('.site-header');
+      if (header) {
+        function handleScroll() {
+          if (window.scrollY > 40) {
+            header.classList.add('scrolled-custom');
+          } else {
+            header.classList.remove('scrolled-custom');
+          }
+        }
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll(); // run once on load
+      }
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHeaderScroll);
+    } else {
+      initHeaderScroll();
+    }
+  })();
+
+  // 2. Scroll Reveal Animations via Intersection Observer
+  (function() {
+    function initScrollReveal() {
+      const reveals = document.querySelectorAll('[data-reveal], .reveal-card');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-active');
+            observer.unobserve(entry.target); // Trigger only once
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      });
+      
+      reveals.forEach((el, index) => {
+        // Add tiny transition delays for staggering cards in grid
+        if (el.classList.contains('steam-member-premium__card')) {
+          const isDesktop = window.innerWidth >= 1200;
+          if (isDesktop) {
+            // alternate stagger for 2 columns
+            el.style.transitionDelay = `${(index % 2) * 150}ms`;
+          }
+        }
+        observer.observe(el);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initScrollReveal);
+    } else {
+      initScrollReveal();
+    }
+  })();
+
+  // 3. Canvas Gold Particle Wave Animation (Hero Section)
+  (function() {
+    function initHeroParticles() {
+      const canvas = document.getElementById('hero-particles-canvas');
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      let animationFrameId;
+
+      let width = canvas.width = canvas.parentElement.offsetWidth;
+      let height = canvas.height = canvas.parentElement.offsetHeight;
+
+      window.addEventListener('resize', () => {
+        if (!canvas || !canvas.parentElement) return;
+        width = canvas.width = canvas.parentElement.offsetWidth;
+        height = canvas.height = canvas.parentElement.offsetHeight;
+      });
+
+      const particles = [];
+      // Adjust particle count for mobile screens to ensure smooth performance
+      const isMobile = window.innerWidth < 768;
+      const particleCount = isMobile ? 25 : 60;
+      const goldPalette = ['rgba(212, 175, 55, 0.4)', 'rgba(247, 213, 96, 0.25)', 'rgba(184, 150, 62, 0.35)', 'rgba(255, 255, 255, 0.2)'];
+
+      class Particle {
+        constructor() {
+          this.reset();
+        }
+
+        reset() {
+          this.x = Math.random() * width;
+          this.y = Math.random() * height;
+          this.size = Math.random() * 2 + 0.8;
+          this.speedY = -(Math.random() * 0.4 + 0.1);
+          this.speedX = Math.random() * 0.3 - 0.15;
+          this.color = goldPalette[Math.floor(Math.random() * goldPalette.length)];
+          this.opacity = Math.random() * 0.6 + 0.2;
+          this.angle = Math.random() * Math.PI * 2;
+          this.waveSpeed = Math.random() * 0.02 + 0.005;
+          this.waveRadius = Math.random() * 15 + 5;
+        }
+
+        update() {
+          this.y += this.speedY;
+          this.angle += this.waveSpeed;
+          this.x += this.speedX + Math.sin(this.angle) * 0.15;
+
+          // Fade out near top
+          if (this.y < 20) {
+            this.opacity -= 0.01;
+          }
+
+          if (this.y < 0 || this.x < 0 || this.x > width || this.opacity <= 0) {
+            this.reset();
+            this.y = height + 10;
+          }
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = this.color;
+          ctx.shadowBlur = this.size * 3;
+          ctx.shadowColor = '#D4AF37';
+          ctx.fill();
+          ctx.shadowColor = 'transparent';
+          ctx.shadowBlur = 0;
+        }
+      }
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+
+      // Draw particle waves
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Draw glowing golden wave background
+        const time = Date.now() * 0.001;
+        ctx.beginPath();
+        ctx.moveTo(0, height * 0.6);
+        for (let x = 0; x < width; x++) {
+          const y = height * 0.6 + Math.sin(x * 0.004 + time * 0.8) * 20 + Math.cos(x * 0.008 + time * 0.4) * 10;
+          ctx.lineTo(x, y);
+        }
+        ctx.lineTo(width, height);
+        ctx.lineTo(0, height);
+        ctx.closePath();
+        
+        const gradient = ctx.createLinearGradient(0, height * 0.5, 0, height);
+        gradient.addColorStop(0, 'rgba(212, 175, 55, 0.04)');
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = gradient;
+        ctx.fill();
+
+        // Draw decorative sinus lines
+        ctx.beginPath();
+        for (let x = 0; x < width; x++) {
+          const y = height * 0.55 + Math.sin(x * 0.005 + time) * 15;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = 'rgba(212, 175, 55, 0.15)';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.beginPath();
+        for (let x = 0; x < width; x++) {
+          const y = height * 0.58 + Math.cos(x * 0.003 + time * 0.7) * 20;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = 'rgba(212, 175, 55, 0.08)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Update and draw particles
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+
+        animationFrameId = requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      // Clean up animation if element gets removed/re-rendered in Shopify admin editor
+      document.addEventListener('shopify:section:unload', function(e) {
+        if (e.detail.sectionId === '{{ section.id }}') {
+          cancelAnimationFrame(animationFrameId);
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHeroParticles);
+    } else {
+      initHeroParticles();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Premium Team Page",
+  "class": "index-section",
+  "max_blocks": 50,
+  "settings": [
+    {
+      "type": "color",
+      "id": "bgsection",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "title_top",
+      "label": "Tag Title Top",
+      "default": "OUR TEAM"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "The specialists behind Lumina Europa"
+    },
+    {
+      "type": "textarea",
+      "id": "des",
+      "label": "Hero Subtitle",
+      "default": "A team of scientists, innovators and skin care specialists dedicated to bringing nanofiber technology to the highest standards."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "member",
+      "name": "Team Member",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Portrait Image"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role Title",
+          "default": "FOUNDER & SCIENTIFIC DIRECTOR"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Dr. Elena Marin"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "With over 15 years of experience in dermatological research..."
+        },
+        {
+          "type": "header",
+          "content": "Expertise Item 1"
+        },
+        {
+          "type": "text",
+          "id": "exp_title_1",
+          "label": "Expertise 1 Title"
+        },
+        {
+          "type": "text",
+          "id": "exp_desc_1",
+          "label": "Expertise 1 Subtext"
+        },
+        {
+          "type": "select",
+          "id": "exp_icon_1",
+          "label": "Expertise 1 Icon",
+          "default": "flask",
+          "options": [
+            {
+              "value": "flask",
+              "label": "Flask/Lab"
+            },
+            {
+              "value": "molecule",
+              "label": "Molecule/Nanotech"
+            },
+            {
+              "value": "award",
+              "label": "Award/Leader"
+            },
+            {
+              "value": "shield",
+              "label": "Shield/Clinical"
+            },
+            {
+              "value": "chart",
+              "label": "Chart/Data"
+            },
+            {
+              "value": "leaf",
+              "label": "Leaf/Clean"
+            },
+            {
+              "value": "star",
+              "label": "Star/Quality"
+            },
+            {
+              "value": "heart",
+              "label": "Heart/Care"
+            },
+            {
+              "value": "chat",
+              "label": "Chat/Consult"
+            },
+            {
+              "value": "cog",
+              "label": "Cog/Operations"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "exp_image_1",
+          "label": "Expertise 1 Custom Icon (Overrides default)"
+        },
+        {
+          "type": "header",
+          "content": "Expertise Item 2"
+        },
+        {
+          "type": "text",
+          "id": "exp_title_2",
+          "label": "Expertise 2 Title"
+        },
+        {
+          "type": "text",
+          "id": "exp_desc_2",
+          "label": "Expertise 2 Subtext"
+        },
+        {
+          "type": "select",
+          "id": "exp_icon_2",
+          "label": "Expertise 2 Icon",
+          "default": "molecule",
+          "options": [
+            {
+              "value": "flask",
+              "label": "Flask/Lab"
+            },
+            {
+              "value": "molecule",
+              "label": "Molecule/Nanotech"
+            },
+            {
+              "value": "award",
+              "label": "Award/Leader"
+            },
+            {
+              "value": "shield",
+              "label": "Shield/Clinical"
+            },
+            {
+              "value": "chart",
+              "label": "Chart/Data"
+            },
+            {
+              "value": "leaf",
+              "label": "Leaf/Clean"
+            },
+            {
+              "value": "star",
+              "label": "Star/Quality"
+            },
+            {
+              "value": "heart",
+              "label": "Heart/Care"
+            },
+            {
+              "value": "chat",
+              "label": "Chat/Consult"
+            },
+            {
+              "value": "cog",
+              "label": "Cog/Operations"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "exp_image_2",
+          "label": "Expertise 2 Custom Icon (Overrides default)"
+        },
+        {
+          "type": "header",
+          "content": "Expertise Item 3"
+        },
+        {
+          "type": "text",
+          "id": "exp_title_3",
+          "label": "Expertise 3 Title"
+        },
+        {
+          "type": "text",
+          "id": "exp_desc_3",
+          "label": "Expertise 3 Subtext"
+        },
+        {
+          "type": "select",
+          "id": "exp_icon_3",
+          "label": "Expertise 3 Icon",
+          "default": "award",
+          "options": [
+            {
+              "value": "flask",
+              "label": "Flask/Lab"
+            },
+            {
+              "value": "molecule",
+              "label": "Molecule/Nanotech"
+            },
+            {
+              "value": "award",
+              "label": "Award/Leader"
+            },
+            {
+              "value": "shield",
+              "label": "Shield/Clinical"
+            },
+            {
+              "value": "chart",
+              "label": "Chart/Data"
+            },
+            {
+              "value": "leaf",
+              "label": "Leaf/Clean"
+            },
+            {
+              "value": "star",
+              "label": "Star/Quality"
+            },
+            {
+              "value": "heart",
+              "label": "Heart/Care"
+            },
+            {
+              "value": "chat",
+              "label": "Chat/Consult"
+            },
+            {
+              "value": "cog",
+              "label": "Cog/Operations"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "exp_image_3",
+          "label": "Expertise 3 Custom Icon (Overrides default)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Premium Team Page",
+      "category": "Theme Sections",
+      "blocks": [
+        {
+          "type": "member",
+          "settings": {
+            "role": "FOUNDER & SCIENTIFIC DIRECTOR",
+            "name": "Dr. Elena Marin",
+            "description": "With over 15 years of experience in dermatological research and nanotechnology, Dr. Marin founded Lumina Europa with the vision of transforming skin care through scientific innovation.",
+            "exp_title_1": "15+ Ani de Cercetare",
+            "exp_desc_1": "Expert in dermatology and skin science",
+            "exp_icon_1": "flask",
+            "exp_title_2": "Specialist in Nanofibers Technology",
+            "exp_desc_2": "Pioneer in advanced ingredient delivery systems",
+            "exp_icon_2": "molecule",
+            "exp_title_3": "Leader in Innovation",
+            "exp_desc_3": "It develops revolutionary formulas based on science",
+            "exp_icon_3": "award"
+          }
+        },
+        {
+          "type": "member",
+          "settings": {
+            "role": "HEAD OF PRODUCT DEVELOPMENT",
+            "name": "Alexandra Ionescu",
+            "description": "Alexandra leads product innovation with a passion for clean beauty and performance formulas that deliver visible and real results.",
+            "exp_title_1": "Expert in Product Innovation",
+            "exp_desc_1": "Specialist in advanced skin care formulas",
+            "exp_icon_1": "flask",
+            "exp_title_2": "10+ Years Experience",
+            "exp_desc_2": "In cosmetic chemistry and product development",
+            "exp_icon_2": "molecule",
+            "exp_title_3": "Clean Beauty Advocate",
+            "exp_desc_3": "Dedicated to safety, efficiency and sustainability",
+            "exp_icon_3": "leaf"
+          }
+        },
+        {
+          "type": "member",
+          "settings": {
+            "role": "CLINICAL RESEARCH MANAGER",
+            "name": "Maria Popescu",
+            "description": "Maria oversees all clinical trials and testing protocols to ensure that each product meets the highest standards of safety and efficacy.",
+            "exp_title_1": "Expert in Clinical Research",
+            "exp_desc_1": "Design and manage rigorous clinical trials",
+            "exp_icon_1": "shield",
+            "exp_title_2": "Dermatological Background",
+            "exp_desc_2": "Ensures product safety, tolerance and maximum efficacy",
+            "exp_icon_2": "shield",
+            "exp_title_3": "Evidence-Based Decisions",
+            "exp_desc_3": "Data-backed results and transparent testing",
+            "exp_icon_3": "chart"
+          }
+        },
+        {
+          "type": "member",
+          "settings": {
+            "role": "SPECIALIST IN NANOTECHNOLOGY",
+            "name": "Andrei Dumitru",
+            "description": "Andrei is the mastermind behind nanofiber technology, developing advanced delivery systems for superior absorption and maximum efficiency.",
+            "exp_title_1": "Expert in Nanotechnology",
+            "exp_desc_1": "Specialist in nanofibers and materials science",
+            "exp_icon_1": "molecule",
+            "exp_title_2": "Advanced Delivery Systems",
+            "exp_desc_2": "Improves potency and bioavailability of ingredients",
+            "exp_icon_2": "molecule",
+            "exp_title_3": "Research & Development",
+            "exp_desc_3": "Focused on continuous innovation",
+            "exp_icon_3": "award"
+          }
+        },
+        {
+          "type": "member",
+          "settings": {
+            "role": "CUSTOMER EXPERIENCE DIRECTOR",
+            "name": "Bianca Stan",
+            "description": "Bianca ensures that every client has an exceptional experience with Lumina Europa, from discovery to long-term results.",
+            "exp_title_1": "Customer Experience Expert",
+            "exp_desc_1": "Build relationships of trust and loyalty",
+            "exp_icon_1": "heart",
+            "exp_title_2": "Skin Care Consultant",
+            "exp_desc_2": "Passionate about helping clients achieve their goals",
+            "exp_icon_2": "chat",
+            "exp_title_3": "Commitment to Quality",
+            "exp_desc_3": "Dedicated to customer satisfaction and trust",
+            "exp_icon_3": "star"
+          }
+        },
+        {
+          "type": "member",
+          "settings": {
+            "role": "OPERATIONS MANAGER",
+            "name": "Vlad Popa",
+            "description": "Vlad ensures that all our operations run flawlessly, maintaining the highest standards of quality and efficiency at every stage of the process.",
+            "exp_title_1": "Operations Expert",
+            "exp_desc_1": "Optimize processes for maximum efficiency",
+            "exp_icon_1": "cog",
+            "exp_title_2": "Quality assurance",
+            "exp_desc_2": "Maintain the highest standards at every stage",
+            "exp_icon_2": "shield",
+            "exp_title_3": "Team leader",
+            "exp_desc_3": "Build and motivate high performing teams",
+            "exp_icon_3": "award"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

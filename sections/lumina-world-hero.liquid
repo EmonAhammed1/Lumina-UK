@@ -1,0 +1,522 @@
+<!-- sections/lumina-world-hero.liquid -->
+<style>
+  .lumina-world-hero-section {
+    background-color: #030303;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border-top: 1px solid rgba(197, 160, 89, 0.25);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+  }
+
+  .lwh-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .lwh-grid-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    border-collapse: collapse;
+  }
+
+  /* Left Column: 2 Stacked Images */
+  .lwh-col-left {
+    flex: 0 0 25%;
+    max-width: 25%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(197, 160, 89, 0.25);
+  }
+
+  .lwh-img-box {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    flex: 1;
+    min-height: 280px;
+  }
+
+  .lwh-img-box:first-child {
+    border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+  }
+
+  .lwh-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+
+  .lwh-img-box:hover img {
+    transform: scale(1.04);
+  }
+
+  /* Center Column: Text Content Card */
+  .lwh-col-center {
+    flex: 0 0 32%;
+    max-width: 32%;
+    background-color: #060606;
+    background-image: radial-gradient(circle at center, rgba(30, 25, 18, 0.5) 0%, rgba(5, 5, 5, 0.95) 100%);
+    border-right: 1px solid rgba(197, 160, 89, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 30px;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .lwh-center-content {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .lwh-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #c5a059;
+    font-weight: 500;
+    margin-bottom: 18px;
+    opacity: 0.9;
+  }
+
+  .lwh-title {
+    font-family: var(--g-font-2), "Cormorant Garamond", "Times New Roman", serif;
+    font-size: 52px;
+    line-height: 1.05;
+    font-weight: 400;
+    color: #c5a059;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lwh-title span {
+    display: block;
+  }
+
+  .lwh-subtitle-italic {
+    font-family: var(--g-font-2), "Cormorant Garamond", "Times New Roman", serif;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 400;
+    color: #c5a059;
+    margin-bottom: 14px;
+  }
+
+  .lwh-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 35px;
+    font-weight: 300;
+  }
+
+  /* Buttons */
+  .lwh-btn-pill {
+    display: inline-block;
+    background-color: #c5a059;
+    color: #050505;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #c5a059;
+    box-shadow: 0 4px 20px rgba(197, 160, 89, 0.2);
+    margin-bottom: 24px;
+  }
+
+  .lwh-btn-pill:hover {
+    background-color: #d8b26a;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(197, 160, 89, 0.35);
+  }
+
+  .lwh-watch-film {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #c5a059;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+  }
+
+  .lwh-watch-film:hover {
+    opacity: 0.8;
+    color: #d8b26a;
+  }
+
+  .lwh-play-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid rgba(197, 160, 89, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .lwh-play-icon svg {
+    width: 10px;
+    height: 10px;
+    fill: #c5a059;
+    margin-left: 2px;
+  }
+
+  /* Right Column: 2x2 Grid (4 Images) */
+  .lwh-col-right {
+    flex: 0 0 43%;
+    max-width: 43%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .lwh-right-cell {
+    flex: 0 0 50%;
+    max-width: 50%;
+    position: relative;
+    overflow: hidden;
+    min-height: 280px;
+    box-sizing: border-box;
+  }
+
+  .lwh-right-cell:nth-child(1),
+  .lwh-right-cell:nth-child(3) {
+    border-right: 1px solid rgba(197, 160, 89, 0.25);
+  }
+
+  .lwh-right-cell:nth-child(1),
+  .lwh-right-cell:nth-child(2) {
+    border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+  }
+
+  .lwh-right-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+
+  .lwh-right-cell:hover img {
+    transform: scale(1.04);
+  }
+
+  /* Responsive Adjustments */
+  @media (min-width: 992px) {
+    .lumina-world-hero-section {
+      min-height: 600px;
+    }
+    .lwh-grid-wrap {
+      min-height: 600px;
+    }
+    .lwh-img-box, .lwh-right-cell {
+      min-height: 300px !important;
+      height: 50% !important;
+    }
+    .lwh-col-center {
+      padding: 50px 24px;
+    }
+    .lwh-title {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .lwh-eyebrow {
+      margin-bottom: 14px;
+    }
+    .lwh-subtitle-italic {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .lwh-description {
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+    .lwh-btn-pill {
+      padding: 13px 30px;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 1199px) and (min-width: 992px) {
+    .lwh-title { font-size: 38px; }
+  }
+
+  @media (max-width: 991px) {
+    .lwh-col-center {
+      order: 1;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+      padding: 60px 24px;
+    }
+    .lwh-col-left {
+      order: 2;
+      flex-direction: row;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+    }
+    .lwh-col-right {
+      order: 3;
+    }
+    .lwh-col-left, .lwh-col-center, .lwh-col-right {
+      flex: 0 0 100%;
+      max-width: 100%;
+      border-right: none;
+    }
+    .lwh-img-box {
+      min-height: 240px;
+    }
+    .lwh-img-box:first-child {
+      border-bottom: none;
+      border-right: 1px solid rgba(197, 160, 89, 0.25);
+    }
+    .lwh-right-cell {
+      min-height: 220px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .lwh-col-left { flex-direction: column; }
+    .lwh-img-box:first-child {
+      border-right: none;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+    }
+    .lwh-title { font-size: 36px; }
+    .lwh-subtitle-italic { font-size: 20px; }
+    .lwh-right-cell {
+      flex: 0 0 100%;
+      max-width: 100%;
+      min-height: 240px;
+      border-right: none !important;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+    }
+  }
+</style>
+
+<div class="lumina-world-hero-section">
+  <div class="lwh-container">
+    <div class="lwh-grid-wrap">
+
+      <!-- LEFT COLUMN: 2 Stacked Images -->
+      <div class="lwh-col-left">
+        <div class="lwh-img-box">
+          {%- if section.settings.left_image_1 != blank -%}
+            <img src="{{ section.settings.left_image_1 | image_url: width: 800 }}" alt="{{ section.settings.title | escape }}" loading="lazy">
+          {%- else -%}
+            <img src="{{ 'lumina-world-hero-1.png' | asset_url }}" alt="Castle Estate" loading="lazy">
+          {%- endif -%}
+        </div>
+        <div class="lwh-img-box">
+          {%- if section.settings.left_image_2 != blank -%}
+            <img src="{{ section.settings.left_image_2 | image_url: width: 800 }}" alt="{{ section.settings.title | escape }}" loading="lazy">
+          {%- else -%}
+            <img src="{{ 'lumina-world-hero-2.png' | asset_url }}" alt="Opera House Dome" loading="lazy">
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- CENTER COLUMN: Text Content -->
+      <div class="lwh-col-center">
+        <div class="lwh-center-content">
+          {%- if section.settings.eyebrow != blank -%}
+            <div class="lwh-eyebrow">{{ section.settings.eyebrow }}</div>
+          {%- endif -%}
+
+          {%- if section.settings.title != blank -%}
+            <h1 class="lwh-title">
+              {{ section.settings.title | replace: ' ', '</span><span>' | prepend: '<span>' | append: '</span>' }}
+            </h1>
+          {%- endif -%}
+
+          {%- if section.settings.subtitle_italic != blank -%}
+            <div class="lwh-subtitle-italic">{{ section.settings.subtitle_italic }}</div>
+          {%- endif -%}
+
+          {%- if section.settings.description != blank -%}
+            <div class="lwh-description">{{ section.settings.description }}</div>
+          {%- endif -%}
+
+          {%- if section.settings.btn_label != blank -%}
+            <a href="{{ section.settings.btn_link | default: '#' }}" class="lwh-btn-pill">
+              {{ section.settings.btn_label }}
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.video_label != blank -%}
+            <div>
+              <a href="{{ section.settings.video_url | default: '#' }}" class="lwh-watch-film">
+                <span class="lwh-play-icon">
+                  <svg viewBox="0 0 24 24"><polygon points="8 5 19 12 8 19 8 5"></polygon></svg>
+                </span>
+                {{ section.settings.video_label }}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: 2x2 Grid (4 Images) -->
+      <div class="lwh-col-right">
+        <!-- Top Left -->
+        <div class="lwh-right-cell">
+          {%- if section.settings.right_image_1 != blank -%}
+            <img src="{{ section.settings.right_image_1 | image_url: width: 700 }}" alt="Model Beauty" loading="lazy">
+          {%- else -%}
+            <img src="{{ 'lumina-world-hero-3.png' | asset_url }}" alt="Model Beauty" loading="lazy">
+          {%- endif -%}
+        </div>
+
+        <!-- Top Right -->
+        <div class="lwh-right-cell">
+          {%- if section.settings.right_image_2 != blank -%}
+            <img src="{{ section.settings.right_image_2 | image_url: width: 700 }}" alt="Skincare Lab Science" loading="lazy">
+          {%- else -%}
+            <img src="{{ 'lumina-world-hero-4.png' | asset_url }}" alt="Skincare Lab Science" loading="lazy">
+          {%- endif -%}
+        </div>
+
+        <!-- Bottom Left -->
+        <div class="lwh-right-cell">
+          {%- if section.settings.right_image_3 != blank -%}
+            <img src="{{ section.settings.right_image_3 | image_url: width: 700 }}" alt="Mountain Lake Landscape" loading="lazy">
+          {%- else -%}
+            <img src="{{ 'lumina-world-hero-5.png' | asset_url }}" alt="Mountain Lake Landscape" loading="lazy">
+          {%- endif -%}
+        </div>
+
+        <!-- Bottom Right -->
+        <div class="lwh-right-cell">
+          {%- if section.settings.right_image_4 != blank -%}
+            <img src="{{ section.settings.right_image_4 | image_url: width: 700 }}" alt="Luxury Architecture" loading="lazy">
+          {%- else -%}
+            <img src="{{ 'lumina-experience-reborn.png' | asset_url }}" alt="Luxury Architecture" loading="lazy">
+          {%- endif -%}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Lumina World Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Center Text Settings"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "WELCOME TO"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title",
+      "default": "LUMINA WORLD"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_italic",
+      "label": "Italic Subtitle",
+      "default": "More than skin care."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description Text",
+      "default": "A place where science, culture and mindful living meet."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Primary Button Label",
+      "default": "DISCOVER LUMINA WORLD"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "video_label",
+      "label": "Watch Video Label",
+      "default": "WATCH THE BRAND FILM"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video Link"
+    },
+    {
+      "type": "header",
+      "content": "Left Side Images (2 Images)"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image_1",
+      "label": "Left Top Image (Castle/Estate)"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image_2",
+      "label": "Left Bottom Image (Dome/Interior)"
+    },
+    {
+      "type": "header",
+      "content": "Right Side Images (4 Images - 2x2 Grid)"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image_1",
+      "label": "Right Top-Left Image (Model Face)"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image_2",
+      "label": "Right Top-Right Image (Scientist/Lab)"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image_3",
+      "label": "Right Bottom-Left Image (Mountain Lake)"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image_4",
+      "label": "Right Bottom-Right Image (Cathedral/Architecture)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lumina World Hero"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,1186 @@
+<!-- sections/experience-technology.liquid -->
+{%- liquid
+  assign animation = section.settings.animation
+  assign setwidth = section.settings.setwidth
+  assign bg_text_col = section.settings.bg_text_col
+  assign bg_card = section.settings.bg_card
+  
+  assign color_heading = section.settings.color_heading
+  assign color_text = section.settings.color_text
+  assign color_line = section.settings.color_line
+
+  assign subtitle = section.settings.subtitle
+  assign heading_1 = section.settings.heading_1
+  assign heading_2 = section.settings.heading_2
+  assign des = section.settings.des
+
+  assign button_label = section.settings.button_label
+  assign button_link = section.settings.button_link
+  assign watch_label = section.settings.watch_label
+  assign watch_link = section.settings.watch_link
+
+  if section.settings.video != blank
+    assign video_url = section.settings.video.sources[0].url
+  elsif section.settings.video_url != blank
+    assign video_url = section.settings.video_url
+  else
+    assign video_url = '6_experience_technology_player.mp4' | file_url
+  endif
+-%}
+
+{%- render 'style-section' -%}
+
+<style>
+  .customstyle{{ section.id }} {
+    overflow: hidden;
+    background-color: {{ bg_text_col }};
+  }
+  .customstyle{{ section.id }} .row-flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .customstyle{{ section.id }} .tech-header-wrap {
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    text-align: center;
+  }
+  .customstyle{{ section.id }} .tech-subtitle {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: {{ color_heading }};
+    font-weight: 700;
+    font-family: var(--g-font-2), sans-serif;
+    margin-bottom: 15px;
+    display: inline-block;
+  }
+  .customstyle{{ section.id }} .tech-heading {
+    font-size: calc(var(--g-h2-font-size) + 12px);
+    line-height: 1.2;
+    color: #ffffff;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  .customstyle{{ section.id }} .tech-heading span {
+    color: {{ color_heading }};
+  }
+  .customstyle{{ section.id }} .tech-desc {
+    color: {{ color_text }};
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+  .customstyle{{ section.id }} .tech-desc p {
+    margin-bottom: 0;
+    color: {{ color_text }} !important;
+  }
+  
+  /* Buttons Row */
+  .customstyle{{ section.id }} .tech-buttons-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  .customstyle{{ section.id }} .btn-tech-solid {
+    background-color: {{ color_heading }} !important;
+    color: #000000 !important;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 14px 28px;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+  }
+  .customstyle{{ section.id }} .btn-tech-solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(184, 150, 62, 0.4);
+    background-color: #ffffff !important;
+  }
+  .customstyle{{ section.id }} .btn-tech-outline {
+    background-color: transparent !important;
+    color: #ffffff !important;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 14px 28px;
+    border-radius: 50px;
+    border: 1.5px solid #ffffff;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .customstyle{{ section.id }} .btn-tech-outline:hover {
+    transform: translateY(-2px);
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff;
+  }
+  .customstyle{{ section.id }} .play-mini-icon {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid currentColor;
+    display: inline-block;
+  }
+  
+  /* Grid Content */
+  .customstyle{{ section.id }} .tech-grid {
+    margin-top: 40px;
+  }
+
+  /* Left Column - Video Player */
+  .customstyle{{ section.id }} .tech-video-col {
+    position: relative;
+  }
+  .customstyle{{ section.id }} .custom-video-player {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #000000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .customstyle{{ section.id }} .video-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+  }
+  
+  /* Rotating Circular Badge */
+  .customstyle{{ section.id }} .tech-video-badge {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    width: 96px;
+    height: 96px;
+    z-index: 10;
+    pointer-events: none;
+  }
+  .customstyle{{ section.id }} .badge-inner-spin {
+    width: 100%;
+    height: 100%;
+    animation: spin-clockwise 25s linear infinite;
+  }
+  @keyframes spin-clockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .customstyle{{ section.id }} .badge-text-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .customstyle{{ section.id }} .badge-svg-text {
+    font-family: var(--g-font-2), sans-serif;
+    font-size: 7px;
+    font-weight: 700;
+    fill: {{ color_heading }};
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .customstyle{{ section.id }} .badge-center-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 38px;
+    height: 38px;
+    background: rgba(1, 1, 1, 0.9);
+    border: 1.5px solid {{ color_heading }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(184, 150, 62, 0.4);
+  }
+  .customstyle{{ section.id }} .badge-center-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: {{ color_heading }};
+  }
+
+  /* Center Play button overlay */
+  .customstyle{{ section.id }} .video-play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.15);
+    transition: opacity 0.4s ease;
+  }
+  .customstyle{{ section.id }} .custom-video-player.is-playing .video-play-overlay {
+    opacity: 0;
+  }
+  .customstyle{{ section.id }} .custom-play-btn {
+    pointer-events: auto;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: rgba(13, 13, 15, 0.7);
+    border: 2px solid {{ color_heading }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 0 20px rgba(184, 150, 62, 0.3);
+  }
+  .customstyle{{ section.id }} .custom-play-btn:hover {
+    transform: scale(1.1);
+    background: rgba(184, 150, 62, 0.9);
+    border-color: #ffffff;
+    box-shadow: 0 0 30px rgba(184, 150, 62, 0.6);
+  }
+  .customstyle{{ section.id }} .play-icon-triangle {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 16px solid #ffffff;
+    margin-left: 6px;
+    transition: border-left-color 0.3s ease;
+  }
+  .customstyle{{ section.id }} .custom-play-btn:hover .play-icon-triangle {
+    border-left-color: #000000;
+  }
+
+  /* Custom HTML5 Video Controls */
+  .customstyle{{ section.id }} .custom-video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 10;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .customstyle{{ section.id }} .custom-video-player.is-playing.controls-hidden .custom-video-controls {
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+  }
+  .customstyle{{ section.id }} .control-btn {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+  }
+  .customstyle{{ section.id }} .control-btn:hover {
+    color: {{ color_heading }};
+  }
+  .customstyle{{ section.id }} .control-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+  }
+  .customstyle{{ section.id }} .controls-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 140px;
+  }
+  .customstyle{{ section.id }} .time-display {
+    color: #ffffff;
+    font-size: 11px;
+    font-family: monospace;
+  }
+  .customstyle{{ section.id }} .timeline-container {
+    flex-grow: 1;
+    margin: 0 15px;
+    padding: 10px 0;
+    cursor: pointer;
+  }
+  .customstyle{{ section.id }} .timeline-bar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    position: relative;
+    transition: height 0.2s ease;
+  }
+  .customstyle{{ section.id }} .timeline-container:hover .timeline-bar {
+    height: 6px;
+  }
+  .customstyle{{ section.id }} .timeline-progress {
+    height: 100%;
+    background: {{ color_heading }};
+    width: 0%;
+    border-radius: 2px;
+    position: relative;
+  }
+  .customstyle{{ section.id }} .timeline-handle {
+    position: absolute;
+    top: 50%;
+    right: -6px;
+    transform: translateY(-50%) scale(0);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    transition: transform 0.2s ease;
+  }
+  .customstyle{{ section.id }} .timeline-container:hover .timeline-handle {
+    transform: translateY(-50%) scale(1);
+  }
+  .customstyle{{ section.id }} .controls-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .customstyle{{ section.id }} .hidden {
+    display: none !important;
+  }
+
+  /* Right Column - Cards Stack */
+  .customstyle{{ section.id }} .tech-cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .customstyle{{ section.id }} .tech-card {
+    background-color: {{ bg_card }};
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .customstyle{{ section.id }} .tech-card:hover {
+    transform: translateY(-3px);
+    border-color: {{ color_heading }};
+    box-shadow: 0 8px 30px rgba(184, 150, 62, 0.12);
+  }
+  .customstyle{{ section.id }} .tech-icon-wrap {
+    width: {{ section.settings.icon_size_desktop }}px;
+    height: {{ section.settings.icon_size_desktop }}px;
+    border-radius: 50%;
+    border: {{ section.settings.icon_border_thickness }}px solid {{ color_line }};
+    background-color: rgba(184, 150, 62, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 0 10px rgba(184, 150, 62, 0.25);
+  }
+  .customstyle{{ section.id }} .tech-card:hover .tech-icon-wrap {
+    border-color: {{ color_line }};
+    background-color: rgba(184, 150, 62, 0.15);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(184, 150, 62, 0.65);
+  }
+  .customstyle{{ section.id }} .tech-icon-wrap svg,
+  .customstyle{{ section.id }} .tech-icon-wrap img {
+    width: 48%;
+    height: 48%;
+    max-width: 100%;
+    object-fit: contain;
+    stroke: {{ color_heading }};
+    stroke-width: 1.5;
+    transition: all 0.4s ease;
+  }
+  .customstyle{{ section.id }} .tech-content-wrap {
+    flex-grow: 1;
+    position: relative;
+  }
+  .customstyle{{ section.id }} .tech-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .customstyle{{ section.id }} .tech-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: {{ color_heading }};
+    margin: 0;
+    font-family: var(--g-font-2), sans-serif;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+  .customstyle{{ section.id }} .tech-card-number {
+    font-size: 14px;
+    font-weight: 700;
+    font-style: italic;
+    color: {{ color_heading }};
+    font-family: var(--g-font-2), sans-serif;
+    opacity: 0.8;
+  }
+  .customstyle{{ section.id }} .tech-card-desc {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #e5e5e5;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  @media (max-width: 991px) {
+    .customstyle{{ section.id }} .tech-heading {
+      font-size: calc(var(--g-h2-font-size-mobile) + 6px);
+    }
+    .customstyle{{ section.id }} .tech-desc {
+      font-size: 14px;
+    }
+    .customstyle{{ section.id }} .tech-video-badge {
+      width: 72px;
+      height: 72px;
+      top: 15px;
+      left: 15px;
+    }
+    .customstyle{{ section.id }} .badge-center-icon {
+      width: 28px;
+      height: 28px;
+    }
+    .customstyle{{ section.id }} .badge-center-icon svg {
+      width: 15px;
+      height: 15px;
+    }
+    .customstyle{{ section.id }} .custom-play-btn {
+      width: 56px;
+      height: 56px;
+    }
+    .customstyle{{ section.id }} .play-icon-triangle {
+      border-top-width: 8px;
+      border-bottom-width: 8px;
+      border-left-width: 12px;
+      margin-left: 4px;
+    }
+    .customstyle{{ section.id }} .tech-card {
+      padding: 18px;
+      gap: 15px;
+    }
+    .customstyle{{ section.id }} .tech-icon-wrap {
+      width: {{ section.settings.icon_size_mobile }}px;
+      height: {{ section.settings.icon_size_mobile }}px;
+    }
+  }
+</style>
+
+<div class="customstyle{{ section.id }} experience-technology-section" data-aos="{{ animation }}">
+  <div class="{{ setwidth }}">
+    <div class="section-block p-0">
+      
+      <!-- Top Title and Header Area -->
+      <div class="tech-header-wrap" data-aos="{{ animation }}" data-aos-delay="100">
+        {%- if subtitle != blank -%}
+          <span class="tech-subtitle">{{ subtitle }}</span>
+        {%- endif -%}
+        
+        {%- if heading_1 != blank or heading_2 != blank -%}
+          <h2 class="tech-heading font-family-1">
+            {%- if heading_1 != blank -%}
+              {{ heading_1 }}
+            {%- endif -%}
+            {%- if heading_2 != blank -%}
+              <span>{{ heading_2 }}</span>
+            {%- endif -%}
+          </h2>
+        {%- endif -%}
+        
+        {%- if des != blank -%}
+          <div class="tech-desc rte">
+            {{ des }}
+          </div>
+        {%- endif -%}
+
+        <!-- Buttons row below heading -->
+        {%- if button_label != blank or watch_label != blank -%}
+          <div class="tech-buttons-wrap">
+            {%- if button_label != blank and button_link != blank -%}
+              <a href="{{ button_link }}" class="btn btn-tech-solid">
+                {{ button_label }}
+              </a>
+            {%- endif -%}
+            {%- if watch_label != blank -%}
+              <a href="{{ watch_link | default: "#" }}" class="btn btn-tech-outline play-trigger-btn">
+                <span class="play-mini-icon"></span> {{ watch_label }}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Grid Layout for Player & Cards -->
+      <div class="row no-gutters row-flex align-items-center tech-grid">
+        
+        <!-- Left Video Column -->
+        <div class="col-12 col-lg-8 pr-lg-4 mb-4 mb-lg-0 tech-video-col" data-aos="{{ animation }}" data-aos-delay="200">
+          <div class="custom-video-player" id="player-{{ section.id }}">
+            <video class="video-element" 
+                   {% if section.settings.poster_image != blank %}
+                     poster="{{ section.settings.poster_image | image_url: width: 1080 }}"
+                   {% else %}
+                     poster="{{ 'Screenshot_2026-03-31_at_15.38.29.png' | asset_url }}"
+                   {% endif %}
+                   loop 
+                   playsinline>
+              {%- if section.settings.video != blank -%}
+                <source src="{{ section.settings.video.sources[0].url }}" type="video/mp4">
+              {%- elsif section.settings.video_url != blank and section.settings.video_url contains 'http' -%}
+                <source src="{{ section.settings.video_url }}" type="video/mp4">
+              {%- elsif section.settings.video_url != blank -%}
+                <source src="{{ section.settings.video_url | file_url }}" type="video/mp4">
+              {%- else -%}
+                <source src="{{ 'Visual 1. What are nanofibres_.mov' | file_url }}" type="video/mp4">
+                <source src="{{ 'Visual_1._What_are_nanofibres_.mov' | file_url }}" type="video/mp4">
+                <source src="{{ '6_experience_technology_player.mp4' | file_url }}" type="video/mp4">
+                <source src="{{ 'e3f98bcbeb284f078f969195472fb265.mp4' | file_url }}" type="video/mp4">
+                <source src="https://cdn.shopify.com/videos/c/o/v/e3f98bcbeb284f078f969195472fb265.mp4" type="video/mp4">
+              {%- endif -%}
+            </video>
+            
+            <!-- Floating circular rotating badge -->
+            <div class="tech-video-badge">
+              <div class="badge-inner-spin">
+                <svg viewBox="0 0 100 100" class="badge-text-svg">
+                  <path id="textPath-{{ section.id }}" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="none"></path>
+                  <text class="badge-svg-text">
+                    <textPath href="#textPath-{{ section.id }}" startOffset="50%" text-anchor="middle">
+                      {{ section.settings.badge_text | default: "ADVANCED NANOFIBER TECHNOLOGY •" }}
+                    </textPath>
+                  </text>
+                </svg>
+              </div>
+              <div class="badge-center-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3" fill="currentColor"></circle>
+                  <path d="M12 2v4M12 18v4M2 12h4M18 12h4"></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Central custom play button overlay -->
+            <div class="video-play-overlay">
+              <button class="custom-play-btn" aria-label="Play Video">
+                <span class="play-icon-triangle"></span>
+              </button>
+            </div>
+
+            <!-- Custom Video Controls bar -->
+            <div class="custom-video-controls">
+              <div class="controls-left">
+                <button class="control-btn play-pause-toggle" aria-label="Play/Pause">
+                  <svg class="play-svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  <svg class="pause-svg hidden" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                </button>
+                <span class="time-display">0:00 / 0:00</span>
+              </div>
+              
+              <div class="timeline-container">
+                <div class="timeline-bar">
+                  <div class="timeline-progress">
+                    <div class="timeline-handle"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="controls-right">
+                <button class="control-btn volume-toggle" aria-label="Mute/Unmute">
+                  <svg class="volume-up-svg" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                  <svg class="volume-mute-svg hidden" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.21.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                </button>
+                <button class="control-btn fullscreen-toggle" aria-label="Toggle Fullscreen">
+                  <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Features Stack Column -->
+        <div class="col-12 col-lg-4 pl-lg-4 tech-cards-col" data-aos="{{ animation }}" data-aos-delay="300">
+          <div class="tech-cards-stack">
+            {%- for block in section.blocks -%}
+              <div class="tech-card" {{ block.shopify_attributes }}>
+                {%- if block.settings.show_icon -%}
+                <div class="tech-icon-wrap">
+                  {%- if block.settings.icon != blank -%}
+                    <img src="{{ block.settings.icon | image_url: width: 64 }}" alt="{{ block.settings.title | escape }}" class="lazyload" loading="lazy" width="24" height="24">
+                  {%- else -%}
+                    <!-- Fallback SVGs matching mockup perfectly -->
+                    {%- case forloop.index -%}
+                      {%- when 1 -%}
+                        <!-- Circular Down Arrow (Rapid Absorption) -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                          <circle cx="12" cy="12" r="10" stroke-width="1.5"/>
+                          <path d="M12 7v10M9 13l3 4 3-4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      {%- when 2 -%}
+                        <!-- Leaf / Chemistry plant (Preservative-Free) -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                          <path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12A10 10 0 0 1 12 2z" stroke-width="1.5"/>
+                          <path d="M8 14s1.5-2 4-2 4 2 4 2" stroke-width="1.5" stroke-linecap="round"/>
+                          <path d="M12 8v8" stroke-width="1.5" stroke-linecap="round"/>
+                          <circle cx="12" cy="7" r="1" fill="currentColor"/>
+                        </svg>
+                      {%- when 3 -%}
+                        <!-- Diamond / Skin cells (Second-Skin Structure) -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                          <path d="M12 2L2 12l10 10 10-10L12 2z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M12 6l5 6-5 6-5-6z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    {%- endcase -%}
+                  {%- endif -%}
+                </div>
+                {%- endif -%}
+                <div class="tech-content-wrap">
+                  <div class="tech-card-header">
+                    <h3 class="tech-card-title">{{ block.settings.title }}</h3>
+                    <span class="tech-card-number">{{ block.settings.number }}</span>
+                  </div>
+                  <p class="tech-card-desc">{{ block.settings.description }}</p>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    function initVideoPlayer(sectionId) {
+      const container = document.getElementById('player-' + sectionId);
+      if (!container) return;
+      const video = container.querySelector('.video-element');
+      const playBtn = container.querySelector('.custom-play-btn');
+      const playPauseToggle = container.querySelector('.play-pause-toggle');
+      const playSvg = playPauseToggle.querySelector('.play-svg');
+      const pauseSvg = playPauseToggle.querySelector('.pause-svg');
+      const timeDisplay = container.querySelector('.time-display');
+      const timelineProgress = container.querySelector('.timeline-progress');
+      const timelineBar = container.querySelector('.timeline-bar');
+      const volumeToggle = container.querySelector('.volume-toggle');
+      const volumeUpSvg = volumeToggle.querySelector('.volume-up-svg');
+      const volumeMuteSvg = volumeToggle.querySelector('.volume-mute-svg');
+      const fullscreenToggle = container.querySelector('.fullscreen-toggle');
+      const pagePlayTriggers = document.querySelectorAll('.play-trigger-btn');
+      
+      // Play / Pause toggler
+      function togglePlay() {
+        if (video.paused || video.ended) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      }
+
+      playBtn.addEventListener('click', togglePlay);
+      playPauseToggle.addEventListener('click', togglePlay);
+      video.addEventListener('click', togglePlay);
+
+      // Play buttons elsewhere on page can also trigger it
+      pagePlayTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          video.play();
+          container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+      });
+
+      video.addEventListener('play', () => {
+        container.classList.add('is-playing');
+        playSvg.classList.add('hidden');
+        pauseSvg.classList.remove('hidden');
+      });
+
+      video.addEventListener('pause', () => {
+        container.classList.remove('is-playing');
+        playSvg.classList.remove('hidden');
+        pauseSvg.classList.add('hidden');
+      });
+
+      // Time formatting (m:ss)
+      function formatTime(seconds) {
+        if (isNaN(seconds)) return '0:00';
+        const min = Math.floor(seconds / 60);
+        const sec = Math.floor(seconds % 60);
+        return min + ':' + (sec < 10 ? '0' : '') + sec;
+      }
+
+      // Update progress timeline and time display text
+      video.addEventListener('timeupdate', () => {
+        if (video.duration) {
+          const percentage = (video.currentTime / video.duration) * 100;
+          timelineProgress.style.width = percentage + '%';
+          timeDisplay.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
+        }
+      });
+
+      video.addEventListener('loadedmetadata', () => {
+        timeDisplay.textContent = '0:00 / ' + formatTime(video.duration);
+      });
+
+      // Timeline seeking
+      function seek(e) {
+        if (!video.duration) return;
+        const rect = timelineBar.getBoundingClientRect();
+        let clientX = e.clientX;
+        if (e.touches && e.touches.length > 0) {
+          clientX = e.touches[0].clientX;
+        }
+        let pos = (clientX - rect.left) / rect.width;
+        pos = Math.max(0, Math.min(1, pos));
+        video.currentTime = pos * video.duration;
+      }
+
+      let isDragging = false;
+      
+      timelineBar.parentElement.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        seek(e);
+      });
+      
+      window.addEventListener('mousemove', (e) => {
+        if (isDragging) seek(e);
+      });
+      
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+
+      // Mobile Touch Support
+      timelineBar.parentElement.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        seek(e);
+      });
+      
+      window.addEventListener('touchmove', (e) => {
+        if (isDragging) seek(e);
+      });
+      
+      window.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+
+      // Mute / Unmute
+      volumeToggle.addEventListener('click', () => {
+        video.muted = !video.muted;
+        if (video.muted) {
+          volumeUpSvg.classList.add('hidden');
+          volumeMuteSvg.classList.remove('hidden');
+        } else {
+          volumeUpSvg.classList.remove('hidden');
+          volumeMuteSvg.classList.add('hidden');
+        }
+      });
+
+      // Fullscreen mode
+      fullscreenToggle.addEventListener('click', () => {
+        if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+          if (container.requestFullscreen) {
+            container.requestFullscreen();
+          } else if (container.webkitRequestFullscreen) {
+            container.webkitRequestFullscreen(); // iOS / Safari
+          } else if (video.webkitEnterFullscreen) {
+            video.webkitEnterFullscreen(); // Older iOS Safari
+          }
+        } else {
+          const exitFs = document.exitFullscreen || document.webkitExitFullscreen;
+          if (exitFs) exitFs.call(document);
+        }
+      });
+
+      // Auto-hide controls bar during video play
+      let timeout;
+      function showControls() {
+        container.classList.remove('controls-hidden');
+        clearTimeout(timeout);
+        if (!video.paused) {
+          timeout = setTimeout(() => {
+            container.classList.add('controls-hidden');
+          }, 3000);
+        }
+      }
+
+      container.addEventListener('mousemove', showControls);
+      container.addEventListener('click', showControls);
+      video.addEventListener('play', showControls);
+      video.addEventListener('pause', () => {
+        container.classList.remove('controls-hidden');
+        clearTimeout(timeout);
+      });
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      initVideoPlayer('{{ section.id }}');
+    });
+
+    // Theme editor compatibility (Shopify theme editor load events)
+    document.addEventListener('shopify:section:load', (e) => {
+      if (e.detail.sectionId === '{{ section.id }}') {
+        initVideoPlayer('{{ section.id }}');
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Experience Technology",
+  "class": "index-section-experience-technology",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "select",
+      "id": "animation",
+      "options": [
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "fade-up",
+          "label": "Fade Up"
+        },
+        {
+          "value": "fade-down",
+          "label": "Fade Down"
+        },
+        {
+          "value": "fade-left",
+          "label": "Fade Left"
+        },
+        {
+          "value": "fade-right",
+          "label": "Fade Right"
+        },
+        {
+          "value": "zoom-in",
+          "label": "Zoom In"
+        },
+        {
+          "value": "zoom-out",
+          "label": "Zoom Out"
+        }
+      ],
+      "default": "fade-up",
+      "label": "Select Animation"
+    },
+    {
+      "type": "select",
+      "id": "setwidth",
+      "label": "Full Width Wrapper",
+      "default": "container-fluid",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Text Settings"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "ADVANCED TECHNOLOGY"
+    },
+    {
+      "type": "text",
+      "id": "heading_1",
+      "label": "Heading Part 1",
+      "default": "Nanofiber Technology That "
+    },
+    {
+      "type": "text",
+      "id": "heading_2",
+      "label": "Heading Part 2 (Highlight)",
+      "default": "Transforms Skincare"
+    },
+    {
+      "type": "richtext",
+      "id": "des",
+      "label": "Description",
+      "default": "<p>Inspired by medical aesthetics and advanced dermatology, nanofiber technology ensures rapid absorption of active ingredients and visible effectiveness in just 5–8 minutes.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Action Buttons"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Primary Button Label",
+      "default": "EXPLORE TECHNOLOGY →"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "watch_label",
+      "label": "Watch Button Label",
+      "default": "WATCH INNOVATION"
+    },
+    {
+      "type": "url",
+      "id": "watch_link",
+      "label": "Watch Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Video Settings"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Shopify Hosted Video"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "External Video URL (mp4)",
+      "default": "https://cdn.shopify.com/videos/c/o/v/e3f98bcbeb284f078f969195472fb265.mp4"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_image",
+      "label": "Video Poster Image"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Circular Text",
+      "default": "ADVANCED NANOFIBER TECHNOLOGY •"
+    },
+    {
+      "type": "header",
+      "content": "Section Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_text_col",
+      "label": "Background Section Inner",
+      "default": "#010101"
+    },
+    {
+      "type": "color",
+      "id": "bg_card",
+      "label": "Background Feature Cards",
+      "default": "#0d0d0f"
+    },
+    {
+      "type": "color",
+      "id": "bgsection",
+      "label": "Background Section Outer",
+      "default": "#010101"
+    },
+    {
+      "type": "color",
+      "id": "color_heading",
+      "label": "Gold / Accent Color",
+      "default": "#b8963e"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Description Text Color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "color_line",
+      "label": "Line & Circle Border Color",
+      "default": "#b8963e"
+    },
+    {
+      "type": "header",
+      "content": "Icon Sizing & Borders"
+    },
+    {
+      "type": "range",
+      "id": "icon_size_desktop",
+      "label": "Icon Wrapper Size (Desktop)",
+      "min": 50,
+      "max": 120,
+      "step": 2,
+      "default": 70,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "icon_size_mobile",
+      "label": "Icon Wrapper Size (Mobile)",
+      "min": 40,
+      "max": 90,
+      "step": 2,
+      "default": 54,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "icon_border_thickness",
+      "label": "Icon Border Thickness",
+      "min": 1,
+      "max": 4,
+      "step": 0.5,
+      "default": 2,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "text",
+      "id": "paddingsection",
+      "label": "Padding Section",
+      "default": "80px 0px 80px 0px",
+      "info": "Padding: Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "paddingmobile",
+      "label": "Padding Section Mobile",
+      "default": "40px 0px 40px 0px",
+      "info": "Padding: Top Right Bottom Left"
+    },
+    {
+      "type": "header",
+      "content": "Section Margin"
+    },
+    {
+      "type": "text",
+      "id": "marginsection",
+      "label": "Margin Section",
+      "default": "0px 0px 0px 0px",
+      "info": "Margin: Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "marginmobile",
+      "label": "Margin Mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Margin: Top Right Bottom Left"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Feature Card",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Show Icon",
+          "default": true,
+          "info": "Off korle icon hide hobe, description full width niye nibe."
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Card Icon",
+          "info": "Upload custom icon. If empty, default SVG will be displayed based on block order."
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Card Number",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Card Description",
+          "default": "Feature description goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Experience Technology",
+      "category": "Video",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "number": "01",
+            "title": "Rapid Absorption",
+            "description": "Nano fibers maximize skin contact for faster and deeper ingredient delivery."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "number": "02",
+            "title": "Preservative-Free Formula",
+            "description": "Pure active ingredients delivered efficiently without unnecessary fillers."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "number": "03",
+            "title": "Second-Skin Structure",
+            "description": "Ultra-light breathable fibers adapt naturally to the skin surface for optimal comfort."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

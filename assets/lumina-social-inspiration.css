@@ -1,0 +1,166 @@
+.lumina-social {
+  background-color: var(--social-bg-color, #000);
+  border-top: 1px solid rgba(212, 175, 55, 0.4);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 0;
+  display: flex;
+  overflow: hidden;
+  scroll-margin-top: 90px;
+}
+.lumina-social__left {
+  flex: 0 0 32%;
+  padding: 60px 40px;
+  background-color: #000;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.lumina-social__subheading {
+  color: #D4AF37;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+.lumina-social__heading {
+  color: #D4AF37;
+  font-size: 40px;
+  font-family: serif;
+  margin: 0 0 15px 0;
+  line-height: 1.1;
+}
+.lumina-social__text {
+  color: #ccc;
+  font-size: 14px;
+  margin-bottom: 40px;
+}
+.lumina-social__link {
+  color: #D4AF37;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.lumina-social__link:hover {
+  text-decoration: underline;
+}
+
+.lumina-social__right {
+  flex: 1;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.lumina-social__right::-webkit-scrollbar {
+  display: none;
+}
+.lumina-social__card {
+  flex: 0 0 220px;
+  min-height: 380px;
+  border-left: 1px solid rgba(212, 175, 55, 0.4);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 60px 20px;
+  scroll-snap-align: start;
+  text-decoration: none;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+}
+.lumina-social__card:last-child {
+  border-right: 1px solid rgba(212, 175, 55, 0.4);
+}
+.lumina-social__card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.8;
+}
+.lumina-social__card-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 45%, transparent 100%);
+  z-index: 2;
+}
+.lumina-social__card-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+.lumina-social__icon {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 25px;
+  object-fit: contain;
+}
+.lumina-social__platform {
+  color: #D4AF37;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0 0 10px 0;
+}
+.lumina-social__handle {
+  color: #fff;
+  font-size: 14px;
+  margin: 0 0 5px 0;
+}
+.lumina-social__label {
+  color: #888;
+  font-size: 12px;
+  margin: 0;
+}
+
+
+@media screen and (max-width: 1024px) {
+  .lumina-social {
+    flex-direction: column;
+  }
+  .lumina-social__left {
+    flex: none;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+  }
+  .lumina-social__card {
+    min-height: 350px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .lumina-social__right {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+  .lumina-social__card {
+    flex: 0 0 50%;
+    min-height: 260px;
+    padding: 30px 10px;
+    border-left: none !important;
+    border-right: 1px solid rgba(212, 175, 55, 0.4) !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+  }
+  .lumina-social__card:nth-child(even),
+  .lumina-social__card:last-child {
+    border-right: none !important;
+  }
+  .lumina-social__card:last-child,
+  .lumina-social__card:nth-last-child(2):nth-child(odd) {
+    border-bottom: none;
+  }
+}

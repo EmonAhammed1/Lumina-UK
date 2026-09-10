@@ -1,0 +1,95 @@
+{%- if settings.enable_compare -%}
+  <!-- popup-compare.liquid -->
+  <div class="modal fade" id="jsCompare" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog--compare modal-dialog-centered" role="document">
+      <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+        <div class="modal-content border-0 shadow" style="width: 100%;">
+          <div class="modal-body p-3 p-md-4">
+            <div class="row justify-content-center js-compare-content mx-0"></div>
+          </div>
+        </div>
+        <div style="margin-top: 15px; pointer-events: auto;">
+          <button type="button" class="btn-compare-close px-5 py-2" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+    
+    <div id="jsProductSelector" class="product-selector-overlay">
+      <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+        <div class="modal-content shadow-lg border-0" style="border-radius: 8px; width: 100%;">
+          <div class="modal-header border-bottom-0 pb-0 d-flex justify-content-between align-items-center">
+            <h5 class="modal-title font-weight-bold" style="font-size: 1.25rem;">Select a product</h5>
+          </div>
+          <div class="modal-body p-3 p-md-4">
+            <p class="text-muted mb-4">Choose a product to add to the comparison list.</p>
+            <div class="row js-compare-product-list mx-0" style="max-height: 60vh; overflow-y: auto;">
+              <div class="col-12 text-center py-4">
+                <div class="spinner-border text-dark" role="status">
+                  <span class="sr-only">Uploading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 15px; pointer-events: auto;">
+          <button type="button" class="btn-compare-close px-5 py-2" onclick="closeProductSelector(null)">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .modal-dialog--compare {
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .modal-dialog--compare.is-shrunk {
+      transform: scale(0.65) translateX(30%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    
+    .product-selector-overlay {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateY(20px);
+      width: 90%;
+      max-width: 700px;
+      z-index: 1060;
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .product-selector-overlay.is-active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) translateY(0);
+    }
+    
+    .btn-compare-close {
+      background-color: #cc0000 !important;
+      color: white !important;
+      border-radius: 30px !important;
+      font-weight: 600 !important;
+      letter-spacing: 1px !important;
+      text-transform: uppercase !important;
+      border: none !important;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+      transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+      cursor: pointer !important;
+      outline: none !important;
+    }
+    .btn-compare-close:hover {
+      background-color: #ff1a1a !important; /* Brighter red on hover */
+      color: white !important;
+      transform: scale(1.08) translateY(-2px) !important;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+    }
+    .btn-compare-close:active {
+      transform: scale(0.95) translateY(0) !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    }
+  </style>
+{%- endif -%}

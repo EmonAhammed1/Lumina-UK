@@ -1,0 +1,1702 @@
+<!-- sections/experience-rituals.liquid -->
+{%- liquid
+  assign gold_color = section.settings.gold_color | default: '#c5a059'
+  assign animation = section.settings.animation | default: 'fade-up'
+  assign bg_color = section.settings.bg_color | default: '#000000'
+  assign card_bg = section.settings.card_bg | default: '#0d0d0f'
+-%}
+
+<style>
+  .rituals-orbit-section-{{ section.id }} {
+    background-color: {{ bg_color }};
+    color: #ffffff;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    font-family: var(--g-font-2), sans-serif;
+  }
+
+  /* Shifting Nebula Background Glows */
+  .rituals-orbit-section-{{ section.id }}::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(197, 160, 89, 0.12) 0%, rgba(255, 215, 0, 0.03) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    animation: nebulaShift-{{ section.id }} 15s ease-in-out infinite alternate;
+  }
+
+  .orbit-nebula-glow-{{ section.id }} {
+    position: absolute;
+    top: 25%;
+    left: 15%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+    filter: blur(50px);
+    pointer-events: none;
+    z-index: 1;
+    animation: nebulaFloat1-{{ section.id }} 25s ease-in-out infinite alternate;
+  }
+
+  .orbit-nebula-glow-2-{{ section.id }} {
+    position: absolute;
+    bottom: 20%;
+    right: 10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(197, 160, 89, 0.06) 0%, transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 1;
+    animation: nebulaFloat2-{{ section.id }} 30s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes nebulaShift-{{ section.id }} {
+    0% { transform: translate(-50%, -50%) scale(0.9) rotate(0deg); opacity: 0.75; }
+    50% { transform: translate(-48%, -52%) scale(1.1) rotate(45deg); opacity: 1; }
+    100% { transform: translate(-52%, -48%) scale(0.9) rotate(90deg); opacity: 0.75; }
+  }
+
+  @keyframes nebulaFloat1-{{ section.id }} {
+    0% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+    50% { transform: translate(40px, -20px) scale(1.1); opacity: 0.9; }
+    100% { transform: translate(-20px, 30px) scale(0.9); opacity: 0.6; }
+  }
+
+  @keyframes nebulaFloat2-{{ section.id }} {
+    0% { transform: translate(0, 0) scale(1.1); opacity: 0.5; }
+    50% { transform: translate(-30px, 30px) scale(0.9); opacity: 0.8; }
+    100% { transform: translate(20px, -20px) scale(1.1); opacity: 0.5; }
+  }
+
+  .orbit-container-{{ section.id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .orbit-header-{{ section.id }} {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .orbit-subtitle-{{ section.id }} {
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: {{ gold_color }};
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+
+  .orbit-title-{{ section.id }} {
+    font-family: var(--g-font-2), "Cormorant Garamond", serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .orbit-desc-{{ section.id }} {
+    font-size: 16px;
+    color: #cccccc;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Decorative Floating Spheres */
+  .orbit-deco-sphere-1-{{ section.id }} {
+    position: absolute;
+    top: 15%;
+    left: 8%;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at 30% 30%, #ffd700 0%, #c5a059 40%, #5d471d 80%, #000 100%);
+    border-radius: 50%;
+    box-shadow: inset -5px -5px 15px rgba(0,0,0,0.8), 0 10px 25px rgba(0,0,0,0.6);
+    filter: blur(0.5px);
+    animation: orbitFloat-{{ section.id }} 8s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 1;
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .orbit-deco-sphere-2-{{ section.id }} {
+    position: absolute;
+    bottom: 15%;
+    right: 8%;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle at 30% 30%, #8b7345 0%, #5d471d 40%, #2a1f0a 80%, #000 100%);
+    border-radius: 50%;
+    box-shadow: inset -3px -3px 10px rgba(0,0,0,0.9), 0 8px 20px rgba(0,0,0,0.7);
+    filter: blur(1px);
+    animation: orbitFloat-{{ section.id }} 10s ease-in-out infinite alternate-reverse;
+    pointer-events: none;
+    z-index: 1;
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  @keyframes orbitFloat-{{ section.id }} {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-15px) rotate(5deg); }
+  }
+
+  /* Constellation Arena */
+  .orbit-arena-{{ section.id }} {
+    width: 100%;
+    max-width: 1020px;
+    aspect-ratio: 1.25 / 1;
+    margin: 0 auto;
+    position: relative;
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* Interactive Canvas Layer */
+  .orbit-canvas-{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .orbit-svg-{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .orbit-bg-circles-{{ section.id }} {
+    fill: none;
+    stroke: rgba(197, 160, 89, 0.08);
+    stroke-width: 1px;
+    stroke-dasharray: 6 6;
+    transform-origin: center;
+    animation: orbitFlowDash-{{ section.id }} 20s linear infinite, orbitRotate-{{ section.id }} 120s linear infinite;
+  }
+
+  @keyframes orbitRotate-{{ section.id }} {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes orbitFlowDash-{{ section.id }} {
+    to {
+      stroke-dashoffset: -40;
+    }
+  }
+
+  .dynamic-connector-{{ section.id }} {
+    fill: none;
+    stroke: rgba(197, 160, 89, 0.16);
+    stroke-width: 1px;
+    transition: stroke 0.4s ease, stroke-width 0.4s ease;
+  }
+
+  .dynamic-connector-{{ section.id }}.active {
+    stroke: rgba(255, 215, 0, 0.95);
+    stroke-width: 1.5px;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.7));
+  }
+
+  .line-cross-nodes-{{ section.id }} {
+    stroke: rgba(197, 160, 89, 0.03);
+    stroke-dasharray: 2 2;
+    animation: crossFlow-{{ section.id }} 10s linear infinite;
+  }
+
+  @keyframes crossFlow-{{ section.id }} {
+    to {
+      stroke-dashoffset: 20;
+    }
+  }
+
+  /* Midpoint Glowing Dots with breathing animation */
+  .orbit-midpoint-dot-{{ section.id }} {
+    fill: #ffffff;
+    stroke: rgba(255, 255, 255, 0.3);
+    stroke-width: 1.5px;
+    animation: midpointPulse-{{ section.id }} 3.5s ease-in-out infinite;
+    transition: all 0.4s ease;
+  }
+
+  @keyframes midpointPulse-{{ section.id }} {
+    0% { opacity: 0.55; filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.4)); }
+    50% { opacity: 1; filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8)); }
+    100% { opacity: 0.55; filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.4)); }
+  }
+
+  .dynamic-connector-{{ section.id }}.active + .orbit-midpoint-dot-{{ section.id }} {
+    fill: #ffd700;
+    stroke: rgba(255, 215, 0, 0.7);
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.95)) scale(1.35);
+    animation: none; /* Keep steady and bright on hover */
+  }
+
+  /* Central Main Product Node with Glassmorphism */
+  .orbit-center-node-{{ section.id }} {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(16, 16, 20, 0.82) 0%, rgba(6, 6, 8, 0.88) 75%, rgba(0, 0, 0, 0.96) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid {{ gold_color }};
+    box-shadow: 0 0 35px rgba(197, 160, 89, 0.35), inset 0 0 25px rgba(197, 160, 89, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 25px;
+    z-index: 10;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .orbit-center-node-{{ section.id }}:hover {
+    border-color: #ffd700;
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.5), inset 0 0 35px rgba(197, 160, 89, 0.3);
+  }
+
+  .orbit-center-img-{{ section.id }} {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 5px 12px rgba(0,0,0,0.6));
+    transition: transform 0.5s ease;
+  }
+
+  .orbit-center-node-{{ section.id }}:hover .orbit-center-img-{{ section.id }} {
+    transform: scale(1.05);
+  }
+
+  .orbit-center-brand-{{ section.id }} {
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    color: {{ gold_color }};
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+
+  .orbit-center-name-{{ section.id }} {
+    font-family: var(--g-font-2), "Cormorant Garamond", serif;
+    font-size: 15px;
+    color: #ffffff;
+    margin: 0 0 5px 0;
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  .orbit-center-sub-{{ section.id }} {
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    color: #8e8e93;
+    text-transform: uppercase;
+  }
+
+  /* Concentric Orbiting Glow Rings */
+  .orbit-center-glow-1-{{ section.id }},
+  .orbit-center-glow-2-{{ section.id }} {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(197, 160, 89, 0.1);
+    pointer-events: none;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+  }
+
+  .orbit-center-glow-1-{{ section.id }} {
+    width: 270px;
+    height: 270px;
+    animation: centerPulse-{{ section.id }} 7s infinite linear;
+  }
+
+  .orbit-center-glow-2-{{ section.id }} {
+    width: 350px;
+    height: 350px;
+    animation: centerPulse-{{ section.id }} 10s infinite linear reverse;
+  }
+
+  @keyframes centerPulse-{{ section.id }} {
+    0% { transform: translate(-50%, -50%) rotate(0deg) scale(0.98); opacity: 0.4; }
+    50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.02); opacity: 0.7; }
+    100% { transform: translate(-50%, -50%) rotate(360deg) scale(0.98); opacity: 0.4; }
+  }
+
+  /* Outer Pill-Shaped Capsule Nodes with Glassmorphism */
+  .orbit-outer-capsule-{{ section.id }} {
+    position: absolute;
+    background: rgba(13, 13, 15, 0.72);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(197, 160, 89, 0.22);
+    border-radius: 43px;
+    padding: 12px 24px 12px 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 300px;
+    height: 86px;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    cursor: pointer;
+    z-index: 5;
+    text-decoration: none;
+    left: 50%;
+    top: 50%;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .orbit-outer-capsule-{{ section.id }}:hover,
+  .orbit-outer-capsule-{{ section.id }}.selected {
+    border-color: #ffd700;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.4), 0 8px 20px rgba(0,0,0,0.7);
+    transform: translate(-50%, -50%) scale(1.04);
+  }
+
+  /* Capsule Thumbnail Circle */
+  .orbit-capsule-img-wrap-{{ section.id }} {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1px solid rgba(197, 160, 89, 0.35);
+    background: #000000;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color 0.4s ease;
+  }
+
+  .orbit-outer-capsule-{{ section.id }}:hover .orbit-capsule-img-wrap-{{ section.id }} {
+    border-color: #ffd700;
+  }
+
+  .orbit-capsule-img-{{ section.id }} {
+    width: 75%;
+    height: 75%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+  }
+
+  .orbit-outer-capsule-{{ section.id }}:hover .orbit-capsule-img-{{ section.id }} {
+    transform: scale(1.08);
+  }
+
+  /* Capsule Details Column */
+  .orbit-capsule-details-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    overflow: hidden;
+  }
+
+  .orbit-capsule-tag-{{ section.id }} {
+    font-size: 11px;
+    font-weight: 700;
+    color: {{ gold_color }};
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .orbit-capsule-title-{{ section.id }} {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 2px 0;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+  }
+
+  .orbit-outer-capsule-{{ section.id }}:hover .orbit-capsule-title-{{ section.id }} {
+    color: #ffd700;
+  }
+
+  .orbit-capsule-price-{{ section.id }} {
+    font-size: 13px;
+    font-weight: 500;
+    color: {{ gold_color }};
+    line-height: 1.1;
+  }
+
+  /* Optional bottom global action button */
+  .orbit-actions-{{ section.id }} {
+    text-align: center;
+    margin-top: 60px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .btn-gold-outline-{{ section.id }} {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid {{ gold_color }};
+    padding: 12px 32px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: inline-block;
+  }
+
+  .btn-gold-outline-{{ section.id }}:hover {
+    background: {{ gold_color }};
+    color: #000000;
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+    transform: translateY(-2px);
+  }
+
+  /* Mobile Info Content Panel (Touch Screens) */
+  .orbit-mobile-info-panel-{{ section.id }} {
+    width: 100%;
+    margin-top: 40px;
+    background: {{ card_bg }};
+    border: 1px solid rgba(197, 160, 89, 0.25);
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    display: none;
+  }
+
+  .orbit-mobile-info-content-{{ section.id }} {
+    transition: opacity 0.2s ease;
+  }
+
+  .orbit-mobile-type-{{ section.id }} {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: {{ gold_color }};
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .orbit-mobile-title-{{ section.id }} {
+    font-family: var(--g-font-2), "Cormorant Garamond", serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0 0 6px 0;
+    letter-spacing: 0.02em;
+  }
+
+  .orbit-mobile-sub-{{ section.id }} {
+    font-size: 11px;
+    color: #a1a1a6;
+    margin: 0 0 18px 0;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .orbit-mobile-link-{{ section.id }} {
+    background: {{ gold_color }};
+    color: #000000;
+    padding: 10px 24px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 20px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+
+  .orbit-mobile-link-{{ section.id }}:hover {
+    background: #ffd700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  }
+
+  /* Responsive breakpoints */
+  @media (max-width: 1024px) {
+    .orbit-arena-{{ section.id }} {
+      max-width: 720px;
+      aspect-ratio: 1.15 / 1;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .orbit-container-{{ section.id }} {
+      padding: 0 8px;
+    }
+
+    .orbit-title-{{ section.id }} {
+      font-size: 28px;
+    }
+
+    .orbit-arena-{{ section.id }} {
+      max-width: 100%;
+      aspect-ratio: 1 / 1;
+      margin: 15px auto;
+    }
+
+    .orbit-center-node-{{ section.id }} {
+      width: 135px;
+      height: 135px;
+      padding: 10px;
+    }
+
+    .orbit-center-brand-{{ section.id }} {
+      font-size: 8px !important;
+    }
+
+    .orbit-center-name-{{ section.id }} {
+      font-size: 11px !important;
+      line-height: 1.2 !important;
+      margin: 2px 0 !important;
+    }
+
+    .orbit-center-sub-{{ section.id }} {
+      font-size: 8px !important;
+    }
+
+    .orbit-center-img-{{ section.id }} {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 4px;
+    }
+
+    .orbit-center-glow-1-{{ section.id }} {
+      width: 170px;
+      height: 170px;
+    }
+
+    .orbit-center-glow-2-{{ section.id }} {
+      width: 220px;
+      height: 220px;
+    }
+
+    .orbit-outer-capsule-{{ section.id }} {
+      width: 150px;
+      height: 54px;
+      padding: 4px 8px 4px 4px;
+      border-radius: 27px;
+      gap: 8px;
+    }
+
+    .orbit-capsule-details-{{ section.id }} {
+      display: flex !important;
+      gap: 1px;
+    }
+
+    .orbit-capsule-tag-{{ section.id }} {
+      font-size: 9px !important;
+      margin: 0;
+    }
+
+    .orbit-capsule-title-{{ section.id }} {
+      font-size: 12px !important;
+      max-width: 95px;
+      margin: 1px 0 !important;
+    }
+
+    .orbit-capsule-price-{{ section.id }} {
+      font-size: 11px !important;
+    }
+
+    .orbit-capsule-img-wrap-{{ section.id }} {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(197, 160, 89, 0.22);
+      background: #000000;
+    }
+
+    .orbit-capsule-img-{{ section.id }} {
+      width: 75%;
+      height: 75%;
+    }
+
+    .orbit-mobile-info-panel-{{ section.id }} {
+      display: block;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .orbit-arena-{{ section.id }} {
+      max-width: 100%;
+      aspect-ratio: 1 / 1;
+      margin: 10px auto;
+    }
+
+    .orbit-center-node-{{ section.id }} {
+      width: 110px;
+      height: 110px;
+      padding: 8px;
+    }
+
+    .orbit-center-brand-{{ section.id }} {
+      font-size: 7px !important;
+    }
+
+    .orbit-center-name-{{ section.id }} {
+      font-size: 10px !important;
+      line-height: 1.2 !important;
+      margin: 2px 0 !important;
+    }
+
+    .orbit-center-sub-{{ section.id }} {
+      font-size: 7px !important;
+    }
+
+    .orbit-center-img-{{ section.id }} {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 2px;
+    }
+
+    .orbit-center-glow-1-{{ section.id }} {
+      width: 140px;
+      height: 140px;
+    }
+
+    .orbit-center-glow-2-{{ section.id }} {
+      width: 185px;
+      height: 185px;
+    }
+
+    .orbit-outer-capsule-{{ section.id }} {
+      width: 135px;
+      height: 48px;
+      padding: 3px 6px 3px 3px;
+      border-radius: 24px;
+      gap: 6px;
+    }
+
+    .orbit-capsule-tag-{{ section.id }} {
+      font-size: 8px !important;
+    }
+
+    .orbit-capsule-title-{{ section.id }} {
+      font-size: 11px !important;
+      max-width: 82px;
+      margin: 0 !important;
+    }
+
+    .orbit-capsule-price-{{ section.id }} {
+      font-size: 10px !important;
+    }
+
+    .orbit-capsule-img-wrap-{{ section.id }} {
+      width: 40px;
+      height: 40px;
+    }
+  }
+</style>
+
+<div class="rituals-orbit-section-{{ section.id }} section-style-{{ section.id }}" id="orbit-section-{{ section.id }}" data-aos="{{ animation }}">
+  
+  <!-- Decorative Floating Spheres & Nebula Backgrounds -->
+  <div class="orbit-deco-sphere-1-{{ section.id }}"></div>
+  <div class="orbit-deco-sphere-2-{{ section.id }}"></div>
+  <div class="orbit-nebula-glow-{{ section.id }}"></div>
+  <div class="orbit-nebula-glow-2-{{ section.id }}"></div>
+
+  <div class="orbit-container-{{ section.id }}">
+    
+    <!-- Title Header -->
+    <div class="orbit-header-{{ section.id }}">
+      {%- if section.settings.subtitle != blank -%}
+        <span class="orbit-subtitle-{{ section.id }}">{{ section.settings.subtitle }}</span>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h2 class="orbit-title-{{ section.id }}">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <p class="orbit-desc-{{ section.id }}">{{ section.settings.description }}</p>
+      {%- endif -%}
+    </div>
+
+    <!-- Arena Constellation Canvas -->
+    <div class="orbit-arena-{{ section.id }}" id="orbit-arena-{{ section.id }}">
+      
+      <!-- Canvas Layer (Floating particles and nanofibre acceleration paths) -->
+      <canvas class="orbit-canvas-{{ section.id }}" id="orbit-canvas-{{ section.id }}" data-section-id="{{ section.id }}"></canvas>
+
+      <!-- SVG Layer (Constellation lines and midpoint glow points) -->
+      <svg class="orbit-svg-{{ section.id }}" id="orbit-svg-{{ section.id }}">
+        <!-- Inner background orbits -->
+        <path class="orbit-bg-circles-{{ section.id }}" id="orbit-bg-circles-{{ section.id }}" d=""></path>
+      </svg>
+
+      <!-- Central Node -->
+      <div class="orbit-center-node-{{ section.id }}" id="orbit-center-node-{{ section.id }}">
+        <div class="orbit-center-glow-1-{{ section.id }}"></div>
+        <div class="orbit-center-glow-2-{{ section.id }}"></div>
+        
+        {%- if section.settings.center_image != blank -%}
+          <img src="{{ section.settings.center_image | image_url: width: 150 }}" 
+               alt="{{ section.settings.center_name | escape }}"
+               class="orbit-center-img-{{ section.id }}"
+               loading="lazy"
+               width="80"
+               height="80">
+        {%- else -%}
+          <img src="{{ 'ChatGPT_Image_Sep_6_2026_03_09_17_PM.png' | asset_url }}" 
+               alt="{{ section.settings.center_name | default: 'Lumina Center' }}"
+               class="orbit-center-img-{{ section.id }}"
+               loading="lazy"
+               width="80"
+               height="80">
+        {%- endif -%}
+        
+        <span class="orbit-center-brand-{{ section.id }}">{{ section.settings.center_title }}</span>
+        <h3 class="orbit-center-name-{{ section.id }}">{{ section.settings.center_name }}</h3>
+        <span class="orbit-center-sub-{{ section.id }}">{{ section.settings.center_sub }}</span>
+      </div>
+
+      <!-- Outer Capsule Pill Nodes -->
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign type = block.settings.item_type | default: 'product'
+          assign block_product = block.settings.product
+          
+          # Auto-populate or override logic
+          if block_product != blank
+            assign item_title = block.settings.title | default: block_product.title
+            assign default_price = block_product.price | money
+            assign item_price = block.settings.price | default: default_price
+            assign item_image = block.settings.image | default: block_product.featured_image
+            assign item_link = block.settings.link | default: block_product.url
+          else
+            assign item_title = block.settings.title | default: "Product Name"
+            assign item_subtitle = block.settings.subtitle | default: "Formula activa"
+            assign item_price = block.settings.price | default: "€150"
+            assign item_link = block.settings.link | default: "#"
+          endif
+        -%}
+        
+        <a href="{{ item_link }}" 
+           class="orbit-outer-capsule-{{ section.id }}" 
+           id="orbit-node-{{ block.id }}" 
+           data-block-id="{{ block.id }}"
+           data-item-type="{{ type }}"
+           data-title="{{ item_title | escape }}"
+           data-subtitle="{{ block.settings.subtitle | escape }}"
+           data-price="{{ item_price | escape }}"
+           data-link="{{ item_link }}"
+           {{ block.shopify_attributes }}>
+          
+          <!-- Circle thumbnail -->
+          <div class="orbit-capsule-img-wrap-{{ section.id }}">
+            {%- if item_image != blank -%}
+              <img src="{{ item_image | image_url: width: 100 }}" 
+                   alt="{{ item_title | escape }}" 
+                   class="orbit-capsule-img-{{ section.id }}"
+                   loading="lazy"
+                   width="36"
+                   height="36">
+            {%- else -%}
+              {%- assign orb_mod = forloop.index | modulo: 5 | plus: 1 -%}
+              {%- assign fallback_orb_thumb = 'orb-' | append: orb_mod | append: '.png' -%}
+              <img src="{{ fallback_orb_thumb | asset_url }}" 
+                   alt="{{ item_title | escape }}" 
+                   class="orbit-capsule-img-{{ section.id }}"
+                   loading="lazy"
+                   width="36"
+                   height="36">
+            {%- endif -%}
+          </div>
+
+          <!-- Capsule details -->
+          <div class="orbit-capsule-details-{{ section.id }}">
+            <span class="orbit-capsule-tag-{{ section.id }}">{{ block.settings.subtitle }}</span>
+            <h4 class="orbit-capsule-title-{{ section.id }}">{{ item_title }}</h4>
+            <span class="orbit-capsule-price-{{ section.id }}">{{ item_price }}</span>
+          </div>
+
+        </a>
+      {%- endfor -%}
+
+    </div>
+
+    <!-- Mobile Panel Container -->
+    <div class="orbit-mobile-info-panel-{{ section.id }} d-md-none" id="orbit-mobile-panel-{{ section.id }}">
+      <div class="orbit-mobile-info-content-{{ section.id }}" id="orbit-mobile-content-{{ section.id }}">
+        <span class="orbit-mobile-type-{{ section.id }}">PRODUCT</span>
+        <h4 class="orbit-mobile-title-{{ section.id }}">{{ section.settings.center_name }}</h4>
+        <p class="orbit-mobile-sub-{{ section.id }}">{{ section.settings.center_sub }}</p>
+        <a href="{{ section.settings.center_link | default: '#' }}" class="orbit-mobile-link-{{ section.id }}">DISCOVER</a>
+      </div>
+    </div>
+
+    <!-- Optional bottom global button -->
+    {%- if section.settings.btn_label != blank -%}
+      <div class="orbit-actions-{{ section.id }}">
+        <a href="{{ section.settings.btn_link | default: '#' }}" class="btn-gold-outline-{{ section.id }}">
+          {{ section.settings.btn_label }}
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+<script>
+  (function() {
+    const sectionKey = '{{ section.id | replace: "-", "_" }}';
+    console.log('[Rituals Constellation] Initializing section: ' + sectionKey);
+    
+    // Clean up previous animation loops, resize handlers, and MutationObservers to avoid duplicates/memory leaks in Shopify Customizer
+    if (window['orbitAnim_' + sectionKey]) {
+      cancelAnimationFrame(window['orbitAnim_' + sectionKey]);
+      window['orbitAnim_' + sectionKey] = null;
+    }
+    if (window['orbitResize_' + sectionKey]) {
+      window.removeEventListener('resize', window['orbitResize_' + sectionKey]);
+      window['orbitResize_' + sectionKey] = null;
+    }
+    if (window['orbitObserver_' + sectionKey]) {
+      window['orbitObserver_' + sectionKey].disconnect();
+      window['orbitObserver_' + sectionKey] = null;
+    }
+    
+    let canvas, ctx;
+    let particles = [];
+    let planets = [];
+    let dust = [];
+    let meteors = [];
+    let lastTime = 0;
+    
+    function distributeNodes() {
+      const outerNodes = document.querySelectorAll('.orbit-outer-capsule-{{ section.id }}');
+      if (outerNodes.length === 0) return;
+      
+      const total = outerNodes.length;
+      
+      // Dynamic radius based on viewport width (smaller radius on mobile to prevent overflow)
+      const isMobile = window.innerWidth < 768;
+      const radiusX = isMobile ? 34 : 35;
+      const radiusY = isMobile ? 36 : 35;
+      
+      outerNodes.forEach((node, idx) => {
+        // Calculate angle starting from top center (-Math.PI / 2)
+        const angle = (idx / total) * Math.PI * 2 - Math.PI / 2;
+        
+        const x = 50 + radiusX * Math.cos(angle);
+        const y = 50 + radiusY * Math.sin(angle);
+        
+        node.style.left = x + '%';
+        node.style.top = y + '%';
+      });
+    }
+    
+    function initSVGAndCanvas() {
+      // 1. Position capsules automatically in a perfect rounded circle
+      distributeNodes();
+      
+      // 2. Draw dynamic SVG connector lines
+      updateOrbitLines();
+      
+      // 3. Setup Canvas
+      canvas = document.getElementById('orbit-canvas-{{ section.id }}');
+      if (!canvas) return;
+      ctx = canvas.getContext('2d');
+      resizeCanvas();
+      
+      // Initialize floating background dust
+      dust = [];
+      for (let i = 0; i < 45; i++) {
+        dust.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 1.0 + 0.4,
+          alpha: Math.random() * 0.35 + 0.15,
+          speed: Math.random() * 0.05 + 0.012,
+          angle: Math.random() * Math.PI * 2
+        });
+      }
+      
+      planets = [];
+      particles = [];
+      meteors = [];
+      
+      // Animation frames cleaned up at top of IIFE
+      lastTime = performance.now();
+      animate(lastTime);
+    }
+    
+    function resizeCanvas() {
+      if (!canvas) return;
+      const container = canvas.parentNode;
+      canvas.width = container.offsetWidth;
+      canvas.height = container.offsetHeight;
+    }
+    
+    function updateOrbitLines() {
+      const arena = document.getElementById('orbit-arena-{{ section.id }}');
+      const svg = document.getElementById('orbit-svg-{{ section.id }}');
+      const centerNode = document.getElementById('orbit-center-node-{{ section.id }}');
+      const outerNodes = document.querySelectorAll('.orbit-outer-capsule-{{ section.id }}');
+      
+      if (!arena || !svg || !centerNode) return;
+      
+      const arenaWidth = arena.offsetWidth;
+      const arenaHeight = arena.offsetHeight;
+      
+      svg.setAttribute('viewBox', '0 0 ' + arenaWidth + ' ' + arenaHeight);
+      
+      // Calculate coordinates centered exactly on the center of the arena (always mathematically correct)
+      const cx = arenaWidth / 2;
+      const cy = arenaHeight / 2;
+      
+      // Clear dynamic connectors and midpoint dots
+      const oldLines = svg.querySelectorAll('.dynamic-connector-{{ section.id }}');
+      oldLines.forEach(line => line.remove());
+      const oldDots = svg.querySelectorAll('.orbit-midpoint-dot-{{ section.id }}');
+      oldDots.forEach(dot => dot.remove());
+      
+      const total = outerNodes.length;
+      const isMobile = window.innerWidth < 768;
+      const radiusX = isMobile ? 34 : 35;
+      const radiusY = isMobile ? 36 : 35;
+      const nodeCoords = [];
+      
+      outerNodes.forEach((node, idx) => {
+        // Calculate angle starting from top center (-Math.PI / 2)
+        const angle = (idx / total) * Math.PI * 2 - Math.PI / 2;
+        
+        const pxPercent = 50 + radiusX * Math.cos(angle);
+        const pyPercent = 50 + radiusY * Math.sin(angle);
+        
+        const nx = arenaWidth * pxPercent / 100;
+        const ny = arenaHeight * pyPercent / 100;
+        
+        nodeCoords.push({ x: nx, y: ny, el: node, id: node.dataset.blockId });
+        
+        // 1. Draw SVG vector from center to capsule
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', cx);
+        line.setAttribute('y1', cy);
+        line.setAttribute('x2', nx);
+        line.setAttribute('y2', ny);
+        line.setAttribute('class', 'dynamic-connector-{{ section.id }} line-to-center line-for-' + node.dataset.blockId);
+        svg.appendChild(line);
+        
+        // 2. Draw glowing midpoint dot
+        const mx = (cx + nx) / 2;
+        const my = (cy + ny) / 2;
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('cx', mx);
+        dot.setAttribute('cy', my);
+        dot.setAttribute('r', '4');
+        dot.setAttribute('class', 'orbit-midpoint-dot-{{ section.id }} midpoint-dot-for-' + node.dataset.blockId);
+        svg.appendChild(dot);
+      });
+      
+      // 3. Draw Constellation boundary ring (connecting adjacent outer nodes)
+      const nodesWithAngles = nodeCoords.map(node => {
+        const angle = Math.atan2(node.y - cy, node.x - cx);
+        return { ...node, angle };
+      }).sort((a, b) => a.angle - b.angle);
+      
+      for (let i = 0; i < nodesWithAngles.length; i++) {
+        const p1 = nodesWithAngles[i];
+        const p2 = nodesWithAngles[(i + 1) % nodesWithAngles.length];
+        
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', p1.x);
+        line.setAttribute('y1', p1.y);
+        line.setAttribute('x2', p2.x);
+        line.setAttribute('y2', p2.y);
+        line.setAttribute('class', 'dynamic-connector-{{ section.id }} line-between-nodes line-link-' + p1.id + '-' + p2.id);
+        svg.appendChild(line);
+      }
+      
+      // 4. Draw faint cross-connections (opposite nodes) to create complex constellation mesh
+      for (let i = 0; i < nodesWithAngles.length; i++) {
+        const p1 = nodesWithAngles[i];
+        const p2 = nodesWithAngles[(i + 4) % nodesWithAngles.length];
+        
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', p1.x);
+        line.setAttribute('y1', p1.y);
+        line.setAttribute('x2', p2.x);
+        line.setAttribute('y2', p2.y);
+        line.setAttribute('class', 'dynamic-connector-{{ section.id }} line-cross-nodes-{{ section.id }}');
+        svg.appendChild(line);
+      }
+      
+      // Draw Concentric Background Path
+      const centerNodeWidth = centerNode.offsetWidth;
+      const radii = [centerNodeWidth * 0.70, centerNodeWidth * 1.05];
+      let pathData = '';
+      radii.forEach(r => {
+        pathData += `M ${cx - r} ${cy} A ${r} ${r} 0 1 0 ${cx + r} ${cy} A ${r} ${r} 0 1 0 ${cx - r} ${cy} `;
+      });
+      const bgPath = svg.querySelector('#orbit-bg-circles-{{ section.id }}');
+      if (bgPath) {
+        bgPath.setAttribute('d', pathData);
+      }
+      
+      window['orbitCoords_{{ section.id | replace: "-", "_" }}'] = {
+        cx, cy,
+        nodes: nodeCoords,
+        sortedNodes: nodesWithAngles
+      };
+    }
+    
+    function triggerFlashWave() {
+      const coords = window['orbitCoords_{{ section.id | replace: "-", "_" }}'];
+      if (!coords) return;
+      
+      console.log('[Rituals Constellation] Triggering scroll-in active flash wave');
+      
+      coords.nodes.forEach(node => {
+        const dx = node.x - coords.cx;
+        const dy = node.y - coords.cy;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        const vx = (dx / dist) * 5;
+        const vy = (dy / dist) * 5;
+        
+        for (let i = 0; i < 10; i++) {
+          const spreadAngle = (Math.random() - 0.5) * 0.22;
+          const cos = Math.cos(spreadAngle);
+          const sin = Math.sin(spreadAngle);
+          
+          particles.push({
+            x: coords.cx,
+            y: coords.cy,
+            vx: (vx * cos - vy * sin) * (Math.random() * 0.9 + 0.4),
+            vy: (vx * sin + vy * cos) * (Math.random() * 0.9 + 0.4),
+            size: Math.random() * 1.3 + 0.5,
+            color: 'rgba(197, 160, 89, ' + (Math.random() * 0.6 + 0.4) + ')',
+            length: Math.random() * 22 + 8,
+            life: 1.0,
+            decay: Math.random() * 0.026 + 0.014
+          });
+        }
+      });
+    }
+    
+    function triggerNodeHoverFlash(nodeId) {
+      const coords = window['orbitCoords_{{ section.id | replace: "-", "_" }}'];
+      if (!coords) return;
+      
+      const node = coords.nodes.find(n => n.id === nodeId);
+      if (!node) return;
+      
+      // Spawn 20 fast organic wave stream particles on hover
+      for (let i = 0; i < 20; i++) {
+        planets.push({
+          type: 'to-node',
+          node: node,
+          progress: 0,
+          speed: Math.random() * 0.018 + 0.008, // fast
+          size: Math.random() * 2.0 + 0.8,
+          amplitude: Math.random() * 8 + 3,
+          phase: Math.random() * Math.PI * 2,
+          frequency: Math.random() * 3 + 2
+        });
+      }
+    }
+    
+    function animate(now) {
+      if (!ctx || !canvas) return;
+      window['orbitAnim_' + sectionKey] = requestAnimationFrame(animate);
+      
+      const delta = (now - lastTime) / 16.666;
+      lastTime = now;
+      
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // 1. Render dust
+      dust.forEach(d => {
+        d.x += Math.cos(d.angle) * d.speed * delta;
+        d.y += Math.sin(d.angle) * d.speed * delta;
+        
+        if (d.x < 0) d.x = canvas.width;
+        if (d.x > canvas.width) d.x = 0;
+        if (d.y < 0) d.y = canvas.height;
+        if (d.y > canvas.height) d.y = 0;
+        
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(197, 160, 89, ${d.alpha})`;
+        ctx.fill();
+      });
+      
+      const coords = window['orbitCoords_{{ section.id | replace: "-", "_" }}'];
+      if (coords && coords.nodes.length > 0) {
+        // 2. Continuous Organic Wave Flow
+        if (planets.length < 30 && Math.random() < 0.16) {
+          const targetNode = coords.nodes[Math.floor(Math.random() * coords.nodes.length)];
+          planets.push({
+            type: 'to-node',
+            node: targetNode,
+            progress: 0,
+            speed: Math.random() * 0.006 + 0.002, // slow steady flow
+            size: Math.random() * 1.5 + 0.6,
+            amplitude: Math.random() * 6 + 2,
+            phase: Math.random() * Math.PI * 2,
+            frequency: Math.random() * 2.5 + 1.5
+          });
+        }
+        
+        planets.forEach((p, idx) => {
+          p.progress += p.speed * delta;
+          if (p.progress >= 1.0) {
+            planets.splice(idx, 1);
+            return;
+          }
+          
+          let px, py;
+          const dx = p.node.x - coords.cx;
+          const dy = p.node.y - coords.cy;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          const ux = dx / dist;
+          const uy = dy / dist;
+          const perpX = -uy;
+          const perpY = ux;
+          
+          const baseX = coords.cx + dx * p.progress;
+          const baseY = coords.cy + dy * p.progress;
+          
+          // Parabolic envelope to guarantee starting/ending at exactly 0 wave offset (coming straight out of the image)
+          const waveFactor = Math.sin(p.progress * Math.PI * p.frequency + p.phase) * p.amplitude;
+          const envelope = p.progress * (1.0 - p.progress) * 4.0;
+          const wave = waveFactor * envelope;
+          px = baseX + perpX * wave;
+          py = baseY + perpY * wave;
+          
+          // Maintain trails coordinates history
+          if (!p.history) {
+            p.history = [];
+          }
+          p.history.push({ x: px, y: py });
+          if (p.history.length > 5) {
+            p.history.shift();
+          }
+          
+          // Draw elegant trailing light path
+          if (p.history.length > 1) {
+            ctx.beginPath();
+            ctx.moveTo(p.history[0].x, p.history[0].y);
+            for (let i = 1; i < p.history.length; i++) {
+              ctx.lineTo(p.history[i].x, p.history[i].y);
+            }
+            ctx.lineWidth = p.size * 1.5;
+            ctx.strokeStyle = `rgba(197, 160, 89, ${0.35 * (1.0 - p.progress)})`;
+            ctx.lineCap = 'round';
+            ctx.stroke();
+          }
+          
+          // Draw glowing white core particle head with gold blur shadow
+          ctx.beginPath();
+          ctx.arc(px, py, p.size * 1.2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${0.95 * (1.0 - p.progress)})`;
+          ctx.shadowBlur = 6;
+          ctx.shadowColor = '#ffd700';
+          ctx.fill();
+          ctx.shadowBlur = 0; // Reset canvas shadows
+        });
+      }
+      
+      // 3. Render sparks / nanofibres
+      particles.forEach((p, idx) => {
+        p.life -= p.decay * delta;
+        if (p.life <= 0) {
+          particles.splice(idx, 1);
+          return;
+        }
+        
+        p.x += p.vx * delta;
+        p.y += p.vy * delta;
+        
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p.x - p.vx * p.length * p.life * 0.22, p.y - p.vy * p.length * p.life * 0.22);
+        ctx.lineWidth = p.size * p.life;
+        ctx.strokeStyle = p.color.replace(/[\d\.]+\)$/, p.life + ')');
+        ctx.stroke();
+      });
+
+      // 4. Render Cosmic Shooting Stars (Meteors)
+      if (Math.random() < 0.004 && meteors.length < 2) {
+        meteors.push({
+          x: Math.random() * canvas.width * 0.6,
+          y: 0,
+          vx: Math.random() * 4 + 4,
+          vy: Math.random() * 3 + 3,
+          length: Math.random() * 80 + 55,
+          speed: Math.random() * 1.5 + 1.2,
+          alpha: 1.0,
+          decay: Math.random() * 0.015 + 0.008
+        });
+      }
+      
+      meteors.forEach((m, idx) => {
+        m.x += m.vx * m.speed * delta;
+        m.y += m.vy * m.speed * delta;
+        m.alpha -= m.decay * delta;
+        if (m.alpha <= 0 || m.x > canvas.width || m.y > canvas.height) {
+          meteors.splice(idx, 1);
+          return;
+        }
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(m.x - m.vx * m.length * 0.08, m.y - m.vy * m.length * 0.08);
+        ctx.lineWidth = 1.8;
+        ctx.strokeStyle = `rgba(197, 160, 89, ${m.alpha * 0.75})`;
+        ctx.stroke();
+      });
+    }
+    
+    function setupInteractions() {
+      const section = document.getElementById('orbit-section-{{ section.id }}');
+      const arena = document.getElementById('orbit-arena-{{ section.id }}');
+      const svg = document.getElementById('orbit-svg-{{ section.id }}');
+      const outerNodes = document.querySelectorAll('.orbit-outer-capsule-{{ section.id }}');
+      
+      // A. Mouse Parallax Shift
+      section.addEventListener('mousemove', (e) => {
+        if (window.innerWidth < 768) return;
+        const rect = section.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left - rect.width / 2;
+        const mouseY = e.clientY - rect.top - rect.height / 2;
+        
+        // Tilt scale values (tilt maximum 15px)
+        const tiltX = (mouseX / (rect.width / 2)) * 12;
+        const tiltY = (mouseY / (rect.height / 2)) * 12;
+        
+        arena.style.transform = `translate3d(${tiltX}px, ${tiltY}px, 0)`;
+        
+        const sphere1 = section.querySelector('.orbit-deco-sphere-1-{{ section.id }}');
+        const sphere2 = section.querySelector('.orbit-deco-sphere-2-{{ section.id }}');
+        if (sphere1) sphere1.style.transform = `translate3d(${-tiltX * 1.4}px, ${-tiltY * 1.4}px, 0)`;
+        if (sphere2) sphere2.style.transform = `translate3d(${-tiltX * 0.8}px, ${-tiltY * 0.8}px, 0)`;
+      });
+      
+      section.addEventListener('mouseleave', () => {
+        if (window.innerWidth < 768) return;
+        arena.style.transform = 'translate3d(0, 0, 0)';
+        const sphere1 = section.querySelector('.orbit-deco-sphere-1-{{ section.id }}');
+        const sphere2 = section.querySelector('.orbit-deco-sphere-2-{{ section.id }}');
+        if (sphere1) sphere1.style.transform = 'translate3d(0, 0, 0)';
+        if (sphere2) sphere2.style.transform = 'translate3d(0, 0, 0)';
+      });
+      
+      // B. Hover Connection Glow
+      outerNodes.forEach(node => {
+        node.addEventListener('mouseenter', () => {
+          const connLine = svg.querySelector('.line-for-' + node.dataset.blockId);
+          if (connLine) connLine.classList.add('active');
+          triggerNodeHoverFlash(node.dataset.blockId);
+        });
+        
+        node.addEventListener('mouseleave', () => {
+          const connLine = svg.querySelector('.line-for-' + node.dataset.blockId);
+          if (connLine) connLine.classList.remove('active');
+        });
+        
+        // Mobile tap selection
+        node.addEventListener('click', (e) => {
+          if (window.innerWidth >= 768) return; // Follow regular link on desktop
+          
+          e.preventDefault();
+          
+          outerNodes.forEach(n => n.classList.remove('selected'));
+          node.classList.add('selected');
+          
+          const connLines = svg.querySelectorAll('.dynamic-connector-{{ section.id }}');
+          connLines.forEach(l => l.classList.remove('active'));
+          
+          const connLine = svg.querySelector('.line-for-' + node.dataset.blockId);
+          if (connLine) connLine.classList.add('active');
+          
+          triggerNodeHoverFlash(node.dataset.blockId);
+          
+          // Update mobile panel info
+          const panelContent = document.getElementById('orbit-mobile-content-{{ section.id }}');
+          if (panelContent) {
+            const isBundle = node.dataset.itemType === 'bundle';
+            const type = isBundle ? 'RITUAL / SET PROTOCOL' : 'INDIVIDUAL PRODUCT';
+            const title = node.dataset.title;
+            const sub = node.dataset.subtitle;
+            const price = node.dataset.price;
+            const link = node.dataset.link;
+            const linkText = isBundle ? 'EXPLORE RITUAL' : 'EXPLORE PRODUCT';
+            
+            panelContent.style.opacity = 0;
+            setTimeout(() => {
+              panelContent.innerHTML = `
+                <span class="orbit-mobile-type-{{ section.id }}">${type}</span>
+                <h4 class="orbit-mobile-title-{{ section.id }}">${title}</h4>
+                <p class="orbit-mobile-sub-{{ section.id }}">${sub} &bull; ${price}</p>
+                <a href="${link}" class="orbit-mobile-link-{{ section.id }}">${linkText}</a>
+              `;
+              panelContent.style.opacity = 1;
+            }, 150);
+          }
+        });
+      });
+      
+      // Scroll Reveal triggers flash wave
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              setTimeout(triggerFlashWave, 350);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.25 });
+        observer.observe(arena);
+      }
+      
+      const resizeHandler = () => {
+        updateOrbitLines();
+        resizeCanvas();
+      };
+      window['orbitResize_' + sectionKey] = resizeHandler;
+      window.addEventListener('resize', resizeHandler);
+
+      // C. MutationObserver to handle dynamic additions/removals of blocks in editor
+      if (arena) {
+        const observer = new MutationObserver((mutationsList) => {
+          let needsUpdate = false;
+          for (const mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+              needsUpdate = true;
+              break;
+            }
+          }
+          if (needsUpdate) {
+            console.log('[Rituals Constellation] Arena children updated. Recalculating nodes...');
+            distributeNodes();
+            updateOrbitLines();
+          }
+        });
+        observer.observe(arena, { childList: true, subtree: false });
+        window['orbitObserver_' + sectionKey] = observer;
+      }
+    }
+    
+    // Immediate and multi-event initialization
+    function runSetup() {
+      initSVGAndCanvas();
+      setupInteractions();
+    }
+    
+    // Call immediately (HTML elements are already in the DOM above this script)
+    setTimeout(runSetup, 250);
+    
+    document.addEventListener('DOMContentLoaded', runSetup);
+    window.addEventListener('load', runSetup);
+    
+    document.addEventListener('shopify:section:load', (e) => {
+      if (e.detail.sectionId === '{{ section.id }}') {
+        runSetup();
+      }
+    });
+
+    document.addEventListener('shopify:block:select', (e) => {
+      const arena = document.getElementById('orbit-arena-{{ section.id }}');
+      if (arena && (e.target.closest('#orbit-section-{{ section.id }}') || arena.contains(e.target))) {
+        console.log('[Rituals Constellation] Block select event, re-running setup');
+        setTimeout(runSetup, 50);
+      }
+    });
+    
+    document.addEventListener('shopify:block:deselect', (e) => {
+      const arena = document.getElementById('orbit-arena-{{ section.id }}');
+      if (arena && (e.target.closest('#orbit-section-{{ section.id }}') || arena.contains(e.target))) {
+        console.log('[Rituals Constellation] Block deselect event, re-running setup');
+        setTimeout(runSetup, 50);
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Constellation Rituals",
+  "class": "index-section-experience-rituals",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "select",
+      "id": "animation",
+      "options": [
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "fade-up",
+          "label": "Fade Up"
+        },
+        {
+          "value": "zoom-in",
+          "label": "Zoom In"
+        }
+      ],
+      "default": "fade-up",
+      "label": "Select Animation"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "gold_color",
+      "label": "Gold Highlight Color",
+      "default": "#c5a059"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background Color",
+      "default": "#0d0d0f"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "REVEAL MORE RITUALS"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Your Journey, Your Rituals"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Every skin has its moment. Discover the perfect rituals designed to support your skin – and your life."
+    },
+    {
+      "type": "header",
+      "content": "Center Main Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "center_image",
+      "label": "Center Image"
+    },
+    {
+      "type": "text",
+      "id": "center_title",
+      "label": "Center Brand/Label",
+      "default": "LUMINA EUROPA"
+    },
+    {
+      "type": "text",
+      "id": "center_name",
+      "label": "Center Product Name",
+      "default": "HYDRATING RECOVERY MASK"
+    },
+    {
+      "type": "text",
+      "id": "center_sub",
+      "label": "Center Subtitle",
+      "default": "8-MINUTE TRANSFORMATION"
+    },
+    {
+      "type": "url",
+      "id": "center_link",
+      "label": "Center Link"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Button Link"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "DISCOVER ALL RITUALS"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ritual",
+      "name": "Ritual Item",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product (Auto-populates details)"
+        },
+        {
+          "type": "select",
+          "id": "item_type",
+          "label": "Item Type",
+          "options": [
+            {
+              "value": "product",
+              "label": "Product (Mask)"
+            },
+            {
+              "value": "bundle",
+              "label": "Bundle (Ritual)"
+            }
+          ],
+          "default": "product"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Override Name (Optional)"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Tag label",
+          "default": "MASK 01"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Override Price (Optional)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Override Link (Optional)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Override Image (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lumina Constellation Orbit",
+      "category": "Custom Sections",
+      "blocks": [
+        {
+          "type": "ritual",
+          "settings": {
+            "item_type": "product",
+            "title": "Nano Beauty Pro: Hydrating",
+            "subtitle": "MASK 01",
+            "price": "€16,99"
+          }
+        },
+        {
+          "type": "ritual",
+          "settings": {
+            "item_type": "bundle",
+            "title": "Nano Beauty Pro: Red Carpet",
+            "subtitle": "RITUAL 01",
+            "price": "€17,99"
+          }
+        },
+        {
+          "type": "ritual",
+          "settings": {
+            "item_type": "product",
+            "title": "Nano Beauty Pro: Anti-aging",
+            "subtitle": "MASK 02",
+            "price": "€16,99"
+          }
+        },
+        {
+          "type": "ritual",
+          "settings": {
+            "item_type": "bundle",
+            "title": "Nano Beauty Pro: Travel Kit",
+            "subtitle": "RITUAL 02",
+            "price": "€24,99"
+          }
+        },
+        {
+          "type": "ritual",
+          "settings": {
+            "item_type": "bundle",
+            "title": "Nano Beauty Pro: Sleep Pack",
+            "subtitle": "RITUAL 03",
+            "price": "€22,99"
+          }
+        },
+        {
+          "type": "ritual",
+          "settings": {
+            "item_type": "product",
+            "title": "Nano Beauty Pro: Detox",
+            "subtitle": "MASK 03",
+            "price": "€16,99"
+          }
+        },
+        {
+          "type": "ritual",
+          "settings": {
+            "item_type": "bundle",
+            "title": "Nano Beauty Pro: Purifying",
+            "subtitle": "RITUAL 04",
+            "price": "€9,99"
+          }
+        },
+        {
+          "type": "ritual",
+          "settings": {
+            "item_type": "product",
+            "title": "Nano Beauty Pro: Eye Patches",
+            "subtitle": "MASK 04",
+            "price": "€16,99"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,625 @@
+{{ 'lumina-gallery.css' | asset_url | stylesheet_tag }}
+
+<div id="gallery" class="lumina-gallery-section" style="--gallery-bg-color: {{ section.settings.bg_color }}; --gallery-text-color: {{ section.settings.text_color }};">
+  <div class="lumina-gallery__container">
+    
+    {%- assign gallery_blocks = section.blocks | where: "type", "gallery_image" -%}
+    {%- if gallery_blocks.size > 0 -%}
+      <div class="lumina-gallery__carousel-wrapper">
+        <button class="lumina-carousel-btn prev-btn" aria-label="Previous">&larr;</button>
+        <div class="lumina-gallery__grid" id="lumina-grid-{{ section.id }}">
+          {%- for block in gallery_blocks -%}
+            <div class="lumina-gallery__item" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+              {%- else -%}
+                {%- assign fallback_num = forloop.index0 | modulo: 12 | plus: 1 -%}
+                {%- assign fallback_img = 'img-' | append: fallback_num | append: '.png' -%}
+                <img src="{{ fallback_img | asset_url }}" alt="{{ block.settings.author_name | default: 'Lumina' }}" loading="lazy">
+              {%- endif -%}
+
+              {%- if forloop.first and block.settings.heading != blank -%}
+                <div class="lumina-gallery__overlay-content">
+                  {%- if block.settings.subheading != blank -%}
+                    <div class="lumina-gallery__overlay-subheading">{{ block.settings.subheading }}</div>
+                  {%- endif -%}
+                  <h3 class="lumina-gallery__overlay-heading">{{ block.settings.heading | newline_to_br }}</h3>
+                  {%- if block.settings.link_text != blank -%}
+                    <a href="{{ block.settings.link_url }}" class="lumina-gallery__overlay-link">
+                      {{ block.settings.link_text }}
+                    </a>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+              {%- if block.settings.author_name != blank or block.settings.social_url != blank -%}
+                <div class="lumina-gallery__author-badge">
+                  <div class="lumina-gallery__author-info">
+                    {%- if block.settings.author_name != blank -%}
+                      <span class="lumina-gallery__author-name">{{ block.settings.author_name }}</span>
+                    {%- endif -%}
+                    {%- if block.settings.location != blank -%}
+                      <span class="lumina-gallery__author-location">{{ block.settings.location }}</span>
+                    {%- endif -%}
+                  </div>
+                  {%- if block.settings.social_url != blank -%}
+                    <a href="{{ block.settings.social_url }}" target="_blank" rel="noopener noreferrer" class="lumina-gallery__social-btn" aria-label="Profil Social Media" onclick="event.stopPropagation();">
+                      {%- case block.settings.social_platform -%}
+                        {%- when 'facebook' -%}
+                          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95C18.05 21.45 22 17.19 22 12z"/></svg>
+                        {%- when 'threads' -%}
+                          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c2.72 0 5.18-1.09 6.98-2.86l-1.45-1.42C16.1 19.16 14.16 20 12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8c0 1.95-.7 3.73-1.87 5.11-.93 1.1-2.19 1.89-3.63 1.89-1.28 0-2.32-.73-2.65-1.85 1.15-.36 2.06-1.12 2.53-2.14.39-.85.45-1.84.18-2.77-.38-1.32-1.52-2.24-2.89-2.24-1.76 0-3.18 1.42-3.18 3.18 0 1.25.72 2.33 1.77 2.85-.02.13-.03.26-.03.39 0 2.21 1.79 4 4 4 2.07 0 3.91-1.14 5.22-2.72C20.15 16.27 21 14.23 21 12c0-4.97-4.03-9-9-9zm-.33 12.3c-.66 0-1.2-.54-1.2-1.2s.54-1.2 1.2-1.2c.66 0 1.2.54 1.2 1.2s-.54 1.2-1.2 1.2z"/></svg>
+                        {%- when 'tiktok' -%}
+                          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.88 2.89 2.89 0 0 1-2.89-2.88 2.89 2.89 0 0 1 2.89-2.89c.35 0 .68.06.99.17V9.38a6.34 6.34 0 0 0-.99-.08A6.34 6.34 0 0 0 3 15.64a6.34 6.34 0 0 0 6.34 6.36 6.34 6.34 0 0 0 6.34-6.36V8.75a8.28 8.28 0 0 0 4.91 1.6V6.9a4.86 4.86 0 0 1-1-.21z"/></svg>
+                        {%- when 'youtube' -%}
+                          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M21.58 7.19a2.5 2.5 0 0 0-1.76-1.77C18.26 5 12 5 12 5s-6.26 0-7.82.42A2.5 2.5 0 0 0 2.42 7.2 26.3 26.3 0 0 0 2 12a26.3 26.3 0 0 0 .42 4.81 2.5 2.5 0 0 0 1.76 1.77C5.74 19 12 19 12 19s6.26 0 7.82-.42a2.5 2.5 0 0 0 1.76-1.77A26.3 26.3 0 0 0 22 12a26.3 26.3 0 0 0-.42-4.81zM10 15V9l5.2 3L10 15z"/></svg>
+                        {%- when 'pinterest' -%}
+                          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.66 19.31c-.05-.82-.09-2.08.02-2.98l.64-2.73s-.16-.32-.16-.8c0-.75.43-1.31.98-1.31.46 0 .68.35.68.76 0 .46-.3 1.16-.45 1.8-.13.54.27.98.8.98 1 0 1.7-1.12 1.7-2.47 0-1.02-.73-1.78-1.92-1.78-1.4 0-2.22 1.05-2.22 2.13 0 .4.15.83.35 1.07.04.05.04.09.03.14l-.13.53c-.02.08-.07.11-.14.07-.55-.26-.8-1.06-.8-1.72 0-1.28.93-2.45 2.68-2.45 1.41 0 2.46 1.01 2.46 2.31 0 1.4-.88 2.53-2.1 2.53-.41 0-.8-.21-.93-.46l-.25.97c-.09.35-.34.78-.51 1.05A10 10 0 1 0 12 2z"/></svg>
+                        {%- when 'twitter' -%}
+                          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        {%- when 'website' -%}
+                          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        {%- else -%}
+                          <!-- default instagram -->
+                          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                      {%- endcase -%}
+                      <span>Profil</span>
+                      <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+        <button class="lumina-carousel-btn next-btn" aria-label="Next">&rarr;</button>
+      </div>
+
+      <!-- Action Buttons: Load More & Upload Your Photo -->
+      <div class="lumina-gallery__actions">
+        <a href="{{ section.settings.load_more_url | default: '/pages/galerie' }}" class="lumina-gallery__btn-action lumina-gallery__btn-loadmore">
+          <span>{{ section.settings.load_more_label | default: "VIEW FULL GALLERY" }}</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+
+        <button type="button" class="lumina-gallery__btn-action lumina-gallery__btn-upload" id="lumina-open-photo-modal-{{ section.id }}">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          <span>{{ section.settings.upload_btn_label | default: "SUBMIT YOUR PHOTO" }}</span>
+        </button>
+      </div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const grid = document.getElementById("lumina-grid-{{ section.id }}");
+          if(!grid) return;
+          const prevBtn = grid.parentElement.querySelector(".prev-btn");
+          const nextBtn = grid.parentElement.querySelector(".next-btn");
+
+          if (prevBtn && nextBtn) {
+            nextBtn.addEventListener("click", () => {
+              grid.scrollBy({ left: grid.clientWidth, behavior: "smooth" });
+            });
+            prevBtn.addEventListener("click", () => {
+              grid.scrollBy({ left: -grid.clientWidth, behavior: "smooth" });
+            });
+          }
+
+          // Lightbox Logic
+          const items = grid.querySelectorAll(".lumina-gallery__item");
+          const lightbox = document.getElementById("lumina-lightbox-{{ section.id }}");
+          if (lightbox) {
+            const lightboxImg = lightbox.querySelector(".lumina-lightbox-content");
+            const closeBtn = lightbox.querySelector(".lumina-lightbox-close");
+
+            items.forEach(item => {
+              item.addEventListener("click", (e) => {
+                if (e.target.closest("a")) return; // ignore clicks on author/social links
+                const img = item.querySelector("img");
+                if (img) {
+                  lightboxImg.src = img.src.replace('width=800', 'width=2000');
+                  lightbox.classList.add("active");
+                  document.body.style.overflow = "hidden";
+                }
+              });
+            });
+
+            closeBtn.addEventListener("click", () => {
+              lightbox.classList.remove("active");
+              document.body.style.overflow = "";
+            });
+
+            lightbox.addEventListener("click", (e) => {
+              if (e.target === lightbox) {
+                lightbox.classList.remove("active");
+                document.body.style.overflow = "";
+              }
+            });
+
+            document.addEventListener("keydown", (e) => {
+              if (e.key === "Escape" && lightbox.classList.contains("active")) {
+                lightbox.classList.remove("active");
+                document.body.style.overflow = "";
+              }
+            });
+          }
+        });
+      </script>
+    {%- endif -%}
+
+    {%- assign feature_blocks = section.blocks | where: "type", "share_feature" -%}
+    <div class="lumina-share-footer" style="--share-bg-color: {{ section.settings.share_bg_color }};">
+      <div class="lumina-share-left">
+        {%- if section.settings.share_subheading != blank -%}
+          <h4>{{ section.settings.share_subheading }}</h4>
+        {%- endif -%}
+        {%- if section.settings.share_heading != blank -%}
+          <h2>{{ section.settings.share_heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.share_text != blank -%}
+          <p>{{ section.settings.share_text }}</p>
+        {%- endif -%}
+        {%- if section.settings.share_btn_text != blank -%}
+          <button type="button" class="lumina-share-btn" id="lumina-share-footer-trigger-{{ section.id }}">{{ section.settings.share_btn_text }}</button>
+        {%- endif -%}
+      </div>
+      
+      <div class="lumina-share-right">
+        {%- for block in feature_blocks -%}
+          <div class="lumina-share-feature" {{ block.shopify_attributes }}>
+            {%- if block.settings.icon != blank -%}
+              <div class="lumina-share-icon">
+                {{ block.settings.icon }}
+              </div>
+            {%- endif -%}
+            {%- if block.settings.title != blank -%}
+              <h5>{{ block.settings.title }}</h5>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <p>{{ block.settings.text }}</p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Lightbox Modal -->
+<div id="lumina-lightbox-{{ section.id }}" class="lumina-lightbox" aria-hidden="true">
+  <span class="lumina-lightbox-close">&times;</span>
+  <img class="lumina-lightbox-content" src="" alt="Gallery Image Expanded">
+</div>
+
+<!-- Photo Upload Modal Popup -->
+<div id="lumina-photo-modal-{{ section.id }}" class="lumina-photo-modal-overlay" aria-hidden="true" style="display: none;">
+  <div class="lumina-photo-modal-container">
+    <button type="button" class="lumina-photo-modal-close" id="lumina-close-photo-modal-{{ section.id }}" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    {% form 'contact', id: 'LuminaPhotoUploadForm', class: 'lumina-photo-form' %}
+      <input type="hidden" name="contact[Form Type]" value="Photo Submission Gallery - Lumina World">
+
+      {%- if form.posted_successfully? -%}
+        <div class="lumina-photo-success">
+          <div class="lumina-photo-success-icon">
+            <svg viewBox="0 0 24 24" width="34" height="34" stroke="#c5a059" stroke-width="2" fill="none">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <span class="lumina-photo-eyebrow">MARKEU S.R.L. / LUMINA GALLERY</span>
+          <h3 class="lumina-photo-modal-title">Thank you for your photograph!</h3>
+          <p class="lumina-photo-modal-desc">
+            Your photograph has been successfully submitted to our team. We will review it for inclusion in the Lumina Europa gallery.
+          </p>
+          <button type="button" class="lumina-btn-secondary" id="lumina-success-close-btn-{{ section.id }}">
+            Back to Gallery
+          </button>
+        </div>
+      {%- else -%}
+        <div class="lumina-photo-modal-header">
+          <span class="lumina-photo-eyebrow">BE PART OF THE STORY</span>
+          <h3 class="lumina-photo-modal-title">Submit Your Photograph</h3>
+          <p class="lumina-photo-modal-desc">
+            Share your moments across Europe. The light you experience, the places you explore.
+          </p>
+        </div>
+
+        {%- if form.errors -%}
+          <div class="lumina-photo-errors">
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <div class="lumina-photo-form-grid">
+          <div class="lumina-photo-field">
+            <label class="lumina-photo-label" for="photo-name-{{ section.id }}">Full Name <span class="req">*</span></label>
+            <input type="text" id="photo-name-{{ section.id }}" name="contact[name]" class="lumina-photo-input" placeholder="e.g. Eleanor Vance" required>
+          </div>
+
+          <div class="lumina-photo-field">
+            <label class="lumina-photo-label" for="photo-email-{{ section.id }}">Email Address <span class="req">*</span></label>
+            <input type="email" id="photo-email-{{ section.id }}" name="contact[email]" class="lumina-photo-input" placeholder="e.g. eleanor@luminaeuropa.com" required>
+          </div>
+
+          <div class="lumina-photo-field full-width">
+            <label class="lumina-photo-label" for="photo-social-{{ section.id }}">Social Media Profile (Instagram / Facebook etc.) <span class="req">*</span></label>
+            <input type="text" id="photo-social-{{ section.id }}" name="contact[Profil Social Media]" class="lumina-photo-input" placeholder="e.g. @eleanor_vance or https://instagram.com/eleanor_vance" required>
+          </div>
+
+          <!-- ImgBB Upload Helper & Guide -->
+          <div class="lumina-photo-field full-width">
+            <div class="lumina-imgbb-box">
+              <div class="lumina-imgbb-top">
+                <div class="lumina-imgbb-info">
+                  <span class="lumina-imgbb-badge">OPTIONAL STEP</span>
+                  <strong>Need a direct image link?</strong>
+                  <p>Upload your image for free to obtain a direct link:</p>
+                </div>
+                <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer" class="lumina-imgbb-btn">
+                  <span>Open ImgBB.com</span>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+              </div>
+              
+              <div class="lumina-imgbb-instructions">
+                <div class="lumina-instruction-step">
+                  <span class="step-num">1</span>
+                  <span>Click the <strong>"Open ImgBB.com"</strong> button above (opens in new tab).</span>
+                </div>
+                <div class="lumina-instruction-step">
+                  <span class="step-num">2</span>
+                  <span>Click <strong>"Start Uploading"</strong>, choose your photo and select <strong>"Don't autodelete"</strong>.</span>
+                </div>
+                <div class="lumina-instruction-step">
+                  <span class="step-num">3</span>
+                  <span>Click <strong>"Upload"</strong> and copy the image link (Direct Link or Viewer Link).</span>
+                </div>
+                <div class="lumina-instruction-step">
+                  <span class="step-num">4</span>
+                  <span>Paste the copied image link into the field below 👇</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lumina-photo-field full-width">
+            <label class="lumina-photo-label" for="photo-link-{{ section.id }}">Photo Link (ImgBB URL or Direct Image Link) <span class="req">*</span></label>
+            <input type="url" id="photo-link-{{ section.id }}" name="contact[Link Imagine / Fotografie]" class="lumina-photo-input" placeholder="e.g. https://i.ibb.co/abcdef/my-photo.jpg" required>
+          </div>
+
+          <div class="lumina-photo-field full-width">
+            <label class="lumina-photo-label" for="photo-desc-{{ section.id }}">City, country or a short reflection on this moment</label>
+            <textarea id="photo-desc-{{ section.id }}" name="contact[body]" rows="3" class="lumina-photo-textarea" placeholder="e.g. Florence, Italy — golden hour afternoon glow..."></textarea>
+          </div>
+        </div>
+
+        <div class="lumina-photo-footer">
+          <button type="submit" class="lumina-photo-submit-btn">
+            <span>SUBMIT PHOTO</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+      {%- endif -%}
+    {% endform %}
+  </div>
+</div>
+
+<script>
+  (function() {
+    function initPhotoModal() {
+      var modal = document.getElementById("lumina-photo-modal-{{ section.id }}");
+      var openBtn = document.getElementById("lumina-open-photo-modal-{{ section.id }}");
+      var footerBtn = document.getElementById("lumina-share-footer-trigger-{{ section.id }}");
+      var closeBtn = document.getElementById("lumina-close-photo-modal-{{ section.id }}");
+      var successBtn = document.getElementById("lumina-success-close-btn-{{ section.id }}");
+
+      if (!modal) return;
+
+      function openModal() {
+        modal.style.display = "flex";
+        void modal.offsetHeight;
+        modal.classList.add("is-active");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        modal.classList.remove("is-active");
+        modal.setAttribute("aria-hidden", "true");
+        setTimeout(function() {
+          if (!modal.classList.contains("is-active")) {
+            modal.style.display = "none";
+            document.body.style.overflow = "";
+          }
+        }, 350);
+      }
+
+      if (openBtn) openBtn.addEventListener("click", openModal);
+      if (footerBtn) footerBtn.addEventListener("click", openModal);
+      if (closeBtn) closeBtn.addEventListener("click", closeModal);
+      if (successBtn) successBtn.addEventListener("click", closeModal);
+
+      modal.addEventListener("click", function(e) {
+        if (e.target === modal) closeModal();
+      });
+
+      document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape" && modal.classList.contains("is-active")) {
+          closeModal();
+        }
+      });
+
+      {% if form.posted_successfully? or form.errors %}
+        openModal();
+      {% endif %}
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initPhotoModal);
+    } else {
+      initPhotoModal();
+    }
+    document.addEventListener("shopify:section:load", initPhotoModal);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Lumina Gallery",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Action Buttons Settings"
+    },
+    {
+      "type": "text",
+      "id": "load_more_label",
+      "label": "Load More Button Label",
+      "default": "VIEW FULL GALLERY"
+    },
+    {
+      "type": "url",
+      "id": "load_more_url",
+      "label": "Load More Button Link",
+      "info": "Link to the full gallery page (e.g., /pages/galerie)"
+    },
+    {
+      "type": "text",
+      "id": "upload_btn_label",
+      "label": "Upload Button Label",
+      "default": "SUBMIT YOUR PHOTO"
+    },
+    {
+      "type": "header",
+      "content": "Share The Light Section"
+    },
+    {
+      "type": "color",
+      "id": "share_bg_color",
+      "label": "Share Background Color",
+      "default": "#050505"
+    },
+    {
+      "type": "text",
+      "id": "share_subheading",
+      "label": "Share Subheading",
+      "default": "BE PART OF THE STORY"
+    },
+    {
+      "type": "text",
+      "id": "share_heading",
+      "label": "Share Heading",
+      "default": "Share the Light"
+    },
+    {
+      "type": "textarea",
+      "id": "share_text",
+      "label": "Share Text",
+      "default": "Send us your moments from all over Europe. The light you see. The stories you live. We can include them in our gallery."
+    },
+    {
+      "type": "text",
+      "id": "share_btn_text",
+      "label": "Share Button Text",
+      "default": "SUBMIT YOUR PHOTO ->"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_image",
+      "name": "Gallery Image",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "header",
+          "content": "Author & Social Attribution (On Hover)"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author / Creator Name",
+          "placeholder": "ex. Elena Vancea"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location / City",
+          "placeholder": "e.g. Paris, France"
+        },
+        {
+          "type": "select",
+          "id": "social_platform",
+          "label": "Social Media Platform",
+          "default": "instagram",
+          "options": [
+            {
+              "value": "instagram",
+              "label": "Instagram"
+            },
+            {
+              "value": "facebook",
+              "label": "Facebook"
+            },
+            {
+              "value": "threads",
+              "label": "Threads"
+            },
+            {
+              "value": "tiktok",
+              "label": "TikTok"
+            },
+            {
+              "value": "youtube",
+              "label": "YouTube"
+            },
+            {
+              "value": "pinterest",
+              "label": "Pinterest"
+            },
+            {
+              "value": "twitter",
+              "label": "Twitter / X"
+            },
+            {
+              "value": "website",
+              "label": "Website"
+            }
+          ]
+        },
+        {
+          "type": "url",
+          "id": "social_url",
+          "label": "Social Media Profile Link"
+        },
+        {
+          "type": "header",
+          "content": "Overlay Text (First Image Only)"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "IN THE FOREGROUND"
+        },
+        {
+          "type": "textarea",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Humanity\nin the Light"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "VIEW GALLERY ->"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        }
+      ]
+    },
+    {
+      "type": "share_feature",
+      "name": "Share Feature",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon",
+          "label": "Icon (SVG Code)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lumina Gallery",
+      "blocks": [
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "share_feature"
+        },
+        {
+          "type": "share_feature"
+        },
+        {
+          "type": "share_feature"
+        },
+        {
+          "type": "share_feature"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,956 @@
+{% comment %}
+  Lumina Luxury FAQ Section
+  Pixel-perfect implementation of Lumina Europa FAQ design mockup
+{% endcomment %}
+
+<style>
+  .lfaq-container {
+    width: 100%;
+    font-family: var(--font-body-family, 'Assistant', sans-serif);
+    color: #1a1917;
+    background-color: {{ section.settings.content_bg | default: "#f9f6f1" }};
+    overflow: hidden;
+  }
+
+  /* --- HERO SECTION --- */
+  .lfaq-hero {
+    position: relative;
+    background-color: #080705;
+    background-image: url('{{ "faq-hero-bg.png" | asset_url }}');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: {{ section.settings.hero_padding_top_desktop | default: 85 }}px;
+    padding-bottom: {{ section.settings.hero_padding_bottom_desktop | default: 65 }}px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  }
+
+  .lfaq-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(8, 7, 5, 0.3) 0%, rgba(8, 7, 5, 0.8) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .lfaq-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+
+  .lfaq-hero-title {
+    font-family: 'BlackseasFree', 'Playfair Display', Georgia, serif;
+    font-size: {{ section.settings.title_size_desktop | default: 54 }}px;
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: 0.02em;
+    margin: 0 0 12px 0;
+    background: linear-gradient(135deg, #FFF8EB 0%, #E4C783 50%, #C5A55E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  }
+
+  .lfaq-hero-subtitle {
+    font-size: 17px;
+    color: rgba(240, 230, 210, 0.85);
+    margin: 0 0 34px 0;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+  }
+
+  /* Search Bar */
+  .lfaq-search-wrap {
+    position: relative;
+    max-width: 480px;
+    margin: 0 auto 32px auto;
+  }
+
+  .lfaq-search-input {
+    width: 100%;
+    height: 48px;
+    background: rgba(10, 9, 7, 0.7);
+    border: 1px solid rgba(228, 199, 131, 0.35);
+    border-radius: 50px;
+    padding: 0 50px 0 22px;
+    font-size: 13.5px;
+    color: #F7F4EE;
+    outline: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  .lfaq-search-input::placeholder {
+    color: rgba(228, 199, 131, 0.45);
+    font-size: 13px;
+    font-weight: 300;
+  }
+
+  .lfaq-search-input:focus {
+    border-color: #E4C783;
+    box-shadow: 0 0 18px rgba(228, 199, 131, 0.25), 0 8px 28px rgba(0, 0, 0, 0.5);
+    background: rgba(18, 15, 11, 0.85);
+  }
+
+  .lfaq-search-icon {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 17px;
+    height: 17px;
+    stroke: #E4C783;
+    fill: none;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+
+  /* Categories Bar (Full Width Responsive Centered Layout) */
+  .lfaq-categories-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 14px 12px;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 6px 0;
+    overflow: visible;
+  }
+
+  .lfaq-cat-pill {
+    background: rgba(15, 13, 10, 0.65);
+    border: 1px solid rgba(228, 199, 131, 0.35);
+    color: rgba(245, 235, 215, 0.95);
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-size: {{ section.settings.pill_size_desktop | default: 15 }}px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+    white-space: nowrap;
+    backdrop-filter: blur(4px);
+    flex-shrink: 0;
+  }
+
+  .lfaq-cat-pill:hover {
+    border-color: #E4C783;
+    color: #FFF;
+    background: rgba(30, 26, 18, 0.85);
+  }
+
+  .lfaq-cat-pill.active {
+    background: #E4C783;
+    border-color: #E4C783;
+    color: #0A0907;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(228, 199, 131, 0.35);
+  }
+
+  /* --- MAIN ACCORDION SECTION --- */
+  .lfaq-content-sec {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 50px 20px 70px 20px;
+  }
+
+  .lfaq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Accordion Item Card */
+  .lfaq-item {
+    background: #FFFFFF;
+    border: 1px solid #EAE3D5;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.015);
+  }
+
+  .lfaq-item:hover {
+    border-color: rgba(197, 165, 94, 0.45);
+  }
+
+  .lfaq-item.is-open {
+    background: #FFFFFF;
+    border-color: #E2D7C3;
+    box-shadow: 0 6px 20px rgba(183, 148, 72, 0.08);
+  }
+
+  .lfaq-item-header {
+    display: flex;
+    align-items: center;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    gap: 16px;
+  }
+
+  .lfaq-num-badge {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 50%;
+    border: 1px solid #D6C298;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 400;
+    color: #B5934C;
+    font-family: Georgia, serif;
+    background: transparent;
+    transition: all 0.3s ease;
+  }
+
+  .lfaq-item.is-open .lfaq-num-badge {
+    background: transparent;
+    color: #B5934C;
+    border-color: #B5934C;
+  }
+
+  .lfaq-question-title {
+    flex: 1;
+    font-family: 'BlackseasFree', 'Playfair Display', Georgia, serif;
+    font-size: {{ section.settings.question_size_desktop | default: 20 }}px;
+    font-weight: 400;
+    color: #1A1917;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .lfaq-chevron {
+    width: 18px;
+    height: 18px;
+    stroke: #777063;
+    fill: none;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 18px;
+  }
+
+  .lfaq-item.is-open .lfaq-chevron {
+    transform: rotate(180deg);
+    stroke: #1A1917;
+  }
+
+  /* Accordion Drawer */
+  .lfaq-item-drawer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
+  }
+
+  .lfaq-item.is-open .lfaq-item-drawer {
+    max-height: 1000px;
+    transition: max-height 0.4s cubic-bezier(1, 0, 1, 0);
+  }
+
+  .lfaq-item-body {
+    padding: 0 24px 22px 72px;
+    font-size: 14.5px !important;
+    line-height: 1.75 !important;
+    color: #24221E !important;
+    font-weight: 400 !important;
+    opacity: 1 !important;
+  }
+
+  .lfaq-item-body p,
+  .lfaq-item-body span,
+  .lfaq-item-body div,
+  .lfaq-item-body * {
+    color: #24221E !important;
+    font-size: 14.5px !important;
+    line-height: 1.75 !important;
+    opacity: 1 !important;
+    font-weight: 400 !important;
+  }
+
+  .lfaq-item-body p {
+    margin: 0 0 10px 0;
+  }
+
+  .lfaq-item-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* View More Button */
+  .lfaq-view-more-wrap {
+    text-align: center;
+    margin-top: 36px;
+  }
+
+  .lfaq-view-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #0A0907;
+    color: #FAF7F2;
+    border: 1px solid #C5A55E;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(10, 9, 7, 0.12);
+  }
+
+  .lfaq-view-more-btn:hover {
+    background: #1A1713;
+    border-color: #E4C783;
+    color: #E4C783;
+    box-shadow: 0 6px 20px rgba(197, 165, 94, 0.22);
+    transform: translateY(-1px);
+  }
+
+  .lfaq-view-more-btn svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+    transition: transform 0.25s ease;
+  }
+
+  .lfaq-view-more-btn:hover svg {
+    transform: translateX(4px);
+  }
+
+  /* --- BOTTOM HELP FOOTER BANNER --- */
+  .lfaq-help-banner {
+    position: relative;
+    max-width: 880px;
+    margin: 50px auto 0 auto;
+    background: linear-gradient(135deg, #FBF8F2 0%, #F3EBDC 100%);
+    border: 1px solid #E5DBCA;
+    border-radius: 14px;
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    box-shadow: 0 8px 24px rgba(197, 165, 94, 0.05);
+    overflow: hidden;
+  }
+
+  .lfaq-help-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    z-index: 2;
+  }
+
+  .lfaq-help-icon-badge {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 50%;
+    border: 1px solid #C5A55E;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(197, 165, 94, 0.08);
+  }
+
+  .lfaq-help-icon-badge svg {
+    width: 22px;
+    height: 22px;
+    stroke: #B5934C;
+    fill: none;
+  }
+
+  .lfaq-help-title {
+    font-family: 'BlackseasFree', 'Playfair Display', Georgia, serif;
+    font-size: 21px;
+    font-weight: 400;
+    color: #1A1917;
+    margin: 0 0 3px 0;
+  }
+
+  .lfaq-help-desc {
+    font-size: 13px;
+    color: #666053;
+    margin: 0;
+    font-weight: 300;
+  }
+
+  .lfaq-help-right {
+    z-index: 2;
+  }
+
+  .lfaq-contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: #8C6F2D;
+    border: 1px solid #C5A55E;
+    padding: 11px 26px;
+    border-radius: 50px;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .lfaq-contact-btn:hover {
+    background: #B5934C;
+    color: #FFFFFF;
+    border-color: #B5934C;
+    box-shadow: 0 4px 14px rgba(181, 147, 76, 0.28);
+    transform: translateY(-1px);
+  }
+
+  .lfaq-contact-btn svg {
+    width: 13px;
+    height: 13px;
+    stroke: currentColor;
+    fill: none;
+    transition: transform 0.25s ease;
+  }
+
+  .lfaq-contact-btn:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* Empty state */
+  .lfaq-no-results {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+    color: #8C8270;
+    font-size: 14.5px;
+  }
+
+  /* --- RESPONSIVE BREAKPOINTS --- */
+  @media (max-width: 768px) {
+    .lfaq-hero {
+      padding-top: {{ section.settings.hero_padding_top_mobile | default: 55 }}px;
+      padding-bottom: {{ section.settings.hero_padding_bottom_mobile | default: 45 }}px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .lfaq-hero-title {
+      font-size: 30px;
+    }
+    .lfaq-hero-subtitle {
+      font-size: 13.5px;
+      margin-bottom: 22px;
+    }
+    .lfaq-search-wrap {
+      max-width: 100%;
+      margin-bottom: 22px;
+    }
+    .lfaq-categories-wrap {
+      justify-content: center;
+      overflow-x: visible;
+      padding-bottom: 0;
+      flex-wrap: wrap;
+      gap: 8px 6px;
+    }
+    .lfaq-cat-pill {
+      font-size: 11.5px;
+      padding: 6px 14px;
+    }
+    .lfaq-content-sec {
+      padding: 36px 16px 55px 16px;
+    }
+    .lfaq-item-header {
+      padding: 16px 16px;
+      gap: 12px;
+    }
+    .lfaq-num-badge {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      font-size: 12px;
+    }
+    .lfaq-question-title {
+      font-size: 15.5px;
+    }
+    .lfaq-item-body {
+      padding: 0 16px 18px 56px;
+      font-size: 13px;
+    }
+    .lfaq-help-banner {
+      flex-direction: column;
+      text-align: center;
+      padding: 24px 16px;
+      align-items: center;
+    }
+    .lfaq-help-left {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+</style>
+
+<div class="lfaq-container">
+  <!-- HERO SECTION -->
+  <div class="lfaq-hero" style="{% if section.settings.hero_bg != blank %}background-image: url('{{ section.settings.hero_bg | image_url: width: 2000 }}');{% endif %}">
+    <div class="lfaq-hero-overlay"></div>
+    <div class="lfaq-hero-content">
+      <h1 class="lfaq-hero-title">{{ section.settings.title | escape }}</h1>
+      <p class="lfaq-hero-subtitle">{{ section.settings.subtitle | escape }}</p>
+
+      <!-- Search Input -->
+      <div class="lfaq-search-wrap">
+        <input 
+          type="text" 
+          id="lfaq-search-field" 
+          class="lfaq-search-input" 
+          placeholder="{{ section.settings.search_placeholder | escape }}"
+          onkeyup="lfaqFilterSearch(this.value)"
+        >
+        <svg class="lfaq-search-icon" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="lfaq-categories-wrap" id="lfaq-pills-container">
+        <button class="lfaq-cat-pill active" onclick="lfaqFilterCategory('all', this)">All</button>
+        {% assign categories = "Products & Technology|How to Use & Rituals|Skin, Ingredients & Safety|Orders & Shipping|Returns & Refunds|About Lumina Europa|Account & Privacy|Authenticity & Guarantee|Professional & Spa Use" | split: "|" %}
+        {% for cat in categories %}
+          <button class="lfaq-cat-pill" onclick="lfaqFilterCategory('{{ cat | handleize }}', this)">{{ cat }}</button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN FAQ ACCORDION CONTENT -->
+  <div class="lfaq-content-sec">
+    <div class="lfaq-list" id="lfaq-accordion-list">
+      {% for block in section.blocks %}
+        {% assign cat_class = block.settings.category | handleize %}
+        <div 
+          class="lfaq-item {% if block.settings.open_by_default %}is-open{% endif %}" 
+          data-category="{{ cat_class }}" 
+          data-search="{{ block.settings.question | downcase }} {{ block.settings.answer | strip_html | downcase }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="lfaq-item-header" onclick="lfaqToggleItem(this)">
+            <span class="lfaq-num-badge">
+              {% if block.settings.badge_number != blank %}
+                {{ block.settings.badge_number }}
+              {% else %}
+                {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
+              {% endif %}
+            </span>
+            <h3 class="lfaq-question-title">{{ block.settings.question }}</h3>
+            <svg class="lfaq-chevron" viewBox="0 0 24 24">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="lfaq-item-drawer">
+            <div class="lfaq-item-body">
+              {{ block.settings.answer }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- No results container -->
+    <div class="lfaq-no-results" id="lfaq-no-results">
+      No questions found matching your search.
+    </div>
+
+    <!-- View More Button -->
+    {% if section.settings.show_view_more %}
+      <div class="lfaq-view-more-wrap">
+        <button class="lfaq-view-more-btn" onclick="lfaqShowAllQuestions(this)">
+          {{ section.settings.view_more_label | default: 'VIEW MORE QUESTIONS' }}
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    {% endif %}
+
+    <!-- HELP FOOTER BANNER -->
+    <div class="lfaq-help-banner">
+      <div class="lfaq-help-left">
+        <div class="lfaq-help-icon-badge">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"></path>
+            <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 class="lfaq-help-title">{{ section.settings.help_title | default: 'Still need help?' }}</h3>
+          <p class="lfaq-help-desc">{{ section.settings.help_desc | default: 'Our support team is here for you.' }}</p>
+        </div>
+      </div>
+      <div class="lfaq-help-right">
+        <a href="{{ section.settings.help_btn_link | default: '/pages/contact' }}" class="lfaq-contact-btn">
+          {{ section.settings.help_btn_label | default: 'CONTACT SUPPORT' }}
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function lfaqToggleItem(headerElem) {
+    var item = headerElem.closest('.lfaq-item');
+    if (!item) return;
+    var isOpen = item.classList.contains('is-open');
+
+    if (isOpen) {
+      item.classList.remove('is-open');
+    } else {
+      item.classList.add('is-open');
+    }
+  }
+
+  var lfaqCurrentCategory = 'all';
+
+  function lfaqFilterCategory(catHandle, btnElem) {
+    lfaqCurrentCategory = catHandle;
+
+    var pills = document.querySelectorAll('.lfaq-cat-pill');
+    pills.forEach(function(p) { p.classList.remove('active'); });
+    if (btnElem) btnElem.classList.add('active');
+
+    var query = (document.getElementById('lfaq-search-field').value || '').toLowerCase().trim();
+    lfaqApplyFilters(catHandle, query);
+  }
+
+  function lfaqFilterSearch(queryVal) {
+    var query = (queryVal || '').toLowerCase().trim();
+    lfaqApplyFilters(lfaqCurrentCategory, query);
+  }
+
+  function lfaqApplyFilters(category, query) {
+    var list = document.getElementById('lfaq-accordion-list');
+    if (!list) return;
+
+    var items = Array.from(list.querySelectorAll('.lfaq-item'));
+    var visibleCount = 0;
+
+    items.forEach(function(item) {
+      var titleText = (item.querySelector('.lfaq-question-title')?.textContent || '').toLowerCase();
+      var bodyText = (item.querySelector('.lfaq-item-body')?.textContent || '').toLowerCase();
+      var itemCat = item.getAttribute('data-category') || '';
+
+      var matchesCat = (category === 'all' || itemCat === category);
+      var score = 0;
+
+      if (matchesCat) {
+        if (!query) {
+          score = 1;
+        } else {
+          var titleMatchIndex = titleText.indexOf(query);
+          var bodyMatchIndex = bodyText.indexOf(query);
+
+          if (titleMatchIndex > -1) {
+            score = 100 - Math.min(titleMatchIndex, 50);
+          } else if (bodyMatchIndex > -1) {
+            score = 50 - Math.min(bodyMatchIndex, 40);
+          }
+        }
+      }
+
+      item._faqScore = score;
+      var badgeText = (item.querySelector('.lfaq-num-badge')?.textContent || '').trim();
+      item._originalIndex = parseInt(badgeText, 10) || 999;
+    });
+
+    // Sort: Higher match score first; tie-breaker: original numerical order
+    items.sort(function(a, b) {
+      if (b._faqScore !== a._faqScore) {
+        return b._faqScore - a._faqScore;
+      }
+      return a._originalIndex - b._originalIndex;
+    });
+
+    // Re-append in sorted order & toggle visibility
+    items.forEach(function(item) {
+      if (item._faqScore > 0) {
+        item.style.display = 'block';
+        visibleCount++;
+        if (query) {
+          item.classList.add('is-open');
+        }
+      } else {
+        item.style.display = 'none';
+        if (query) {
+          item.classList.remove('is-open');
+        }
+      }
+      list.appendChild(item);
+    });
+
+    var noResBox = document.getElementById('lfaq-no-results');
+    if (noResBox) {
+      noResBox.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+  }
+
+  function lfaqShowAllQuestions(btn) {
+    var items = document.querySelectorAll('.lfaq-item');
+    items.forEach(function(item) {
+      item.style.display = 'block';
+      item.classList.add('is-open');
+    });
+    if (btn) btn.style.display = 'none';
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Lumina FAQ Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_bg",
+      "label": "Hero Background Image (Imagine Fundal Hero)"
+    },
+    {
+      "type": "color",
+      "id": "content_bg",
+      "label": "FAQ Content Section Background Color",
+      "default": "#f9f6f1"
+    },
+    {
+      "type": "header",
+      "content": "Hero Height & Padding Settings"
+    },
+    {
+      "type": "range",
+      "id": "hero_padding_top_desktop",
+      "min": 10,
+      "max": 250,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Top Padding / Height",
+      "default": 85
+    },
+    {
+      "type": "range",
+      "id": "hero_padding_bottom_desktop",
+      "min": 10,
+      "max": 250,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Bottom Padding",
+      "default": 65
+    },
+    {
+      "type": "range",
+      "id": "hero_padding_top_mobile",
+      "min": 10,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Top Padding / Height",
+      "default": 55
+    },
+    {
+      "type": "range",
+      "id": "hero_padding_bottom_mobile",
+      "min": 10,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Bottom Padding",
+      "default": 45
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titlu Principal Hero",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Hero Title Font Size (Desktop)",
+      "default": 54
+    },
+    {
+      "type": "range",
+      "id": "question_size_desktop",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Question Title Font Size (Desktop)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "pill_size_desktop",
+      "min": 11,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Category Pill Font Size (Desktop)",
+      "default": 15
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitlu Hero",
+      "default": "What can we help you with?"
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search Bar Placeholder",
+      "default": "Search by keywords..."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_more",
+      "label": "Show 'View More Questions' Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_more_label",
+      "label": "View More Button Text",
+      "default": "SEE MORE QUESTIONS"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Help Banner"
+    },
+    {
+      "type": "text",
+      "id": "help_title",
+      "label": "Help Banner Title",
+      "default": "Still need help?"
+    },
+    {
+      "type": "text",
+      "id": "help_desc",
+      "label": "Help Banner Subtitle",
+      "default": "Our support team is here for you."
+    },
+    {
+      "type": "text",
+      "id": "help_btn_label",
+      "label": "Help Button Label",
+      "default": "CONTACT SUPPORT"
+    },
+    {
+      "type": "url",
+      "id": "help_btn_link",
+      "label": "Help Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "badge_number",
+          "label": "Badge Number (ex. 01, 02)",
+          "default": "01"
+        },
+        {
+          "type": "select",
+          "id": "category",
+          "label": "Categorie",
+          "options": [
+            {
+              "value": "Products and Technology",
+              "label": "Products and Technology"
+            },
+            {
+              "value": "How to Use & Rituals",
+              "label": "How to Use & Rituals"
+            },
+            {
+              "value": "Leather, Ingredients and Safety",
+              "label": "Leather, Ingredients and Safety"
+            },
+            {
+              "value": "Orders and Delivery",
+              "label": "Orders and Delivery"
+            },
+            {
+              "value": "Returns and Refunds",
+              "label": "Returns and Refunds"
+            },
+            {
+              "value": "About Lumina Europa",
+              "label": "About Lumina Europa"
+            },
+            {
+              "value": "Account and Privacy",
+              "label": "Account and Privacy"
+            },
+            {
+              "value": "Authenticity & Guarantee",
+              "label": "Authenticity & Guarantee"
+            },
+            {
+              "value": "Professional Use",
+              "label": "Professional Use"
+            }
+          ],
+          "default": "Products and Technology"
+        },
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is a Lumina nanofibre mask?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Response",
+          "default": "<p>Lumina nanofibre masks are advanced bio-cellulose delivery systems made from ultra-fine fibres. They form a second-skin matrix that adheres perfectly to your face, helping to deliver up to 92% of our active ingredients deeply and effectively to the skin for visible, luminous results.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_by_default",
+          "label": "Open by Default",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lumina Luxury FAQ"
+    }
+  ]
+}
+{% endschema %}

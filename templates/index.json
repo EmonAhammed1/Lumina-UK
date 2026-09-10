@@ -1,0 +1,774 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "experience_reborn_section": {
+      "type": "experience-reborn",
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container-fluid",
+        "image_position": "right",
+        "image": "shopify://shop_images/test-5.png",
+        "min_height_mobile": 400,
+        "image_zoom": 1.5,
+        "image_align_x": 81,
+        "image_align_y": 50,
+        "bg_text_col": "#010101",
+        "bgsection": "#010101",
+        "color_subtitle": "#b8963e",
+        "color_heading_1": "#ffffff",
+        "color_heading_2": "#b8963e",
+        "color_text": "#cccccc",
+        "color_line": "#b8963e",
+        "subtitle": "EXPERIENCE LIGHT EUROPE",
+        "heading_1": "Experience the skin",
+        "heading_2": "who feels reborn.",
+        "des": "<p> Powered by advanced nanofiber technology, Lumina Europa transforms your skin care ritual into a moment of visible renewal. Experience deep hydration, smoother texture and a radiant glow designed to leave your skin refreshed, firm and beautifully revitalized. </p>",
+        "button_label": "",
+        "button_link": "",
+        "style_btn": "btn-theme",
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "experience_benefits_section": {
+      "type": "experience-benefits",
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "image": "shopify://shop_images/nano-fiber-stracture.webp",
+            "title": "NANOFIBER STRUCTURE",
+            "description": "Ultra-fine fibers create a breathable matrix."
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "image": "shopify://shop_images/active-ingredients.webp",
+            "title": "ACTIVE INGREDIENTS",
+            "description": "Encapsulated for maximum efficiency."
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "image": "shopify://shop_images/deep-penetration.webp",
+            "title": "Deep absorption",
+            "description": "Delivers active ingredients beyond the surface."
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_10_2026_03_22_12_PM.png",
+            "title": "REZULTATE VIZIBILE",
+            "description": "Healthier, brighter and revitalized skin."
+          }
+        },
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "icon": "shopify://shop_images/pure_transfer.jpg",
+            "title": "5–8 Minute",
+            "subtitle": "Rezultate Vizibile"
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "icon": "shopify://shop_images/pure_by_design.jpg",
+            "title": "Up to 92% absorption",
+            "subtitle": "Improved Delivery"
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "icon": "shopify://shop_images/Pure_active_delivery.jpg",
+            "title": "0% Conservatives",
+            "subtitle": "Pure and Safe Formula"
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "icon": "shopify://shop_images/WhatsApp_Image_2026-07-09_at_14.32.17.jpg",
+            "title": "Testat Clinic",
+            "subtitle": "Advanced Performance"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4",
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4"
+      ],
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container-fluid",
+        "bg_text_col": "#010101",
+        "bg_stats_box": "#0d0d0f",
+        "bgsection": "#010101",
+        "color_heading": "#b8963e",
+        "color_text": "#cccccc",
+        "paddingsection": "45px 0px 45px 0px",
+        "paddingmobile": "25px 0px 25px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "experience_technology_section": {
+      "type": "experience-technology",
+      "blocks": {
+        "tech_card_1": {
+          "type": "card",
+          "settings": {
+            "show_icon": false,
+            "number": "",
+            "title": "ADVANCED NANOFIBER TECHNOLOGY",
+            "description": "Through electrospinning, the active ingredients are integrated into a dry matrix of nanofibers which, upon contact with water, allows up to 92% of the active ingredients to be transferred to the skin"
+          }
+        }
+      },
+      "block_order": [
+        "tech_card_1"
+      ],
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container-fluid",
+        "subtitle": "ADVANCED TECHNOLOGY",
+        "heading_1": "Nanofiber technology that",
+        "heading_2": "transform skin care",
+        "des": "",
+        "button_label": "EXPLORE THE TECHNOLOGY →",
+        "button_link": "shopify://collections/all",
+        "watch_label": "",
+        "watch_link": "#",
+        "video_url": "Visual 1. What are nanofibres_.mov",
+        "badge_text": "ADVANCED NANOFIBER TECHNOLOGY •",
+        "bg_text_col": "#010101",
+        "bg_card": "#0d0d0f",
+        "bgsection": "#010101",
+        "color_heading": "#b8963e",
+        "color_text": "#cccccc",
+        "color_line": "#b8963e",
+        "icon_size_desktop": 70,
+        "icon_size_mobile": 54,
+        "icon_border_thickness": 2,
+        "paddingsection": "80px 0px 80px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "experience_features_section": {
+      "type": "experience-features",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "title": "NANOFIBER TECHNOLOGY",
+            "description": "Ultra-fine fibers create thousands of micro-channels for maximum absorption."
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "title": "DEEP ABSORPTION",
+            "description": "Delivers active ingredients deep into the skin for powerful and visible results."
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "title": "VISIBLE LIFTING AND FIRMNESS",
+            "description": "Improves elasticity, smoothes fine lines and restores youthful contours."
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "title": "RADIANT TRANSFORMATION",
+            "description": "Moisturizes, brightens and revitalizes skin for a healthy, luminous glow."
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4"
+      ],
+      "disabled": true,
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container-fluid",
+        "banner_image": "shopify://shop_images/test-2.png",
+        "min_height_mobile": 400,
+        "image_zoom": 1,
+        "image_align_x": 50,
+        "image_align_y": 50,
+        "bg_text_col": "#010101",
+        "bgsection": "#010101",
+        "color_heading": "#b8963e",
+        "color_text": "#cccccc",
+        "color_line": "#b8963e",
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "find_your_ritual_section": {
+      "type": "find-your-ritual",
+      "blocks": {
+        "step_1_PMcWmP": {
+          "type": "step_1",
+          "settings": {
+            "area_value": "face",
+            "title": "Face",
+            "bg_image": "shopify://shop_images/Ten.png"
+          }
+        },
+        "step_1_x8Rt99": {
+          "type": "step_1",
+          "settings": {
+            "area_value": "eyes",
+            "title": "Eyes",
+            "bg_image": "shopify://shop_images/Ochi.png"
+          }
+        },
+        "step_1_gRMf9d": {
+          "type": "step_1",
+          "settings": {
+            "area_value": "neck",
+            "title": "Neck",
+            "bg_image": "shopify://shop_images/Gat.png"
+          }
+        },
+        "step_1_UW4kNd": {
+          "type": "step_1",
+          "settings": {
+            "area_value": "decollete",
+            "title": "Décolleté",
+            "bg_image": "shopify://shop_images/Decolteu.png"
+          }
+        },
+        "match_1": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Soothing for Sensitive Skin",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-skin-smoothing-sheet-mask"
+          }
+        },
+        "match_2": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Deep Hydration",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-hydrating-sheet-mask"
+          }
+        },
+        "match_3": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Refresh (Mist)",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-hydro-mist-cu-acid-hialuronic"
+          }
+        },
+        "match_4": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Stain Removal and Uniformity",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-brightening-sheet-mask"
+          }
+        },
+        "match_5": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Intense Brightness",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-intensive-wipe-mask-for-luminosity"
+          }
+        },
+        "match_6": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Prevention Aging",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-anty-aging-sheet-mask"
+          }
+        },
+        "match_7": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Anti-Aging Intensiv",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro"
+          }
+        },
+        "match_8": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Firmness and Lifting",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-collagen-face-mask-for-lifting"
+          }
+        },
+        "match_9": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Regeneration and Repair",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-regenerating-sheet-mask"
+          }
+        },
+        "match_13": {
+          "type": "product_match",
+          "settings": {
+            "area": "face",
+            "goal": "Revitalization and Energy",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-intensive-wipe-mask-for-luminosity"
+          }
+        },
+        "match_10": {
+          "type": "product_match",
+          "settings": {
+            "area": "eyes",
+            "goal": "",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-anti-aging-eye-mask"
+          }
+        },
+        "match_11": {
+          "type": "product_match",
+          "settings": {
+            "area": "neck",
+            "goal": "",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-anti-aging-neck-mask"
+          }
+        },
+        "match_12": {
+          "type": "product_match",
+          "settings": {
+            "area": "decollete",
+            "goal": "",
+            "goal_subtitle": "",
+            "product": "nano-beauty-pro-anti-aging-mask-for-décolletage"
+          }
+        }
+      },
+      "block_order": [
+        "step_1_PMcWmP",
+        "step_1_x8Rt99",
+        "step_1_gRMf9d",
+        "step_1_UW4kNd",
+        "match_1",
+        "match_2",
+        "match_3",
+        "match_4",
+        "match_5",
+        "match_6",
+        "match_7",
+        "match_8",
+        "match_9",
+        "match_13",
+        "match_10",
+        "match_11",
+        "match_12"
+      ],
+      "settings": {
+        "subtitle": "Personalize your care",
+        "title": "Find Your Perfect Ritual",
+        "description": "Each area of ​​your skin has unique needs. Choose the area you want to treat...",
+        "bg_color": "#000000",
+        "bg_image": "shopify://shop_images/quiz-section.png"
+      }
+    },
+    "095e42f5-fe29-4a95-841f-21ca3decc523": {
+      "type": "featured-collections-3",
+      "blocks": {
+        "template--21404045050135__095e42f5-fe29-4a95-841f-21ca3decc523-collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "baby"
+          }
+        },
+        "19e9a563-bde3-4597-a597-c4667dd5d16e": {
+          "type": "collection",
+          "settings": {
+            "collection": "kids-shampoo"
+          }
+        },
+        "template--21404045050135__095e42f5-fe29-4a95-841f-21ca3decc523-collection-2": {
+          "type": "collection",
+          "settings": {
+            "collection": "pregnancy"
+          }
+        },
+        "4ee61848-523f-4ae9-8e76-e02566305f0e": {
+          "type": "collection",
+          "settings": {
+            "collection": "bestsellers"
+          }
+        },
+        "41bf7cd2-5031-4572-95d9-50573a430e58": {
+          "type": "collection",
+          "settings": {
+            "collection": "sale"
+          }
+        },
+        "template--21404045050135__095e42f5-fe29-4a95-841f-21ca3decc523-collection-3": {
+          "type": "collection",
+          "settings": {
+            "collection": "sunscreen"
+          }
+        },
+        "e19d93f8-bc0d-4a4c-bce7-6793594dcca0": {
+          "type": "collection",
+          "settings": {
+            "collection": "gift-sets"
+          }
+        }
+      },
+      "block_order": [
+        "template--21404045050135__095e42f5-fe29-4a95-841f-21ca3decc523-collection-1",
+        "19e9a563-bde3-4597-a597-c4667dd5d16e",
+        "template--21404045050135__095e42f5-fe29-4a95-841f-21ca3decc523-collection-2",
+        "4ee61848-523f-4ae9-8e76-e02566305f0e",
+        "41bf7cd2-5031-4572-95d9-50573a430e58",
+        "template--21404045050135__095e42f5-fe29-4a95-841f-21ca3decc523-collection-3",
+        "e19d93f8-bc0d-4a4c-bce7-6793594dcca0"
+      ],
+      "disabled": true,
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container",
+        "bgsection": "rgba(0,0,0,0)",
+        "title_top": "Pure Science",
+        "title": "Shop Gifts by Price",
+        "des": "",
+        "align-heading": "center",
+        "stylecollection": "name",
+        "size_image_col": "portrait",
+        "color": "#094a6e",
+        "bg_overlay": "#222222",
+        "enable_gradient": false,
+        "opacity_overlay": 0,
+        "size_title": "h5",
+        "button_link": "",
+        "button": "",
+        "perviewDesktop": 5,
+        "spaceBetween": 40,
+        "nowrap": false,
+        "arrows": true,
+        "scrollbar": false,
+        "paddingsection": "80px 0px 80px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "1bf8c92b-c06b-4e40-a921-e763e41e2ed9": {
+      "type": "backgroundvideo",
+      "blocks": {
+        "ea17822d-21c0-4d5d-816f-3bcf700f6031": {
+          "type": "button",
+          "settings": {
+            "button": "Discover Now",
+            "link": "shopify://collections/all",
+            "style_btn": "btn-underline btn-underline-white"
+          }
+        }
+      },
+      "block_order": [
+        "ea17822d-21c0-4d5d-816f-3bcf700f6031"
+      ],
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "full",
+        "height_section": "750px",
+        "height_section_mobile": "450px",
+        "align": "center",
+        "position_text": "bot-center",
+        "link_video": "https://cdn.shopify.com/videos/c/o/v/daa8f8991d7e47419cbd9ff37f3f6f05.mp4",
+        "bgsection": "#010101",
+        "bg_overlay": "#000000",
+        "gradient_bg": "",
+        "opacity_bg_overlay": 0.2,
+        "title_color": "#ffffff",
+        "bg_box": "#010101",
+        "opacity_bgbox": 0,
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "a7d339c3-5fec-4189-87ed-8139654b0a20": {
+      "type": "image-content",
+      "blocks": {
+        "template--18404820058419__a7d339c3-5fec-4189-87ed-8139654b0a20-1679387627d7e40ee1-1": {
+          "type": "text_block",
+          "settings": {
+            "width": "100%",
+            "bgtext": "rgba(0,0,0,0)",
+            "title_color": "rgba(0,0,0,0)",
+            "subtitle": "For the Whole World",
+            "title": "Exfoliate, Cleanse, Balance.",
+            "size_text": "h2",
+            "text": "",
+            "answer_content": "<p> A combination of natural clays and nutrient-rich ingredients that cleanse and rebalance the skin. </p>",
+            "style_btn": "btn-theme",
+            "button": "Purify your skin",
+            "link": "shopify://collections/skin-care",
+            "enable_padding": false,
+            "align": "left"
+          }
+        },
+        "template--18404820058419__a7d339c3-5fec-4189-87ed-8139654b0a20-1679387627d7e40ee1-2": {
+          "type": "image_block",
+          "settings": {}
+        },
+        "template--18404820058419__a7d339c3-5fec-4189-87ed-8139654b0a20-1679387627d7e40ee1-0": {
+          "type": "image_block",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "template--18404820058419__a7d339c3-5fec-4189-87ed-8139654b0a20-1679387627d7e40ee1-1",
+        "template--18404820058419__a7d339c3-5fec-4189-87ed-8139654b0a20-1679387627d7e40ee1-2",
+        "template--18404820058419__a7d339c3-5fec-4189-87ed-8139654b0a20-1679387627d7e40ee1-0"
+      ],
+      "disabled": true,
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container-fluid",
+        "bgsection": "#010101",
+        "rangebg": 0,
+        "bgbefore": "rgba(0,0,0,0)",
+        "bg_pos": "left",
+        "enable_padding": true,
+        "align_center": true,
+        "paddingsection": "0px 0px 60px 0px",
+        "paddingmobile": "0px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "e3299af2-b817-46ee-8170-540b78f0a339": {
+      "type": "featured-products",
+      "disabled": true,
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container-fluid",
+        "bgsection": "rgba(0,0,0,0)",
+        "title_top": "",
+        "title": "Bestsellers",
+        "des": "Discover what's next in the world of Light — new rituals, releases, stories and insights about skin, light and care.",
+        "align-heading": "center",
+        "collection": "gift-sets",
+        "enable_creative": false,
+        "padding": true,
+        "colgrid": "col-lg-3",
+        "rows": 8,
+        "txtbutton": "View All",
+        "urlbtn": "shopify://collections",
+        "style_btn": "btn-outline",
+        "paddingsection": "80px 0px 80px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "eb24c69a-bc7f-4d9a-9fc4-b27344268153": {
+      "type": "product-list-swiper",
+      "disabled": true,
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container-fluid",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_position": "center center",
+        "bgsection": "rgba(0,0,0,0)",
+        "title_color": "rgba(0,0,0,0)",
+        "title_top": "",
+        "title": "Cele Mai Populare Seturi",
+        "des": "Dry air, worry-free—thanks to our wash\nultra-moisturizing and extra-gentle.",
+        "align-heading": "center",
+        "collection": "pregnancy",
+        "limit": 8,
+        "perviewDesktop": 4,
+        "spaceBetween": 30,
+        "nowrap": true,
+        "arrows": true,
+        "scrollbar": false,
+        "buttonall": "",
+        "buttonall_link": "",
+        "style_btn": "btn-theme",
+        "enable_first_banner": false,
+        "width_banner": 30,
+        "subtitle_banner": "Subtitlu",
+        "title_banner": "Titlu Banner",
+        "size_text": "h2",
+        "des_banner": "Protection for",
+        "pos_banner": "mid-center",
+        "button_banner": "Discover Now",
+        "link_banner": "",
+        "style_btn_banner": "btn-underline btn-underline-white",
+        "text_banner_color": "#ffffff",
+        "overlay_banner": "#000000",
+        "opacity_banner": 0.2,
+        "paddingsection": "80px 0px 50px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "35ab431c-44cd-4afc-b9f7-6ea0201bebd0": {
+      "type": "featured-articles",
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container-fluid",
+        "bgsection": "#010101",
+        "title_top": "",
+        "title": "Pe Blog",
+        "des": "Discover what's next in the world of Light — new rituals, releases, stories and insights about skin, light and care.",
+        "align-heading": "center",
+        "blog": "news",
+        "item_style": "blog-1",
+        "enable_btn_blog": true,
+        "enable_btn_line": true,
+        "enable_date": true,
+        "enable_tag": true,
+        "enable_comment": true,
+        "enable_short": false,
+        "image_size": "wide",
+        "gutter_padding": 50,
+        "arrows": true,
+        "draggable": true,
+        "dots": true,
+        "infinite": true,
+        "rows": "1",
+        "limit": 30,
+        "show": 3,
+        "paddingsection": "80px 0px 80px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "1660925094098c539e": {
+      "type": "instagram-customize",
+      "blocks": {
+        "1660925094098c539e-0": {
+          "type": "image",
+          "settings": {
+            "image_link": "#"
+          }
+        },
+        "1660925094098c539e-1": {
+          "type": "image",
+          "settings": {
+            "image_link": "#"
+          }
+        },
+        "1660925094098c539e-2": {
+          "type": "image",
+          "settings": {
+            "image_link": "#"
+          }
+        },
+        "1660925094098c539e-3": {
+          "type": "image",
+          "settings": {
+            "image_link": "#"
+          }
+        },
+        "1660925094098c539e-4": {
+          "type": "image",
+          "settings": {
+            "image_link": "#"
+          }
+        },
+        "1660925094098c539e-5": {
+          "type": "image",
+          "settings": {
+            "image_link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "1660925094098c539e-0",
+        "1660925094098c539e-1",
+        "1660925094098c539e-2",
+        "1660925094098c539e-3",
+        "1660925094098c539e-4",
+        "1660925094098c539e-5"
+      ],
+      "disabled": true,
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container-fluid",
+        "bgsection": "rgba(0,0,0,0)",
+        "title_top": "Follow us",
+        "title": "@LUMINAEUROPA",
+        "des": "Join the conversation with #LuminaEuropa",
+        "align-heading": "center",
+        "image_size": "square",
+        "arrows": false,
+        "draggable": true,
+        "dots": true,
+        "infinite": true,
+        "show": 6,
+        "padding": true,
+        "gutter_padding": 30,
+        "paddingsection": "80px 0px 80px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    }
+  },
+  "order": [
+    "experience_reborn_section",
+    "experience_benefits_section",
+    "experience_technology_section",
+    "experience_features_section",
+    "find_your_ritual_section",
+    "095e42f5-fe29-4a95-841f-21ca3decc523",
+    "1bf8c92b-c06b-4e40-a921-e763e41e2ed9",
+    "a7d339c3-5fec-4189-87ed-8139654b0a20",
+    "e3299af2-b817-46ee-8170-540b78f0a339",
+    "eb24c69a-bc7f-4d9a-9fc4-b27344268153",
+    "35ab431c-44cd-4afc-b9f7-6ea0201bebd0",
+    "1660925094098c539e"
+  ]
+}

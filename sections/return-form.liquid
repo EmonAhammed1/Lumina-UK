@@ -1,0 +1,1196 @@
+{% render 'golden-hour-vars' %}
+<style>
+  .lrf-wrap {
+    background-color: #000;
+    min-height: 100vh;
+    padding: 80px 24px 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .lrf-wrap::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(183,148,72,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .lrf-container {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Header */
+  .lrf-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .lrf-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gh-border-gold);
+    max-width: 60px;
+  }
+  .lrf-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--gh-golden);
+    font-family: serif;
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .lrf-company-sub {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .lrf-subtitle {
+    font-size: 14px;
+    color: rgba(229,229,229,0.7);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 680px;
+  }
+
+  /* Form outer container */
+  .lrf-form-wrap {
+    border: 1px solid var(--gh-border-gold);
+    padding: 48px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  /* Form Section Block */
+  .lrf-section-block {
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(183,148,72,0.2);
+  }
+  .lrf-section-block:last-of-type {
+    border-bottom: none;
+    margin-bottom: 24px;
+    padding-bottom: 0;
+  }
+  .lrf-section-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .lrf-sec-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid var(--gh-golden);
+    color: var(--gh-golden);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: serif;
+  }
+  .lrf-sec-title {
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .lrf-sec-hint {
+    font-size: 12px;
+    color: rgba(229,229,229,0.55);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  /* Form Elements */
+  .lrf-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 16px;
+  }
+  .lrf-form-row.three {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .lrf-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .lrf-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+  }
+  .lrf-label span { color: rgba(183,148,72,0.6); margin-left: 2px; }
+  .lrf-input, .lrf-select, .lrf-textarea {
+    background: transparent;
+    border: 1px solid rgba(183,148,72,0.3);
+    color: #e5e5e5;
+    font-size: 14px;
+    font-family: inherit;
+    padding: 13px 16px;
+    outline: none;
+    transition: border-color 0.3s ease, background 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+  }
+  .lrf-input:focus, .lrf-select:focus, .lrf-textarea:focus {
+    border-color: var(--gh-golden);
+    background: rgba(183,148,72,0.04);
+  }
+  .lrf-input::placeholder, .lrf-textarea::placeholder {
+    color: rgba(229,229,229,0.3);
+    font-size: 13px;
+  }
+  .lrf-input[type="date"] {
+    cursor: pointer;
+    color-scheme: dark;
+  }
+  .lrf-input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(0.8) sepia(1) saturate(5) hue-rotate(5deg);
+    width: 20px;
+    height: 20px;
+  }
+  .lrf-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23b79448' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 44px;
+    cursor: pointer;
+  }
+  .lrf-select option { background: #111; color: #e5e5e5; }
+  .lrf-textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+  /* Radio & Checkbox options grid */
+  .lrf-options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .lrf-option-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1px solid rgba(183,148,72,0.25);
+    background: rgba(183,148,72,0.02);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .lrf-option-card:hover {
+    border-color: var(--gh-golden);
+    background: rgba(183,148,72,0.05);
+  }
+  .lrf-radio-custom {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    border: 1px solid var(--gh-border-gold);
+    background: rgba(183,148,72,0.06);
+    border-radius: 50%;
+    margin-top: 2px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    box-sizing: border-box;
+  }
+  .lrf-radio-custom:checked {
+    border-color: var(--gh-golden);
+    background: rgba(183,148,72,0.2);
+  }
+  .lrf-radio-custom:checked::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 8px;
+    height: 8px;
+    background: var(--gh-golden);
+    border-radius: 50%;
+  }
+  .lrf-checkbox-card-custom {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    border: 1px solid var(--gh-border-gold);
+    background: rgba(183,148,72,0.06);
+    border-radius: 2px;
+    margin-top: 2px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    box-sizing: border-box;
+  }
+  .lrf-checkbox-card-custom:checked {
+    border-color: var(--gh-golden);
+    background: rgba(183,148,72,0.2);
+  }
+  .lrf-checkbox-card-custom:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 8px;
+    border: 2px solid var(--gh-golden);
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+  }
+  .lrf-option-text {
+    font-size: 13px;
+    color: rgba(229,229,229,0.85);
+    line-height: 1.4;
+  }
+
+  /* Important Callout Box */
+  .lrf-callout-box {
+    padding: 20px 24px;
+    border: 1px solid rgba(183,148,72,0.4);
+    background: rgba(183,148,72,0.06);
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+  .lrf-callout-title {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .lrf-callout-desc {
+    font-size: 12px;
+    color: rgba(229,229,229,0.7);
+    line-height: 1.65;
+  }
+
+  /* Declaration Checkbox */
+  .lrf-checkbox-wrap {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 32px;
+    cursor: pointer;
+    padding: 16px 20px;
+    border: 1px solid var(--gh-border-gold);
+    background: rgba(183,148,72,0.03);
+  }
+  .lrf-checkbox-input {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    border: 1px solid var(--gh-border-gold);
+    background: rgba(183,148,72,0.06);
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 2px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .lrf-checkbox-input:checked {
+    border-color: var(--gh-golden);
+    background: rgba(183,148,72,0.15);
+  }
+  .lrf-checkbox-input:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 6px;
+    height: 10px;
+    border: 2px solid var(--gh-golden);
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+  }
+  .lrf-checkbox-label {
+    font-size: 12px;
+    color: rgba(229,229,229,0.8);
+    line-height: 1.6;
+  }
+
+  /* Submit button */
+  .lrf-submit-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--gh-golden);
+    color: var(--gh-golden);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 18px 32px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .lrf-submit-btn:hover {
+    background: rgba(183,148,72,0.1);
+    letter-spacing: 0.25em;
+  }
+  .lrf-submit-btn svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--gh-golden);
+    fill: none;
+    stroke-width: 1.5;
+    transition: transform 0.3s;
+  }
+  .lrf-submit-btn:hover svg { transform: translateX(4px); }
+
+  /* Company info footer card */
+  .lrf-company-card {
+    margin-top: 50px;
+    border: 1px solid var(--gh-border-gold);
+    padding: 32px 40px;
+    background: rgba(183,148,72,0.03);
+  }
+  .lrf-company-title {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .lrf-company-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    font-size: 12px;
+    color: rgba(229,229,229,0.7);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(183,148,72,0.2);
+  }
+  .lrf-company-warning {
+    font-size: 12px;
+    color: var(--gh-golden);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* File Upload Area */
+  .lrf-file-wrap {
+    position: relative;
+    border: 1px dashed rgba(183,148,72,0.4);
+    padding: 28px 20px;
+    text-align: center;
+    background: rgba(183,148,72,0.02);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 8px;
+  }
+  .lrf-file-wrap:hover {
+    border-color: var(--gh-golden);
+    background: rgba(183,148,72,0.06);
+  }
+  .lrf-file-icon {
+    width: 32px;
+    height: 32px;
+    stroke: var(--gh-golden);
+    fill: none;
+    stroke-width: 1.5;
+    margin-bottom: 8px;
+  }
+  .lrf-file-label {
+    font-size: 12px;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .lrf-file-sub {
+    font-size: 11px;
+    color: rgba(229,229,229,0.55);
+  }
+  .lrf-file-input-hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .lrf-file-list {
+    font-size: 12px;
+    color: rgba(229,229,229,0.85);
+  }
+
+  /* Success Screen */
+  .lrf-success-wrap {
+    text-align: center;
+    padding: 70px 48px;
+    border: 1px solid var(--gh-border-gold);
+    background: rgba(183,148,72,0.04);
+    position: relative;
+    overflow: hidden;
+  }
+  .lrf-success-wrap::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(183,148,72,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .lrf-success-badge {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    border: 1px solid var(--gh-golden);
+    background: rgba(183,148,72,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lrf-success-badge svg {
+    width: 32px;
+    height: 32px;
+    stroke: var(--gh-golden);
+    fill: none;
+    stroke-width: 2;
+  }
+  .lrf-success-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--gh-golden);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .lrf-success-title {
+    font-size: clamp(22px, 3.5vw, 32px);
+    color: var(--gh-golden);
+    font-family: serif;
+    font-weight: 300;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .lrf-success-text {
+    font-size: 14px;
+    color: rgba(229,229,229,0.75);
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto 36px;
+  }
+  .lrf-success-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--gh-golden);
+    color: var(--gh-golden);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .lrf-success-btn:hover {
+    background: rgba(183,148,72,0.15);
+    letter-spacing: 0.25em;
+  }
+
+  @media (max-width: 768px) {
+    .lrf-success-wrap { padding: 48px 24px; }
+
+  @media (max-width: 768px) {
+    .lrf-form-wrap { padding: 28px 20px; }
+    .lrf-form-row, .lrf-form-row.three { grid-template-columns: 1fr; }
+    .lrf-options-grid { grid-template-columns: 1fr; }
+    .lrf-company-details { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="lrf-wrap">
+  <div class="lrf-container">
+
+    <!-- Header -->
+    <div class="lrf-eyebrow">{{ section.settings.eyebrow }}</div>
+    <h1 class="lrf-title">{{ section.settings.title }}</h1>
+    <div class="lrf-company-sub">{{ section.settings.company_sub }}</div>
+    <p class="lrf-subtitle">{{ section.settings.subtitle }}</p>
+
+    <div class="lrf-success-wrap" id="lrf-success-message" style="{% if form.posted_successfully? %}display:block;{% else %}display:none;{% endif %}">
+      <div class="lrf-success-badge">
+        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="lrf-success-eyebrow">MARKEU S.R.L. / LUMINA EUROPA</div>
+      <h2 class="lrf-success-title">Thank you for your request!</h2>
+      <p class="lrf-success-text">
+        Your return request has been successfully received and recorded.<br>
+        Our concierge team will review your details and send complete return shipping instructions via email within <strong>24–48 business hours</strong>.
+      </p>
+      <a href="/" class="lrf-success-btn">
+        Back to Shop
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div id="lrf-form-container" style="{% if form.posted_successfully? %}display:none;{% else %}display:block;{% endif %}">
+      {% form 'contact', id: 'lrf-contact-form' %}
+        <textarea name="contact[body]" id="lrf-contact-body" style="display:none;">New Return Request</textarea>
+        {% if form.errors %}
+          <div style="padding:16px; border:1px solid #e07070; background:rgba(224,112,112,0.1); color:#ff8080; margin-bottom:24px; font-size:13px; border-radius:2px;">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+        <div class="lrf-form-wrap">
+
+          <!-- 1. Customer Details -->
+          <div class="lrf-section-block">
+            <div class="lrf-section-head">
+              <span class="lrf-sec-num">1</span>
+              <span class="lrf-sec-title">Customer Details</span>
+            </div>
+            <div class="lrf-form-row">
+              <div class="lrf-form-group">
+                <label class="lrf-label" for="lrf-name">Full Name <span>*</span></label>
+                <input class="lrf-input" type="text" id="lrf-name" name="contact[name]" placeholder="ex. Maria Ionescu" required>
+              </div>
+              <div class="lrf-form-group">
+                <label class="lrf-label" for="lrf-email">Email Address <span>*</span></label>
+                <input class="lrf-input" type="email" id="lrf-email" name="contact[email]" placeholder="ex. maria@gmail.com" required>
+              </div>
+            </div>
+            <div class="lrf-form-group">
+              <label class="lrf-label" for="lrf-phone">Phone Number</label>
+              <input class="lrf-input" type="tel" id="lrf-phone" name="contact[phone]" placeholder="ex. +40 712 345 678">
+            </div>
+          </div>
+
+          <!-- 2. Order Details -->
+          <div class="lrf-section-block">
+            <div class="lrf-section-head">
+              <span class="lrf-sec-num">2</span>
+              <span class="lrf-sec-title">Order Details</span>
+            </div>
+            <div class="lrf-form-row three">
+              <div class="lrf-form-group">
+                <label class="lrf-label" for="lrf-order-num">Order Number <span>*</span></label>
+                <input class="lrf-input" type="text" id="lrf-order-num" placeholder="ex. #1234" required>
+              </div>
+              <div class="lrf-form-group">
+                <label class="lrf-label" for="lrf-date-order">Order Date</label>
+                <input class="lrf-input" type="date" id="lrf-date-order" onclick="if(typeof this.showPicker === 'function'){ try{this.showPicker();}catch(e){} }">
+              </div>
+              <div class="lrf-form-group">
+                <label class="lrf-label" for="lrf-date-receive">Delivery Date</label>
+                <input class="lrf-input" type="date" id="lrf-date-receive" onclick="if(typeof this.showPicker === 'function'){ try{this.showPicker();}catch(e){} }">
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Returned Item(s) -->
+          <div class="lrf-section-block">
+            <div class="lrf-section-head">
+              <span class="lrf-sec-num">3</span>
+              <span class="lrf-sec-title">Returned Item(s)</span>
+            </div>
+            <div class="lrf-form-row">
+              <div class="lrf-form-group">
+                <label class="lrf-label" for="lrf-prod-name">Product Name <span>*</span></label>
+                <input class="lrf-input" type="text" id="lrf-prod-name" placeholder="e.g. Hydrating Nanofiber Mask" required>
+              </div>
+              <div class="lrf-form-group">
+                <label class="lrf-label" for="lrf-prod-qty">Quantity <span>*</span></label>
+                <input class="lrf-input" type="number" id="lrf-prod-qty" min="1" value="1" required>
+              </div>
+            </div>
+            <div class="lrf-form-group">
+              <label class="lrf-label" for="lrf-prod-multi">Additional Products to Return</label>
+              <textarea class="lrf-textarea" id="lrf-prod-multi" placeholder="List additional items you wish to return (Product Name + Quantity)..."></textarea>
+            </div>
+          </div>
+
+          <!-- 4. Reason for Return -->
+          <div class="lrf-section-block">
+            <div class="lrf-section-head">
+              <span class="lrf-sec-num">4</span>
+              <span class="lrf-sec-title">Reason for Return</span>
+            </div>
+            <p class="lrf-sec-hint">To exercise your legal right of withdrawal, you are not required to provide a reason. If you would like to help us improve your experience, you may optionally select:</p>
+
+            <div class="lrf-options-grid">
+              <label class="lrf-option-card">
+                <input class="lrf-checkbox-card-custom" type="checkbox" value="Changed my mind">
+                <span class="lrf-option-text">Changed my mind</span>
+              </label>
+              <label class="lrf-option-card">
+                <input class="lrf-checkbox-card-custom" type="checkbox" value="Ordered the wrong item">
+                <span class="lrf-option-text">Ordered the wrong item</span>
+              </label>
+              <label class="lrf-option-card">
+                <input class="lrf-checkbox-card-custom" type="checkbox" value="Received incorrect item">
+                <span class="lrf-option-text">Received incorrect item</span>
+              </label>
+              <label class="lrf-option-card">
+                <input class="lrf-checkbox-card-custom" type="checkbox" value="Item arrived damaged">
+                <span class="lrf-option-text">Item arrived damaged</span>
+              </label>
+              <label class="lrf-option-card">
+                <input class="lrf-checkbox-card-custom" type="checkbox" value="Product appears defective / non-compliant">
+                <span class="lrf-option-text">Product appears defective / non-compliant</span>
+              </label>
+              <label class="lrf-option-card">
+                <input class="lrf-checkbox-card-custom" type="checkbox" value="Packaging was damaged">
+                <span class="lrf-option-text">Packaging was damaged</span>
+              </label>
+            </div>
+
+            <div class="lrf-form-group">
+              <label class="lrf-label" for="lrf-other-reason">Other Reason / Additional Notes</label>
+              <input class="lrf-input" type="text" id="lrf-other-reason" placeholder="Please specify if applicable...">
+            </div>
+          </div>
+
+          <!-- 5. Product Condition -->
+          <div class="lrf-section-block">
+            <div class="lrf-section-head">
+              <span class="lrf-sec-num">5</span>
+              <span class="lrf-sec-title">Product Condition</span>
+            </div>
+            <p class="lrf-sec-hint">Please select the applicable status:</p>
+
+            <div class="lrf-options-grid">
+              <label class="lrf-option-card">
+                <input class="lrf-radio-custom" type="radio" name="starea_produsului" value="Product is sealed / unopened" required>
+                <span class="lrf-option-text">Product is sealed / unopened</span>
+              </label>
+              <label class="lrf-option-card">
+                <input class="lrf-radio-custom" type="radio" name="starea_produsului" value="Outer packaging opened, hygiene seal intact">
+                <span class="lrf-option-text">Outer packaging opened, hygiene seal intact</span>
+              </label>
+              <label class="lrf-option-card">
+                <input class="lrf-radio-custom" type="radio" name="starea_produsului" value="Hygiene seal has been opened">
+                <span class="lrf-option-text">Hygiene seal has been opened</span>
+              </label>
+              <label class="lrf-option-card">
+                <input class="lrf-radio-custom" type="radio" name="starea_produsului" value="Product is damaged / non-compliant">
+                <span class="lrf-option-text">Product is damaged / non-compliant</span>
+              </label>
+            </div>
+
+            <div class="lrf-form-group">
+              <label class="lrf-label" for="lrf-other-state">Other condition details</label>
+              <input class="lrf-input" type="text" id="lrf-other-state" placeholder="Please specify if applicable...">
+            </div>
+
+            <div class="lrf-callout-box">
+              <div class="lrf-callout-title">Important — Health & Hygiene Protection</div>
+              <div class="lrf-callout-desc">
+                For sealed skincare products that cannot be returned once unsealed for health or hygiene reasons, the right of withdrawal may not apply if the hygiene seal is broken. This limitation does not affect your rights if the product is defective, damaged, or incorrect.
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Requested Resolution -->
+          <div class="lrf-section-block">
+            <div class="lrf-section-head">
+              <span class="lrf-sec-num">6</span>
+              <span class="lrf-sec-title">Requested Resolution</span>
+            </div>
+
+            <div class="lrf-options-grid">
+              <label class="lrf-option-card">
+                <input class="lrf-radio-custom" type="radio" name="solutia_solicitata" value="Refund" required>
+                <span class="lrf-option-text">Refund</span>
+              </label>
+              <label class="lrf-option-card">
+                <input class="lrf-radio-custom" type="radio" name="solutia_solicitata" value="Replacement (subject to availability)">
+                <span class="lrf-option-text">Replacement (subject to availability)</span>
+              </label>
+            </div>
+
+            <div class="lrf-form-group">
+              <label class="lrf-label" for="lrf-other-sol">Other requested resolution</label>
+              <input class="lrf-input" type="text" id="lrf-other-sol" placeholder="Please specify if applicable...">
+            </div>
+            <p class="lrf-sec-hint" style="margin-bottom: 0;">For standard returns under withdrawal rights, refunds will be issued in accordance with applicable EU regulations and our Return Policy.</p>
+          </div>
+
+          <!-- 7. Fotografii / documente info -->
+          <div class="lrf-section-block">
+            <div class="lrf-section-head">
+              <span class="lrf-sec-num">7</span>
+              <span class="lrf-sec-title">Photographs / Documentation (Optional)</span>
+            </div>
+            <p class="lrf-sec-hint">
+              For <strong>damaged, defective, incorrect, or non-compliant</strong> items, please attach photos below or email them to <strong>office@markeu.eu</strong> (photos of item, packaging, and batch number).
+            </p>
+            
+            <div class="lrf-file-wrap" id="lrf-file-box">
+              <svg class="lrf-file-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <div class="lrf-file-label">Attach Photos or Documents</div>
+              <div class="lrf-file-sub">Click here or drag files (JPG, PNG, WEBP, PDF)</div>
+              <input class="lrf-file-input-hidden" type="file" id="lrf-photos" accept="image/*,.pdf" multiple onchange="lrfUpdateFileList(this)">
+            </div>
+            <div class="lrf-file-list" id="lrf-file-display"></div>
+
+            <div class="lrf-form-group" style="margin-top: 16px;">
+              <label class="lrf-label" for="lrf-photo-desc">Photo Description / Batch Lot Details</label>
+              <textarea class="lrf-textarea" id="lrf-photo-desc" placeholder="Enter batch number / attached photo details..."></textarea>
+            </div>
+          </div>
+
+          <!-- 8. Declaration of Withdrawal & Submit -->
+          <div class="lrf-section-block">
+            <div class="lrf-section-head">
+              <span class="lrf-sec-num">8</span>
+              <span class="lrf-sec-title">Declaration of Withdrawal</span>
+            </div>
+
+            <label class="lrf-checkbox-wrap">
+              <input class="lrf-checkbox-input" type="checkbox" id="lrf-agreement" required>
+              <span class="lrf-checkbox-label">
+                By submitting this form, I hereby notify you of my withdrawal from the purchase contract for the item(s) specified above, in accordance with applicable consumer law. <span style="color:rgba(183,148,72,0.6)">*</span>
+              </span>
+            </label>
+
+            <button class="lrf-submit-btn" type="submit">
+              Submit Return Form
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
+        </div>
+      {% endform %}
+    </div>
+
+    <!-- Legal & Return Address Footer Card -->
+    <div class="lrf-company-card">
+      <div class="lrf-company-title">Form Destination & Corporate Entity</div>
+      <div class="lrf-company-details">
+        <div>
+          <strong>MARKEU S.R.L.</strong><br>
+          Bulevardul G-ral Gheorghe Magheru, nr. 31, birou 2, etaj 5<br>
+          Sector 1, Bucharest, Postal Code 010325, Romania<br>
+          CUI: 52403219 | Nr. Reg. Com.: J2025064945001
+        </div>
+        <div>
+          <strong>Operational Contact:</strong><br>
+          Email: <a href="mailto:office@markeu.eu" style="color:var(--gh-golden);">office@markeu.eu</a><br>
+          Phone: +40 747 115 660<br>
+          Website: <a href="https://www.luminaeuropa.eu" target="_blank" style="color:var(--gh-golden);">www.luminaeuropa.eu</a>
+        </div>
+      </div>
+      <div class="lrf-company-warning">
+        ⚠️ <strong>Important Note:</strong> Please do not ship return parcels to the registered headquarters prior to receiving return instructions. The operational return warehouse address will be provided in your return confirmation email.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  var lrfUploadedFilesMap = [];
+  var lrfActivePromises = [];
+
+  function lrfEscapeHtml(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function lrfUpdateFileList(input) {
+    var display = document.getElementById('lrf-file-display');
+    if (!display) return;
+    lrfUploadedFilesMap = [];
+    lrfActivePromises = [];
+
+    if (input.files && input.files.length > 0) {
+      var listHtml = '<div style="color:var(--gh-golden); margin-top:14px; margin-bottom:8px; font-weight:600; font-size:12px; letter-spacing:0.05em;">Selected files (' + input.files.length + '):</div>' +
+                     '<div style="display:flex; flex-direction:column; gap:8px;">';
+      for (var i = 0; i < input.files.length; i++) {
+        var file = input.files[i];
+        var sz = Math.round(file.size / 1024) + ' KB';
+        lrfUploadedFilesMap.push({
+          id: i,
+          name: file.name,
+          sizeStr: sz,
+          url: null,
+          status: 'uploading'
+        });
+
+        listHtml += '<div id="lrf-file-card-' + i + '" style="background:rgba(183,148,72,0.04); border:1px solid rgba(183,148,72,0.25); padding:10px 14px; font-size:12px; border-radius:2px; transition:all 0.3s ease;">' +
+                      '<div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">' +
+                        '<div><span style="color:#fff; font-weight:500;">📷 ' + lrfEscapeHtml(file.name) + '</span> <span style="opacity:0.6; font-size:11px; color:rgba(229,229,229,0.7);">(' + sz + ')</span></div>' +
+                        '<div id="lrf-file-status-' + i + '" style="color:var(--gh-golden); font-size:11px; display:flex; align-items:center; gap:6px;">' +
+                          '<span class="lrf-spin" style="display:inline-block; animation:lrfSpin 0.9s linear infinite;">⏳</span> Uploading...</div>' +
+                      '</div>' +
+                      '<div id="lrf-file-link-' + i + '" style="margin-top:4px; display:none; font-size:11px; word-break:break-all;"></div>' +
+                    '</div>';
+      }
+      listHtml += '</div>';
+      display.innerHTML = listHtml;
+
+      // Start background uploads immediately on selection
+      for (var j = 0; j < input.files.length; j++) {
+        (function(index, fileObj) {
+          var p = lrfUploadToImgBB(fileObj).then(function(imgUrl) {
+            var statusEl = document.getElementById('lrf-file-status-' + index);
+            var linkEl = document.getElementById('lrf-file-link-' + index);
+            var cardEl = document.getElementById('lrf-file-card-' + index);
+
+            if (imgUrl) {
+              lrfUploadedFilesMap[index].url = imgUrl;
+              lrfUploadedFilesMap[index].status = 'success';
+
+              var photosInput = document.getElementById('lrf-contact-photos');
+              if (photosInput) {
+                var validUrls = [];
+                for (var u = 0; u < lrfUploadedFilesMap.length; u++) {
+                  if (lrfUploadedFilesMap[u].status === 'success' && lrfUploadedFilesMap[u].url) {
+                    validUrls.push(lrfUploadedFilesMap[u].url);
+                  }
+                }
+                photosInput.value = validUrls.join("\n");
+              }
+
+              if (cardEl) cardEl.style.borderColor = 'rgba(74, 222, 128, 0.4)';
+              if (statusEl) {
+                statusEl.style.color = '#4ADE80';
+                statusEl.innerHTML = '✓ Uploaded successfully';
+              }
+              if (linkEl) {
+                linkEl.style.display = 'block';
+                linkEl.innerHTML = '<span style="color:rgba(229,229,229,0.5);">Direct link: </span><a href="' + imgUrl + '" target="_blank" style="color:var(--gh-golden); text-decoration:underline;">' + imgUrl + '</a>';
+              }
+            } else {
+              lrfUploadedFilesMap[index].status = 'error';
+              if (cardEl) cardEl.style.borderColor = 'rgba(239, 68, 68, 0.4)';
+              if (statusEl) {
+                statusEl.style.color = '#EF4444';
+                statusEl.innerHTML = '⚠️ Upload failed';
+              }
+            }
+          });
+          lrfActivePromises.push(p);
+        })(j, input.files[j]);
+      }
+    } else {
+      display.innerHTML = '';
+      var photosInput = document.getElementById('lrf-contact-photos');
+      if (photosInput) photosInput.value = "No photos attached";
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var successMsg = document.getElementById('lrf-success-message');
+    var formContainer = document.getElementById('lrf-form-container');
+    var contactForm = document.getElementById('lrf-contact-form');
+    var searchStr = window.location.search.toLowerCase();
+    var hashStr = window.location.hash.toLowerCase();
+
+    function triggerFiveSecThankYou() {
+      if (!successMsg || !formContainer) return;
+      successMsg.style.display = 'block';
+      formContainer.style.display = 'none';
+      setTimeout(function() {
+        successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 150);
+
+      setTimeout(function() {
+        successMsg.style.display = 'none';
+        formContainer.style.display = 'block';
+        if (contactForm) {
+          contactForm.reset();
+        }
+        lrfUploadedFilesMap = [];
+        lrfActivePromises = [];
+        var fileDisp = document.getElementById('lrf-file-display');
+        if (fileDisp) fileDisp.innerHTML = '';
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, null, window.location.pathname);
+        }
+        formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 5000);
+    }
+
+    var IMGBB_API_KEY = {{ section.settings.imgbb_api_key | default: '8470ad1e1efac3794019da4740bfc7cf' | json }};
+
+    async function lrfUploadToImgBB(file) {
+      if (IMGBB_API_KEY) {
+        try {
+          var formData = new FormData();
+          formData.append('image', file);
+          var res = await fetch('https://api.imgbb.com/1/upload?key=' + encodeURIComponent(IMGBB_API_KEY), {
+            method: 'POST',
+            body: formData
+          });
+          if (res.ok) {
+            var json = await res.json();
+            if (json && json.data && (json.data.url || json.data.url_viewer)) {
+              return json.data.url || json.data.url_viewer;
+            }
+          } else {
+            console.warn('ImgBB API upload non-OK status:', res.status);
+          }
+        } catch(e) {
+          console.error('ImgBB upload error:', e);
+        }
+      }
+
+      // Secure Fallback: tmpfiles.org
+      try {
+        var formData2 = new FormData();
+        formData2.append('file', file);
+        var res2 = await fetch('https://tmpfiles.org/api/v1/upload', {
+          method: 'POST',
+          body: formData2
+        });
+        if (res2.ok) {
+          var json2 = await res2.json();
+          if (json2 && json2.data && json2.data.url) {
+            return json2.data.url.replace('tmpfiles.org/', 'tmpfiles.org/dl/');
+          }
+        }
+      } catch(err2) {
+        console.error('tmpfiles upload error:', err2);
+      }
+      return null;
+    }
+
+    window.lrfUploadToImgBB = lrfUploadToImgBB;
+
+    async function lrfUploadFilesAndBuildBody() {
+      var bodyInput = document.getElementById('lrf-contact-body');
+      var photoHiddenInput = document.getElementById('lrf-contact-photos');
+      if (!bodyInput) return;
+
+      if (lrfActivePromises && lrfActivePromises.length > 0) {
+        await Promise.all(lrfActivePromises);
+      }
+
+      var uploadedLinks = [];
+      if (lrfUploadedFilesMap && lrfUploadedFilesMap.length > 0) {
+        for (var i = 0; i < lrfUploadedFilesMap.length; i++) {
+          var item = lrfUploadedFilesMap[i];
+          if (item.status === 'success' && item.url) {
+            uploadedLinks.push({ name: item.name, url: item.url });
+          }
+        }
+      }
+
+      if (photoHiddenInput) {
+        if (uploadedLinks.length > 0) {
+          photoHiddenInput.value = uploadedLinks.map(function(l) { return l.url; }).join("\n");
+        } else {
+          photoHiddenInput.value = "No photos attached";
+        }
+      }
+
+      var name = (document.getElementById('lrf-name') || {}).value || '';
+      var email = (document.getElementById('lrf-email') || {}).value || '';
+      var phone = (document.getElementById('lrf-phone') || {}).value || '';
+      var orderNum = (document.getElementById('lrf-order-num') || {}).value || '';
+      var dateOrder = (document.getElementById('lrf-date-order') || {}).value || '';
+      var dateReceive = (document.getElementById('lrf-date-receive') || {}).value || '';
+      var prodName = (document.getElementById('lrf-prod-name') || {}).value || '';
+      var prodQty = (document.getElementById('lrf-prod-qty') || {}).value || '';
+      var prodMulti = (document.getElementById('lrf-prod-multi') || {}).value || '';
+
+      var reasons = [];
+      document.querySelectorAll('.lrf-checkbox-card-custom:checked').forEach(function(cb) {
+        if (cb.parentNode) {
+          reasons.push(cb.parentNode.innerText.trim());
+        }
+      });
+      var reasonsHidden = document.getElementById('lrf-contact-reasons');
+      if (reasonsHidden) {
+        reasonsHidden.value = reasons.length > 0 ? reasons.join(', ') : 'Not specified';
+      }
+      var otherReason = (document.getElementById('lrf-other-reason') || {}).value || '';
+
+      var stateVal = '';
+      var checkedState = document.querySelector('input[name="starea_produsului"]:checked');
+      if (checkedState) stateVal = checkedState.value;
+      var otherState = (document.getElementById('lrf-other-state') || {}).value || '';
+
+      var solVal = '';
+      var checkedSol = document.querySelector('input[name="solutia_solicitata"]:checked');
+      if (checkedSol) solVal = checkedSol.value;
+      var otherSol = (document.getElementById('lrf-other-sol') || {}).value || '';
+
+      var photoDesc = (document.getElementById('lrf-photo-desc') || {}).value || '';
+
+      var photosText = "";
+      if (uploadedLinks.length > 0) {
+        photosText = "\n• ATTACHED PHOTOGRAPHS (" + uploadedLinks.length + " photos successfully uploaded):\n";
+        for (var k = 0; k < uploadedLinks.length; k++) {
+          photosText += "  - " + uploadedLinks[k].name + ":\n    " + uploadedLinks[k].url + "\n";
+        }
+      } else if (lrfUploadedFilesMap && lrfUploadedFilesMap.length > 0) {
+        photosText = "\n• ATTACHED PHOTOGRAPHS (" + lrfUploadedFilesMap.length + " files selected):\n";
+        for (var k = 0; k < lrfUploadedFilesMap.length; k++) {
+          photosText += "  - " + lrfUploadedFilesMap[k].name + " (" + lrfUploadedFilesMap[k].sizeStr + ")\n";
+        }
+      } else {
+        photosText = "\n• ATTACHED PHOTOGRAPHS: No photographs attached";
+      }
+
+      var bodyText = "==================================================\n" +
+        "          NEW RETURN / WITHDRAWAL REQUEST        \n" +
+        "                 Lumina Europa – MARKEU S.R.L.     \n" +
+        "==================================================\n\n" +
+        "1. CUSTOMER INFORMATION:\n" +
+        "  • Full Name: " + name + "\n" +
+        "  • Email: " + email + "\n" +
+        "  • Phone: " + (phone || "Not specified") + "\n\n" +
+        "2. ORDER DETAILS:\n" +
+        "  • Order Number: " + orderNum + "\n" +
+        "  • Order Date: " + (dateOrder || "Not specified") + "\n" +
+        "  • Delivery Date: " + (dateReceive || "Not specified") + "\n\n" +
+        "3. RETURNED PRODUCTS:\n" +
+        "  • Product Name: " + prodName + "\n" +
+        "  • Quantity: " + prodQty + "\n" +
+        (prodMulti ? "  • Additional Products: " + prodMulti + "\n" : "") + "\n" +
+        "4. REASON FOR RETURN:\n" +
+        "  • Selected Reasons: " + (reasons.length > 0 ? reasons.join(", ") : "Not specified") + "\n" +
+        (otherReason ? "  • Other Reason: " + otherReason + "\n" : "") + "\n" +
+        "5. PRODUCT CONDITION:\n" +
+        "  • Condition: " + (stateVal || "Not specified") + "\n" +
+        (otherState ? "  • Other Condition: " + otherState + "\n" : "") + "\n" +
+        "6. REQUESTED RESOLUTION:\n" +
+        "  • Requested Resolution: " + (solVal || "Not specified") + "\n" +
+        (otherSol ? "  • Other Resolution: " + otherSol + "\n" : "") + "\n" +
+        "7. PHOTOGRAPHS & BATCH DETAILS:\n" +
+        "  • Description / Lot Batch: " + (photoDesc || "Not specified") + photosText + "\n\n" +
+        "8. WITHDRAWAL DECLARATION:\n" +
+        "  • Status: Declared and accepted (Checked)\n\n" +
+        "==================================================";
+
+      bodyInput.value = bodyText;
+    }
+
+    if (searchStr.indexOf('contact_posted') > -1 || searchStr.indexOf('posted=true') > -1 || hashStr.indexOf('contact_form') > -1) {
+      triggerFiveSecThankYou();
+    }
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        if (!contactForm.dataset.submitting) {
+          e.preventDefault();
+          contactForm.dataset.submitting = 'true';
+
+          var btn = contactForm.querySelector('.lrf-submit-btn');
+          if (btn) {
+            btn.disabled = true;
+            btn.innerHTML = 'Submitting return request... ⏳';
+          }
+
+          lrfUploadFilesAndBuildBody().then(function() {
+            console.log('Submitting return form payload to Shopify:', document.getElementById('lrf-contact-body') ? document.getElementById('lrf-contact-body').value : '');
+            contactForm.submit();
+          }).catch(function(err) {
+            console.error('Error submitting form:', err);
+            contactForm.submit();
+          });
+
+          return false;
+        }
+      });
+    }
+
+    document.querySelectorAll('.lrf-wrap input[type="date"]').forEach(function(input) {
+      input.addEventListener('click', function(e) {
+        if (typeof this.showPicker === 'function') {
+          try { this.showPicker(); } catch(err) {}
+        }
+      });
+      input.addEventListener('focus', function(e) {
+        if (typeof this.showPicker === 'function') {
+          try { this.showPicker(); } catch(err) {}
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Return Form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "RETURN PROCEDURE"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titlu principal",
+      "default": "RETURN & WITHDRAWAL FORM"
+    },
+    {
+      "type": "text",
+      "id": "company_sub",
+      "label": "Subtitlu companie",
+      "default": "Lumina Europa – MARKEU S.R.L."
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Description",
+      "default": "Please complete this form if you wish to return one or more products purchased on www.luminaeuropa.eu."
+    },
+    {
+      "type": "text",
+      "id": "imgbb_api_key",
+      "label": "ImgBB API Key (Optional)",
+      "default": "8470ad1e1efac3794019da4740bfc7cf",
+      "info": "API key for ImgBB. If empty or invalid, the secondary secure upload service is automatically used."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Return Form Official"
+    }
+  ]
+}
+{% endschema %}

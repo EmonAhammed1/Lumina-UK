@@ -1,0 +1,304 @@
+<!-- sections/lumina-world-europe-light.liquid -->
+<style>
+  .lumina-europe-section {
+    background-color: #040404;
+    color: #ffffff;
+    position: relative;
+    padding: 75px 0;
+    width: 100%;
+    border-top: 1px solid rgba(197, 160, 89, 0.25);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+    overflow: hidden;
+  }
+
+  .lwel-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 45px;
+    box-sizing: border-box;
+  }
+
+  /* TOP ROW: 2 Images Side-by-Side */
+  .lwel-top-images-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 55px;
+    width: 100%;
+  }
+
+  .lwel-img-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #000000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  }
+
+  .lwel-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .lwel-img-frame:hover img {
+    transform: scale(1.03);
+  }
+
+  /* BOTTOM ROW: Editorial Text & Copy */
+  .lwel-bottom-text-row {
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .lwel-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #c5a059;
+    font-weight: 500;
+    margin-bottom: 20px;
+    opacity: 0.9;
+  }
+
+  .lwel-main-text {
+    font-size: 17.5px;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+
+  .lwel-main-text strong,
+  .lwel-main-text b {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .lwel-second-text {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.72);
+    font-weight: 300;
+    margin-bottom: 40px;
+    max-width: 820px;
+  }
+
+  /* Tagline Box Centered */
+  .lwel-tagline-box {
+    border-top: 1px solid rgba(197, 160, 89, 0.3);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+    padding: 24px 30px;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 700px;
+    background: rgba(10, 10, 10, 0.5);
+    border-radius: 4px;
+  }
+
+  .lwel-tagline-sub {
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 8px;
+    font-weight: 300;
+  }
+
+  .lwel-tagline-heading {
+    font-family: var(--g-font-2), "Cormorant Garamond", "Times New Roman", serif;
+    font-size: 28px;
+    line-height: 1.25;
+    font-weight: 500;
+    color: #c5a059;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  /* Launch Footer Badge */
+  .lwel-launch-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(15, 15, 15, 0.9);
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    padding: 14px 28px;
+    border-radius: 4px;
+  }
+
+  .lwel-launch-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #c5a059;
+    box-shadow: 0 0 10px #c5a059;
+    animation: lwelPulse 2s infinite ease-in-out;
+  }
+
+  @keyframes lwelPulse {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.7; }
+  }
+
+  .lwel-launch-text {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 991px) {
+    .lumina-europe-section { padding: 50px 0; }
+    .lwel-container { padding: 0 20px; }
+    .lwel-top-images-row {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-bottom: 35px;
+    }
+    .lwel-main-text { font-size: 15.5px; }
+    .lwel-tagline-heading { font-size: 23px; }
+  }
+</style>
+
+<div class="lumina-europe-section">
+  <div class="lwel-container">
+
+    <!-- TOP ROW: 2 Images Side-by-Side -->
+    <div class="lwel-top-images-row">
+      <div class="lwel-img-frame">
+        {%- if section.settings.image_top != blank -%}
+          <img src="{{ section.settings.image_top | image_url: width: 1000 }}" alt="{{ section.settings.eyebrow | escape }}" loading="lazy">
+        {%- else -%}
+          <img src="{{ 'lumina-europe-light-map.png' | asset_url }}" alt="Europe Under the Same Light" loading="lazy">
+        {%- endif -%}
+      </div>
+
+      <div class="lwel-img-frame">
+        {%- if section.settings.image_bottom != blank -%}
+          <img src="{{ section.settings.image_bottom | image_url: width: 1000 }}" alt="{{ section.settings.eyebrow | escape }}" loading="lazy">
+        {%- else -%}
+          <img src="{{ 'lumina-europe-light-portrait.png' | asset_url }}" alt="Europe Under the Same Light Portrait" loading="lazy">
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- BOTTOM ROW: Editorial Story Text -->
+    <div class="lwel-bottom-text-row">
+      {%- if section.settings.eyebrow != blank -%}
+        <div class="lwel-eyebrow">{{ section.settings.eyebrow }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.paragraph_1 != blank -%}
+        <div class="lwel-main-text">
+          {{ section.settings.paragraph_1 }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.paragraph_2 != blank -%}
+        <div class="lwel-second-text">
+          {{ section.settings.paragraph_2 }}
+        </div>
+      {%- endif -%}
+
+      <div class="lwel-tagline-box">
+        {%- if section.settings.tagline_sub != blank -%}
+          <div class="lwel-tagline-sub">{{ section.settings.tagline_sub }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.tagline_main != blank -%}
+          <h3 class="lwel-tagline-heading">{{ section.settings.tagline_main }}</h3>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.launch_text != blank -%}
+        <div class="lwel-launch-badge">
+          <span class="lwel-launch-dot"></span>
+          <span class="lwel-launch-text">{{ section.settings.launch_text }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Europe Same Light",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Top Eyebrow Label",
+      "default": "PROIECT EDITORIAL SPECIAL"
+    },
+    {
+      "type": "header",
+      "content": "Top Images Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_top",
+      "label": "Left Map / Collage Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_bottom",
+      "label": "Right Portrait Image"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Editorial Text Settings"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph_1",
+      "label": "Paragraph 1 (Supports Bold & Gold text)",
+      "default": "<p><strong>Europe Under the Same Light</strong> is a journey through Europe, told through the people who call it home. Starting in <strong>November 2026</strong>, the project will take to the streets of European cities to listen, ask questions and discover what connects us across borders, languages ​​and generations.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_2",
+      "label": "Paragraph 2",
+      "default": "Through intimate street conversations, portraits and authentic stories, we will explore identity, belonging, beauty, culture and the future we build together."
+    },
+    {
+      "type": "text",
+      "id": "tagline_sub",
+      "label": "Tagline Subtitle",
+      "default": "Different cities. Different faces. Different stories."
+    },
+    {
+      "type": "text",
+      "id": "tagline_main",
+      "label": "Tagline Main Title",
+      "default": "One Europe. Under the same light."
+    },
+    {
+      "type": "text",
+      "id": "launch_text",
+      "label": "Launch Badge Text",
+      "default": "RELEASE IN NOVEMBER 2026"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Europe Same Light"
+    }
+  ]
+}
+{% endschema %}

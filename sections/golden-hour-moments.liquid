@@ -1,0 +1,558 @@
+{% render 'golden-hour-vars' %}
+{%- style -%}
+  #shopify-section-{{ section.id }} .gh-moments-wrap {
+    position: relative;
+    background-color: var(--gh-dark-bg);
+    color: var(--gh-text-light);
+    padding: {{ section.settings.padding_top_desktop }}px 24px {{ section.settings.padding_bottom_desktop }}px;
+    overflow: hidden;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 768px) {
+    #shopify-section-{{ section.id }} .gh-moments-wrap {
+      padding: {{ section.settings.padding_top_mobile }}px 16px {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+  .gh-moments-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: {{ section.settings.bg_opacity | divided_by: 100.0 }};
+    z-index: 1;
+  }
+  .gh-moments-header {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    margin: 0 auto 80px;
+    text-align: center;
+  }
+  .gh-moments-title-small {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gh-text-muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .gh-moments-title {
+    font-size: {{ section.settings.heading_size_desktop }}px;
+    color: var(--gh-golden);
+    margin-bottom: 24px;
+    font-weight: 300;
+    font-family: serif;
+  }
+  @media screen and (max-width: 1024px) {
+    .gh-moments-title {
+      font-size: calc({{ section.settings.heading_size_desktop }}px * 0.85);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .gh-moments-title {
+      font-size: {{ section.settings.heading_size_mobile }}px;
+      margin-bottom: 16px;
+    }
+  }
+  .gh-moments-intro {
+    font-size: {{ section.settings.intro_size_desktop }}px;
+    color: var(--gh-text-muted);
+    line-height: 1.5;
+  }
+  @media screen and (max-width: 1024px) {
+    .gh-moments-intro {
+      font-size: calc({{ section.settings.intro_size_desktop }}px * 0.9);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .gh-moments-intro {
+      font-size: {{ section.settings.intro_size_mobile }}px;
+    }
+  }
+
+  /* ---- grid ---- */
+  .gh-petals-grid {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: {{ section.settings.gap_desktop }}px;
+  }
+  .gh-petals-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gh-petal-card {
+    flex: 0 0 auto;
+    width: {{ section.settings.card_width_desktop }}px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    position: relative;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 20px;
+    transition: var(--gh-transition);
+  }
+  .gh-petal-card:hover {
+    background: rgba(255,255,255,0.02);
+    border-color: var(--gh-border-gold);
+  }
+
+  /* ---- leaf background layer (transform lives here, never on the card) ---- */
+  .gh-petal-leaf-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.5 / 1;
+    overflow: visible;
+    margin-bottom: 20px;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .gh-petal-leaf-inner {
+    position: absolute;
+    inset: 0;
+  }
+  .gh-petal-leaf-img,
+  .gh-petal-leaf-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .gh-petal-leaf-placeholder {
+    background: radial-gradient(ellipse at center, rgba(249, 226, 156, 0.18) 0%, rgba(249, 226, 156, 0.02) 70%);
+    border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+  }
+
+  /* natural rotation/scale variety, repeats every 6 cards like the reference */
+  .gh-petal-card:nth-child(6n+1) .gh-petal-leaf-inner { transform: rotate(-6deg) scale(1); }
+  .gh-petal-card:nth-child(6n+2) .gh-petal-leaf-inner { transform: rotate(5deg) scale(0.94) translateY(10px); }
+  .gh-petal-card:nth-child(6n+3) .gh-petal-leaf-inner { transform: rotate(-4deg) scale(1.05) translateY(-8px); }
+  .gh-petal-card:nth-child(6n+4) .gh-petal-leaf-inner { transform: rotate(7deg) scale(0.97) translateY(6px); }
+  .gh-petal-card:nth-child(6n+5) .gh-petal-leaf-inner { transform: rotate(-8deg) scale(1.03) translateY(-10px); }
+  .gh-petal-card:nth-child(6n+6) .gh-petal-leaf-inner { transform: rotate(3deg) scale(0.96) translateY(8px); }
+
+  /* ---- icon: absolutely centered on the leaf, independent of leaf rotation ---- */
+  .gh-petal-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    z-index: 4;
+    color: var(--gh-golden);
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+  }
+  .gh-petal-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    fill: none;
+  }
+  .gh-petal-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .gh-petal-title-wrapper {
+    margin-bottom: 12px;
+  }
+  .gh-petal-letter {
+    font-size: 13px;
+    color: var(--gh-golden);
+    font-weight: 500;
+  }
+  .gh-petal-title {
+    display: inline;
+    font-size: 15px;
+    color: var(--gh-golden);
+    font-weight: 500;
+  }
+  .gh-petal-desc {
+    font-size: 12px;
+    color: var(--gh-text-muted);
+    line-height: 1.4;
+  }
+
+  /* ---- mobile: horizontal scroll-snap keeps the flowing-leaf feel instead of a cramped grid ---- */
+  @media screen and (max-width: 768px) {
+    .gh-petal-card:nth-child(n) .gh-petal-leaf-inner {
+      transform: none !important;
+    }
+    .gh-petals-grid {
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
+      overflow-x: visible;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      gap: 16px;
+    }
+    .gh-petal-card {
+      width: calc(50% - 8px);
+      height: auto;
+      padding: 16px;
+      flex-shrink: 0;
+    }
+  }
+{%- endstyle -%}
+
+<div class="gh-moments-wrap" id="{{ section.id | split: '__' | last }}" data-section-id="{{ section.id }}">
+  {%- if section.settings.bg_image != blank -%}
+    {{ section.settings.bg_image | image_url: width: 1920 | image_tag: class: 'gh-moments-bg', loading: 'lazy' }}
+  {%- else -%}
+    <img src="{{ 'section-bg.png' | asset_url }}" class="gh-moments-bg" alt="" loading="lazy">
+  {%- endif -%}
+
+  <div class="gh-moments-header">
+    <div class="gh-moments-title-small">MOMENTS MONEY CANNOT BUY</div>
+    <h2 class="gh-moments-title">{{ section.settings.heading }}</h2>
+    {%- if section.settings.intro != blank -%}
+      <p class="gh-moments-intro">{{ section.settings.intro }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="gh-petals-grid">
+    {%- assign gh_letters = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z" | split: "," -%}
+    {%- for block in section.blocks -%}
+      {%- assign gh_letter = gh_letters[forloop.index0] | default: forloop.index -%}
+      {%- assign gh_leaf = block.settings.leaf_image | default: section.settings.leaf_image -%}
+      <div class="gh-petal-card" data-petal-index="{{ forloop.index }}" {{ block.shopify_attributes }}>
+        <div class="gh-petal-leaf-wrap">
+          <div class="gh-petal-leaf-inner">
+            {%- if gh_leaf != blank -%}
+              {{ gh_leaf | image_url: width: 400 | image_tag: class: 'gh-petal-leaf-img', alt: '', loading: 'lazy' }}
+            {%- else -%}
+              {%- assign leaf_fallback = 'block-' | append: forloop.index | append: '.png' -%}
+              <img src="{{ leaf_fallback | asset_url }}" class="gh-petal-leaf-img" alt="" loading="lazy">
+            {%- endif -%}
+          </div>
+
+        </div>
+        <div class="gh-petal-title-wrapper">
+          <h3 class="gh-petal-title">{{ block.settings.title }}</h3>
+        </div>
+        <p class="gh-petal-desc">{{ block.settings.description }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const wrap = document.querySelector('#shopify-section-{{ section.id }} .gh-moments-wrap');
+    const leaves = document.querySelectorAll('#shopify-section-{{ section.id }} .gh-petal-leaf-wrap');
+
+    if (wrap && leaves.length) {
+      window.addEventListener('scroll', function() {
+        const rect = wrap.getBoundingClientRect();
+        const winHeight = window.innerHeight;
+        if (rect.top < winHeight && rect.bottom > 0) {
+          const progress = (winHeight - rect.top) / (winHeight + rect.height);
+          leaves.forEach((leaf, idx) => {
+            const factor = (idx % 2 === 0) ? 1 : -1;
+            const yOffset = Math.sin(progress * Math.PI) * 8 * factor;
+            leaf.style.transform = `translateY(${yOffset}px)`;
+          });
+        }
+      }, { passive: true });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Golden Hour - Moments",
+  "settings": [
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum Width (px)",
+      "min": 800,
+      "max": 2000,
+      "step": 50,
+      "default": 1450
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Section Background Image"
+    },
+    {
+      "type": "range",
+      "id": "bg_opacity",
+      "label": "Section Background Opacity (%)",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "default": 30
+    },
+    {
+      "type": "image_picker",
+      "id": "leaf_image",
+      "label": "Default Leaf / Petal Background",
+      "info": "Used by any block that doesn't have its own leaf image set below."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Exclusive experiences for the Golden Hour community."
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro Text"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Heading Size (Desktop px)",
+      "min": 24,
+      "max": 56,
+      "step": 2,
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "intro_size_desktop",
+      "label": "Intro Text Size (Desktop px)",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Top Padding (Desktop px)",
+      "min": 40,
+      "max": 180,
+      "step": 10,
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Bottom Padding (Desktop px)",
+      "min": 40,
+      "max": 180,
+      "step": 10,
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "card_width_desktop",
+      "label": "Card Width (Desktop px)",
+      "min": 140,
+      "max": 260,
+      "step": 10,
+      "default": 190
+    },
+    {
+      "type": "range",
+      "id": "gap_desktop",
+      "label": "Gap between cards (Desktop px)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading Size (Mobile px)",
+      "min": 18,
+      "max": 36,
+      "step": 1,
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "intro_size_mobile",
+      "label": "Intro Text Size (Mobile px)",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top Padding (Mobile px)",
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom Padding (Mobile px)",
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "card_width_mobile",
+      "label": "Card Width (Mobile px)",
+      "min": 100,
+      "max": 220,
+      "step": 10,
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "label": "Gap between cards (Mobile px)",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "default": 15
+    }
+  ],
+  "blocks": [
+    {
+      "type": "moment",
+      "name": "Petal Moment",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "leaf_image",
+          "label": "Leaf / Petal Background (optional)",
+          "info": "Overrides the section's default leaf image for this block only."
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon",
+          "label": "Custom Icon Image (Overrides SVG)"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Fallback SVG Icon",
+          "options": [
+            {
+              "value": "moon",
+              "label": "Moon"
+            },
+            {
+              "value": "flower",
+              "label": "Flower"
+            },
+            {
+              "value": "box",
+              "label": "Box"
+            },
+            {
+              "value": "users",
+              "label": "Users"
+            },
+            {
+              "value": "lotus",
+              "label": "Lotus"
+            },
+            {
+              "value": "camera",
+              "label": "Camera"
+            }
+          ],
+          "default": "flower"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Ritual of the Month"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "A complete Lumina ritual, chosen according to the season and the needs of the skin."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Golden Hour - Moments",
+      "blocks": [
+        {
+          "type": "moment",
+          "settings": {
+            "icon": "moon",
+            "title": "Ritual of the Month",
+            "description": "A complete Lumina ritual, chosen according to the season and the needs of the skin."
+          }
+        },
+        {
+          "type": "moment",
+          "settings": {
+            "icon": "flower",
+            "title": "The collection of the season",
+            "description": "Get the premiere of the ritual that defines the season."
+          }
+        },
+        {
+          "type": "moment",
+          "settings": {
+            "icon": "box",
+            "title": "Golden Box",
+            "description": "A surprise selection of products and special editions, available just for you."
+          }
+        },
+        {
+          "type": "moment",
+          "settings": {
+            "icon": "users",
+            "title": "Light experiences",
+            "description": "Invitations to launches, workshops, private events and community meetings."
+          }
+        },
+        {
+          "type": "moment",
+          "settings": {
+            "icon": "lotus",
+            "title": "Moments of indulgence",
+            "description": "Experiences offered in conjunction with selected spas and partners."
+          }
+        },
+        {
+          "type": "moment",
+          "settings": {
+            "icon": "camera",
+            "title": "A day in the Lumina universe",
+            "description": "An exclusive experience with the Lumina team, with access behind the scenes of the brand."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

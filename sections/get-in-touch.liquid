@@ -1,0 +1,363 @@
+<!-- sections/get-in-touch.liquid -->
+
+{%- render 'style-section' -%}
+
+<style>
+  .git-section-{{ section.id }} {
+    color: {{ section.settings.text_color }};
+  }
+  .git-header-{{ section.id }} {
+    margin-bottom: 60px;
+    text-align: center;
+  }
+  .git-title-{{ section.id }} {
+    font-family: var(--font-heading-family, "Playfair Display", Georgia, serif);
+    font-weight: 500;
+    font-size: 42px;
+    color: {{ section.settings.heading_color }};
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Separator line with glowing flare */
+  .git-separator-{{ section.id }} {
+    position: relative;
+    width: 160px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, {{ section.settings.heading_color }}, transparent);
+    margin: 0 auto 24px;
+  }
+  .git-separator-{{ section.id }}::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-color: {{ section.settings.heading_color }};
+    border-radius: 50%;
+    box-shadow: 0 0 10px 4px {{ section.settings.heading_color }},
+                0 0 20px 8px rgba(229, 184, 105, 0.4);
+  }
+  .git-subtitle-{{ section.id }} {
+    font-family: var(--font-body-family, "Inter", sans-serif);
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    color: {{ section.settings.text_color }};
+    opacity: 0.8;
+  }
+  .git-grid-{{ section.id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .git-card-{{ section.id }} {
+    width: 100%;
+    max-width: 380px;
+    background-color: {{ section.settings.card_bg }};
+    border: 1px solid {{ section.settings.card_border }};
+    border-radius: 12px;
+    padding: 50px 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                border-color 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+  .git-card-{{ section.id }}:hover {
+    transform: translateY(-8px);
+    border-color: {{ section.settings.heading_color }};
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
+                0 0 20px 2px rgba(229, 184, 105, 0.15);
+  }
+  .git-icon-container-{{ section.id }} {
+    position: relative;
+    width: 76px;
+    height: 76px;
+    border: 1px solid rgba(229, 184, 105, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    background: radial-gradient(circle, rgba(229, 184, 105, 0.1) 0%, transparent 70%);
+    box-shadow: 0 0 12px rgba(229, 184, 105, 0.05);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                border-color 0.3s ease, 
+                box-shadow 0.3s ease;
+  }
+  .git-card-{{ section.id }}:hover .git-icon-container-{{ section.id }} {
+    transform: scale(1.08);
+    border-color: {{ section.settings.heading_color }};
+    box-shadow: 0 0 25px rgba(229, 184, 105, 0.25);
+  }
+  .git-icon-{{ section.id }} {
+    width: 26px;
+    height: 26px;
+    color: {{ section.settings.heading_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .git-icon-{{ section.id }} svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .git-card-title-{{ section.id }} {
+    font-family: var(--font-heading-family, "Playfair Display", Georgia, serif);
+    font-size: 24px;
+    font-weight: 500;
+    color: {{ section.settings.heading_color }};
+    margin: 0;
+    letter-spacing: 0.3px;
+  }
+  .git-card-line-{{ section.id }} {
+    width: 32px;
+    height: 2px;
+    background-color: {{ section.settings.heading_color }};
+    margin: 16px auto;
+    opacity: 0.8;
+  }
+  .git-card-description-{{ section.id }} {
+    font-family: var(--font-body-family, "Inter", sans-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: {{ section.settings.text_color }};
+    opacity: 0.85;
+    margin: 0;
+  }
+</style>
+
+<div class="customstyle{{ section.id }} git-section-{{ section.id }}">
+  <div class="{{ section.settings.setwidth }}">
+    <div class="git-header-{{ section.id }}" data-aos="fade-up">
+      {%- if section.settings.title != blank -%}
+        <h2 class="git-title-{{ section.id }}">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      <div class="git-separator-{{ section.id }}"></div>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="git-subtitle-{{ section.id }}">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+    
+    <div class="git-grid-{{ section.id }} row">
+      {%- for block in section.blocks -%}
+        <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4 mb-lg-0" {{ block.shopify_attributes }}>
+          <div class="git-card-{{ section.id }}" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
+            <div class="git-icon-container-{{ section.id }}">
+              <div class="git-icon-{{ section.id }}">
+                {%- case block.settings.icon -%}
+                  {%- when 'check' -%}
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  {%- when 'bolt' -%}
+                    <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                  {%- when 'star' -%}
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                {%- endcase -%}
+              </div>
+            </div>
+            
+            {%- if block.settings.title != blank -%}
+              <h4 class="git-card-title-{{ section.id }}">{{ block.settings.title }}</h4>
+            {%- endif -%}
+            
+            <div class="git-card-line-{{ section.id }}"></div>
+            
+            {%- if block.settings.description != blank -%}
+              <p class="git-card-description-{{ section.id }}">{{ block.settings.description }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Get In Touch",
+  "class": "index-section",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "select",
+      "id": "setwidth",
+      "label": "Full Width",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "bgsection",
+      "label": "Background Section",
+      "default": "#0d0d0d"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#e5b869"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Get In Touch"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sub Heading",
+      "default": "We are here to help you. Reach out to us anytime."
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background Color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "card_border",
+      "label": "Card Border Color",
+      "default": "#222222"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "text",
+      "id": "paddingsection",
+      "label": "Padding Section",
+      "default": "80px 0px 80px 0px",
+      "info": "Padding: Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "paddingmobile",
+      "label": "Padding Section Mobile",
+      "default": "40px 0px 40px 0px",
+      "info": "Padding: Top Right Bottom Left"
+    },
+    {
+      "type": "header",
+      "content": "Section Margin"
+    },
+    {
+      "type": "text",
+      "id": "marginsection",
+      "label": "Margin Section",
+      "default": "0px 0px 0px 0px",
+      "info": "Margin: Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "marginmobile",
+      "label": "Margin Mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Margin: Top Right Bottom Left"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Card Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Card description goes here."
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "check",
+              "label": "Checkmark"
+            },
+            {
+              "value": "bolt",
+              "label": "Lightning Bolt"
+            },
+            {
+              "value": "star",
+              "label": "Star"
+            }
+          ],
+          "default": "check"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Get In Touch",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "title": "Absolutely de specialized",
+            "description": "Our specialists are here to help you with expert advice and solutions.",
+            "icon": "check"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Quick Reply",
+            "description": "We aim to respond within 24 hours so you never have to wait long.",
+            "icon": "bolt"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Reliable Technology",
+            "description": "We are backed by modern science and continuous innovation.",
+            "icon": "star"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

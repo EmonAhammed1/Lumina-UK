@@ -1,0 +1,135 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-terms",
+      "blocks": {
+        "term-1": {
+          "type": "term",
+          "settings": {
+            "title": "general information",
+            "content": "<p> By accessing or using the Lumina Europa website, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not use our website or services. </p>",
+            "icon": "document"
+          }
+        },
+        "term-2": {
+          "type": "term",
+          "settings": {
+            "title": "Products and use",
+            "content": "<p> Our products are formulated with advanced nanofiber technology for external use only. Product descriptions and images are for informational purposes and may be updated without prior notice. </p>",
+            "icon": "jar"
+          }
+        },
+        "term-3": {
+          "type": "term",
+          "settings": {
+            "title": "Scientific and cosmetic disclaimer",
+            "content": "<p> Our products are cosmetic in nature and are not intended to diagnose, treat, cure or prevent any disease. Results may vary depending on individual skin type and condition. </p>",
+            "icon": "shield"
+          }
+        },
+        "term-4": {
+          "type": "term",
+          "settings": {
+            "title": "Orders and payments",
+            "content": "<p> All orders are subject to availability and confirmation. We reserve the right to refuse or cancel any order at our discretion. Prices are in EUR and include applicable taxes. </p>",
+            "icon": "card"
+          }
+        },
+        "term-5": {
+          "type": "term",
+          "settings": {
+            "title": "Delivery and shipping",
+            "content": "<p> We process orders within 1-2 business days. Delivery times may vary by location and external factors. Lumina Europa is not responsible for customs delays. </p>",
+            "icon": "truck"
+          }
+        },
+        "term-6": {
+          "type": "term",
+          "settings": {
+            "title": "Returns and Refunds",
+            "content": "<p> Due to the hygienic nature of our nanofiber cosmetics, returns are only accepted for sealed, unopened items in their original packaging within 14 days of delivery. </p>",
+            "icon": "return"
+          }
+        },
+        "term-7": {
+          "type": "term",
+          "settings": {
+            "title": "Intellectual property",
+            "content": "<p> All content, technology, nanofiber formulations, trademarks, design and intellectual property on this site are the exclusive property of Lumina Europa. </p>",
+            "icon": "copyright"
+          }
+        },
+        "term-8": {
+          "type": "term",
+          "settings": {
+            "title": "Limitation of liability",
+            "content": "<p> Lumina Europa will not be liable for any direct, indirect, incidental or consequential damages from the use or inability to use our products or website. </p>",
+            "icon": "warning"
+          }
+        },
+        "term-9": {
+          "type": "term",
+          "settings": {
+            "title": "Privacy and data",
+            "content": "<p> We value your privacy and protect your personal data in accordance with the GDPR and our Privacy Policy. We do not sell or share your data with unauthorized third parties. </p>",
+            "icon": "lock"
+          }
+        },
+        "term-10": {
+          "type": "term",
+          "settings": {
+            "title": "Applicable law",
+            "content": "<p> These Terms and Conditions shall be governed by and construed in accordance with the laws of Romania and the European Union, without regard to principles of conflicts of laws. </p>",
+            "icon": "law"
+          }
+        },
+        "term-11": {
+          "type": "term",
+          "settings": {
+            "title": "Contact information",
+            "content": "<p> For any questions, requests or assistance regarding these terms, please contact us at info@luminaeuropa.eu or through our official contact channels. </p>",
+            "icon": "contact"
+          }
+        }
+      },
+      "block_order": [
+        "term-1",
+        "term-2",
+        "term-3",
+        "term-4",
+        "term-5",
+        "term-6",
+        "term-7",
+        "term-8",
+        "term-9",
+        "term-10",
+        "term-11"
+      ],
+      "settings": {
+        "header_image": "shopify://shop_images/banner-terms-conditon.png",
+        "setwidth": "container",
+        "gold_color": "#c5a059",
+        "card_bg": "#0d0d0f",
+        "border_color": "#c5a05926",
+        "text_color": "#ffffff",
+        "desc_color": "#cccccc",
+        "paddingsection": "80px 0px 80px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

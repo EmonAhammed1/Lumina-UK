@@ -1,0 +1,502 @@
+<!-- sections/experience-transformation.liquid -->
+{%- liquid
+  assign setwidth = section.settings.setwidth
+  assign gold_color = section.settings.gold_color
+  assign animation = section.settings.animation
+-%}
+
+{%- render 'style-section' -%}
+
+<style>
+  .custom-transformation-{{ section.id }} {
+    background-color: #000000;
+    color: #ffffff;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  
+  .transformation-header-{{ section.id }} {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .transformation-title-{{ section.id }} {
+    font-family: var(--g-font-2), "Cormorant Garamond", serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: {{ gold_color }};
+    line-height: 1.3;
+    letter-spacing: 0.03em;
+    margin-bottom: 15px;
+  }
+  
+  .transformation-sep-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .transformation-sep-line-{{ section.id }} {
+    flex: 1;
+    height: 1px;
+    background-color: rgba(197, 160, 89, 0.2);
+  }
+  
+  .transformation-sep-sparkle-{{ section.id }} {
+    width: 14px;
+    height: 14px;
+    color: {{ gold_color }};
+  }
+  
+  /* Transformation Grid Box */
+  .transformation-grid-container-{{ section.id }} {
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    border-radius: 6px;
+    background-color: #050505;
+    overflow: hidden;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  
+  .transformation-col-{{ section.id }} {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  @media (min-width: 992px) {
+    .transformation-col-{{ section.id }}:not(:last-child) {
+      border-right: 1px solid rgba(197, 160, 89, 0.2);
+    }
+  }
+  
+  @media (max-width: 991px) {
+    .transformation-col-{{ section.id }}:not(:last-child) {
+      border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+    }
+  }
+  
+  /* Images styling */
+  .transformation-img-wrap-{{ section.id }} {
+    width: 100%;
+    aspect-ratio: 1.05;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    margin-bottom: 30px;
+  }
+  
+  .transformation-img-wrap-{{ section.id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  
+  .transformation-img-wrap-{{ section.id }}:hover img {
+    transform: scale(1.03);
+  }
+  
+  /* Timeline node styling */
+  .transformation-circle-wrap-{{ section.id }} {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 25px;
+  }
+  
+  .transformation-circle-{{ section.id }} {
+    width: 68px;
+    height: 38px;
+    border-radius: 19px;
+    border: 1px solid {{ gold_color }};
+    background-color: #050505;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: {{ gold_color }};
+    z-index: 2;
+    letter-spacing: 0.05em;
+  }
+  
+  @media (min-width: 992px) {
+    .transformation-circle-wrap-{{ section.id }}::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      height: 1px;
+      background-color: rgba(197, 160, 89, 0.25);
+      z-index: 1;
+    }
+    
+    .transformation-col-wrapper-{{ section.id }}:nth-child(1) .transformation-circle-wrap-{{ section.id }}::after {
+      left: 50%;
+      right: -15px; /* Spans to the border edge */
+    }
+    
+    .transformation-col-wrapper-{{ section.id }}:nth-child(2) .transformation-circle-wrap-{{ section.id }}::after {
+      left: -15px;
+      right: -15px;
+    }
+    
+    .transformation-col-wrapper-{{ section.id }}:nth-child(3) .transformation-circle-wrap-{{ section.id }}::after {
+      left: -15px;
+      right: 50%;
+    }
+  }
+  
+  /* Titles & Descriptions */
+  .transformation-col-title-{{ section.id }} {
+    font-size: 14px;
+    font-weight: 700;
+    color: {{ gold_color }};
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 15px;
+  }
+  
+  .transformation-col-text-{{ section.id }} {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    font-weight: 300;
+    margin: 0;
+  }
+  
+  .transformation-col-text-{{ section.id }} strong {
+    color: #ffffff;
+    font-weight: 600;
+  }
+  
+  /* Bottom Framed Bar */
+  .transformation-bottom-bar-{{ section.id }} {
+    border: 1px solid rgba(197, 160, 89, 0.25);
+    border-radius: 4px;
+    padding: 18px 24px;
+    text-align: center;
+    background-color: #050505;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+  
+  .transformation-bottom-text-{{ section.id }} {
+    font-size: 12px;
+    font-weight: 600;
+    color: {{ gold_color }};
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  @media (max-width: 767px) {
+    .transformation-title-{{ section.id }} {
+      font-size: 30px;
+    }
+    .transformation-col-{{ section.id }} {
+      padding: 30px 20px;
+    }
+    .transformation-bottom-text-{{ section.id }} {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+    }
+  }
+</style>
+
+<div class="custom-transformation-{{ section.id }}" data-aos="{{ animation }}">
+  <div class="{{ setwidth }}">
+    
+    <!-- Dynamic Values based on Mask Type -->
+    {%- assign is_intensive = false -%}
+    {%- if product.tags contains 'intensive_mask' or product.tags contains 'Intensive' -%}
+      {%- assign is_intensive = true -%}
+    {%- endif -%}
+
+    {%- if is_intensive -%}
+      {%- assign dynamic_title = "The 5-Minute Transformation" -%}
+      {%- assign dynamic_bottom_text = "5 minutes that transform everything. 5 minutes to rediscover your light." -%}
+      {%- assign dynamic_col_3_time = "05:00" -%}
+    {%- else -%}
+      {%- assign dynamic_title = section.settings.section_title -%}
+      {%- assign dynamic_bottom_text = section.settings.bottom_text -%}
+      {%- assign dynamic_col_3_time = section.settings.col_3_time -%}
+    {%- endif -%}
+
+    <!-- Section Title & Sep -->
+    <div class="transformation-header-{{ section.id }}">
+      {%- if dynamic_title != blank -%}
+        <h2 class="transformation-title-{{ section.id }}">{{ dynamic_title }}</h2>
+      {%- endif -%}
+      
+      {%- if section.settings.show_separator -%}
+        <div class="transformation-sep-{{ section.id }}">
+          <span class="transformation-sep-line-{{ section.id }}"></span>
+          <svg class="transformation-sep-sparkle-{{ section.id }}" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7z"/>
+          </svg>
+          <span class="transformation-sep-line-{{ section.id }}"></span>
+        </div>
+      {%- endif -%}
+    </div>
+    
+    <!-- Three Column Grid Box -->
+    <div class="transformation-grid-container-{{ section.id }}">
+      <div class="row no-gutters">
+        
+        <!-- Column 1 -->
+        <div class="col-12 col-lg-4 transformation-col-wrapper-{{ section.id }}">
+          <div class="transformation-col-{{ section.id }}">
+            <div class="transformation-img-wrap-{{ section.id }}">
+              {%- if section.settings.col_1_img != blank -%}
+                <img src="{{ section.settings.col_1_img | image_url: width: 600 }}" alt="{{ section.settings.col_1_title | escape }}" loading="lazy">
+              {%- else -%}
+                <img src="{{ 'trans-bottle.jpg' | asset_url }}" alt="{{ section.settings.col_1_title | escape }}" loading="lazy">
+              {%- endif -%}
+            </div>
+            
+            <div class="transformation-circle-wrap-{{ section.id }}">
+              <div class="transformation-circle-{{ section.id }}">{{ section.settings.col_1_time }}</div>
+            </div>
+            
+            <h3 class="transformation-col-title-{{ section.id }}">{{ section.settings.col_1_title }}</h3>
+            <div class="transformation-col-text-{{ section.id }}">
+              {{ section.settings.col_1_text }}
+            </div>
+          </div>
+        </div>
+        
+        <!-- Column 2 -->
+        <div class="col-12 col-lg-4 transformation-col-wrapper-{{ section.id }}">
+          <div class="transformation-col-{{ section.id }}">
+            <div class="transformation-img-wrap-{{ section.id }}">
+              {%- if section.settings.col_2_img != blank -%}
+                <img src="{{ section.settings.col_2_img | image_url: width: 600 }}" alt="{{ section.settings.col_2_title | escape }}" loading="lazy">
+              {%- else -%}
+                <img src="{{ 'trans-clock.jpg' | asset_url }}" alt="{{ section.settings.col_2_title | escape }}" loading="lazy">
+              {%- endif -%}
+            </div>
+            
+            <div class="transformation-circle-wrap-{{ section.id }}">
+              <div class="transformation-circle-{{ section.id }}">{{ section.settings.col_2_time }}</div>
+            </div>
+            
+            <h3 class="transformation-col-title-{{ section.id }}">{{ section.settings.col_2_title }}</h3>
+            <div class="transformation-col-text-{{ section.id }}">
+              {{ section.settings.col_2_text }}
+            </div>
+          </div>
+        </div>
+        
+        <!-- Column 3 -->
+        <div class="col-12 col-lg-4 transformation-col-wrapper-{{ section.id }}">
+          <div class="transformation-col-{{ section.id }}">
+            <div class="transformation-img-wrap-{{ section.id }}">
+              {%- if section.settings.col_3_img != blank -%}
+                <img src="{{ section.settings.col_3_img | image_url: width: 600 }}" alt="{{ section.settings.col_3_title | escape }}" loading="lazy">
+              {%- else -%}
+                <img src="{{ 'trans-leaf.jpg' | asset_url }}" alt="{{ section.settings.col_3_title | escape }}" loading="lazy">
+              {%- endif -%}
+            </div>
+            
+            <div class="transformation-circle-wrap-{{ section.id }}">
+              <div class="transformation-circle-{{ section.id }}">{{ dynamic_col_3_time }}</div>
+            </div>
+            
+            <h3 class="transformation-col-title-{{ section.id }}">{{ section.settings.col_3_title }}</h3>
+            <div class="transformation-col-text-{{ section.id }}">
+              {{ section.settings.col_3_text }}
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <!-- Bottom Framed Bar -->
+    {%- if dynamic_bottom_text != blank -%}
+      <div class="transformation-bottom-bar-{{ section.id }}">
+        <p class="transformation-bottom-text-{{ section.id }}">{{ dynamic_bottom_text }}</p>
+      </div>
+    {%- endif -%}
+    
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Experience Transformation",
+  "class": "index-section-experience-transformation",
+  "settings": [
+    {
+      "type": "select",
+      "id": "animation",
+      "options": [
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "fade-up",
+          "label": "Fade Up"
+        },
+        {
+          "value": "fade-down",
+          "label": "Fade Down"
+        }
+      ],
+      "default": "fade-up",
+      "label": "Select Animation"
+    },
+    {
+      "type": "select",
+      "id": "setwidth",
+      "label": "Section Width",
+      "default": "container-fluid",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "gold_color",
+      "label": "Gold Highlight Color",
+      "default": "#c5a059"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Transformation in 8 minutes"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_separator",
+      "label": "Show Sparkle Separator",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Column 1 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "col_1_img",
+      "label": "Column 1 Image"
+    },
+    {
+      "type": "text",
+      "id": "col_1_time",
+      "label": "Column 1 Time Bubble",
+      "default": "01:00"
+    },
+    {
+      "type": "text",
+      "id": "col_1_title",
+      "label": "Column 1 Title",
+      "default": "PURE ACTIVE DIFFUSION"
+    },
+    {
+      "type": "richtext",
+      "id": "col_1_text",
+      "label": "Column 1 Text",
+      "default": "<p><strong>Dry technology</strong> - Nanofibers activate only when in contact with wet skin, eliminating product wastage.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Column 2 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "col_2_img",
+      "label": "Column 2 Image"
+    },
+    {
+      "type": "text",
+      "id": "col_2_time",
+      "label": "Column 2 Time Bubble",
+      "default": "04:00"
+    },
+    {
+      "type": "text",
+      "id": "col_2_title",
+      "label": "Column 2 Title",
+      "default": "TRANSFER PUR"
+    },
+    {
+      "type": "richtext",
+      "id": "col_2_text",
+      "label": "Column 2 Text",
+      "default": "<p>Direct transfer of ingredients into the dermis, offering results 10x faster than classic masks.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Column 3 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "col_3_img",
+      "label": "Column 3 Image"
+    },
+    {
+      "type": "text",
+      "id": "col_3_time",
+      "label": "Column 3 Time Bubble",
+      "default": "08:00"
+    },
+    {
+      "type": "text",
+      "id": "col_3_title",
+      "label": "Column 3 Title",
+      "default": "PUR PRIN DESIGN"
+    },
+    {
+      "type": "richtext",
+      "id": "col_3_text",
+      "label": "Column 3 Text",
+      "default": "<p>Pure formula, without parabens, fragrances or preservatives. Ideal for sensitive skin.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Bar Settings"
+    },
+    {
+      "type": "text",
+      "id": "bottom_text",
+      "label": "Bottom Bar Text",
+      "default": "8 MINUTES THAT CHANGE EVERYTHING. VISIBLE RESULTS THAT LAST."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Experience Transformation",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

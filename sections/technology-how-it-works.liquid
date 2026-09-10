@@ -1,0 +1,358 @@
+<style>
+  #technology-how-it-works {
+    padding: 90px 0;
+    background-color: var(--color-bg, #050505);
+    color: #fff;
+    overflow: hidden;
+  }
+  .tech-hiw-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .tech-hiw-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .tech-hiw-subheading {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    color: var(--g-main, #B8963E);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .tech-hiw-star {
+    color: var(--g-main, #B8963E);
+    margin: 0 auto 18px;
+    display: block;
+    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.45));
+  }
+  .tech-hiw-heading {
+    font-family: var(--font-heading-family, "Gilda Display", serif);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 400;
+    color: var(--g-color-heading, #fff);
+    margin: 0 0 20px 0;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .tech-hiw-intro {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--color-body-text, #FAF6F0);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* Timeline Header above Cards */
+  .tech-hiw-timeline {
+    display: none;
+  }
+
+  /* Cards Grid */
+  .tech-hiw-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* Individual Card Styling */
+  .tech-hiw-card {
+    background: #090807;
+    border: 1px solid rgba(212, 175, 55, 0.28);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+  .tech-hiw-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.55), 0 0 22px rgba(212, 175, 55, 0.15);
+  }
+
+  .tech-hiw-image-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    background: #111;
+  }
+  .tech-hiw-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tech-hiw-card:hover .tech-hiw-image {
+    transform: scale(1.05);
+  }
+
+  .tech-hiw-content {
+    padding: 26px 24px 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .tech-hiw-card-title {
+    font-family: var(--font-heading-family, "Gilda Display", serif);
+    font-size: 1.32rem;
+    font-weight: 400;
+    color: var(--g-color-heading, #fff);
+    margin: 0 0 16px 0;
+    line-height: 1.3;
+  }
+  .tech-hiw-card-num {
+    color: var(--g-main, #B8963E);
+  }
+  .tech-hiw-card-sep {
+    margin: 0 6px;
+    color: var(--g-main, #B8963E);
+  }
+
+  .tech-hiw-card-text {
+    font-family: var(--font-body-family, sans-serif);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--color-body-text, #FAF6F0);
+    margin: 0;
+  }
+
+  /* Tablet */
+  @media (min-width: 768px) {
+    .tech-hiw-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Desktop */
+  @media (min-width: 992px) {
+    .tech-hiw-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 26px;
+    }
+
+    .tech-hiw-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 26px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .tech-hiw-timeline-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 30px;
+    }
+    .tech-hiw-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #ffd899;
+      box-shadow: 0 0 10px 3px rgba(255, 200, 100, 0.65), 0 0 20px 6px rgba(212, 175, 55, 0.45);
+      position: relative;
+      z-index: 2;
+    }
+    .tech-hiw-line {
+      position: absolute;
+      top: 50%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.7) 50%, rgba(212, 175, 55, 0.2) 100%);
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+    .tech-hiw-line-right {
+      left: 50%;
+      right: 0;
+    }
+    .tech-hiw-line-left {
+      left: 0;
+      right: 50%;
+    }
+    .tech-hiw-line-full {
+      left: 0;
+      right: 0;
+    }
+    .tech-hiw-arrow {
+      position: absolute;
+      right: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      color: rgba(226, 194, 134, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #050505;
+      padding: 0 3px;
+    }
+  }
+</style>
+
+<div id="technology-how-it-works" data-section-id="{{ section.id }}">
+  <div class="tech-hiw-container">
+    <div class="tech-hiw-header" data-aos="fade-up" data-aos-duration="700">
+      {% if section.settings.subheading != blank %}
+        <div class="tech-hiw-subheading">{{ section.settings.subheading }}</div>
+      {% endif %}
+      <svg class="tech-hiw-star" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" fill="currentColor"/>
+      </svg>
+      {% if section.settings.heading != blank %}
+        <h2 class="tech-hiw-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.intro != blank %}
+        <div class="tech-hiw-intro">{{ section.settings.intro }}</div>
+      {% endif %}
+    </div>
+
+    {% if section.blocks.size > 0 %}
+      <div class="tech-hiw-timeline" aria-hidden="true">
+        {% for block in section.blocks %}
+          <div class="tech-hiw-timeline-item">
+            {% if forloop.first %}
+              <div class="tech-hiw-line tech-hiw-line-right"></div>
+            {% elsif forloop.last %}
+              <div class="tech-hiw-line tech-hiw-line-left"></div>
+            {% else %}
+              <div class="tech-hiw-line tech-hiw-line-full"></div>
+            {% endif %}
+            <div class="tech-hiw-dot"></div>
+            {% unless forloop.last %}
+              <div class="tech-hiw-arrow">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 18l6-6-6-6"/>
+                </svg>
+              </div>
+            {% endunless %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="tech-hiw-grid">
+        {% for block in section.blocks %}
+          <div class="tech-hiw-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="{{ forloop.index | times: 100 }}" {{ block.shopify_attributes }}>
+            {% if block.settings.image != blank %}
+              <div class="tech-hiw-image-wrapper">
+                <img class="tech-hiw-image" src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="600" height="600">
+              </div>
+            {% endif %}
+            <div class="tech-hiw-content">
+              <h3 class="tech-hiw-card-title">
+                {% if block.settings.number != blank %}
+                  <span class="tech-hiw-card-num">{{ block.settings.number }}</span>
+                  <span class="tech-hiw-card-sep">—</span>
+                {% endif %}
+                <span class="tech-hiw-card-text">{{ block.settings.title }}</span>
+              </h3>
+              <div class="tech-hiw-card-text">{{ block.settings.text }}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Technology How It Works",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "LUMINA EUROPA"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "From Fibre to Skin"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number/Label",
+          "default": "01"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Optional Small Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Encapsulated"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Step Description",
+          "default": "Active ingredients are incorporated into an ultra-fine, dry nanofibre structure."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Technology How It Works",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Encapsulated",
+            "text": "Active ingredients are incorporated into an ultra-fine, dry nanofibre structure."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Activated",
+            "text": "Water or facial mist begins to dissolve the delicate matrix."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "Released",
+            "text": "The formula is distributed across the area where the mask is applied."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "04",
+            "title": "Experienced",
+            "text": "The fibres disappear as the skincare ritual becomes part of the skin experience."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

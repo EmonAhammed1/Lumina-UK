@@ -1,0 +1,2623 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "lumina_faq": {
+      "type": "lumina-faq",
+      "blocks": {
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "01",
+            "category": "Products & Technology",
+            "question": "What is Europa Light?",
+            "answer": "<p> Lumina Europa is a European skincare brand focused on advanced nanofibre technology, careful formulation and the idea that skincare can be both effective and a true ritual. Our products are designed to bring carefully selected ingredients into close and uniform contact with the skin. </p>",
+            "open_by_default": true
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "02",
+            "category": "Products & Technology",
+            "question": "How does Lumina Europa differ from a traditional tissue mask?",
+            "answer": "<p> Traditional sheet masks are usually made from fabric or serum-soaked hydrogel. Lumina nanofiber masks use an extremely fine fiber structure, designed to perfectly mold to the natural contour of the face. This creates a completely different application experience and allows the active formula to be delivered without the heavy, wet feel of a conventional mask. </p>",
+            "open_by_default": true
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "03",
+            "category": "Products & Technology",
+            "question": "What are nanofibers?",
+            "answer": "<p> Nanofibers are exceptionally fine fibers created using specialized manufacturing technologies. Their small diameter allows them to form a light and highly adaptable structure that sits perfectly on the surface of the skin. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_4": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "04",
+            "category": "Products & Technology",
+            "question": "Does \"nanofiber\" mean the product contains nanoparticles?",
+            "answer": "<p> Not necessarily. \"Nanofiber\" describes the physical structure of the fiber material. It should not be construed to mean that every ingredient in the formulation is a nanomaterial or a nanoparticle. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_5": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "05",
+            "category": "Products & Technology",
+            "question": "How does the nanofiber mask work?",
+            "answer": "<p> When the mask is activated as directed, the nanofiber structure interacts with moisture and allows the formula contained in the fibers to transfer to the skin. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_6": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "06",
+            "category": "Products & Technology",
+            "question": "Why is close skin contact important?",
+            "answer": "<p> The skin is not perfectly flat. The fine structure of the fibers can follow its natural contour much more closely, helping to ensure more even contact between the mask and the skin's surface. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_7": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "07",
+            "category": "Products & Technology",
+            "question": "Does the mask dissolve?",
+            "answer": "<p> Depending on the specific product and formulation, the nanofiber structure is designed to transform during use as it comes into contact with the activation medium and the skin. Always follow the instructions provided with each individual product. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_8": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "08",
+            "category": "Products & Technology",
+            "question": "What does \"up to 92% transfer\" mean?",
+            "answer": "<p> Where this figure is shown, it refers to tests performed on nanofiber technology under defined conditions. Actual transfer may vary depending on formulations, active ingredients and conditions of use. It should not be taken as a guarantee that exactly 92% of each ingredient will penetrate the skin. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_9": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "09",
+            "category": "Products & Technology",
+            "question": "Are Lumina products medical treatments?",
+            "answer": "<p> Nope. Lumina Europa products are cosmetics. They are intended to care for and improve the appearance and condition of the skin and are not intended to diagnose, treat or cure medical conditions. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_10": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "10",
+            "category": "Products & Technology",
+            "question": "Are all Lumina masks the same?",
+            "answer": "<p> Nope. Each mask is designed around a different skin care goal. For example, some formulations focus on hydration, soothing, brightness or regeneration. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_11": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "11",
+            "category": "How to Use & Rituals",
+            "question": "How do I use a Lumina nanofiber mask?",
+            "answer": "<p> Start with clean skin and follow the directions provided with your specific mask. Proper activation and application is important because nanofiber masks behave differently than traditional wet wipe masks. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_12": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "12",
+            "category": "How to Use & Rituals",
+            "question": "Should my skin be clean before application?",
+            "answer": "<p> Yes. We recommend applying the mask to freshly cleansed skin so that make-up, sunscreen, excess sebum or other products do not interfere with application. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_13": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "13",
+            "category": "How to Use & Rituals",
+            "question": "Can I use toner or serum before the mask?",
+            "answer": "<p> This depends on the individual product and your routine. In general, keep the skin clean and avoid applying heavy or oily products immediately before using the mask, unless the product instructions indicate otherwise. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_14": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "14",
+            "category": "How to Use & Rituals",
+            "question": "How long should I leave the mask on my face?",
+            "answer": "<p> Follow the application time stated on the packaging or product page. Longer application is not necessarily better. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_15": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "15",
+            "category": "How to Use & Rituals",
+            "question": "Should I rinse my face afterwards?",
+            "answer": "<p> Unless the individual product instructions state otherwise, there is generally no need to rinse off the remaining care ingredients after use. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_16": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "16",
+            "category": "How to Use & Rituals",
+            "question": "What should I apply after the mask?",
+            "answer": "<p> You can continue with the rest of your regular skin care routine. Depending on your skin and the mask used, this may include a moisturizer and, during the day, sunscreen. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_17": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "17",
+            "category": "How to Use & Rituals",
+            "question": "How often can I use Lumina masks?",
+            "answer": "<p> Frequency depends on the formulation and your skin. Follow the directions for each product and adjust usage based on how your skin responds. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_18": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "18",
+            "category": "How to Use & Rituals",
+            "question": "Can I combine different Lumina masks in the same routine?",
+            "answer": "<p> Potentially, yes. Different masks can play complementary roles in a skincare ritual. However, more products do not automatically mean better results. Consider your skin's needs and avoid unnecessarily intensive routines. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_19": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "19",
+            "category": "How to Use & Rituals",
+            "question": "Can I use the masks in the morning?",
+            "answer": "<p> Yes, provided the individual formulation is suitable for your routine. Follow with appropriate day care and sun protection where appropriate. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_20": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "20",
+            "category": "How to Use & Rituals",
+            "question": "Can I use them at night?",
+            "answer": "<p> Yes. Many people may prefer to use a mask as part of an evening skincare ritual when they have more time to let the product sit comfortably on the skin. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_21": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "21",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Are Lumina products suitable for sensitive skin?",
+            "answer": "<p> Suitability depends on the individual formulation and the person using them. If you have particularly sensitive skin, read the ingredients list carefully and consider testing a small amount of the activator product or associated formulation where appropriate. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_22": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "22",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Where can I find the ingredients?",
+            "answer": "<p> The list of ingredients for each cosmetic product is displayed on the packaging and/or on the product page. Always refer to the product itself for the most up-to-date ingredient information. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_23": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "23",
+            "category": "Skin, Ingredients & Safety",
+            "question": "What should I do if I am allergic to a cosmetic ingredient?",
+            "answer": "<p> Do not use a product that contains an ingredient that you know you are allergic or sensitive to. Consult the INCI ingredient list before use. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_24": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "24",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Can I use Lumina products if I have a skin condition?",
+            "answer": "<p> If you have a diagnosed skin condition, are undergoing dermatological treatment, or are unsure whether a cosmetic product is right for you, consult a qualified healthcare professional before use. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_25": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "25",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Can I use Lumina products during pregnancy or breastfeeding?",
+            "answer": "<p> The suitability of cosmetic products depends on the specific formulation and your individual circumstances. If you are pregnant, breastfeeding or have been advised to avoid certain cosmetic ingredients, consult your healthcare provider and check the ingredient list before use. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_26": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "26",
+            "category": "Skin, Ingredients & Safety",
+            "question": "What should I do if irritation occurs?",
+            "answer": "<p> Stop using the product. If irritation persists, becomes severe or causes concern, seek medical advice. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_27": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "27",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Can I use a Lumina mask on damaged or irritated skin?",
+            "answer": "<p> Unless otherwise expressly stated, avoid applying cosmetic masks to damaged, severely irritated or compromised skin. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_28": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "28",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Are Lumina products tested for safety?",
+            "answer": "<p> Cosmetic products introduced into the relevant market must be subject to the mandatory safety assessment and regulatory process applicable to that market. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_29": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "29",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Are Lumina products suitable for all skin tones?",
+            "answer": "<p> Our skincare philosophy isn't built around one complexion or one beauty ideal. Product suitability is primarily determined by formulation, individual skin needs and ingredient compatibility, rather than skin tone. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_30": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "30",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Are Lumina products exclusively for women?",
+            "answer": "<p> Nope. Leather is leather. Lumina Europa products are designed for everyone, regardless of gender. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_31": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "31",
+            "category": "Orders & Shipping",
+            "question": "Where can I buy Lumina Europa products?",
+            "answer": "<p> Lumina Europa products can be purchased directly from our official websites and through authorized professional or retail partners where applicable. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_32": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "32",
+            "category": "Orders & Shipping",
+            "question": "Is LuminaEuropa.eu a marketplace?",
+            "answer": "<p> Nope. LuminaEuropa.eu is operated as an online retail store. Products sold through the Site are sold by the company identified in the Site Terms and Conditions, and not by independent sellers in a marketplace. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_33": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "33",
+            "category": "Orders & Shipping",
+            "question": "Which countries do you deliver to?",
+            "answer": "<p> Available destinations are displayed during checkout. Delivery availability may vary by market and logistics service. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_34": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "34",
+            "category": "Orders & Shipping",
+            "question": "What couriers do you use in Romania and in the EU?",
+            "answer": "<p> Depending on the destination and delivery method, orders can be delivered using Sameday, Romanian Post, DPD or other logistics partners. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_35": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "35",
+            "category": "Orders & Shipping",
+            "question": "How much is shipping?",
+            "answer": "<p> Shipping costs are calculated and displayed before you complete your order. They may vary depending on the destination, the characteristics of the package and the selected delivery option. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_36": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "36",
+            "category": "Orders & Shipping",
+            "question": "How long will it take for my order to arrive?",
+            "answer": "<p> Estimated delivery information is displayed during checkout or in the delivery section applicable to your destination. Delivery times are estimates and may occasionally be affected by courier operations, bank holidays, weather or circumstances beyond our reasonable control. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_37": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "37",
+            "category": "Orders & Shipping",
+            "question": "Will I receive tracking information?",
+            "answer": "<p> Where tracking is available, you will receive a tracking link or AWB number once your package has been prepared and handed over to your delivery partner. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_38": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "38",
+            "category": "Orders & Shipping",
+            "question": "What should I do if my package is delayed?",
+            "answer": "<p> Please check your tracking information first. If there has been no significant update for several days or the package appears to be significantly delayed, please contact us and we will investigate the situation with the delivery partner. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_39": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "39",
+            "category": "Orders & Shipping",
+            "question": "What do I do if my package arrives damaged?",
+            "answer": "<p> Contact us as soon as possible with your order number and, where possible, clear photographs of the parcel, packaging and affected product so that we can assess the situation. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_40": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "40",
+            "category": "Orders & Shipping",
+            "question": "What if I receive the wrong product?",
+            "answer": "<p> Contact our customer support team with your order number and details of the item received. We will help you arrange the right solution. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_41": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "41",
+            "category": "Returns & Refunds",
+            "question": "Can I return my order if I change my mind?",
+            "answer": "<p> Where the statutory right of withdrawal applies, eligible consumers can usually cancel a distance purchase within the applicable statutory period. For EU consumers, this is generally 14 days, with exceptions provided by law. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_42": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "42",
+            "category": "Returns & Refunds",
+            "question": "Can unsealed cosmetic products be returned?",
+            "answer": "<p> Not every unsealed cosmetic product is automatically excluded from return. Certain sealed products may lose the right of withdrawal after unsealing where the health protection or hygiene exception applies. The specific circumstances and packaging of the product matter. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_43": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "43",
+            "category": "Returns & Refunds",
+            "question": "How do I request a return?",
+            "answer": "<p> Follow the returns instructions provided on the website or contact customer service with your order details. We will provide you with the necessary information to return eligible products. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_44": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "44",
+            "category": "Returns & Refunds",
+            "question": "Who pays the return shipping cost?",
+            "answer": "<p> This depends on the reason for the return and applicable law. For a standard change of mind return, the consumer may be responsible for the cost of the return where permitted by law. In the case of defective, incorrect or non-compliant products, different rules apply. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_45": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "45",
+            "category": "Returns & Refunds",
+            "question": "How will I receive my refund?",
+            "answer": "<p> Refunds are usually made using the original payment method, unless another method is required or agreed upon. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_46": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "46",
+            "category": "Returns & Refunds",
+            "question": "How long does a refund take?",
+            "answer": "<p> Once a refund has been processed, the time it takes to appear in your account may depend on your bank or payment provider. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_47": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "47",
+            "category": "Returns & Refunds",
+            "question": "What if the product is defective or not as described?",
+            "answer": "<p> Please contact us. Your legal rights regarding faulty, damaged, incorrect or non-conforming products remain unaffected by our standard returns policy. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_48": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "48",
+            "category": "About Lumina Europa",
+            "question": "Where is Lumina Europa based?",
+            "answer": "<p> Lumina Europa operates through European and UK trading entities for relevant markets. The legal seller applicable to your purchase is identified in the Terms and Conditions and checkout information of the site you are using. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_49": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "49",
+            "category": "About Lumina Europa",
+            "question": "Why is the brand called Lumina Europa?",
+            "answer": "<p> \"Light\" evokes light—not just as illumination, but as revelation. The brand explores the relationship between light, skin, science and the rituals through which we take care of ourselves. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_50": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "50",
+            "category": "About Lumina Europa",
+            "question": "What does \"Light is You\" mean?",
+            "answer": "<p> It reflects a simple idea: beauty shouldn't require people to become someone else. Light celebrates faces, ages, skin tones and individual identities rather than presenting a single model of perfection. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_51": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "51",
+            "category": "About Lumina Europa",
+            "question": "What is the idea behind the faces used by Lumina Europa?",
+            "answer": "<p> Faces represent individuality. Different features, generations and backgrounds belong to the same visual world because the central subject of the Lumina brand is not an idealized face — but the person. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_52": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "52",
+            "category": "About Lumina Europa",
+            "question": "What is the Light ritual?",
+            "answer": "<p> The Lumina Ritual is our way of thinking about skin care as more than a succession of products. It combines technology, formulation and the deliberate moment you create for your skin. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_53": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "53",
+            "category": "About Lumina Europa",
+            "question": "What are Ritual Bundles?",
+            "answer": "<p> Ritual Bundles bring together complementary Lumina products around different skin care needs. The intention is to create a consistent routine rather than simply increasing the number of products used. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_54": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "54",
+            "category": "About Lumina Europa",
+            "question": "What do HYDRATE, SOOTHE, BRIGHTEN and RENEW mean?",
+            "answer": "<p> They represent different skin care roles in the Lumina universe. Depending on the products available, they help customers navigate the collection according to the needs they want to address. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_55": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "55",
+            "category": "About Lumina Europa",
+            "question": "What is Golden Hour?",
+            "answer": "<p> Golden Hour is part of the expanded world Lumina. Details will be revealed as the concept develops and becomes available. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_56": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "56",
+            "category": "About Lumina Europa",
+            "question": "Where can I learn more about Lumina technology?",
+            "answer": "<p> Visit the Technology section of the site for a deeper explanation of the nanofiber platform, how the mask interacts with the skin, and the science behind the experience. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_57": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "57",
+            "category": "About Lumina Europa",
+            "question": "Where can I learn more about ingredients?",
+            "answer": "<p> Each product page provides information on its key ingredients, while the full cosmetic ingredient statement appears in the INCI list associated with the product. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_58": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "58",
+            "category": "About Lumina Europa",
+            "question": "How can I contact Lumina Europa?",
+            "answer": "<p> You can contact our customer support team using the contact information displayed on the website for the market you are buying from. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_59": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "59",
+            "category": "Products & Technology",
+            "question": "What is a nanofiber mask made of?",
+            "answer": "<p> The exact composition depends on the individual product. Each product page and its packaging provides the relevant information about materials and ingredients. Lumina Nanofiber Technology uses an exceptionally fine fiber structure designed to carry and deliver the cosmetic formulation during use. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_60": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "60",
+            "category": "Products & Technology",
+            "question": "Are nanofiber masks the same as hydrogel masks?",
+            "answer": "<p> Nope. Hydrogel and nanofiber technologies use different structures and behave differently when applied to the skin. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_61": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "61",
+            "category": "Products & Technology",
+            "question": "Are the Lumina masks wet inside the packaging?",
+            "answer": "<p> Nanofiber masks can feel very different than conventional serum-soaked masks. Follow the instructions for the individual product, including any activation steps required before application. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_62": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "62",
+            "category": "Products & Technology",
+            "question": "Why does the mask look so thin?",
+            "answer": "<p> Its fine structure is part of the technology. The goal is to create a close and even contact with the natural contour of the skin without depending on a thick fabric. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_63": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "63",
+            "category": "Products & Technology",
+            "question": "Can I see the nanofibers with the naked eye?",
+            "answer": "<p> The individual fibers are extremely fine, although the complete layer of nanofibers is visible as a structured material. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_64": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "64",
+            "category": "Products & Technology",
+            "question": "Is nanofiber technology new?",
+            "answer": "<p> Nanofiber technology has applications in numerous scientific and technical fields. Lumina uses this specific type of technology in skin care cosmetics. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_65": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "65",
+            "category": "Products & Technology",
+            "question": "Does nanofiber penetrate the skin?",
+            "answer": "<p> The cosmetic product is designed for topical application. References to nanofiber technology describe the delivery structure and should not be construed as a claim that the fiber material itself is intended to penetrate deep into the body. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_66": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "66",
+            "category": "Products & Technology",
+            "question": "Does a higher percentage transfer of ingredients automatically mean better skin care?",
+            "answer": "<p> Nope. Performance depends on much more than the transfer itself. Formula quality, ingredient concentration, skin compatibility, application and each user's skin matter. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_67": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "67",
+            "category": "Products & Technology",
+            "question": "Is a nanofiber mask more effective than any traditional mask?",
+            "answer": "<p> Not necessarily. Different technologies have different advantages. Lumina uses nanofiber technology for the application experience and close contact it can create with the skin. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_68": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "68",
+            "category": "Products & Technology",
+            "question": "Why does the Light speak of both science and ritual?",
+            "answer": "<p> Because skin care has both a functional and a human dimension. Technology explains how a product works; ritual describes the deliberate moment of care surrounding its use. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_69": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "69",
+            "category": "Products & Technology",
+            "question": "Does light manufacture itself with nanofiber technology?",
+            "answer": "<p> Lumina operates within a specialized technology supply chain and cosmetic production. Specific manufacturing information may vary by product and supplier relationship. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_70": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "70",
+            "category": "Products & Technology",
+            "question": "Are all Lumina products based on nanofiber technology?",
+            "answer": "<p> Not necessarily. Nanofiber technology is central to the current Lumina concept, but future products may use other formats where they better serve the skin care purpose. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_71": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "71",
+            "category": "About Lumina Europa",
+            "question": "How soon will I see results?",
+            "answer": "<p> Some cosmetic effects, such as improving the feel of the skin or the appearance of hydration, can be seen quickly. Other changes depend on the formulation, regularity of use and individual skin. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_72": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "72",
+            "category": "About Lumina Europa",
+            "question": "Will one mask transform my skin?",
+            "answer": "<p> Skin care should not be presented as an instant transformation. A single use can help your skin look and feel, but lasting results generally depend on a consistent routine. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_73": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "73",
+            "category": "About Lumina Europa",
+            "question": "Will everyone get the same result?",
+            "answer": "<p> Nope. Skin differs from person to person and cosmetic results may vary. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_74": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "74",
+            "category": "About Lumina Europa",
+            "question": "Does using the mask for a longer time improve the result?",
+            "answer": "<p> Not necessarily. Follow the recommended application time. Longer exposure does not automatically increase efficacy and may be inappropriate for some formulations. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_75": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "75",
+            "category": "About Lumina Europa",
+            "question": "Can I use more than one mask in a day?",
+            "answer": "<p> This depends on the specific formulas and your skin. Unless there is a clear reason, more intensive use is not necessarily beneficial. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_76": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "76",
+            "category": "About Lumina Europa",
+            "question": "What happens if I use the mask incorrectly?",
+            "answer": "<p> Product may not function as intended. Follow the instructions carefully, especially the guide on activation, positioning and application time. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_77": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "77",
+            "category": "About Lumina Europa",
+            "question": "Why might the experience be different from one use to another?",
+            "answer": "<p> Skin condition, humidity, products applied before, activation technique and other environmental factors can affect how a cosmetic product performs. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_78": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "78",
+            "category": "About Lumina Europa",
+            "question": "Can Lumina guarantee a certain cosmetic result?",
+            "answer": "<p> No skin care product can responsibly guarantee identical results for every person. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_79": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "79",
+            "category": "About Lumina Europa",
+            "question": "Which Lumina mask should I choose?",
+            "answer": "<p> Choose based on your skin's current needs, not just your skin type. Our product descriptions and ritual guide can help you identify the most suitable option. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_80": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "80",
+            "category": "About Lumina Europa",
+            "question": "What is the difference between HYDRATE, SOOTHE, BRIGHTEN and RENEW?",
+            "answer": "<p> They describe different skin care intentions in the Lumina system: HYDRATE — supports hydration and comfort. SOOTHE — focuses on a soothing experience. BRIGHTEN — focuses on brightness and brilliance. RENEW — focuses on a refreshed and revitalized complexion. Each product page provides the exact wording. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_81": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "81",
+            "category": "About Lumina Europa",
+            "question": "Can my skin need more than one ritual?",
+            "answer": "<p> Yes. Skin needs can change with season, environment, routine, stress and other factors. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_82": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "82",
+            "category": "About Lumina Europa",
+            "question": "What do I do if I don't know my skin type?",
+            "answer": "<p> You don't necessarily have to permanently define your skin type. Start with your current concerns—for example, dryness, dullness, or sensitivity—and choose accordingly. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_83": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "83",
+            "category": "About Lumina Europa",
+            "question": "Can oily skin need hydration?",
+            "answer": "<p> Yes. Sebum production and hydration are different characteristics of the skin. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_84": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "84",
+            "category": "About Lumina Europa",
+            "question": "Can mature skin use Lumina masks?",
+            "answer": "<p> Yes, provided the product and ingredients chosen are suitable for the person. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_85": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "85",
+            "category": "About Lumina Europa",
+            "question": "Can young adults use Lumina masks?",
+            "answer": "<p> Yes, subject to the instructions and suitability of the individual product. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_86": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "86",
+            "category": "About Lumina Europa",
+            "question": "Are Lumina masks suitable for men?",
+            "answer": "<p> Yes. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_87": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "87",
+            "category": "About Lumina Europa",
+            "question": "Are Lumina masks suitable for teenagers?",
+            "answer": "<p> This depends on the product, the teen's skin and the reason for use. Young users with significant skin problems should seek professional advice. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_88": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "88",
+            "category": "How to Use & Rituals",
+            "question": "On which side of the face is the mask applied?",
+            "answer": "<p> Follow the instructions included with that product as construction and application sequence may differ. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_89": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "89",
+            "category": "How to Use & Rituals",
+            "question": "What happens if the mask folds during application?",
+            "answer": "<p> Reposition it gently where possible, following product instructions. Correct skin contact helps ensure even application. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_90": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "90",
+            "category": "How to Use & Rituals",
+            "question": "Do I need to massage my skin after removing the mask?",
+            "answer": "<p> Where appropriate, the remaining cosmetic product can be gently spread over the skin. Follow the instructions for the specific formulation. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_91": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "91",
+            "category": "How to Use & Rituals",
+            "question": "Can I use a facial roller or gua sha after the mask?",
+            "answer": "<p> Potentially yes, provided your skin feels comfortable and the tool is used correctly. Avoid unnecessary rubbing on sensitized skin. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_92": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "92",
+            "category": "How to Use & Rituals",
+            "question": "Can I use the mask before makeup?",
+            "answer": "<p> Yes, if appropriate for that formulation. Allow skincare products to absorb before applying makeup. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_93": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "93",
+            "category": "How to Use & Rituals",
+            "question": "Can I use the mask before an important event?",
+            "answer": "<p> Yes. We recommend trying any new cosmetic product in advance, rather than using it for the first time right before an important event. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_94": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "94",
+            "category": "How to Use & Rituals",
+            "question": "Can I apply a mask after exfoliation?",
+            "answer": "<p> Be careful. Exfoliation can make the skin temporarily more reactive. Consider the intensity of the exfoliation and the ingredients in the mask. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_95": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "95",
+            "category": "How to Use & Rituals",
+            "question": "Can I use eye drops the same evening?",
+            "answer": "<p> This depends on your routine, formulation and tolerance. Combining multiple active products can increase irritation, so avoid aggressive routines. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_96": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "96",
+            "category": "How to Use & Rituals",
+            "question": "Can I use acids and a Lumina mask together?",
+            "answer": "<p> It depends on the ingredients involved. If you use exfoliating acids, consider separating potentially irritating products. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_97": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "97",
+            "category": "How to Use & Rituals",
+            "question": "Can I apply sunscreen after a morning mask?",
+            "answer": "<p> Yes. Sun protection should remain part of your daily routine. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_98": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "98",
+            "category": "Skin, Ingredients & Safety",
+            "question": "What does INCI mean?",
+            "answer": "<p> INCI is the acronym for the internationally recognized naming system used to identify cosmetic ingredients. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_99": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "99",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Why do ingredient names sometimes sound very technical?",
+            "answer": "<p> Cosmetic ingredient lists use standardized INCI names instead of marketing descriptions so that ingredients can be consistently identified. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_100": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "100",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Where can I find the full INCI list?",
+            "answer": "<p> On the product packaging and/or relevant product page. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_101": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "101",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Can the ingredients of the product be changed?",
+            "answer": "<p> Formulations may be updated occasionally. Always check the ingredients list on the product you actually receive. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_102": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "102",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Does the Light reveal each ingredient?",
+            "answer": "<p> Cosmetic products are labeled in accordance with applicable ingredient declaration requirements. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_103": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "103",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Are fragrances used in Lumina products?",
+            "answer": "<p> This depends on the individual formulation. Check the INCI list for the product in question. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_104": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "104",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Are Lumina products alcohol-free?",
+            "answer": "<p> Depends on the form. \"Alcohol\" can describe a broad family of ingredients with very different cosmetic functions. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_105": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "105",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Are Lumina products vegan?",
+            "answer": "<p> Where a product is specifically described as vegan, that claim applies to that product. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_106": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "106",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Are Lumina products not tested on animals (cruelty-free)?",
+            "answer": "<p> Specific claims regarding non-animal testing should be read against the published information for that product and market. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_107": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "107",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Are the masks biodegradable?",
+            "answer": "<p> Only where this is specifically documented for that material. Light doesn't make environmental claims just because a material is thin or fiber-based. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_108": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "108",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Should I do a patch test first?",
+            "answer": "<p> People with reactive or allergy-prone skin may want to exercise extra caution with new cosmetic products. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_109": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "109",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Is the tingling sensation normal?",
+            "answer": "<p> Not automatically. Sensations may differ depending on the formulation, but persistent burning, pain or significant discomfort are reasons to remove the product. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_110": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "110",
+            "category": "Skin, Ingredients & Safety",
+            "question": "What should I do if the product gets into my eyes?",
+            "answer": "<p> Rinse thoroughly with clean water and follow the warnings provided with the product. Seek medical advice if irritation persists. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_111": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "111",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Can I use Lumina after a cosmetic procedure?",
+            "answer": "<p> Ask the specialist who performed the procedure. Treatments such as peels, lasers or microneedling can temporarily change the way the skin should be cared for. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_112": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "112",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Can I use the masks after sunburn?",
+            "answer": "<p> We do not recommend treating sunburned or severely irritated skin as if it were normal skin. Let the skin recover. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_113": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "113",
+            "category": "Skin, Ingredients & Safety",
+            "question": "Can I use the products if I have eczema, rosacea or psoriasis?",
+            "answer": "<p> Lumina products are cosmetics, not treatments for these conditions. Talk to a dermatologist before use. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_114": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "114",
+            "category": "About Lumina Europa",
+            "question": "How should I store Lumina products?",
+            "answer": "<p> Store products according to package instructions, generally away from excessive heat, direct sunlight and moisture. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_115": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "115",
+            "category": "About Lumina Europa",
+            "question": "Can I store the masks in the fridge?",
+            "answer": "<p> Only if the product instructions indicate that refrigeration is adequate. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_116": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "116",
+            "category": "About Lumina Europa",
+            "question": "Can I use a mask after the expiration date?",
+            "answer": "<p> We recommend using cosmetic products within their stated shelf life. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_117": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "117",
+            "category": "About Lumina Europa",
+            "question": "Can I reuse a nanofiber mask?",
+            "answer": "<p> No, where the product is supplied as a disposable cosmetic mask. Reuse could compromise hygiene and performance. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_118": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "118",
+            "category": "About Lumina Europa",
+            "question": "What should I do if the individual envelope is damaged?",
+            "answer": "<p> Do not use a product whose primary packaging has been significantly compromised. Contact customer support. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_119": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "119",
+            "category": "About Lumina Europa",
+            "question": "Why is individual packaging important?",
+            "answer": "<p> Helps protect the product during storage and transport and is important for hygiene and formula stability. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_120": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "120",
+            "category": "About Lumina Europa",
+            "question": "Can I travel with Lumina masks?",
+            "answer": "<p> Generally yes, subject to local transport and security regulations. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_121": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "121",
+            "category": "Orders & Shipping",
+            "question": "What payment methods do you accept?",
+            "answer": "<p> Available payment methods are displayed at checkout. Depending on the country, these may include major debit/credit cards and other payment methods. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_122": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "122",
+            "category": "Orders & Shipping",
+            "question": "When will my card be charged?",
+            "answer": "<p> Payment is generally authorized or collected when you place the order. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_123": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "123",
+            "category": "Orders & Shipping",
+            "question": "Why was my payment declined?",
+            "answer": "<p> A payment can be declined for a number of reasons, including insufficient funds, incorrect card details or bank security checks. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_124": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "124",
+            "category": "Orders & Shipping",
+            "question": "Can I change an order after placing it?",
+            "answer": "<p> Contact us as soon as possible. If your order has not been processed, we may be able to help. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_125": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "125",
+            "category": "Orders & Shipping",
+            "question": "Can I cancel my order before it ships?",
+            "answer": "<p> If you contact us before processing is too far along, we may be able to cancel your order. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_126": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "126",
+            "category": "Orders & Shipping",
+            "question": "Can I change the delivery address after placing an order?",
+            "answer": "<p> Contact us immediately. We can only change an address if the order has not progressed too far in processing. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_127": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "127",
+            "category": "Orders & Shipping",
+            "question": "Can I order without creating an account?",
+            "answer": "<p> Where guest checkout is available, yes. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_128": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "128",
+            "category": "Orders & Shipping",
+            "question": "Where can I find my invoice?",
+            "answer": "<p> The invoice or purchase document can be sent electronically or made available through your account. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_129": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "129",
+            "category": "Orders & Shipping",
+            "question": "Can I place an order as a legal entity (company)?",
+            "answer": "<p> Yes, where the checkout system supports billing data for businesses. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_130": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "130",
+            "category": "Orders & Shipping",
+            "question": "Do the prices include VAT?",
+            "answer": "<p> Where VAT is applicable, the website displays prices accordingly. The final amount is displayed before the order is confirmed. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_131": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "131",
+            "category": "Orders & Shipping",
+            "question": "Can prices differ from country to country?",
+            "answer": "<p> Yes. Prices may vary due to VAT, currency, logistics and local operational costs. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_132": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "132",
+            "category": "Orders & Shipping",
+            "question": "Can I combine promotional codes?",
+            "answer": "<p> Unless otherwise stated, promo codes cannot be combined. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_133": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "133",
+            "category": "Orders & Shipping",
+            "question": "Why isn't my promo code working?",
+            "answer": "<p> Check that it was entered correctly and that the eligibility conditions are met. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_134": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "134",
+            "category": "Orders & Shipping",
+            "question": "Can I use a promo code after I've already placed my order?",
+            "answer": "<p> Usually, promo codes must be applied before checkout. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_135": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "135",
+            "category": "Orders & Shipping",
+            "question": "Can promo codes expire?",
+            "answer": "<p> Yes. Promotional codes must be used within their validity period. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_136": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "136",
+            "category": "Orders & Shipping",
+            "question": "Will I receive an order confirmation?",
+            "answer": "<p> Yes. Once the order has been received, you will receive an electronic confirmation to the email address provided. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_137": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "137",
+            "category": "Orders & Shipping",
+            "question": "What do I do if I do not receive an order confirmation?",
+            "answer": "<p> Check your Spam/Junk folder first. If you still can't find it, contact us. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_138": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "138",
+            "category": "Orders & Shipping",
+            "question": "Can an order be refused after I have placed it?",
+            "answer": "<p> In limited circumstances, yes (eg: out of stock, payment problems, suspected fraud). </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_139": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "139",
+            "category": "Orders & Shipping",
+            "question": "What currency will I be charged in?",
+            "answer": "<p> The currency applicable to the purchase is displayed on the site and at checkout. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_140": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "140",
+            "category": "Orders & Shipping",
+            "question": "Will my bank charge me an additional fee?",
+            "answer": "<p> Your bank may apply foreign exchange or international transaction fees independently of Lumina Europa. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_141": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "141",
+            "category": "Orders & Shipping",
+            "question": "Do you deliver to lockers (easybox)?",
+            "answer": "<p> Where locker delivery is accepted by the courier and destination, this may be offered at checkout. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_142": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "142",
+            "category": "Orders & Shipping",
+            "question": "Can I choose the courier?",
+            "answer": "<p> Where multiple options are available, they will be displayed at checkout. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_143": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "143",
+            "category": "Orders & Shipping",
+            "question": "Do you ship internationally?",
+            "answer": "<p> Lumina Europa delivers to the countries and regions activated on the respective website. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_144": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "144",
+            "category": "Orders & Shipping",
+            "question": "Will I have to pay customs duties?",
+            "answer": "<p> For deliveries that cross a customs border, import duties or customs VAT may apply. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_145": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "145",
+            "category": "Orders & Shipping",
+            "question": "What if I'm not at home when the courier arrives?",
+            "answer": "<p> The courier may attempt a new delivery or redirect the package to a pick-up point/locker. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_146": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "146",
+            "category": "Orders & Shipping",
+            "question": "What happens if I don't pick up my package?",
+            "answer": "<p> The package can be returned to us. Additional reshipping fees may apply. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_147": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "147",
+            "category": "Orders & Shipping",
+            "question": "Can my order arrive in multiple packages?",
+            "answer": "<p> Yes, in limited circumstances when products are shipped separately. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_148": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "148",
+            "category": "Orders & Shipping",
+            "question": "Why hasn't my AWB updated?",
+            "answer": "<p> Tracking information may take some time to appear in the courier's system. Contact us if there are no updates for several days. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_149": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "149",
+            "category": "Orders & Shipping",
+            "question": "The AWB shows \"delivered\" but I can't find the package. What should I do?",
+            "answer": "<p> Check around, neighbors or reception. If the package is still missing, contact us promptly. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_150": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "150",
+            "category": "Orders & Shipping",
+            "question": "Can someone else pick up my package?",
+            "answer": "<p> This depends on the courier. That person may need the pickup code or ID. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_151": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "151",
+            "category": "Orders & Shipping",
+            "question": "Can I change the delivery method after placing the order?",
+            "answer": "<p> Usually not, once processing has started. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_152": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "152",
+            "category": "Orders & Shipping",
+            "question": "Do you deliver to PO Boxes?",
+            "answer": "<p> Availability depends on destination and courier. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_153": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "153",
+            "category": "Orders & Shipping",
+            "question": "Do you deliver to remote areas or islands?",
+            "answer": "<p> Where supported by logistics partners, yes. Delivery times may be longer. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_154": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "154",
+            "category": "Orders & Shipping",
+            "question": "Why is delivery more expensive in certain locations?",
+            "answer": "<p> Prices may vary depending on courier coverage, package size and cross-border requirements. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_155": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "155",
+            "category": "Orders & Shipping",
+            "question": "What happens if the courier damages my package?",
+            "answer": "<p> Contact us as soon as possible and send photos of the damaged packaging and products. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_156": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "156",
+            "category": "Orders & Shipping",
+            "question": "Can I refuse a package damaged on delivery?",
+            "answer": "<p> If the damage is obvious, you can refuse the delivery. If you accept it, take a picture of the package before opening. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_157": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "157",
+            "category": "Orders & Shipping",
+            "question": "Will I receive AWB for each order?",
+            "answer": "<p> Yes, where the selected delivery service includes tracking. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_158": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "158",
+            "category": "Orders & Shipping",
+            "question": "Can I request a specific delivery date?",
+            "answer": "<p> Only if this option is specifically offered by the courier or at checkout. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_159": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "159",
+            "category": "Orders & Shipping",
+            "question": "What happens during very busy periods?",
+            "answer": "<p> During holidays or releases, delivery may take longer than normal. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_160": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "160",
+            "category": "Orders & Shipping",
+            "question": "Who is responsible for the package during transit?",
+            "answer": "<p> The merchant remains responsible until the goods are delivered to you or your nominee. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_161": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "161",
+            "category": "Returns & Refunds",
+            "question": "Do I need the original packaging to return a product?",
+            "answer": "<p> Where possible, return the product in its original packaging. However, statutory rights remain valid. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_162": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "162",
+            "category": "Returns & Refunds",
+            "question": "Can I return only part of the order?",
+            "answer": "<p> Yes, provided the item is eligible for return. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_163": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "163",
+            "category": "Returns & Refunds",
+            "question": "Can I exchange an item instead of getting a refund?",
+            "answer": "<p> Where exchange is operationally available, we can offer it. Otherwise, the return is processed and a new order is placed. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_164": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "164",
+            "category": "Returns & Refunds",
+            "question": "What happens if I return a promotional package (bundle)?",
+            "answer": "<p> Partial return of a promotional package may affect the amount refundable according to the terms of the promotion. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_165": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "165",
+            "category": "Returns & Refunds",
+            "question": "Can gifts be returned?",
+            "answer": "<p> An eligible gift can be returned under standard conditions. The refund is made to the original payment method. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_166": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "166",
+            "category": "Returns & Refunds",
+            "question": "How are refunds handled when a discount has been used?",
+            "answer": "<p> Refund is based on the amount actually paid for the returned product. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_167": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "167",
+            "category": "Returns & Refunds",
+            "question": "Can I return a product purchased from a professional partner?",
+            "answer": "<p> Products purchased from an authorized clinic or salon must be returned to where they were purchased. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_168": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "168",
+            "category": "Returns & Refunds",
+            "question": "What happens if the return package is lost?",
+            "answer": "<p> Keep the proof of shipment or return AWB. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_169": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "169",
+            "category": "Returns & Refunds",
+            "question": "How long do I have to send the return after I notify you?",
+            "answer": "<p> Follow the return instructions provided and the applicable legal deadline. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_170": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "170",
+            "category": "Returns & Refunds",
+            "question": "Can I return a product simply because I changed my mind?",
+            "answer": "<p> Where the statutory right of withdrawal applies and the product is eligible, yes. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_171": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "171",
+            "category": "Returns & Refunds",
+            "question": "Can I return an opened cosmetic product?",
+            "answer": "<p> Not automatically. Certain unsealed cosmetic products may be excluded for reasons of health protection or hygiene. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_172": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "172",
+            "category": "Returns & Refunds",
+            "question": "Can I return a used mask?",
+            "answer": "<p> A disposable cosmetic mask that has been used cannot be returned as a standard change-of-mind return. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_173": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "173",
+            "category": "Returns & Refunds",
+            "question": "What if I was sent the wrong product?",
+            "answer": "<p> Contact us with your order number and photos and we will arrange the correct replacement. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_174": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "174",
+            "category": "Returns & Refunds",
+            "question": "What do I do if the product is defective?",
+            "answer": "<p> Your legal rights remain unaffected. Contact us to evaluate the issue. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_175": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "175",
+            "category": "Returns & Refunds",
+            "question": "What do I do if the product was damaged before opening the package?",
+            "answer": "<p> Contact us as soon as possible and provide photos of the packaging and product. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_176": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "176",
+            "category": "Returns & Refunds",
+            "question": "Are return shipping charges refundable?",
+            "answer": "<p> It depends on the reason for the return. Defective or incorrect products are treated differently to returns by change of mind. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_177": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "177",
+            "category": "Returns & Refunds",
+            "question": "Will the original shipping cost be refunded?",
+            "answer": "<p> Where required by law, the standard tour delivery charge will be refunded. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_178": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "178",
+            "category": "Returns & Refunds",
+            "question": "Can a refund be reduced due to product handling?",
+            "answer": "<p> Excessive handling beyond the required testing may result in a reduction of the refund amount. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_179": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "179",
+            "category": "Returns & Refunds",
+            "question": "When will I receive my refund?",
+            "answer": "<p> Refunds are processed within the legal time frame after receipt and verification of the return. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_180": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "180",
+            "category": "Returns & Refunds",
+            "question": "Can I return multiple orders in one package?",
+            "answer": "<p> Only if customer support confirms this to you in advance. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_181": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "181",
+            "category": "Account & Privacy",
+            "question": "Do I need an account to buy from Lumina Europa?",
+            "answer": "<p> Not necessarily. Where available, you can order as a guest (guest checkout). </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_182": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "182",
+            "category": "Account & Privacy",
+            "question": "What are the benefits of creating an account?",
+            "answer": "<p> An account allows you to view your order history, manage your personal data and order faster. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_183": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "183",
+            "category": "Account & Privacy",
+            "question": "How do I reset my password?",
+            "answer": "<p> Use the password reset link on the login page and follow the instructions in the email. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_184": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "184",
+            "category": "Account & Privacy",
+            "question": "How do I delete my account?",
+            "answer": "<p> Contact us or use the delete account feature if available on the site. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_185": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "185",
+            "category": "Account & Privacy",
+            "question": "How can I change my email address?",
+            "answer": "<p> You can update your address in your account settings or by contacting support. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_186": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "186",
+            "category": "Account & Privacy",
+            "question": "How does Lumina use my personal data?",
+            "answer": "<p> We use personal data for order processing, customer support, site operation and permitted marketing communications. Details in the Privacy Policy. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_187": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "187",
+            "category": "Account & Privacy",
+            "question": "How can I change my cookie preferences?",
+            "answer": "<p> Use the Cookie Settings panel available on the site. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_188": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "188",
+            "category": "Account & Privacy",
+            "question": "How do I unsubscribe from marketing emails?",
+            "answer": "<p> Use the unsubscribe link in the footer of any promotional email. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_189": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "189",
+            "category": "Account & Privacy",
+            "question": "Will Lumina sell my personal information?",
+            "answer": "<p> Lumina does not sell customers' personal data to third parties. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_190": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "190",
+            "category": "Account & Privacy",
+            "question": "Are my payment details stored by Lumina?",
+            "answer": "<p> Payments are processed through specialized providers. Lumina does not store the complete data of your card. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_191": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "191",
+            "category": "Account & Privacy",
+            "question": "Why do you need my phone number?",
+            "answer": "<p> Number may be required for courier delivery coordination and SMS notifications. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_192": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "192",
+            "category": "Account & Privacy",
+            "question": "Can I request a copy of my personal data?",
+            "answer": "<p> Yes, in accordance with data protection legislation (GDPR). </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_193": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "193",
+            "category": "Account & Privacy",
+            "question": "Can I ask you to correct my personal data?",
+            "answer": "<p> Yes, if the information is inaccurate or incomplete. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_194": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "194",
+            "category": "Account & Privacy",
+            "question": "Can I ask you to delete my data?",
+            "answer": "<p> Under certain circumstances yes, except for data we are legally required to keep (eg billing). </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_195": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "195",
+            "category": "Account & Privacy",
+            "question": "Can I object to marketing communications?",
+            "answer": "<p> Yes, you can unsubscribe at any time. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_196": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "196",
+            "category": "Account & Privacy",
+            "question": "Do you use cookies for advertising?",
+            "answer": "<p> Only if you have given your consent through the cookie panel. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_197": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "197",
+            "category": "Account & Privacy",
+            "question": "Can I refuse analytics cookies?",
+            "answer": "<p> Yes, you can disable them from the Cookie Settings panel. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_198": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "198",
+            "category": "Account & Privacy",
+            "question": "Will refusing cookies block the operation of the site?",
+            "answer": "<p> Strictly necessary cookies will continue to work to make shopping possible. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_199": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "199",
+            "category": "Account & Privacy",
+            "question": "Is my account password visible to Lumina staff?",
+            "answer": "<p> Nope. Passwords are encrypted and cannot be read by staff. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_200": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "200",
+            "category": "Account & Privacy",
+            "question": "What should I do if I think my account has been compromised?",
+            "answer": "<p> Reset your password immediately and contact our support team. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_201": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "201",
+            "category": "Authenticity & Guarantee",
+            "question": "How do I know if a Lumina Europa product is genuine?",
+            "answer": "<p> Buy directly from Lumina Europa official websites or through authorized partners. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_202": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "202",
+            "category": "Authenticity & Guarantee",
+            "question": "Where should I buy genuine Lumina products?",
+            "answer": "<p> The reliable sources are Lumina Europa official websites and authorized clinics/partners. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_203": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "203",
+            "category": "Authenticity & Guarantee",
+            "question": "Are Lumina products sold on other marketplaces authorized?",
+            "answer": "<p> Don't assume a seller is authorized just because the product appears on a marketplace. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_204": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "204",
+            "category": "Authenticity & Guarantee",
+            "question": "Can I check a batch number?",
+            "answer": "<p> Contact us with lot number, photos and place of purchase for verification. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_205": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "205",
+            "category": "Authenticity & Guarantee",
+            "question": "What should I do if I suspect a counterfeit product?",
+            "answer": "<p> Do not use the product and contact us with seller details and proof of purchase. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_206": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "206",
+            "category": "Authenticity & Guarantee",
+            "question": "Why is authenticity important in skincare?",
+            "answer": "<p> Unauthorized or counterfeit products are not guaranteed safe production and storage conditions. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_207": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "207",
+            "category": "Authenticity & Guarantee",
+            "question": "Can the original products look slightly different from one market to another?",
+            "answer": "<p> Yes, labeling and packaging may vary according to legal requirements in each country. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_208": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "208",
+            "category": "Authenticity & Guarantee",
+            "question": "Can the packaging change over time?",
+            "answer": "<p> Yes. The packaging design and text may be updated periodically. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_209": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "209",
+            "category": "Authenticity & Guarantee",
+            "question": "What if I bought Lumina from an unauthorized seller?",
+            "answer": "<p> You can contact us for verification, but we cannot guarantee products purchased outside the official network. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_210": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "210",
+            "category": "Authenticity & Guarantee",
+            "question": "Are products bought second-hand guaranteed to be genuine?",
+            "answer": "<p> Nope. We cannot verify the condition or authenticity of products resold by private individuals. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_211": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "211",
+            "category": "Authenticity & Guarantee",
+            "question": "Can I resell Lumina products purchased for personal use?",
+            "answer": "<p> Professional resale requires an authorized partnership agreement with Lumina Europa. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_212": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "212",
+            "category": "Professional & Spa Use",
+            "question": "Can beauticians use Lumina products in treatments?",
+            "answer": "<p> Yes, where the product is suitable for professional use in practices and clinics. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_213": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "213",
+            "category": "Professional & Spa Use",
+            "question": "Does Lumina work with clinics and salons?",
+            "answer": "<p> Yes. Lumina Europa collaborates with licensed clinics, salons and beauticians. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_214": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "214",
+            "category": "Professional & Spa Use",
+            "question": "How can I become a professional partner?",
+            "answer": "<p> Contact our B2B team with details about your clinic or salon. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_215": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "215",
+            "category": "Professional & Spa Use",
+            "question": "Can professional partners resell Lumina products?",
+            "answer": "<p> Authorized partners may resell products according to their commercial agreement. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_216": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "216",
+            "category": "Professional & Spa Use",
+            "question": "Is online resale allowed for partners?",
+            "answer": "<p> Online resale requires specific prior approval in the commercial agreement. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_217": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "217",
+            "category": "Professional & Spa Use",
+            "question": "Does Lumina offer professional training?",
+            "answer": "<p> Where available, training is provided to authorized partners. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_218": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "218",
+            "category": "Professional & Spa Use",
+            "question": "Can Lumina products be integrated into facial treatments?",
+            "answer": "<p> Yes. Professionals must follow the instructions and assess the client's complexion. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_219": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "219",
+            "category": "Professional & Spa Use",
+            "question": "Can partners change how a product is used?",
+            "answer": "<p> Products must be used according to official safety instructions. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_220": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "220",
+            "category": "Professional & Spa Use",
+            "question": "Can clinics make medical claims about Lumina products?",
+            "answer": "<p> Nope. Lumina products are cosmetic and should not be presented as medical treatments. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_221": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "221",
+            "category": "Professional & Spa Use",
+            "question": "Can a partner describe Lumina as clinically proven?",
+            "answer": "<p> Only if the exact claim is supported by approved official studies. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_222": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "222",
+            "category": "Professional & Spa Use",
+            "question": "Can professionals use Lumina marketing materials?",
+            "answer": "<p> Authorized partners have access to official brand materials. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_223": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "223",
+            "category": "Professional & Spa Use",
+            "question": "Can a partner create their own Lumina ad?",
+            "answer": "<p> Yes, as long as the brand representation complies with the official rules. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_224": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "224",
+            "category": "Professional & Spa Use",
+            "question": "Can professionals offer discounts on Lumina products?",
+            "answer": "<p> Resale prices are set by partners, RRP is a recommendation. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_225": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "225",
+            "category": "Professional & Spa Use",
+            "question": "Is there a minimum order for professionals?",
+            "answer": "<p> Minimum order requirements depend on partner program and region. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_226": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "226",
+            "category": "Professional & Spa Use",
+            "question": "Do you offer exclusive products for professional use?",
+            "answer": "<p> If practice-exclusive products are available, they are communicated through the B2B channel. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_227": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "227",
+            "category": "Professional & Spa Use",
+            "question": "Can a partner sell Lumina on Amazon or eBay?",
+            "answer": "<p> No, unless expressly permitted in the contract. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_228": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "228",
+            "category": "Professional & Spa Use",
+            "question": "Can beauty therapists become Lumina partners?",
+            "answer": "<p> Yes, depending on their professional activity and eligibility. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_229": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "229",
+            "category": "Professional & Spa Use",
+            "question": "Do you work with dermatologists?",
+            "answer": "<p> Lumina can collaborate with qualified skin care specialists. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_230": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "230",
+            "category": "Professional & Spa Use",
+            "question": "Can business partners receive samples?",
+            "answer": "<p> Sample availability depends on stock and B2B schedule. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_231": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "231",
+            "category": "Professional & Spa Use",
+            "question": "Can partners use the products for demos or online content?",
+            "answer": "<p> Yes, representing the product accurately. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_232": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "232",
+            "category": "Professional & Spa Use",
+            "question": "Can a clinic return professional stock?",
+            "answer": "<p> B2B purchases are governed by dedicated commercial terms. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_233": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "233",
+            "category": "Professional & Spa Use",
+            "question": "Can professionals buy from the consumer site?",
+            "answer": "<p> I can place retail orders, but B2B pricing requires a professional account. </p>",
+            "open_by_default": false
+          }
+        },
+        "faq_234": {
+          "type": "faq_item",
+          "settings": {
+            "badge_number": "234",
+            "category": "Professional & Spa Use",
+            "question": "Who should I contact for professional partnership?",
+            "answer": "<p> Use the B2B/Partners contact channel on the Lumina Europa official website. </p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7",
+        "faq_8",
+        "faq_9",
+        "faq_10",
+        "faq_11",
+        "faq_12",
+        "faq_13",
+        "faq_14",
+        "faq_15",
+        "faq_16",
+        "faq_17",
+        "faq_18",
+        "faq_19",
+        "faq_20",
+        "faq_21",
+        "faq_22",
+        "faq_23",
+        "faq_24",
+        "faq_25",
+        "faq_26",
+        "faq_27",
+        "faq_28",
+        "faq_29",
+        "faq_30",
+        "faq_31",
+        "faq_32",
+        "faq_33",
+        "faq_34",
+        "faq_35",
+        "faq_36",
+        "faq_37",
+        "faq_38",
+        "faq_39",
+        "faq_40",
+        "faq_41",
+        "faq_42",
+        "faq_43",
+        "faq_44",
+        "faq_45",
+        "faq_46",
+        "faq_47",
+        "faq_48",
+        "faq_49",
+        "faq_50",
+        "faq_51",
+        "faq_52",
+        "faq_53",
+        "faq_54",
+        "faq_55",
+        "faq_56",
+        "faq_57",
+        "faq_58",
+        "faq_59",
+        "faq_60",
+        "faq_61",
+        "faq_62",
+        "faq_63",
+        "faq_64",
+        "faq_65",
+        "faq_66",
+        "faq_67",
+        "faq_68",
+        "faq_69",
+        "faq_70",
+        "faq_71",
+        "faq_72",
+        "faq_73",
+        "faq_74",
+        "faq_75",
+        "faq_76",
+        "faq_77",
+        "faq_78",
+        "faq_79",
+        "faq_80",
+        "faq_81",
+        "faq_82",
+        "faq_83",
+        "faq_84",
+        "faq_85",
+        "faq_86",
+        "faq_87",
+        "faq_88",
+        "faq_89",
+        "faq_90",
+        "faq_91",
+        "faq_92",
+        "faq_93",
+        "faq_94",
+        "faq_95",
+        "faq_96",
+        "faq_97",
+        "faq_98",
+        "faq_99",
+        "faq_100",
+        "faq_101",
+        "faq_102",
+        "faq_103",
+        "faq_104",
+        "faq_105",
+        "faq_106",
+        "faq_107",
+        "faq_108",
+        "faq_109",
+        "faq_110",
+        "faq_111",
+        "faq_112",
+        "faq_113",
+        "faq_114",
+        "faq_115",
+        "faq_116",
+        "faq_117",
+        "faq_118",
+        "faq_119",
+        "faq_120",
+        "faq_121",
+        "faq_122",
+        "faq_123",
+        "faq_124",
+        "faq_125",
+        "faq_126",
+        "faq_127",
+        "faq_128",
+        "faq_129",
+        "faq_130",
+        "faq_131",
+        "faq_132",
+        "faq_133",
+        "faq_134",
+        "faq_135",
+        "faq_136",
+        "faq_137",
+        "faq_138",
+        "faq_139",
+        "faq_140",
+        "faq_141",
+        "faq_142",
+        "faq_143",
+        "faq_144",
+        "faq_145",
+        "faq_146",
+        "faq_147",
+        "faq_148",
+        "faq_149",
+        "faq_150",
+        "faq_151",
+        "faq_152",
+        "faq_153",
+        "faq_154",
+        "faq_155",
+        "faq_156",
+        "faq_157",
+        "faq_158",
+        "faq_159",
+        "faq_160",
+        "faq_161",
+        "faq_162",
+        "faq_163",
+        "faq_164",
+        "faq_165",
+        "faq_166",
+        "faq_167",
+        "faq_168",
+        "faq_169",
+        "faq_170",
+        "faq_171",
+        "faq_172",
+        "faq_173",
+        "faq_174",
+        "faq_175",
+        "faq_176",
+        "faq_177",
+        "faq_178",
+        "faq_179",
+        "faq_180",
+        "faq_181",
+        "faq_182",
+        "faq_183",
+        "faq_184",
+        "faq_185",
+        "faq_186",
+        "faq_187",
+        "faq_188",
+        "faq_189",
+        "faq_190",
+        "faq_191",
+        "faq_192",
+        "faq_193",
+        "faq_194",
+        "faq_195",
+        "faq_196",
+        "faq_197",
+        "faq_198",
+        "faq_199",
+        "faq_200",
+        "faq_201",
+        "faq_202",
+        "faq_203",
+        "faq_204",
+        "faq_205",
+        "faq_206",
+        "faq_207",
+        "faq_208",
+        "faq_209",
+        "faq_210",
+        "faq_211",
+        "faq_212",
+        "faq_213",
+        "faq_214",
+        "faq_215",
+        "faq_216",
+        "faq_217",
+        "faq_218",
+        "faq_219",
+        "faq_220",
+        "faq_221",
+        "faq_222",
+        "faq_223",
+        "faq_224",
+        "faq_225",
+        "faq_226",
+        "faq_227",
+        "faq_228",
+        "faq_229",
+        "faq_230",
+        "faq_231",
+        "faq_232",
+        "faq_233",
+        "faq_234"
+      ],
+      "settings": {
+        "hero_bg": "shopify://shop_images/ChatGPT_Image_Aug_12_2026_04_48_36_PM_8cf62e62-b2c3-466e-b552-55c22a4aff30.webp",
+        "content_bg": "#f9f6f1",
+        "hero_padding_top_desktop": 85,
+        "hero_padding_bottom_desktop": 65,
+        "hero_padding_top_mobile": 55,
+        "hero_padding_bottom_mobile": 45,
+        "title": "Frequently Asked Questions",
+        "title_size_desktop": 54,
+        "question_size_desktop": 20,
+        "pill_size_desktop": 15,
+        "subtitle": "How can we help you today?",
+        "search_placeholder": "Search by keywords or topics...",
+        "show_view_more": true,
+        "view_more_label": "VIEW MORE QUESTIONS",
+        "help_title": "Still need assistance?",
+        "help_desc": "Our dedicated skincare concierge is here to assist you.",
+        "help_btn_label": "CONTACT CONCIERGE",
+        "help_btn_link": "/pages/contact"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "lumina_faq"
+  ]
+}

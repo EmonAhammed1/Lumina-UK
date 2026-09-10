@@ -1,0 +1,854 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */{
+  "sections": {
+    "main": {
+      "type": "product-template-1",
+      "blocks": {
+        "10baeeb8-3d3b-4115-8375-8a90ab8f58e9": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "subtitle"
+          }
+        },
+        "989bce2f-7961-4267-8e6c-40ff4bb0ed64": {
+          "type": "title",
+          "settings": {
+            "e_label": true
+          }
+        },
+        "63b4b894-da0f-497b-aaef-b11f3e5f55ff": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "c5c11045-e3b5-47e4-80d1-25e86ec844cc": {
+          "type": "price",
+          "settings": {}
+        },
+        "9cd2d8a0-a8b4-46d7-b3a7-b1609af99285": {
+          "type": "fakeviewer",
+          "settings": {
+            "fake_view_min": 12,
+            "fake_view_max": 30,
+            "fake_view_duration": 3,
+            "fake_view_text_prefix": "👀",
+            "fake_view_text_suffix": "customers view this product"
+          }
+        },
+        "2cf20ef7-ba29-4dd5-8c98-df0b96ba3c5b": {
+          "type": "text",
+          "settings": {
+            "text": "🔥 30 sold in the last 18 hours",
+            "text_style": "body"
+          }
+        },
+        "1affb493-1e14-4893-9876-be8d348ee475": {
+          "type": "shortdesc",
+          "disabled": true,
+          "settings": {}
+        },
+        "ff32ea77-bcea-43d3-8e38-55894c9d938a": {
+          "type": "separator",
+          "settings": {}
+        },
+        "8288910a-1ad6-47df-b127-118bc1d2ce24": {
+          "type": "buttons",
+          "settings": {
+            "enable_local_pickup": true,
+            "enable_hurrify": true,
+            "enable_payment_button": true,
+            "waitlist": true,
+            "product_selector": "radio",
+            "sw_color_product": true,
+            "color_circle": true,
+            "size_color": "small-38"
+          }
+        },
+        "ab3c624e-4b26-4bb4-b6bc-f283badc9347": {
+          "type": "separator",
+          "settings": {}
+        },
+        "73a647c7-afc5-4d87-aaea-1438dd5ecb92": {
+          "type": "icon_with_text",
+          "settings": {
+            "block_style": "ver",
+            "icon_1": "truck",
+            "icon_text_1": "Free delivery",
+            "icon_2": "lock",
+            "icon_text_2": "Secure payment",
+            "icon_3": "shield",
+            "icon_text_3": "2 years warranty",
+            "icon_4": "none",
+            "icon_text_4": ""
+          }
+        },
+        "be13b3d2-2e01-4728-a83f-6488d1b7d4fa": {
+          "type": "block_banner",
+          "settings": {
+            "banner_text": "Rewards",
+            "banner_des": "Join to earn 84 points on this product",
+            "banner_icon_svg": "<svg role=\"presentation\" fill=\"none\" focusable=\"false\" stroke-width=\"0.8\" width=\"24\" height=\"24\" class=\"icon icon-picto-percent\" viewbox=\"0 0 24 24\">\n        <path d=\"M12 22.714c6.857 0 10.714-3.857 10.714-10.714S18.857 1.286 12 1.286 1.286 5.143 1.286 12 5.143 22.714 12 22.714Z\" fill=\"currentColor\" fill-opacity=\".12\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n        <path d=\"m7.714 16.286 8.571-8.572\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n        <path d=\"M8.571 9.429a.857.857 0 1 0 0-1.715.857.857 0 0 0 0 1.715v0ZM15.428 16.286a.857.857 0 1 0 0-1.715.857.857 0 0 0 0 1.715Z\" fill=\"currentColor\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n      </svg>",
+            "banner_txt_color": "#094a6e",
+            "banner_bg_color": "linear-gradient(180deg, rgba(238, 247, 241, 1), rgba(238, 247, 241, 1) 100%)",
+            "banner_radius": 0
+          }
+        },
+        "11f6643a-6bb6-4db9-a512-9c0eefc8c3b8": {
+          "type": "countdown",
+          "settings": {
+            "title_heading": "🔥 Discount ends in !"
+          }
+        },
+        "1431e891-e819-4fa1-8416-0cb3956f0e39": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "enable_tab": true,
+            "title_tab": "Description"
+          }
+        },
+        "2830007b-b9f5-4f33-86cf-680e0a91ca8d": {
+          "type": "tabcustom",
+          "disabled": true,
+          "settings": {
+            "title_tab": "Delivery information",
+            "icon": "truck",
+            "answer_content": "<p> - No customs duties in the EU.<br/>- Ships in 1-2 business days.<br/>- Shipped in our eco-friendly recyclable and biodegradable boxes. </p>",
+            "page": ""
+          }
+        },
+        "0a71f30d-dba2-4bca-a64d-c3cc2ed17e7d": {
+          "type": "tabcustom",
+          "disabled": true,
+          "settings": {
+            "title_tab": "Care guide",
+            "icon": "leaf",
+            "answer_content": "<p> Hand wash warm. Dry at low temperature. This product has been factory washed after sewing to minimize material shrinkage. </p>",
+            "page": ""
+          }
+        },
+        "8d4704f6-d81d-4390-9ec5-af58698bef51": {
+          "type": "salepoint",
+          "disabled": true,
+          "settings": {
+            "icon": "globe",
+            "free_word": "55% in, 45% rayon"
+          }
+        },
+        "b7034bf2-48fd-492f-a089-3169873730db": {
+          "type": "salepoint",
+          "disabled": true,
+          "settings": {
+            "icon": "lock",
+            "free_word": "Secure payment"
+          }
+        },
+        "842b653e-7ccb-4f45-ad7c-8619b58f56ee": {
+          "type": "separator",
+          "disabled": true,
+          "settings": {}
+        },
+        "bf089f50-667c-4417-a84a-9478625741a1": {
+          "type": "list-info",
+          "settings": {
+            "block_style": "hoz",
+            "product_vendor_enable": true,
+            "product_type_enable": true,
+            "variant_sku_enable": true,
+            "variant_available_enable": false
+          }
+        },
+        "7120c076-9673-4f15-a579-5efa29fefb6f": {
+          "type": "separator",
+          "settings": {}
+        },
+        "13c388e5-8dd3-4462-9284-ec3f2c9aabc6": {
+          "type": "salepoint",
+          "settings": {
+            "icon": "globe",
+            "free_word": "Estimated Delivery: 12-26 days (International), 3-6 days (US)"
+          }
+        },
+        "1be7473b-00b2-4ad9-a7c0-356b86de67a7": {
+          "type": "shipping",
+          "settings": {}
+        },
+        "83a6f5b6-88e4-4eb3-9899-a085ea9c58bd": {
+          "type": "shippingtime",
+          "settings": {
+            "shipping_button": "Delivery information",
+            "page_shipping": "delivery-service"
+          }
+        },
+        "883720d7-3346-4495-85a0-add8b3d7a51f": {
+          "type": "trust-badge",
+          "settings": {
+            "trust-heading": "The guarantee of a secure completion",
+            "width_image": 66
+          }
+        },
+        "2d534ed0-517d-48ca-8370-8659965f32c4": {
+          "type": "share",
+          "settings": {}
+        },
+        "a405ef88-bdbe-486d-9fb3-6c91aa4e1509": {
+          "type": "tabfix",
+          "disabled": true,
+          "settings": {
+            "enable_tabvertical": false,
+            "gtab_des": "Description",
+            "gtab_review_enable": true,
+            "gtab_review": "Review",
+            "stab_title1": "Tab 1",
+            "stab_content1": "<p>111</p>",
+            "stab_title2": "",
+            "stab_content2": "",
+            "stab_title3": "",
+            "stab_content3": "",
+            "stab_title4": "",
+            "stab_content4": ""
+          }
+        },
+        "51f9d856-95f4-4741-bf4d-afe15438ff29": {
+          "type": "related-product",
+          "settings": {
+            "title_heading": "Buy with",
+            "size_text": "h6",
+            "product_limit": 3
+          }
+        }
+      },
+      "block_order": [
+        "10baeeb8-3d3b-4115-8375-8a90ab8f58e9",
+        "989bce2f-7961-4267-8e6c-40ff4bb0ed64",
+        "63b4b894-da0f-497b-aaef-b11f3e5f55ff",
+        "c5c11045-e3b5-47e4-80d1-25e86ec844cc",
+        "9cd2d8a0-a8b4-46d7-b3a7-b1609af99285",
+        "2cf20ef7-ba29-4dd5-8c98-df0b96ba3c5b",
+        "1affb493-1e14-4893-9876-be8d348ee475",
+        "ff32ea77-bcea-43d3-8e38-55894c9d938a",
+        "8288910a-1ad6-47df-b127-118bc1d2ce24",
+        "ab3c624e-4b26-4bb4-b6bc-f283badc9347",
+        "73a647c7-afc5-4d87-aaea-1438dd5ecb92",
+        "be13b3d2-2e01-4728-a83f-6488d1b7d4fa",
+        "11f6643a-6bb6-4db9-a512-9c0eefc8c3b8",
+        "1431e891-e819-4fa1-8416-0cb3956f0e39",
+        "2830007b-b9f5-4f33-86cf-680e0a91ca8d",
+        "0a71f30d-dba2-4bca-a64d-c3cc2ed17e7d",
+        "8d4704f6-d81d-4390-9ec5-af58698bef51",
+        "b7034bf2-48fd-492f-a089-3169873730db",
+        "842b653e-7ccb-4f45-ad7c-8619b58f56ee",
+        "bf089f50-667c-4417-a84a-9478625741a1",
+        "7120c076-9673-4f15-a579-5efa29fefb6f",
+        "13c388e5-8dd3-4462-9284-ec3f2c9aabc6",
+        "1be7473b-00b2-4ad9-a7c0-356b86de67a7",
+        "83a6f5b6-88e4-4eb3-9899-a085ea9c58bd",
+        "883720d7-3346-4495-85a0-add8b3d7a51f",
+        "2d534ed0-517d-48ca-8370-8659965f32c4",
+        "a405ef88-bdbe-486d-9fb3-6c91aa4e1509",
+        "51f9d856-95f4-4741-bf4d-afe15438ff29"
+      ],
+      "settings": {
+        "setwidth": "container",
+        "media_style": "media-bottom",
+        "media_size": "normal",
+        "image_size": "auto",
+        "enable_video_looping": true,
+        "stock_enable": true,
+        "sizeguide_enable": false,
+        "sizeguide_title": "Size guide",
+        "sizeguide_page": "size-guide",
+        "crosssell_title": "Cross selling",
+        "upsell_accept": "Add to cart",
+        "upsell_decline": "No thanks",
+        "upsell_time": 3,
+        "enable": true,
+        "mix_1": "#094a6e",
+        "mix_2": "#ffffff",
+        "text_cl": "#ffffff",
+        "cart_bg": "#ffffff",
+        "cart_cl": "#094a6e",
+        "cart_cl_hover": "#ffffff"
+      }
+    },
+    "product-requently": {
+      "type": "product-bundle",
+      "settings": {
+        "animation": "fade-up",
+        "bgsection": "#ffffff",
+        "bundle_title": "Frequently purchased together",
+        "size_text": "h4",
+        "limit_bundle": 3,
+        "enable_border": true,
+        "btn_add": "Add selected items",
+        "paddingsection": "40px 0px 40px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "product-content": {
+      "type": "product-content",
+      "blocks": {
+        "6889c9ba-caef-4edd-9757-6711505cb095": {
+          "type": "description",
+          "settings": {
+            "title_tab": "Description"
+          }
+        },
+        "b69a53cf-5bc1-4b18-add3-92af436f966c": {
+          "type": "content",
+          "settings": {
+            "title_tab": "How to use",
+            "answer_content": "<p> When using our gentle shampoo, wet the hair, then massage the scalp in circular motions. Soap and rinse. </p>",
+            "page": ""
+          }
+        },
+        "450a0011-a13e-4bad-9fbb-454bc0a862b4": {
+          "type": "content",
+          "settings": {
+            "title_tab": "Key ingredients",
+            "answer_content": "<p><strong>Squalane supplements what they were born with</strong></p><p>When babies are born, their skin is nourished by squalene, a superhero moisturizing ingredient and the best protection Mother Nature can provide. Through pure chemistry, we created our own version of squalene derived from sugar cane, called squal<em>ane</em>. In our plant-based shampoo, squalane acts as a silicone-free emollient, providing hair and scalp with natural, ultra-light hydration. </p>",
+            "page": ""
+          }
+        },
+        "f4c1b859-6506-4354-b686-25d6efffda01": {
+          "type": "content",
+          "settings": {
+            "title_tab": "Rezultate clinice",
+            "answer_content": "<ul><li><strong>96% </strong>felt Daily Nourishing Shampoo thoroughly cleansed without stripping natural moisture.* </li><li><strong>92%</strong> felt Daily Nourishing Shampoo worked for their/their child's hair type.* </li><li><strong>94%</strong> felt Daily Nourishing Shampoo left their/their child's hair feeling soft and clean.* </li><li><strong>96%</strong> felt Daily Nourishing Shampoo was gentle yet effective in cleansing hair.* </li><li><strong>92%</strong> felt their/their child's hair looked shiny and healthy after using Daily Nourishing Shampoo.* </li><li><strong>96%</strong> felt their/their child's scalp felt clean and replenished after using Daily Nourishing Shampoo.*</li></ul>",
+            "page": ""
+          }
+        },
+        "147e9960-c5fe-44f4-8469-9583a9752a0a": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "title_tab": "Reviews"
+          }
+        },
+        "2e69c5c0-ab83-4cda-9c38-1aaab6fdf1cc": {
+          "type": "related-product",
+          "disabled": true,
+          "settings": {
+            "title_heading": "Buy with",
+            "size_text": "h6",
+            "product_limit": 3
+          }
+        }
+      },
+      "block_order": [
+        "6889c9ba-caef-4edd-9757-6711505cb095",
+        "b69a53cf-5bc1-4b18-add3-92af436f966c",
+        "450a0011-a13e-4bad-9fbb-454bc0a862b4",
+        "f4c1b859-6506-4354-b686-25d6efffda01",
+        "147e9960-c5fe-44f4-8469-9583a9752a0a",
+        "2e69c5c0-ab83-4cda-9c38-1aaab6fdf1cc"
+      ],
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container",
+        "tab_size": "full",
+        "enable_left": false,
+        "paddingsection": "48px 0px 20px 0px",
+        "paddingmobile": "32px 0px 32px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "be561305-5bee-4018-a668-c8770086ba5b": {
+      "type": "line",
+      "settings": {
+        "animation": "",
+        "paddingsection": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "bgsection": "#ffffff",
+        "setwidth": "container",
+        "bgborder": "#dddddd",
+        "wborder": "1px"
+      }
+    },
+    "c5690cdb-c04d-45fd-9c6c-cfee011363ca": {
+      "type": "service",
+      "blocks": {
+        "template--14684877652053__c5690cdb-c04d-45fd-9c6c-cfee011363ca-166585292003960893-0": {
+          "type": "service",
+          "settings": {
+            "bgblock": "rgba(0,0,0,0)",
+            "title": "Complimentary Shipping",
+            "description": "From all orders over $100",
+            "icon": "<svg aria-hidden=\"true\" focusable=\"false\" role=\"presentation\" class=\"icon icon-truck\" viewbox=\"0 0 82 82\"><path d=\"M7.238 68.717H1.867V2.12H58.4v16.736h3.886c9.755 0 17.663 7.908 17.663 17.663v32.199h-5.917M55.781 68.717H25.487\"></path><path d=\"M58.334 42.124h15.068v-4.27c0-6.82-5.53-12.35-12.351-12.35h-2.718v16.62M73.909 70.236a9.125 9.125 0 1 0-18.013-2.931 9.125 9.125 0 0 0 18.013 2.93ZM25.367 70.235a9.125 9.125 0 1 0-18.012-2.931 9.125 9.125 0 0 0 7.54 10.471 9.125 9.125 0 0 0 10.472-7.54Z\"></path><path d=\"M13.723 77.507c-3.966.658-7.937 1.51-11.857 2.593M60.373 76.736c-10.512-1.212-24.298-1.969-38.645-.451M79.768 80.121s-4.96-1.222-12.975-2.395\"></path></svg>"
+          }
+        },
+        "template--14684877652053__c5690cdb-c04d-45fd-9c6c-cfee011363ca-166585292003960893-1": {
+          "type": "service",
+          "settings": {
+            "bgblock": "rgba(0,0,0,0)",
+            "title": "The beach club",
+            "description": "Get rewarded every time",
+            "icon": "<svg aria-hidden=\"true\" focusable=\"false\" role=\"presentation\" class=\"icon icon-plant-based\" viewbox=\"0 0 82 82\"><path d=\"M41 20.701V80M56.735 26.294c0 8.703-7.045 15.758-15.735 15.758s-15.735-7.055-15.735-15.758C25.265 14.719 41 2 41 2s15.735 12.719 15.735 24.294ZM30.479 46.972c6.145 6.154 6.145 16.132 0 22.285-6.145 6.154-16.107 6.154-22.252 0C.054 61.072 2.2 40.936 2.2 40.936s20.106-2.149 28.279 6.036Z\"></path><path d=\"M41 77.861S27.525 60.403 10.092 50.177M51.412 46.972c-6.145 6.154-6.145 16.132 0 22.285 6.145 6.153 16.107 6.154 22.252 0 8.173-8.185 6.027-28.321 6.027-28.321s-20.106-2.149-28.279 6.036Z\"></path><path d=\"M40.891 77.861s13.475-17.458 30.908-27.684\"></path></svg>"
+          }
+        },
+        "template--14684877652053__c5690cdb-c04d-45fd-9c6c-cfee011363ca-166585292003960893-2": {
+          "type": "service",
+          "settings": {
+            "bgblock": "rgba(0,0,0,0)",
+            "title": "Instant refunds",
+            "description": "Refund within 30 days",
+            "icon": "<svg aria-hidden=\"true\" focusable=\"false\" role=\"presentation\" class=\"icon icon-package\" viewbox=\"0 0 82 82\"><path d=\"M80 21v39L41 80 2 60V21L41 2l39 19Z\"></path><path d=\"m2 21 39 20 38.571-19.807M41 41.478v38.338\"></path><path d=\"m27.715 8.643 38.409 19.473v17.543l-11.617 6.067V33.83L16.098 14.355\"></path></svg>"
+          }
+        },
+        "4273663e-a3ea-49a8-a7c1-c872309fc99c": {
+          "type": "service",
+          "settings": {
+            "bgblock": "rgba(0,0,0,0)",
+            "title": "Wear it now",
+            "description": "Pay in simple installments.",
+            "icon": "<svg aria-hidden=\"true\" focusable=\"false\" role=\"presentation\" class=\"icon icon-shield\" viewbox=\"0 0 64 64\"><defs><style>.a{fill:none;stroke:#000;stroke-width:2px}</style></defs><path class=\"a\" d=\"M21.18 31.69L28.54 39l15.91-15.88\"></path><path class=\"a\" d=\"M53 12.54v15.24a31.41 31.41 0 0 1-3.7 14.95A25.46 25.46 0 0 1 32 56a25.46 25.46 0 0 1-17.3-13.27A31.41 31.41 0 0 1 11 27.78V12.54C24.88 13.67 32 8 32 8s7.12 5.67 21 4.54z\"></path></svg>"
+          }
+        }
+      },
+      "block_order": [
+        "template--14684877652053__c5690cdb-c04d-45fd-9c6c-cfee011363ca-166585292003960893-0",
+        "template--14684877652053__c5690cdb-c04d-45fd-9c6c-cfee011363ca-166585292003960893-1",
+        "template--14684877652053__c5690cdb-c04d-45fd-9c6c-cfee011363ca-166585292003960893-2",
+        "4273663e-a3ea-49a8-a7c1-c872309fc99c"
+      ],
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container",
+        "bgsection": "rgba(0,0,0,0)",
+        "title_top": "",
+        "title": "",
+        "des": "",
+        "align-heading": "center",
+        "paddingbox": "0px 0px 0px 0px",
+        "iconcolor": "#faac64",
+        "titlecolor": "#094a6e",
+        "subcolor": "#094a6e",
+        "size": 48,
+        "stroke_svg": 2,
+        "service_heading": "h6",
+        "layout": "style-2",
+        "enable_carousel": false,
+        "arrows": false,
+        "draggable": true,
+        "dots": true,
+        "infinite": true,
+        "paddingsection": "32px 0px 32px 0px",
+        "paddingmobile": "32px 0px 16px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "b01596d8-87db-4853-92d9-23e7da360734": {
+      "type": "image-text-product",
+      "blocks": {
+        "template--19541120287040__b01596d8-87db-4853-92d9-23e7da360734-text_icon-1": {
+          "type": "text_icon",
+          "settings": {
+            "icon_image": "shopify://shop_images/Web_Icons_LeapingBunnyCertified.png",
+            "block_title": "Certificat Leaping Bunny",
+            "block_des": "<p>Lorem Ipsum<strong> </strong>is simply dummy text of the printing</p>"
+          }
+        },
+        "template--19541120287040__b01596d8-87db-4853-92d9-23e7da360734-text_icon-2": {
+          "type": "text_icon",
+          "settings": {
+            "icon_image": "shopify://shop_images/Web_Icons_PediatricianApproved.png",
+            "block_title": "Aprobat de medici pediatri",
+            "block_des": "<p>Lorem Ipsum<strong> </strong>is simply dummy text of the printing</p>"
+          }
+        },
+        "template--19541120287040__b01596d8-87db-4853-92d9-23e7da360734-text_icon-3": {
+          "type": "text_icon",
+          "settings": {
+            "icon_image": "shopify://shop_images/Web_Icons_DermatologistTested.png",
+            "block_title": "Testat dermatologic",
+            "block_des": "<p>Lorem Ipsum<strong> </strong>is simply dummy text of the printing</p>"
+          }
+        },
+        "template--19541120287040__b01596d8-87db-4853-92d9-23e7da360734-text_icon-4": {
+          "type": "text_icon",
+          "settings": {
+            "icon_image": "shopify://shop_images/Web_Icons_Hypoallergenic.png",
+            "block_title": "Hypoallergenic",
+            "block_des": "<p>Lorem Ipsum<strong> </strong>is simply dummy text of the printing</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--19541120287040__b01596d8-87db-4853-92d9-23e7da360734-text_icon-1",
+        "template--19541120287040__b01596d8-87db-4853-92d9-23e7da360734-text_icon-2",
+        "template--19541120287040__b01596d8-87db-4853-92d9-23e7da360734-text_icon-3",
+        "template--19541120287040__b01596d8-87db-4853-92d9-23e7da360734-text_icon-4"
+      ],
+      "custom_css": [
+        ".block-product-imgtxt__item img {max-width: 56px;}"
+      ],
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container",
+        "gutter_padding": 30,
+        "section_image": "shopify://shop_images/129575864_403095717487292_4386917597588868238_n.jpg",
+        "block_text_color": "#094a6e",
+        "block_text_bg": "#f5f5f5",
+        "paddingsection": "0px 0px 100px 0px",
+        "paddingmobile": "0px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "3628a2a6-7401-40d7-b113-14c4adfcfb2c": {
+      "type": "backgroundvideo",
+      "blocks": {
+        "template--21109126627608__3628a2a6-7401-40d7-b113-14c4adfcfb2c-sub_title-1": {
+          "type": "sub_title",
+          "settings": {
+            "subtitle": "STAY GOOD DISCOUNTS"
+          }
+        },
+        "template--21109126627608__3628a2a6-7401-40d7-b113-14c4adfcfb2c-heading-1": {
+          "type": "heading",
+          "settings": {
+            "title": "UP TO 70% OFF",
+            "size_text": "h1"
+          }
+        },
+        "template--21109126627608__3628a2a6-7401-40d7-b113-14c4adfcfb2c-paragraph-1": {
+          "type": "paragraph",
+          "settings": {
+            "subtext": "+ GET AN EXTRA 20% OFF <br>\nat Checkout"
+          }
+        }
+      },
+      "block_order": [
+        "template--21109126627608__3628a2a6-7401-40d7-b113-14c4adfcfb2c-sub_title-1",
+        "template--21109126627608__3628a2a6-7401-40d7-b113-14c4adfcfb2c-heading-1",
+        "template--21109126627608__3628a2a6-7401-40d7-b113-14c4adfcfb2c-paragraph-1"
+      ],
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "full",
+        "height_section": "550px",
+        "height_section_mobile": "450px",
+        "align": "center",
+        "position_text": "mid-center",
+        "link_video": "https://cdn.shopify.com/videos/c/vp/d6012756a326486ba234bab616f858b7/d6012756a326486ba234bab616f858b7.SD-480p-1.2Mbps-18826846.mp4",
+        "bgsection": "#ffffff",
+        "bg_overlay": "#000000",
+        "gradient_bg": "",
+        "opacity_bg_overlay": 0.2,
+        "title_color": "#ffffff",
+        "bg_box": "rgba(0,0,0,0)",
+        "opacity_bgbox": 1,
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "93495e3d-f562-4706-aa2e-14cf6b83c216": {
+      "type": "rich-text",
+      "blocks": {
+        "e313bb24-b47f-4f70-82d8-21e78d481ad8": {
+          "type": "image",
+          "settings": {
+            "img-in-hero": 44,
+            "image_link": ""
+          }
+        },
+        "b103ea62-6bf1-49fd-ab23-3d4bb5dc1243": {
+          "type": "spacer",
+          "settings": {
+            "hero-spacer": 8
+          }
+        },
+        "84ad5551-3059-4091-a4ca-408e36eaeff9": {
+          "type": "sub_title",
+          "settings": {
+            "subtitle": "Sustainability"
+          }
+        },
+        "4c0967d6-9bfa-4693-98ce-decc57dda257": {
+          "type": "heading",
+          "settings": {
+            "title": "Our fabrics are developed specifically for us and we only produce quality apparel that lasts.",
+            "size_text": "h4"
+          }
+        }
+      },
+      "block_order": [
+        "e313bb24-b47f-4f70-82d8-21e78d481ad8",
+        "b103ea62-6bf1-49fd-ab23-3d4bb5dc1243",
+        "84ad5551-3059-4091-a4ca-408e36eaeff9",
+        "4c0967d6-9bfa-4693-98ce-decc57dda257"
+      ],
+      "disabled": true,
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container",
+        "bgsection": "#f4efe9",
+        "gradient_bg": "linear-gradient(180deg, rgba(114, 255, 179, 0) 1%, rgba(250, 249, 230, 1) 98%)",
+        "title_color": "#000000",
+        "title_top": "",
+        "title": "",
+        "text": "",
+        "align-heading": "center",
+        "align-content": "center",
+        "paddingsection": "80px 0px 80px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "30d4e0bd-da81-4442-b71d-c0fd1f5b3906": {
+      "type": "image-content-6",
+      "blocks": {
+        "template--14654207721557__30d4e0bd-da81-4442-b71d-c0fd1f5b3906-16658225273f87a081-0": {
+          "type": "image_block",
+          "settings": {
+            "style_content": "default",
+            "w_image": 40,
+            "pos_image": 81,
+            "e_image": "right",
+            "image": "shopify://shop_images/3001013-OnModel_1.png",
+            "image2": "shopify://shop_images/Kids_Hair_Line_7c523be4-790d-47a1-a723-a60ff8bb13a2.png",
+            "enable_video": false,
+            "overlay_color": "#000000",
+            "overlay_opacity": 30,
+            "text_circle": "Lumina Europa Luxury Care",
+            "video_url": ""
+          }
+        },
+        "template--14654207721557__30d4e0bd-da81-4442-b71d-c0fd1f5b3906-16658225273f87a081-1": {
+          "type": "text_block",
+          "settings": {
+            "bgtext": "#ffffff",
+            "subtitle": "Breathable ",
+            "title": "Stylish checked & striped 100% cotton shirts for any kind of occasion.",
+            "size_text": "h3",
+            "text": "",
+            "answer_content": "",
+            "button": "discover now",
+            "link": "",
+            "style_btn": "btn-theme",
+            "align": "left",
+            "enable_padding_left": true,
+            "enable_padding_right": false
+          }
+        }
+      },
+      "block_order": [
+        "template--14654207721557__30d4e0bd-da81-4442-b71d-c0fd1f5b3906-16658225273f87a081-0",
+        "template--14654207721557__30d4e0bd-da81-4442-b71d-c0fd1f5b3906-16658225273f87a081-1"
+      ],
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container",
+        "bgsection": "#ffffff",
+        "size": "50-50",
+        "enable_padding": true,
+        "align_center": true,
+        "paddingsection": "100px 0px 100px 0px",
+        "paddingmobile": "48px 0px 48x 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "70b7f2d2-4c12-4305-88bd-da89e2d18d5b": {
+      "type": "quotes-special",
+      "blocks": {
+        "template--14684877652053__70b7f2d2-4c12-4305-88bd-da89e2d18d5b-1665853262e19e6bf8-0": {
+          "type": "quote",
+          "settings": {
+            "title": "Wonderful !",
+            "quote": "<h4> \"Loved it. The fit, the quality and the color. Perfect fit and the only jeans I will buy.\" </h4>",
+            "rate": 5,
+            "author": "— Susan P.",
+            "info": "",
+            "avatar": "shopify://shop_images/273632664_688628535471098_5937685954114324318_n.jpg"
+          }
+        },
+        "template--14684877652053__70b7f2d2-4c12-4305-88bd-da89e2d18d5b-1665853262e19e6bf8-1": {
+          "type": "quote",
+          "settings": {
+            "title": "perfect !",
+            "quote": "<h4> \"The most comfortable shoes ever! I have them in 3 colors and will definitely buy again.\" </h4>",
+            "rate": 5,
+            "author": "—  Jaycie Glove",
+            "info": "",
+            "avatar": "shopify://shop_images/137102176_399045164504468_6116998277485961323_n.jpg"
+          }
+        },
+        "template--14684877652053__70b7f2d2-4c12-4305-88bd-da89e2d18d5b-1665853262e19e6bf8-2": {
+          "type": "quote",
+          "settings": {
+            "title": "Awesome",
+            "quote": "<h4> \"I love Lola! It's one of my favorite brands. Customer service is great. I've only returned products once and it was very easy.\" </h4>",
+            "rate": 5,
+            "author": "—  Kai Felix",
+            "info": "",
+            "avatar": "shopify://shop_images/367439952_1446398016094565_4609149314488064190_n.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "template--14684877652053__70b7f2d2-4c12-4305-88bd-da89e2d18d5b-1665853262e19e6bf8-0",
+        "template--14684877652053__70b7f2d2-4c12-4305-88bd-da89e2d18d5b-1665853262e19e6bf8-1",
+        "template--14684877652053__70b7f2d2-4c12-4305-88bd-da89e2d18d5b-1665853262e19e6bf8-2"
+      ],
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container",
+        "bgsection": "#f7f7f7",
+        "title_top": "",
+        "title": "",
+        "des": "",
+        "align-heading": "center",
+        "color_rate": "#f1f1f1",
+        "color_rated": "#094a6e",
+        "image_size": "square",
+        "arrows": true,
+        "draggable": true,
+        "dots": false,
+        "infinite": true,
+        "paddingsection": "100px 0px 100px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "bcb1cba3-80fc-49a2-a033-40cf0618e9c8": {
+      "type": "faq-accordion",
+      "blocks": {
+        "template--14684877652053__bcb1cba3-80fc-49a2-a033-40cf0618e9c8-16659371170e440ef7-0": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Is delivery free?",
+            "faq_des": "<p> Yes. Worldwide shipping is already included in the price. We use DHL Express with a delivery time of 3 days. </p>"
+          }
+        },
+        "template--14684877652053__bcb1cba3-80fc-49a2-a033-40cf0618e9c8-16659371170e440ef7-1": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "When will I receive my item?",
+            "faq_des": "<p> After we receive your order, you will automatically receive a confirmation email. Orders placed before 2pm will be processed and shipped the same day. Delivery time is usually 2-4 working days. </p>"
+          }
+        },
+        "template--14684877652053__bcb1cba3-80fc-49a2-a033-40cf0618e9c8-16659371170e440ef7-2": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Can I change or return my item?",
+            "faq_des": "<p> If you want to exchange a product for another model, color, etc., please contact us to reserve the new item in stock. You are entitled to an exchange or refund within 30 days of receiving the package, provided that the product has not been used. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--14684877652053__bcb1cba3-80fc-49a2-a033-40cf0618e9c8-16659371170e440ef7-0",
+        "template--14684877652053__bcb1cba3-80fc-49a2-a033-40cf0618e9c8-16659371170e440ef7-1",
+        "template--14684877652053__bcb1cba3-80fc-49a2-a033-40cf0618e9c8-16659371170e440ef7-2"
+      ],
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "bgsection": "#ffffff",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_pos": "center center",
+        "title_top": "",
+        "title": "FAQs",
+        "des": "Do you have a question? We are here to help you.",
+        "align-heading": "center",
+        "title_size": "h6",
+        "e_first_open": false,
+        "e_reverse": true,
+        "e_small": true,
+        "left_html": "",
+        "e_right": false,
+        "paddingsection": "80px 0px 100px 0px",
+        "paddingmobile": "60px 0px 60px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "16956665928504d885": {
+      "type": "apps",
+      "blocks": {
+        "fc8a78d7-718e-46c1-b694-84579038acfb": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "fc8a78d7-718e-46c1-b694-84579038acfb"
+      ],
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "paddingsection": "40px 0px 20px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px",
+        "bgsection": "#f8f8f8"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "animation": "fade-up",
+        "setwidth": "container",
+        "heading": "You might also like",
+        "heading_size": "h3",
+        "heading_align": "center",
+        "products_to_show": 10,
+        "spaceBetween": 30,
+        "perviewDesktop": 4,
+        "nowrap": true,
+        "arrows": true,
+        "scrollbar": true,
+        "padding_top": 80,
+        "padding_bottom": 32
+      }
+    },
+    "product-recent": {
+      "type": "recently-viewed",
+      "settings": {
+        "enable": true,
+        "animation": "fade-up",
+        "setwidth": "container",
+        "title_top": "",
+        "title": "Vizualizate recent",
+        "des": "",
+        "align-heading": "center",
+        "limit": 6,
+        "paddingsection": "0px 0px 60px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product-requently",
+    "product-content",
+    "be561305-5bee-4018-a668-c8770086ba5b",
+    "c5690cdb-c04d-45fd-9c6c-cfee011363ca",
+    "b01596d8-87db-4853-92d9-23e7da360734",
+    "3628a2a6-7401-40d7-b113-14c4adfcfb2c",
+    "93495e3d-f562-4706-aa2e-14cf6b83c216",
+    "30d4e0bd-da81-4442-b71d-c0fd1f5b3906",
+    "70b7f2d2-4c12-4305-88bd-da89e2d18d5b",
+    "bcb1cba3-80fc-49a2-a033-40cf0618e9c8",
+    "16956665928504d885",
+    "product-recommendations",
+    "product-recent"
+  ]
+}

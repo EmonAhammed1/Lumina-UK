@@ -1,0 +1,426 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .product-recommendations .product-card .product-countdown{display:none !important;}
+  {%- if section.settings.nowrap -%}
+    .section-{{ section.id }}-padding{
+      overflow:hidden;
+    }
+   .product-recommendations .swiper-container {
+        overflow: visible;
+    }
+  {%- endif -%}
+
+  .product-recommendations-curated .swiper-button-prev {
+    top: 26% !important;
+    left: -50px !important;
+  }
+  .product-recommendations-curated .swiper-button-next {
+    top: 26% !important;
+    right: -50px !important;
+  }
+{%- endstyle -%}
+<div class="section-{{ section.id }}-padding" data-aos="{{ section.settings.animation }}" >
+  <div class="{{ section.settings.setwidth }}">
+    {%- assign filter_keys = "pentru_cine,moment_ritual,parfum,conservanti,ingrediente,tip_ten,beneficiu,tip_produs" | split: "," -%}
+    {%- assign mask_matches = "" -%}
+    {%- assign protocol_matches = "" -%}
+
+    {%- paginate collections.all.products by 200 -%}
+      {%- for p in collections.all.products -%}
+        {%- if p.handle == product.handle -%}{%- continue -%}{%- endif -%}
+
+        {%- assign score = 0 -%}
+        {%- for key in filter_keys -%}
+          {%- assign cur_val = product.metafields.filter[key].value | join: ',' | default: product.metafields.filter[key].value -%}
+          {%- assign p_val = p.metafields.filter[key].value | join: ',' | default: p.metafields.filter[key].value -%}
+          {%- if cur_val != blank and p_val != blank and cur_val == p_val -%}
+            {%- assign score = score | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if score > 0 -%}
+          {%- assign tip_produs = p.metafields.filter.tip_produs.value | downcase -%}
+          {%- assign score_str = score | prepend: '00' | slice: -2, 2 -%}
+          {%- assign match_entry = score_str | append: '|' | append: p.handle | append: ';;;' -%}
+          
+          {%- if tip_produs contains 'protocol' -%}
+            {%- assign protocol_matches = protocol_matches | append: match_entry -%}
+          {%- else -%}
+            {%- assign mask_matches = mask_matches | append: match_entry -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endpaginate -%}
+
+    {%- assign sorted_masks = mask_matches | split: ';;;' | sort | reverse -%}
+    {%- assign sorted_protocols = protocol_matches | split: ';;;' | sort | reverse -%}
+
+    {%- if mask_matches != blank or protocol_matches != blank -%}
+      <div class="product-recommendations-curated">
+        <h2 class="product-recommendations__heading mb-5 text-{{ section.settings.heading_align }} {{ section.settings.heading_size }}">Continue the Ritual</h2>
+        
+        {%- if mask_matches != blank -%}
+          <div class="curated-row mb-5 swiper-wrapper-{{ section.id }}-masks" style="position: relative;">
+            <div class="swiper-container swipercol-{{ section.id }}-masks product-grid" 
+              data-id="{{ section.id }}-masks"  
+              data-perview-desktop="{{ section.settings.perviewDesktop }}"
+              data-space-between="{{ section.settings.spaceBetween }}" role="list">
+              <div class="swiper-wrapper">
+                {% for entry in sorted_masks limit: 10 %}
+                  {%- if entry == blank -%}{%- continue -%}{%- endif -%}
+                  {%- assign parts = entry | split: '|' -%}
+                  {%- assign handle = parts[1] -%}
+                  {%- assign recommendation = all_products[handle] -%}
+                  {%- if recommendation != blank -%}
+                    <div class="grid__item swiper-slide">
+                      {%- assign custom_title = recommendation.metafields.custom.recommendation_title | default: recommendation.title -%}
+                      {%- render 'product-card', product: recommendation, custom_title: custom_title -%}
+                    </div>
+                  {%- endif -%}
+                {% endfor %}
+              </div>
+            </div>
+            {%- if section.settings.arrows -%}
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if protocol_matches != blank -%}
+          <div class="curated-row mb-5 swiper-wrapper-{{ section.id }}-protocols" style="position: relative;">
+            <div class="swiper-container swipercol-{{ section.id }}-protocols product-grid" 
+              data-id="{{ section.id }}-protocols"  
+              data-perview-desktop="{{ section.settings.perviewDesktop }}"
+              data-space-between="{{ section.settings.spaceBetween }}" role="list">
+              <div class="swiper-wrapper">
+                {% for entry in sorted_protocols limit: 10 %}
+                  {%- if entry == blank -%}{%- continue -%}{%- endif -%}
+                  {%- assign parts = entry | split: '|' -%}
+                  {%- assign handle = parts[1] -%}
+                  {%- assign recommendation = all_products[handle] -%}
+                  {%- if recommendation != blank -%}
+                    <div class="grid__item swiper-slide">
+                      {%- assign custom_title = recommendation.metafields.custom.recommendation_title | default: recommendation.title -%}
+                      {%- render 'product-card', product: recommendation, custom_title: custom_title -%}
+                    </div>
+                  {%- endif -%}
+                {% endfor %}
+              </div>
+            </div>
+            {%- if section.settings.arrows -%}
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% javascript %}
+ 
+document.addEventListener('DOMContentLoaded', function() {
+    const swiperContainers = document.querySelectorAll('.product-recommendations-curated .swiper-container');
+    swiperContainers.forEach(function(swiperContainer) {
+      const spaceBetween = parseInt(swiperContainer.getAttribute('data-space-between'), 10) || 20;
+      const perviewDesktop = parseInt(swiperContainer.getAttribute('data-perview-desktop'), 10) || 4;
+      
+      new Swiper(swiperContainer, {
+        slidesPerView: "auto",
+        spaceBetween: spaceBetween,
+        breakpoints: {
+          320: { slidesPerView: 2, spaceBetween: 20 },
+          768: { slidesPerView: 3 },
+          992: { slidesPerView: perviewDesktop }
+        },
+        navigation: {
+          nextEl: swiperContainer.parentElement.querySelector(".swiper-button-next"),
+          prevEl: swiperContainer.parentElement.querySelector(".swiper-button-prev"),
+        }
+      });
+    });
+  });
+
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Product recommendations",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Dynamic recommendations use order and product information to change and improve over time. [Learn more](https://help.shopify.com/themes/development/recommended-products)"
+    },
+    {
+      "type": "select",
+      "id": "animation",
+      "options": [
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "fade-up",
+          "label": "Fade Up"
+        },
+        {
+          "value": "fade-down",
+          "label": "Fade Down"
+        },
+        {
+          "value": "fade-left",
+          "label": "Fade Left"
+        },
+        {
+          "value": "fade-right",
+          "label": "Fade Right"
+        },
+        {
+          "value": "fade-up-right",
+          "label": "Fade Up Right"
+        },
+        {
+          "value": "fade-up-left",
+          "label": "Fade Up Left"
+        },
+        {
+          "value": "fade-down-right",
+          "label": "Fade Down Right"
+        },
+        {
+          "value": "fade-down-left",
+          "label": "Fade Down Left"
+        },
+        {
+          "value": "flip-up",
+          "label": "Flip Up"
+        },
+        {
+          "value": "flip-down",
+          "label": "Flip Down"
+        },
+        {
+          "value": "flip-left",
+          "label": "Flip Left"
+        },
+        {
+          "value": "flip-right",
+          "label": "Flip Right"
+        },
+        {
+          "value": "slide-up",
+          "label": "Slide Up"
+        },
+        {
+          "value": "slide-down",
+          "label": "Slide Down"
+        },
+        {
+          "value": "slide-left",
+          "label": "Slide Left"
+        },
+        {
+          "value": "slide-right",
+          "label": "Slide Right"
+        },
+        {
+          "value": "zoom-in",
+          "label": "Zoom In"
+        },
+        {
+          "value": "zoom-in-up",
+          "label": "Zoom In Up"
+        },
+        {
+          "value": "zoom-in-down",
+          "label": "Zoom In Down"
+        },
+        {
+          "value": "zoom-in-left",
+          "label": "Zoom In Left"
+        },
+        {
+          "value": "zoom-in-right",
+          "label": "Zoom In Right"
+        },
+        {
+          "value": "zoom-out",
+          "label": "Zoom Out"
+        },
+        {
+          "value": "zoom-out-up",
+          "label": "Zoom Out Up"
+        },
+        {
+          "value": "zoom-out-down",
+          "label": "Zoom Out Down"
+        },
+        {
+          "value": "zoom-out-left",
+          "label": "Zoom Out Feft"
+        },
+        {
+          "value": "zoom-out-right",
+          "label": "Zoom Out Right"
+        }
+      ],
+      "label": "Select Animation"
+    },
+    {
+      "type": "select",
+      "id": "setwidth",
+      "label": "Full Width",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "Box"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        },
+        {
+          "value": "full",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "You may also like",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h1",
+          "label": "H1"
+        }
+      ],
+      "default": "h3",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "heading_align",
+      "options": [
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Heading align"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 4,
+      "label": "Maximum products to show"
+    },
+    {
+      "type": "range",
+      "id": "spaceBetween",
+      "label": "Space Between",
+      "max": 40,
+      "min": 0,
+      "step": 1,
+      "unit": " px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "perviewDesktop",
+      "label": "Per View Desktop",
+      "max": 6,
+      "min": 1,
+      "step": 1,
+      "unit": " c",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "nowrap",
+      "label": "Wrap Box",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "arrows",
+      "label": "Arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "scrollbar",
+      "label": "Scroll Bar",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}
