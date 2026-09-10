@@ -10,7 +10,7 @@
           <li class="drawer__nav-item">
             <div class="drawer__nav-has-sublist">
               {%- assign link_title_dn = link.title | downcase -%}
-              {%- if link_title_dn == 'colectie' or link_title_dn == 'collections' or link_title_dn == 'shop' or link.url == '#' or link.url == blank -%}
+              {%- if link_title_dn == 'colectie'  -%}
                 <a href="javascript:void(0)" data-toggle="collapse" data-target="#DrawerLinklist-{{ child_list_handle }}" aria-controls="DrawerLinklist-{{ child_list_handle }}" class="drawer__nav-link drawer__nav-link--top-level drawer__nav-link--split" id="DrawerLabel-{{ child_list_handle }}" {% if link.active %} aria-current="page"{% endif %}>
                   {%- render 'processMenuTitle' , itemName: link.title -%}
                   {%- render 'processMenuLabel' , itemName: link.title -%}
@@ -111,18 +111,76 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    var textTranslations = {
+      'conversatii': 'Conversations',
+      'conversatii': 'Conversations',
+      'articole': 'Articles',
+      'jurnal': 'Journal',
+      'filme': 'Films',
+      'film': 'Films',
+      'galerie': 'Gallery',
+      'urmareste lumina': 'Follow Lumina',
+      'urmareste lumina': 'Follow Lumina',
+      'ce sunt nanofibrele': 'WHAT ARE NANOFIBERS',
+      'tehnologie si formula': 'TECHNOLOGY & FORMULA',
+      'tehnologie si formula': 'TECHNOLOGY & FORMULA',
+      'mod de utilizare': 'HOW TO USE',
+      'sinergii de ritual': 'RITUAL SYNERGIES',
+      'baza stiintifica si premii': 'SCIENTIFIC FOUNDATION & AWARDS',
+      'baza stiintifica si premii': 'SCIENTIFIC FOUNDATION & AWARDS'
+    };
+
+    var mapping = {
+      'conversat': '/pages/lumina-world#conversations',
+      'articl': '/pages/lumina-world#articles',
+      'articol': '/pages/lumina-world#articles',
+      'blog': '/pages/lumina-world#journal',
+      'journal': '/pages/lumina-world#journal',
+      'jurnal': '/pages/lumina-world#journal',
+      'film': '/pages/lumina-world#films',
+      'manifest': '/pages/lumina-world#films',
+      'galler': '/pages/lumina-world#gallery',
+      'galeri': '/pages/lumina-world#gallery',
+      'follow': '/pages/lumina-world#follow-lumina',
+      'urmar': '/pages/lumina-world#follow-lumina',
+      'social': '/pages/lumina-world#follow-lumina'
+    };
+
+    var allMenuLinks = document.querySelectorAll('#NavDrawer a, .site-nav a, .side-menu__wrap a');
+    allMenuLinks.forEach(function(a) {
+      var text = (a.textContent || '').trim();
+      var textDn = text.toLowerCase();
+      if (textDn.indexOf('team') !== -1 || textDn.indexOf('echip') !== -1) {
+        var li = a.closest('li');
+        if (li) li.remove();
+        else a.remove();
+        return;
+      }
+      if (textTranslations[textDn]) {
+        if (a.children.length === 0) {
+          a.textContent = textTranslations[textDn];
+        }
+      }
+      for (var key in mapping) {
+        if (textDn.indexOf(key) !== -1) {
+          a.setAttribute('href', mapping[key]);
+          break;
+        }
+      }
+    });
+
     var drawerLinks = document.querySelectorAll('#NavDrawer a[href*="#"]');
     drawerLinks.forEach(function(link) {
       link.addEventListener('click', function(e) {
         var href = this.getAttribute('href');
-        if (!href || href === '#' || href === 'javascript:void(0)') return;
+        if (!href) return;
         var parts = href.split('#');
         var path = parts[0];
         var hash = parts[1];
         if (hash) {
           var currentPath = window.location.pathname;
-          if (path === '' || path === currentPath || (currentPath.indexOf('lumina-world') !== -1 && path.indexOf('lumina-world') !== -1) || (currentPath.indexOf('technology') !== -1 && path.indexOf('technology') !== -1) || (currentPath.indexOf('golden-hour') !== -1 && path.indexOf('golden-hour') !== -1)) {
-            var targetEl = document.getElementById(hash) || document.querySelector('[data-section-id="' + hash + '"]') || document.querySelector('.' + hash);
+          if (path === '' || path === currentPath || (currentPath.indexOf('lumina-world') !== -1 && path.indexOf('lumina-world') !== -1)) {
+            var targetEl = document.getElementById(hash);
             if (targetEl) {
               e.preventDefault();
               var closeBtn = document.querySelector('#NavDrawer .js-drawer-close button, #NavDrawer .js-drawer-close');
