@@ -1162,9 +1162,9 @@
           "image_LcNmpJ": {
             "type": "image",
             "settings": {
+              "video": "shopify://files/videos/transform.mp4",
               "image": "shopify://shop_images/hero_1.png",
               "width_image": 600,
-              "image_mobile": "shopify://shop_images/mobile_banner_2.webp",
               "alignment": "center center",
               "text_alignment": "left bottom",
               "bgwrap": "#000000",
@@ -1232,9 +1232,9 @@
           "1590405549465": {
             "type": "image",
             "settings": {
+              "video": "shopify://files/videos/transforming.mp4",
               "image": "shopify://shop_images/lady_4.png",
               "width_image": 360,
-              "image_mobile": "shopify://shop_images/mobile_banner-1.webp",
               "alignment": "right top",
               "text_alignment": "left bottom",
               "bgwrap": "#000000",
@@ -1279,7 +1279,7 @@
               "slide_toptitle": "",
               "slide_toptitle_color": "#999999",
               "slide_title": "European brilliance.<br>The ritual.",
-              "slide_title_color": "#F5E08F",
+              "slide_title_color": "#f5e08f",
               "subheading": "",
               "subheading_color": "#ffffff",
               "button_label": "",

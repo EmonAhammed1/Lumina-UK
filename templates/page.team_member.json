@@ -15,7 +15,7 @@
         "member_1": {
           "type": "member",
           "settings": {
-            "image": "shopify://shop_images/Founder.webp",
+            "image": "shopify://shop_images/Founder.jpg",
             "role": "FOUNDER & SCIENTIFIC DIRECTOR",
             "name": "Paul",
             "description": "With over 15 years of experience in dermatological research and nanotechnology, Dr. Marin founded Lumina Europa with the vision of transforming skin care through scientific innovation.",
@@ -51,7 +51,7 @@
         "member_3": {
           "type": "member",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-03-31_at_15.37.07_430x_05b938d8-e642-4393-90bd-50a305515a7c.webp",
+            "image": "shopify://shop_images/Screenshot_2026-03-31_at_15.37.07_430x_05b938d8-e642-4393-90bd-50a305515a7c.jpg",
             "role": "CLINICAL RESEARCH MANAGER",
             "name": "Maria Popescu",
             "description": "Maria oversees all clinical trials and testing protocols to ensure that each product meets the highest standards of safety and efficacy.",
@@ -69,7 +69,7 @@
         "member_4": {
           "type": "member",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-03-31_at_14.26.19_430x_f348fd8c-e4e8-46b6-bcde-1060ef1275ca.webp",
+            "image": "shopify://shop_images/Screenshot_2026-03-31_at_14.26.19_430x_f348fd8c-e4e8-46b6-bcde-1060ef1275ca.jpg",
             "role": "SPECIALIST IN NANOTECHNOLOGY",
             "name": "Andrei Dumitru",
             "description": "Andrei is the mastermind behind nanofiber technology, developing advanced delivery systems for superior absorption and maximum efficiency.",

@@ -12,6 +12,7 @@
     "tech_mockup_hero_qxXYDp": {
       "type": "tech-mockup-hero",
       "settings": {
+        "bg_video": "shopify://files/videos/WhatsApp Video 2026-08-10 at 15.00.17.mp4",
         "overlay_opacity": 0,
         "subtitle": "BEAUTY HAS MORE STORIES",
         "title": "LUMINA WORLD",
@@ -98,27 +99,27 @@
         "speaker_3": {
           "type": "conversation",
           "settings": {
-            "image": "shopify://shop_images/coming-soon-background-with-focus-light-effect-design_1017-27277.avif",
+            "image": "shopify://shop_images/coming-soon-background-with-focus-light-effect-design_1017-27277_1.avif",
             "video_url": "",
             "category": "",
             "name": "",
             "role": ""
           }
         },
-        "conversation_XTX4Jf": {
+        "conversation_bjkiDf": {
           "type": "conversation",
           "settings": {
-            "image": "shopify://shop_images/coming-soon-background-with-focus-light-effect-design_1017-27277.avif",
+            "image": "shopify://shop_images/coming-soon-background-with-focus-light-effect-design_1017-27277_1.avif",
             "video_url": "",
             "category": "",
             "name": "",
             "role": ""
           }
         },
-        "conversation_734iXF": {
+        "conversation_ATJ6Qp": {
           "type": "conversation",
           "settings": {
-            "image": "shopify://shop_images/coming-soon-background-with-focus-light-effect-design_1017-27277.avif",
+            "image": "shopify://shop_images/coming-soon-background-with-focus-light-effect-design_1017-27277_1.avif",
             "video_url": "",
             "category": "",
             "name": "",
@@ -131,8 +132,8 @@
         "speaker_1",
         "speaker_2",
         "speaker_3",
-        "conversation_XTX4Jf",
-        "conversation_734iXF"
+        "conversation_bjkiDf",
+        "conversation_ATJ6Qp"
       ],
       "settings": {
         "section_title": "LATEST CONVERSATIONS",
@@ -209,7 +210,7 @@
       "settings": {
         "section_title": "JOURNAL",
         "explore_label": "EXPLORE THE JOURNAL",
-        "explore_link": "/",
+        "explore_link": "shopify://blogs/news",
         "featured_article": "news/de-ce-lumina-europa",
         "featured_category": "SCIENCE",
         "featured_title": "Exosomes: Nature's messengers for renewal",
@@ -226,8 +227,8 @@
       "type": "lumina-world-europe-light",
       "settings": {
         "eyebrow": "SPECIAL EDITORIAL PROJECT",
-        "image_top": "shopify://shop_images/005fd866-af00-4ebb-9929-c91ff4b2f104.webp",
-        "image_bottom": "shopify://shop_images/3d4be4d0-8c8a-470b-a9ac-d81885c71637.webp",
+        "image_top": "shopify://shop_images/005fd866-af00-4ebb-9929-c91ff4b2f104.jpg",
+        "image_bottom": "shopify://shop_images/3d4be4d0-8c8a-470b-a9ac-d81885c71637.jpg",
         "paragraph_1": "<p><strong>Europe Under the Same Light</strong>is a journey through Europe, told through the people who call it home. Starting<strong>November 2026</strong>, the project will take to the streets of European cities to listen, ask questions and discover what connects us across borders, languages ​​and generations. </p>",
         "paragraph_2": "Through intimate street conversations, portraits and authentic stories, we will explore identity, belonging, beauty, culture and the future we build together.",
         "tagline_sub": "Different cities. Different faces. Different stories.",
@@ -245,7 +246,10 @@
             "category": "SCIENCE",
             "date": "12 MAI 2025",
             "title": "Skin barrier: More than a shield",
-            "excerpt": "Why understanding the skin barrier changes everything in skin care."
+            "excerpt": "Why understanding the skin barrier changes everything in skin care.",
+            "author": "Dr. Elena Vance",
+            "read_time": "5 min read",
+            "custom_url": ""
           }
         },
         "art_2": {
@@ -255,7 +259,10 @@
             "category": "CULTURE",
             "date": "5 MAI 2025",
             "title": "Timeless cities, ageless beauty",
-            "excerpt": "What European cities teach us about beauty, heritage and time."
+            "excerpt": "What European cities teach us about beauty, heritage and time.",
+            "author": "Dr. Elena Vance",
+            "read_time": "5 min read",
+            "custom_url": ""
           }
         },
         "art_3": {
@@ -265,7 +272,10 @@
             "category": "OAMENI",
             "date": "28 APRILIE 2025",
             "title": "The voices of a new generation",
-            "excerpt": "Young Europeans on identity, purpose and future."
+            "excerpt": "Young Europeans on identity, purpose and future.",
+            "author": "Dr. Elena Vance",
+            "read_time": "5 min read",
+            "custom_url": ""
           }
         },
         "art_4": {
@@ -275,7 +285,10 @@
             "category": "SUSTAINABILITY",
             "date": "20 APRILIE 2025",
             "title": "Beauty and responsibility",
-            "excerpt": "Why authentic luxury respects the world we come from."
+            "excerpt": "Why authentic luxury respects the world we come from.",
+            "author": "Dr. Elena Vance",
+            "read_time": "5 min read",
+            "custom_url": ""
           }
         }
       },

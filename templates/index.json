@@ -46,7 +46,6 @@
         "benefit_1": {
           "type": "benefit",
           "settings": {
-            "image": "shopify://shop_images/nano-fiber-stracture.webp",
             "title": "NANOFIBER STRUCTURE",
             "description": "Ultra-fine fibers create a breathable matrix."
           }
@@ -54,7 +53,6 @@
         "benefit_2": {
           "type": "benefit",
           "settings": {
-            "image": "shopify://shop_images/active-ingredients.webp",
             "title": "ACTIVE INGREDIENTS",
             "description": "Encapsulated for maximum efficiency."
           }
@@ -62,7 +60,6 @@
         "benefit_3": {
           "type": "benefit",
           "settings": {
-            "image": "shopify://shop_images/deep-penetration.webp",
             "title": "Deep absorption",
             "description": "Delivers active ingredients beyond the surface."
           }
@@ -160,6 +157,7 @@
         "watch_label": "",
         "watch_link": "#",
         "video_url": "Visual 1. What are nanofibres_.mov",
+        "poster_image": "shopify://shop_images/Screenshot_2026-09-11_105855.png",
         "badge_text": "ADVANCED NANOFIBER TECHNOLOGY •",
         "bg_text_col": "#010101",
         "bg_card": "#0d0d0f",
@@ -311,6 +309,7 @@
             "area": "face",
             "goal": "Intense Brightness",
             "goal_subtitle": "",
+            "goal_icon": "shopify://shop_images/masca_A.A._ochi_front.png",
             "product": "nano-beauty-pro-intensive-wipe-mask-for-luminosity"
           }
         },
@@ -338,7 +337,7 @@
             "area": "face",
             "goal": "Firmness and Lifting",
             "goal_subtitle": "",
-            "product": "nano-beauty-pro-collagen-face-mask-for-lifting"
+            "product": "nano-beauty-pro-masca-șervețel-intensiva-pentru-luminozitate"
           }
         },
         "match_9": {
@@ -356,7 +355,7 @@
             "area": "face",
             "goal": "Revitalization and Energy",
             "goal_subtitle": "",
-            "product": "nano-beauty-pro-intensive-wipe-mask-for-luminosity"
+            "product": "nano-beauty-pro-regenerating-sheet-mask"
           }
         },
         "match_10": {
@@ -365,7 +364,7 @@
             "area": "eyes",
             "goal": "",
             "goal_subtitle": "",
-            "product": "nano-beauty-pro-anti-aging-eye-mask"
+            "product": "nano-beauty-pro-masca-șervețel-intensiva-pentru-luminozitate"
           }
         },
         "match_11": {
@@ -374,7 +373,7 @@
             "area": "neck",
             "goal": "",
             "goal_subtitle": "",
-            "product": "nano-beauty-pro-anti-aging-neck-mask"
+            "product": "nano-beauty-pro-masca-anti-imbatranire-pentru-ochi"
           }
         },
         "match_12": {
@@ -383,7 +382,7 @@
             "area": "decollete",
             "goal": "",
             "goal_subtitle": "",
-            "product": "nano-beauty-pro-anti-aging-mask-for-décolletage"
+            "product": "nano-beauty-pro-masca-anti-imbatranire-pentru-ochi"
           }
         }
       },

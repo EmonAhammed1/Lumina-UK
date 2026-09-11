@@ -89,7 +89,6 @@
             "feat_3_text": "Bring back the shine and comfort",
             "feat_4_icon": "leaf",
             "feat_4_text": "Perfect for all skin types, including sensitive skin",
-            "mid_image": "shopify://shop_images/result_-_7_3a96c0a5-e331-4ed1-9777-7d00101e2443.webp",
             "card_1_title": "TRANSFORMATION IN 5 MINUTES",
             "card_1_time": "05:00",
             "timeline_val_1": "01:00",
@@ -170,10 +169,7 @@
         "marginsection": "0px 0px 0px 0px",
         "marginmobile": "0px 0px 0px 0px",
         "show_social_right": true,
-        "social_right_text": "Artistic images (TBC) may be associated with social media posts.",
-        "social_img_1": "shopify://shop_images/PEPTIDE.webp",
-        "social_img_2": "shopify://shop_images/CENTELLA.webp",
-        "social_img_3": "shopify://shop_images/HYALURONIC.webp"
+        "social_right_text": "Artistic images (TBC) may be associated with social media posts."
       }
     },
     "exp-transformation": {
@@ -252,7 +248,7 @@
         "ritual_2": {
           "type": "ritual",
           "settings": {
-            "product": "nano-beauty-pro-anti-aging-mask-for-décolletage",
+            "product": "nano-beauty-pro-skin-smoothing-sheet-mask",
             "item_type": "product",
             "title": "",
             "subtitle": "",
@@ -288,7 +284,7 @@
         "ritual_5": {
           "type": "ritual",
           "settings": {
-            "product": "nano-beauty-pro-collagen-face-mask-for-lifting",
+            "product": "nano-beauty-pro-masca-anti-imbatranire-pentru-ochi",
             "item_type": "bundle",
             "title": "",
             "subtitle": "",
@@ -300,7 +296,7 @@
         "ritual_6": {
           "type": "ritual",
           "settings": {
-            "product": "nano-beauty-pro-anti-aging-neck-mask",
+            "product": "nano-beauty-pro-regenerating-sheet-mask",
             "item_type": "product",
             "title": "",
             "subtitle": "",
@@ -332,7 +328,7 @@
         "center_sub": "",
         "center_link": "",
         "btn_label": "DISCOVER ALL RITUALS",
-        "btn_link": ""
+        "btn_link": "shopify://collections"
       }
     },
     "experience_under_microscope_pHQJR3": {
@@ -630,6 +626,7 @@
       "type": "tech-mockup-hero",
       "name": "Mockup - Hero",
       "settings": {
+        "bg_video": "shopify://files/videos/WhatsApp Video 2026-08-10 at 15.05.00.mp4",
         "overlay_opacity": 30,
         "subtitle": "DISCOVER LUMINA",
         "title": "IT STARTS WITH A RITUAL",
