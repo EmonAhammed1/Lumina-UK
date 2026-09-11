@@ -12,7 +12,6 @@
     "tech_mockup_hero_qxXYDp": {
       "type": "tech-mockup-hero",
       "settings": {
-        "bg_video": "",
         "overlay_opacity": 0,
         "subtitle": "BEAUTY HAS MORE STORIES",
         "title": "LUMINA WORLD",
@@ -246,8 +245,7 @@
             "category": "SCIENCE",
             "date": "12 MAI 2025",
             "title": "Skin barrier: More than a shield",
-            "excerpt": "Why understanding the skin barrier changes everything in skin care.",
-            "link": ""
+            "excerpt": "Why understanding the skin barrier changes everything in skin care."
           }
         },
         "art_2": {
@@ -257,8 +255,7 @@
             "category": "CULTURE",
             "date": "5 MAI 2025",
             "title": "Timeless cities, ageless beauty",
-            "excerpt": "What European cities teach us about beauty, heritage and time.",
-            "link": ""
+            "excerpt": "What European cities teach us about beauty, heritage and time."
           }
         },
         "art_3": {
@@ -268,8 +265,7 @@
             "category": "OAMENI",
             "date": "28 APRILIE 2025",
             "title": "The voices of a new generation",
-            "excerpt": "Young Europeans on identity, purpose and future.",
-            "link": ""
+            "excerpt": "Young Europeans on identity, purpose and future."
           }
         },
         "art_4": {
@@ -279,8 +275,7 @@
             "category": "SUSTAINABILITY",
             "date": "20 APRILIE 2025",
             "title": "Beauty and responsibility",
-            "excerpt": "Why authentic luxury respects the world we come from.",
-            "link": ""
+            "excerpt": "Why authentic luxury respects the world we come from."
           }
         }
       },

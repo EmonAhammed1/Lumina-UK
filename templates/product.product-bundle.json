@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "main": {
       "type": "product-template-1",
@@ -24,10 +25,6 @@
           "settings": {
             "e_label": true
           }
-        },
-        "63b4b894-da0f-497b-aaef-b11f3e5f55ff": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
         },
         "c5c11045-e3b5-47e4-80d1-25e86ec844cc": {
           "type": "price",
@@ -230,7 +227,6 @@
       "block_order": [
         "10baeeb8-3d3b-4115-8375-8a90ab8f58e9",
         "989bce2f-7961-4267-8e6c-40ff4bb0ed64",
-        "63b4b894-da0f-497b-aaef-b11f3e5f55ff",
         "c5c11045-e3b5-47e4-80d1-25e86ec844cc",
         "9cd2d8a0-a8b4-46d7-b3a7-b1609af99285",
         "2cf20ef7-ba29-4dd5-8c98-df0b96ba3c5b",
@@ -366,15 +362,6 @@
     },
     "16956665928504d885": {
       "type": "apps",
-      "blocks": {
-        "fc8a78d7-718e-46c1-b694-84579038acfb": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "fc8a78d7-718e-46c1-b694-84579038acfb"
-      ],
       "settings": {
         "animation": "",
         "setwidth": "container",

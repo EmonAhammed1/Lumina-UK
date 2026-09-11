@@ -18,10 +18,8 @@
         "text": "",
         "button_label": "KEEP THE LIGHT CLOSE TO YOU",
         "button_link": "",
-        "video": "",
         "height_desktop": 100,
         "button_bottom_desktop": 50,
-        "video_mobile": "",
         "height_mobile": 100,
         "button_bottom_mobile": 30,
         "button_color": "#f9e29c"
@@ -48,7 +46,6 @@
       "type": "golden-hour-why",
       "settings": {
         "max_width": 2000,
-        "video": "",
         "text": "<p>Golden Hour was created for those who choose intention over noise.</p>",
         "overlay_opacity": 55,
         "min_height_desktop": 100,
@@ -62,7 +59,6 @@
       "settings": {
         "max_width": 2000,
         "image_width_percent": 42,
-        "video": "",
         "decorative_image": "shopify://shop_images/section-i.png",
         "graphic_width": 500,
         "graphic_height": 370,
@@ -201,7 +197,6 @@
         "content": "<p> Every ritual tells a story. And every choice to return to the Light universe deserves to be rewarded.</p><p> Golden Rewards is our way of thanking you for being a part of our community. As you discover new rituals and return with us, you unlock benefits designed to make each experience even more special.</p><p> From carefully chosen gifts and free shipping, to priority access to releases, limited editions and invitations to Lumina experiences, every step brings you closer to our universe. </p>",
         "link_label": "DISCOVER GOLDEN REWARDS",
         "link_url": "",
-        "video": "",
         "section_height_desktop": 600,
         "heading_size_desktop": 36,
         "body_size_desktop": 18,
@@ -310,7 +305,6 @@
         "content": "<p> Behind every ritual is a moment of stillness, an intention, and a choice to put self-care first.</p><p> Golden Hour is the community of those who believe that beauty begins in these simple gestures and continues through the stories we share together. </p>",
         "link_label": "JOIN THE COMMUNITY",
         "link_url": "",
-        "video": "",
         "section_height_desktop": 600,
         "heading_size_desktop": 36,
         "body_size_desktop": 18,
@@ -322,7 +316,6 @@
     "tech_mockup_hero_YmgBGP": {
       "type": "tech-mockup-hero",
       "settings": {
-        "bg_video": "",
         "overlay_opacity": 0,
         "subtitle": "MORE THAN BEAUTY",
         "title": "LUMINA GOLDEN HOUR",
@@ -434,7 +427,6 @@
       "type": "golden-hour-ctas",
       "settings": {
         "max_width": 2000,
-        "video": "",
         "overlay_opacity": 50,
         "heading": "A place where taking care of yourself becomes art.",
         "primary_label": "Become a LUMINA GOLDEN HOUR Member",

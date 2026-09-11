@@ -12,7 +12,6 @@
     "hero": {
       "type": "tech-mockup-hero",
       "settings": {
-        "bg_video": "",
         "overlay_opacity": 30,
         "subtitle": "WHERE SCIENCE",
         "title": "DEVINE\nRITUAL",
@@ -230,8 +229,7 @@
       "settings": {
         "subtitle": "TECHNOLOGY & FORMULA",
         "title": "Designed for purity.\nBuilt for performance.",
-        "text": "Our exclusive nanofiber structure meets high-performance active ingredients carefully selected for their purity, stability and skin compatibility.",
-        "video": ""
+        "text": "Our exclusive nanofiber structure meets high-performance active ingredients carefully selected for their purity, stability and skin compatibility."
       }
     },
     "ingredients": {
@@ -530,7 +528,6 @@
         "text": "Developed by NanoPharma, our nanofiber technology is backed by rigorous research, clinical trials and continuous innovation.",
         "btn_label": "EXPLORE RESEARCH",
         "btn_link": "",
-        "video": "",
         "caption": "Clinical evaluation of the nanofiber mask by an independent institute."
       }
     },

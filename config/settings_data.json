@@ -1162,8 +1162,6 @@
           "image_LcNmpJ": {
             "type": "image",
             "settings": {
-              "video": "",
-              "video_mobile": "",
               "image": "shopify://shop_images/hero_1.png",
               "width_image": 600,
               "image_mobile": "shopify://shop_images/mobile_banner_2.webp",
@@ -1234,7 +1232,6 @@
           "1590405549465": {
             "type": "image",
             "settings": {
-              "video": "",
               "image": "shopify://shop_images/lady_4.png",
               "width_image": 360,
               "image_mobile": "shopify://shop_images/mobile_banner-1.webp",
@@ -1405,7 +1402,7 @@
           "1587654247564": {
             "type": "html",
             "settings": {
-              "code": "<div class=\"py-2 mt-5 pr-md-5\"><div class=\"subtop mb-3\">Simple and easy</div><h2 class=\"mb-3\"> Take a look \non our profile</h2><div class=\"mb-5\"> Apparently we had reached a great height in the atmosphere, for the sky was \na dead black and there a stars.</div><a href=\"#\" class=\"btn btn-theme\"> Request a quote</a></div>",
+              "code": "<div class=\"py-2 mt-5 pr-md-5\">\n<div class=\"subtop mb-3\">Simple and easy</div>\n<h2 class=\"mb-3\"> Take a look \non our profile</h2>\n<div class=\"mb-5\"> Apparently we had reached a great height in the atmosphere, for the sky was \na dead black and there a stars.</div>\n<a href=\"#\" class=\"btn btn-theme\"> Request a quote</a>\n</div>",
               "width": "33%",
               "align": "auto"
             }
@@ -1675,7 +1672,7 @@
           "title": "",
           "des": "",
           "colortext": "#ffffff",
-          "colhtml1": "<div class=\"d-flex justify-content-start align-items-center flex-lg-row flex-column text-center\"><span class=\"subtop text-xl-right mr-lg-4\">spring 2022 |<br>New in</span><h3> New Collection<br>Ready to Wear</h3></div>",
+          "colhtml1": "<div class=\"d-flex justify-content-start align-items-center flex-lg-row flex-column text-center\">\n<span class=\"subtop text-xl-right mr-lg-4\">spring 2022 |<br>New in</span><h3> New Collection<br>Ready to Wear</h3>\n</div>",
           "collection1": "accessories",
           "collection_title1": "",
           "image1": "shopify://shop_images/h1-banner01.jpg",
@@ -1685,7 +1682,7 @@
           "collection3": "men",
           "collection_title3": "",
           "image3": "shopify://shop_images/h1-banner02.jpg",
-          "colhtml2": "<div class=\"text-center\"><div class=\"font-family-3 fs-140\">Fashion Store</div><p> Discover more about our products.</p><a class=\"btn btn-underline\" href=\"#\"> Explore now<i class=\"icon-arrow-right\"></i></a></div>",
+          "colhtml2": "<div class=\"text-center\">\n<div class=\"font-family-3 fs-140\">Fashion Store</div>\n<p> Discover more about our products.</p>\n<a class=\"btn btn-underline\" href=\"#\"> Explore now<i class=\"icon-arrow-right\"></i></a>\n</div>",
           "paddingsection": "100px 0px 100px 0px",
           "paddingmobile": "60px 0px 60px 0px",
           "marginsection": "0px 0px 0px 0px",
@@ -2299,7 +2296,7 @@
             "settings": {
               "widthlogofooter": 150,
               "title": "Quick order",
-              "text": "<div class=\"pr-lg-5 rte\"><p class=\"mb-0 font-family-1 fz-6\">(877) 834-1434</p><p class=\"mb-0\"> \nsupport@luminaeuropa.ro</p><p class=\"mb-2\"> Find the nearest store. \nSee<a href=\"#\">Our Stores</a></p> \n </div>",
+              "text": "<div class=\"pr-lg-5 rte\">\n<p class=\"mb-0 font-family-1 fz-6\">(877) 834-1434</p>\n<p class=\"mb-0\"> \nsupport@luminaeuropa.ro</p>\n<p class=\"mb-2\"> Find the nearest store. \nSee<a href=\"#\">Our Stores</a></p> \n </div>",
               "width": "25%"
             }
           },
@@ -2549,32 +2546,11 @@
       "1660925094098c539e"
     ],
     "blocks": {
-      "14060646107696862457": {
-        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
-        "settings": {}
-      },
       "1530068250781986104": {
         "type": "shopify://apps/fbp-fast-bundle/blocks/fast_bundle/9e87fbe2-9041-4c23-acf5-322413994cef",
         "disabled": false,
         "settings": {
           "home": false
-        }
-      },
-      "1531194425928624464": {
-        "type": "shopify://apps/whatsapp-chat/blocks/whatsapp-chat-embed/019be5b3-ddb7-72e9-ab02-aef07c5497b8",
-        "disabled": false,
-        "settings": {
-          "phone_number": "+40747282174",
-          "button_text": "Chat with us",
-          "button_background_color": "#25D366",
-          "button_text_color": "#FFFFFF",
-          "position": "right",
-          "desktop_x_offset": 20,
-          "desktop_y_offset": 20,
-          "mobile_x_offset": 20,
-          "mobile_y_offset": 20,
-          "mobile_icon_only": false
         }
       }
     }
