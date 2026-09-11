@@ -18,8 +18,10 @@
         "text": "",
         "button_label": "KEEP THE LIGHT CLOSE TO YOU",
         "button_link": "",
+        "video": "shopify://files/videos/a84fabf16c334e4ba0622311bb94d42f.HD-1080p-4.8Mbps-90238085.mp4",
         "height_desktop": 100,
         "button_bottom_desktop": 50,
+        "video_mobile": "shopify://files/videos/738fc43c4e0548ae949581b38aa31bb1.HD-1080p-3.3Mbps-90238089 (1).mp4",
         "height_mobile": 100,
         "button_bottom_mobile": 30,
         "button_color": "#f9e29c"
