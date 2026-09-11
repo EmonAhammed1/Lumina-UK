@@ -177,10 +177,10 @@
         var parts = href.split('#');
         var path = parts[0];
         var hash = parts[1];
-        if (hash) {
-          var currentPath = window.location.pathname;
-          if (path === '' || path === currentPath || (currentPath.indexOf('lumina-world') !== -1 && path.indexOf('lumina-world') !== -1)) {
-            var targetEl = document.getElementById(hash);
+          var isLuminaWorld = currentPath.indexOf('lumina-world') !== -1 && path.indexOf('lumina-world') !== -1;
+          var isTechPage = (currentPath.indexOf('technolog') !== -1 || currentPath.indexOf('tehnolog') !== -1) && (path.indexOf('technolog') !== -1 || path.indexOf('tehnolog') !== -1);
+          if (path === '' || path === currentPath || isLuminaWorld || isTechPage) {
+            var targetEl = document.getElementById(hash) || document.querySelector('#' + hash) || document.querySelector('[id*="' + hash + '"]');
             if (targetEl) {
               e.preventDefault();
               var closeBtn = document.querySelector('#NavDrawer .js-drawer-close button, #NavDrawer .js-drawer-close');
@@ -190,7 +190,6 @@
               }, 300);
             }
           }
-        }
       });
     });
   });
