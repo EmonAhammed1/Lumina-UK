@@ -184,36 +184,52 @@
 
 <div class="gh-hero-wrap" id="{{ section.id | split: '__' | last }}" data-section-id="{{ section.id }}">
   <div class="gh-hero-video-container">
-    {%- assign hero_video_url = 'https://cdn.shopify.com/videos/c/o/v/daa8f8991d7e47419cbd9ff37f3f6f05.mp4' -%}
-    {%- if section.settings.video != blank and section.settings.video contains 'http' -%}
-      {%- assign hero_video_url = section.settings.video -%}
-    {%- endif -%}
-    {%- assign hero_video_mobile_url = hero_video_url -%}
-    {%- if section.settings.video_mobile != blank and section.settings.video_mobile contains 'http' -%}
-      {%- assign hero_video_mobile_url = section.settings.video_mobile -%}
-    {%- endif -%}
+    {%- assign default_video_url = 'https://cdn.shopify.com/videos/c/o/v/daa8f8991d7e47419cbd9ff37f3f6f05.mp4' -%}
 
+    {%- comment -%} Desktop Video {%- endcomment -%}
     {%- if section.settings.video != blank and section.settings.video.sources != blank -%}
-      {{ section.settings.video | video_tag: autoplay: true, loop: true, playsinline: true, muted: true, controls: false, class: 'gh-hero-video gh-hero-desktop-video', id: 'gh-video-desktop', image_size: '1920x' }}
+      <video class="gh-hero-video gh-hero-desktop-video" id="gh-video-desktop" autoplay loop muted playsinline webkit-playsinline x5-playsinline preload="auto" poster="{{ section.settings.poster | default: section.settings.video.preview_image | image_url: width: 1920 | default: 'test-5.png' | asset_url }}">
+        {%- for source in section.settings.video.sources -%}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {%- endfor -%}
+        <source src="{{ default_video_url }}" type="video/mp4">
+      </video>
+    {%- elsif section.settings.video != blank and section.settings.video contains 'http' -%}
+      <video class="gh-hero-video gh-hero-desktop-video" id="gh-video-desktop" autoplay loop muted playsinline webkit-playsinline x5-playsinline preload="auto" poster="{{ section.settings.poster | image_url: width: 1920 | default: 'test-5.png' | asset_url }}">
+        <source src="{{ section.settings.video }}" type="video/mp4">
+        <source src="{{ default_video_url }}" type="video/mp4">
+      </video>
     {%- elsif section.settings.bg_image_desktop != blank and section.settings.video == blank -%}
       <img src="{{ section.settings.bg_image_desktop | image_url: width: 1920 }}" class="gh-hero-video gh-hero-desktop-video" alt="{{ section.settings.title }}">
     {%- else -%}
-      <video class="gh-hero-video gh-hero-desktop-video" id="gh-video-desktop" autoplay loop muted playsinline webkit-playsinline x5-playsinline preload="auto" poster="{{ 'test-5.png' | asset_url }}">
-        <source src="{{ hero_video_url }}" type="video/mp4">
-        <source src="https://cdn.shopify.com/videos/c/o/v/daa8f8991d7e47419cbd9ff37f3f6f05.mp4" type="video/mp4">
-        <source src="{{ 'The Golden Hour HERO.mp4' | file_url }}" type="video/mp4">
+      <video class="gh-hero-video gh-hero-desktop-video" id="gh-video-desktop" autoplay loop muted playsinline webkit-playsinline x5-playsinline preload="auto" poster="{{ section.settings.poster | image_url: width: 1920 | default: 'test-5.png' | asset_url }}">
+        <source src="{{ default_video_url }}" type="video/mp4">
       </video>
     {%- endif -%}
 
+    {%- comment -%} Mobile Video {%- endcomment -%}
     {%- if section.settings.video_mobile != blank and section.settings.video_mobile.sources != blank -%}
-      {{ section.settings.video_mobile | video_tag: autoplay: true, loop: true, playsinline: true, muted: true, controls: false, class: 'gh-hero-video gh-hero-mobile-video', id: 'gh-video-mobile', image_size: '800x' }}
+      <video class="gh-hero-video gh-hero-mobile-video" id="gh-video-mobile" autoplay loop muted playsinline webkit-playsinline x5-playsinline preload="auto" poster="{{ section.settings.poster_mobile | default: section.settings.video_mobile.preview_image | image_url: width: 800 | default: 'test-5.png' | asset_url }}">
+        {%- for source in section.settings.video_mobile.sources -%}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {%- endfor -%}
+        <source src="{{ default_video_url }}" type="video/mp4">
+      </video>
+    {%- elsif section.settings.video_mobile != blank and section.settings.video_mobile contains 'http' -%}
+      <video class="gh-hero-video gh-hero-mobile-video" id="gh-video-mobile" autoplay loop muted playsinline webkit-playsinline x5-playsinline preload="auto" poster="{{ section.settings.poster_mobile | image_url: width: 800 | default: 'test-5.png' | asset_url }}">
+        <source src="{{ section.settings.video_mobile }}" type="video/mp4">
+        <source src="{{ default_video_url }}" type="video/mp4">
+      </video>
     {%- elsif section.settings.bg_image_mobile != blank and section.settings.video_mobile == blank -%}
       <img src="{{ section.settings.bg_image_mobile | image_url: width: 800 }}" class="gh-hero-video gh-hero-mobile-video" alt="{{ section.settings.title }}">
     {%- else -%}
-      <video class="gh-hero-video gh-hero-mobile-video" id="gh-video-mobile" autoplay loop muted playsinline webkit-playsinline x5-playsinline preload="auto" poster="{{ 'test-5.png' | asset_url }}">
-        <source src="{{ hero_video_mobile_url }}" type="video/mp4">
-        <source src="https://cdn.shopify.com/videos/c/o/v/daa8f8991d7e47419cbd9ff37f3f6f05.mp4" type="video/mp4">
-        <source src="{{ 'The Golden Hour HERO.mp4' | file_url }}" type="video/mp4">
+      <video class="gh-hero-video gh-hero-mobile-video" id="gh-video-mobile" autoplay loop muted playsinline webkit-playsinline x5-playsinline preload="auto" poster="{{ section.settings.poster_mobile | image_url: width: 800 | default: 'test-5.png' | asset_url }}">
+        {%- if section.settings.video != blank and section.settings.video.sources != blank -%}
+          {%- for source in section.settings.video.sources -%}
+            <source src="{{ source.url }}" type="{{ source.mime_type }}">
+          {%- endfor -%}
+        {%- endif -%}
+        <source src="{{ default_video_url }}" type="video/mp4">
       </video>
     {%- endif -%}
   </div>
@@ -250,29 +266,17 @@
 
 <script>
   (function() {
-    let audioContext = null;
     let userExplicitlyMuted = false;
-    let hasUnmutedByInteraction = false;
+    let hasUnlockedAudio = false;
 
-    function getAudioContext() {
-      if (!audioContext && (window.AudioContext || window.webkitAudioContext)) {
-        try {
-          audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        } catch (e) {}
-      }
-      if (audioContext && audioContext.state === 'suspended') {
-        audioContext.resume().catch(function() {});
-      }
-      return audioContext;
-    }
-
-    function initGoldenHourHeroAudio() {
+    function initGoldenHourHero() {
       const section = document.querySelector('[data-section-id="{{ section.id }}"]');
       if (!section) return;
 
       const toggleBtn = section.querySelector('#gh-audio-toggle-{{ section.id }}');
-      const desktopVideo = section.querySelector('#gh-video-desktop');
-      const mobileVideo = section.querySelector('#gh-video-mobile');
+      const desktopVideo = section.querySelector('#gh-video-desktop') || section.querySelector('.gh-hero-desktop-video');
+      const mobileVideo = section.querySelector('#gh-video-mobile') || section.querySelector('.gh-hero-mobile-video');
+      const allVideos = [desktopVideo, mobileVideo].filter(Boolean);
       const iconMuted = section.querySelector('#gh-icon-muted');
       const iconUnmuted = section.querySelector('#gh-icon-unmuted');
 
@@ -302,30 +306,62 @@
         }
       }
 
-      function startPlayback() {
+      // Configure all video elements with rock-solid loop & inline autoplay properties
+      allVideos.forEach(function(v) {
+        v.muted = true;
+        v.volume = 0.5;
+        v.loop = true;
+        v.playsInline = true;
+        v.setAttribute('playsinline', '');
+        v.setAttribute('webkit-playsinline', '');
+        v.setAttribute('x5-playsinline', '');
+        v.setAttribute('muted', '');
+        v.setAttribute('autoplay', '');
+
+        // Infinite loop listener
+        v.addEventListener('ended', function() {
+          v.currentTime = 0;
+          v.play().catch(function() {});
+        });
+
+        // Auto-resume if unexpectedly paused while visible
+        v.addEventListener('pause', function() {
+          if (!userExplicitlyMuted && !document.hidden) {
+            setTimeout(function() {
+              if (v.paused && !document.hidden) {
+                v.play().catch(function() {});
+              }
+            }, 80);
+          }
+        });
+      });
+
+      // Play video immediately (muted guarantees 100% immediate autoplay on phone & desktop)
+      function startVideoAutoplay() {
         const vid = getActiveVideo();
         if (!vid) return;
 
-        // Ensure proper attributes for mobile autoplay
         vid.muted = true;
-        vid.setAttribute('muted', '');
-        vid.setAttribute('playsinline', '');
-        vid.setAttribute('webkit-playsinline', '');
-        vid.loop = true;
-
-        const p = vid.play();
-        if (p !== undefined) {
-          p.then(function() {
-            // If desktop and user hasn't explicitly muted, attempt unmuted sound
+        const playPromise = vid.play();
+        if (playPromise !== undefined) {
+          playPromise.then(function() {
+            // Try unmuting immediately on desktop or if user navigated from another page on this domain
             if (!userExplicitlyMuted && window.innerWidth > 768) {
               vid.muted = false;
-              vid.volume = 0.4;
-              updateIcon(false);
+              vid.volume = 0.5;
+              vid.play().then(function() {
+                hasUnlockedAudio = true;
+                updateIcon(false);
+              }).catch(function() {
+                // If unmuted rejected on cold load, keep playing muted
+                vid.muted = true;
+                vid.play().catch(function() {});
+                updateIcon(true);
+              });
             } else {
-              updateIcon(vid.muted);
+              updateIcon(true);
             }
           }).catch(function() {
-            // Fallback guaranteed muted autoplay
             vid.muted = true;
             vid.play().catch(function() {});
             updateIcon(true);
@@ -333,76 +369,52 @@
         }
       }
 
-      function unmuteAndPlayOnInteraction() {
+      // Unlock sound on ANY user interaction (first touch, scroll, swipe, click, key)
+      function unlockSound() {
         if (userExplicitlyMuted) return;
-        getAudioContext();
         const vid = getActiveVideo();
         if (!vid) return;
 
         vid.muted = false;
-        vid.volume = 0.4;
+        vid.volume = 0.5;
         if (vid.paused) {
           vid.play().catch(function() {});
         }
+        hasUnlockedAudio = true;
         updateIcon(false);
-        hasUnmutedByInteraction = true;
       }
 
-      // Continuous loop protection
-      [desktopVideo, mobileVideo].forEach(function(v) {
-        if (v) {
-          v.addEventListener('ended', function() {
-            v.currentTime = 0;
-            v.play().catch(function() {});
-          });
-          v.addEventListener('pause', function() {
-            if (!userExplicitlyMuted && !document.hidden) {
-              setTimeout(function() {
-                if (v.paused && !document.hidden) {
-                  v.play().catch(function() {});
-                }
-              }, 100);
-            }
-          });
-        }
-      });
-
-      // Start initial playback immediately
-      startPlayback();
-
-      // Multi-layer interaction events to immediately unmute on first gesture
-      const interactionEvents = [
+      const gestureEvents = [
         'touchstart', 'touchend', 'touchmove',
         'pointerdown', 'pointerup', 'click',
         'mousedown', 'scroll', 'wheel', 'keydown',
         'pageshow', 'focus'
       ];
 
-      function handleInteraction() {
-        if (!userExplicitlyMuted && (!hasUnmutedByInteraction || (getActiveVideo() && getActiveVideo().muted))) {
-          unmuteAndPlayOnInteraction();
+      function handleGesture() {
+        if (!userExplicitlyMuted && (!hasUnlockedAudio || (getActiveVideo() && getActiveVideo().muted))) {
+          unlockSound();
         }
       }
 
-      interactionEvents.forEach(function(evt) {
-        window.addEventListener(evt, handleInteraction, { capture: true, passive: true });
-        document.addEventListener(evt, handleInteraction, { capture: true, passive: true });
+      gestureEvents.forEach(function(evt) {
+        window.addEventListener(evt, handleGesture, { capture: true, passive: true });
+        document.addEventListener(evt, handleGesture, { capture: true, passive: true });
       });
 
-      // Toggle button
+      // Audio toggle button
       if (toggleBtn) {
         toggleBtn.addEventListener('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
-          getAudioContext();
           const vid = getActiveVideo();
           if (!vid) return;
 
           if (vid.muted || vid.volume === 0) {
             userExplicitlyMuted = false;
-            hasUnmutedByInteraction = true;
+            hasUnlockedAudio = true;
             vid.muted = false;
-            vid.volume = 0.4;
+            vid.volume = 0.5;
             vid.play().then(function() {
               updateIcon(false);
             }).catch(function() {});
@@ -414,7 +426,7 @@
         });
       }
 
-      // Page visibility & focus handling (resume when coming back)
+      // Resume on tab focus / visibility
       document.addEventListener('visibilitychange', function() {
         if (!document.hidden) {
           const vid = getActiveVideo();
@@ -430,7 +442,7 @@
         }
       });
 
-      // Resize / orientation handling
+      // Resize handling
       window.addEventListener('resize', function() {
         const vid = getActiveVideo();
         if (vid && vid.paused) {
@@ -438,12 +450,14 @@
         }
         updateIcon(vid ? vid.muted : true);
       });
+
+      startVideoAutoplay();
     }
 
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initGoldenHourHeroAudio);
+      document.addEventListener('DOMContentLoaded', initGoldenHourHero);
     } else {
-      initGoldenHourHeroAudio();
+      initGoldenHourHero();
     }
   })();
 </script>
