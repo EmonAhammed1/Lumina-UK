@@ -10,6 +10,9 @@
     {% else %}
     background-image: url('{{ "quiz-section.png" | asset_url }}');
     {% endif %}
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     padding: 80px 0;
     color: #fff;
     overflow: hidden;
@@ -17,13 +20,13 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
+    width: 100%;
   }
   @media (max-width: 767px) {
     .ritual-section {
       padding: 40px 0;
-      {% if section.settings.bg_image != blank %}
-      background-position: center;
-      {% endif %}
+      background-position: center center;
+      background-size: cover;
     }
   }
   .ritual-container {
