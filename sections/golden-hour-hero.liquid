@@ -295,14 +295,10 @@
       function getActiveVideo() {
         const isMobile = window.innerWidth <= 768;
         if (isMobile) {
-          if (desktopVideo && !desktopVideo.paused) {
-            desktopVideo.pause();
-          }
+          if (desktopVideo && !desktopVideo.paused) desktopVideo.pause();
           return mobileVideo || desktopVideo;
         } else {
-          if (mobileVideo && !mobileVideo.paused) {
-            mobileVideo.pause();
-          }
+          if (mobileVideo && !mobileVideo.paused) mobileVideo.pause();
           return desktopVideo || mobileVideo;
         }
       }
@@ -318,89 +314,72 @@
         }
       }
 
-      // Configure video elements
+      // Step 1: Configure all video elements — START MUTED for guaranteed autoplay
       allVideos.forEach(function(v) {
-        v.volume = 0.5;
+        v.muted = true;
+        v.volume = 0.7;
         v.loop = true;
         v.playsInline = true;
         v.setAttribute('playsinline', '');
         v.setAttribute('webkit-playsinline', '');
         v.setAttribute('x5-playsinline', '');
-        v.setAttribute('autoplay', '');
 
         v.addEventListener('ended', function() {
           v.currentTime = 0;
-          if (!userExplicitlyMuted) {
-            v.muted = false;
-            v.volume = 0.5;
-          }
           v.play().catch(function() {});
-        });
-
-        v.addEventListener('pause', function() {
-          if (!document.hidden && v === getActiveVideo() && !userExplicitlyMuted) {
-            setTimeout(function() {
-              if (v.paused && !document.hidden) {
-                v.play().catch(function() {});
-              }
-            }, 60);
-          }
         });
       });
 
-      // Start autoplay with sound immediately on load
-      function playWithSound() {
-        if (userExplicitlyMuted) return;
+      // Step 2: Show muted icon (matches real muted state)
+      updateIcon(true);
+
+      // Step 3: Start muted autoplay
+      function startMutedAutoplay() {
+        const vid = getActiveVideo();
+        if (!vid) return;
+        vid.muted = true;
+        vid.play().catch(function(err) {
+          console.warn('[GH] Muted autoplay blocked:', err);
+        });
+      }
+      startMutedAutoplay();
+
+      // Step 4: On FIRST user gesture → unmute automatically
+      let hasUnmutedOnce = false;
+
+      function unmuteOnFirstGesture() {
+        if (hasUnmutedOnce || userExplicitlyMuted) return;
+        hasUnmutedOnce = true;
         getAudioContext();
+
         const vid = getActiveVideo();
         if (!vid) return;
 
         vid.muted = false;
-        vid.volume = 0.5;
-
-        const p = vid.play();
-        if (p !== undefined) {
-          p.then(function() {
-            updateIcon(false);
-          }).catch(function() {
-            // Browser restricted unmuted cold start: start video muted, unmute on any gesture
+        vid.volume = 0.7;
+        if (vid.paused) {
+          vid.play().catch(function() {
             vid.muted = true;
             vid.play().catch(function() {});
-            updateIcon(false); // keep active sound UI state
           });
         }
+        updateIcon(false);
+
+        // Clean up listeners after first unmute
+        const evts = ['touchstart', 'touchend', 'click', 'pointerdown', 'keydown', 'scroll'];
+        evts.forEach(function(evt) {
+          window.removeEventListener(evt, unmuteOnFirstGesture, true);
+          document.removeEventListener(evt, unmuteOnFirstGesture, true);
+        });
       }
 
-      // Unmute instantly on ANY interaction (touch, swipe, scroll, click, mousemove)
-      function unmuteOnGesture() {
-        if (userExplicitlyMuted) return;
-        getAudioContext();
-        const vid = getActiveVideo();
-        if (!vid) return;
-
-        if (vid.muted) {
-          vid.muted = false;
-          vid.volume = 0.5;
-          if (vid.paused) {
-            vid.play().catch(function() {});
-          }
-          updateIcon(false);
-        }
-      }
-
-      const gestureEvents = [
-        'touchstart', 'touchend', 'touchmove',
-        'pointerdown', 'pointerup', 'pointermove',
-        'click', 'mousedown', 'mousemove', 'scroll', 'wheel', 'keydown',
-        'pageshow', 'focus'
-      ];
-
+      const gestureEvents = ['touchstart', 'touchend', 'click', 'pointerdown', 'keydown', 'scroll'];
       gestureEvents.forEach(function(evt) {
-        window.addEventListener(evt, unmuteOnGesture, { capture: true, passive: true });
-        document.addEventListener(evt, unmuteOnGesture, { capture: true, passive: true });
+        window.addEventListener(evt, unmuteOnFirstGesture, { capture: true, passive: true });
+        document.addEventListener(evt, unmuteOnFirstGesture, { capture: true, passive: true });
       });
 
-      // Toggle button (Pause / Play sound)
+      // Step 5: Toggle button — user manually controls sound
       if (toggleBtn) {
         toggleBtn.addEventListener('click', function(e) {
           e.preventDefault();
@@ -410,15 +389,13 @@
           if (!vid) return;
 
           if (vid.muted) {
-            // User unpauses sound
             userExplicitlyMuted = false;
+            hasUnmutedOnce = true;
             vid.muted = false;
-            vid.volume = 0.5;
-            vid.play().then(function() {
-              updateIcon(false);
-            }).catch(function() {});
+            vid.volume = 0.7;
+            if (vid.paused) vid.play().catch(function() {});
+            updateIcon(false);
           } else {
-            // User pauses sound
             userExplicitlyMuted = true;
             vid.muted = true;
             updateIcon(true);
@@ -426,38 +403,23 @@
         });
       }
 
-      // Visibility & focus handlers
+      // Visibility: resume if paused when tab comes back
       document.addEventListener('visibilitychange', function() {
         if (!document.hidden) {
           const vid = getActiveVideo();
-          if (vid && vid.paused) {
-            vid.play().catch(function() {});
-          }
-          if (!userExplicitlyMuted && vid) {
-            vid.muted = false;
-          }
+          if (vid && vid.paused) vid.play().catch(function() {});
         }
       });
+
       window.addEventListener('pageshow', function() {
         const vid = getActiveVideo();
-        if (vid && vid.paused) {
-          vid.play().catch(function() {});
-        }
+        if (vid && vid.paused) vid.play().catch(function() {});
       });
 
-      // Resize handling
       window.addEventListener('resize', function() {
         const vid = getActiveVideo();
-        if (vid && vid.paused) {
-          vid.play().catch(function() {});
-        }
-        if (!userExplicitlyMuted && vid) {
-          vid.muted = false;
-        }
+        if (vid && vid.paused) vid.play().catch(function() {});
       });
-
-      // Trigger immediate play with sound
-      playWithSound();
     }
 
     if (document.readyState === 'loading') {
