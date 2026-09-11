@@ -44,6 +44,7 @@
     },
     "why": {
       "type": "golden-hour-why",
+      "disabled": true,
       "settings": {
         "max_width": 2000,
         "text": "<p>Golden Hour was created for those who choose intention over noise.</p>",
