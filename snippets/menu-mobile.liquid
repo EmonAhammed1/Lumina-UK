@@ -179,7 +179,8 @@
         var hash = parts[1];
           var isLuminaWorld = currentPath.indexOf('lumina-world') !== -1 && path.indexOf('lumina-world') !== -1;
           var isTechPage = (currentPath.indexOf('technolog') !== -1 || currentPath.indexOf('tehnolog') !== -1) && (path.indexOf('technolog') !== -1 || path.indexOf('tehnolog') !== -1);
-          if (path === '' || path === currentPath || isLuminaWorld || isTechPage) {
+          var isGoldenHour = currentPath.indexOf('golden-hour') !== -1 && path.indexOf('golden-hour') !== -1;
+          if (path === '' || path === currentPath || isLuminaWorld || isTechPage || isGoldenHour) {
             var targetEl = document.getElementById(hash) || document.querySelector('#' + hash) || document.querySelector('[id*="' + hash + '"]');
             if (targetEl) {
               e.preventDefault();

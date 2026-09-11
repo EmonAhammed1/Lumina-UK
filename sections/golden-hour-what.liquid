@@ -146,6 +146,18 @@
 {%- endstyle -%}
 
 <div class="gh-what-wrap" id="{{ section.id | split: '__' | last }}" data-section-id="{{ section.id }}">
+  <span id="what" style="display:block; position:relative; top:-100px; visibility:hidden;"></span>
+  <span id="about" style="display:block; position:relative; top:-100px; visibility:hidden;"></span>
+  <span id="what-is-lumina-golden-hour" style="display:block; position:relative; top:-100px; visibility:hidden;"></span>
+  <span id="what_is_lumina_golden_hour" style="display:block; position:relative; top:-100px; visibility:hidden;"></span>
+  <span id="what-is-golden-hour" style="display:block; position:relative; top:-100px; visibility:hidden;"></span>
+  <span id="what_is_golden_hour" style="display:block; position:relative; top:-100px; visibility:hidden;"></span>
+  <span id="ce-este-lumina-golden-hour" style="display:block; position:relative; top:-100px; visibility:hidden;"></span>
+  <span id="ce_este_lumina_golden_hour" style="display:block; position:relative; top:-100px; visibility:hidden;"></span>
+  <span id="ce-este-golden-hour" style="display:block; position:relative; top:-100px; visibility:hidden;"></span>
+  <span id="ce_este_golden_hour" style="display:block; position:relative; top:-100px; visibility:hidden;"></span>
+  <span id="ce-este" style="display:block; position:relative; top:-100px; visibility:hidden;"></span>
+  <span id="ce_este" style="display:block; position:relative; top:-100px; visibility:hidden;"></span>
   <div class="gh-what-image-col">
     {%- if section.settings.main_image != blank -%}
       <img src="{{ section.settings.main_image | image_url: width: 1600 }}" class="gh-what-video" alt="{{ section.settings.heading | escape }}" loading="lazy">
