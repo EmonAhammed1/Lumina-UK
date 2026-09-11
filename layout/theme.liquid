@@ -91,6 +91,19 @@
       render 'account-drawer-custom'
       render 'header-js' 
     -%}
-   
+    <script>
+      (function() {
+        document.addEventListener('click', function(e) {
+          var a = e.target.closest('a[href*="golden-hour"]');
+          if (a) {
+            try {
+              sessionStorage.setItem('gh_play_sound', 'true');
+              var ctx = new (window.AudioContext || window.webkitAudioContext)();
+              if (ctx && ctx.state === 'suspended') { ctx.resume(); }
+            } catch(err) {}
+          }
+        }, { capture: true, passive: true });
+      })();
+    </script>
   </body>
 </html>
