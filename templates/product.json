@@ -134,7 +134,7 @@
         "f4c1b859-6506-4354-b686-25d6efffda01": {
           "type": "content",
           "settings": {
-            "title_tab": "Rezultate clinice",
+            "title_tab": "Clinical results",
             "metafield_source": "rezultate_clinice",
             "answer_content": "",
             "page": ""
@@ -169,7 +169,10 @@
         "marginsection": "0px 0px 0px 0px",
         "marginmobile": "0px 0px 0px 0px",
         "show_social_right": true,
-        "social_right_text": "Artistic images (TBC) may be associated with social media posts."
+        "social_right_text": "Artistic images (TBC) may be associated with social media posts.",
+        "social_img_1": "shopify://shop_images/PEPTIDE.jpg",
+        "social_img_2": "shopify://shop_images/CENTELLA.jpg",
+        "social_img_3": "shopify://shop_images/HYALURONIC.jpg"
       }
     },
     "exp-transformation": {
@@ -622,6 +625,32 @@
         "show_button_icon": true
       }
     },
+    "1789626709aa382c39": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_q6peph": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_q6peph"
+      ],
+      "settings": {
+        "animation": "",
+        "setwidth": "full",
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "60px 0px 60px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px",
+        "bgsection": "#000000"
+      }
+    },
     "tech_mockup_hero_tiBdYQ": {
       "type": "tech-mockup-hero",
       "name": "Mockup - Hero",
@@ -632,7 +661,16 @@
         "title": "IT STARTS WITH A RITUAL",
         "text": "Nanofibers. Active ingredients. Rituals created for the moments when you choose to take care of yourself. Discover the Lumina Europa collection and find the right ritual for you.",
         "btn_label": "EXPLORE THE COLLECTION",
-        "btn_link": "shopify://collections"
+        "btn_link": "shopify://collections",
+        "min_height_desktop": 0,
+        "min_height_tablet": 0,
+        "min_height_mobile": 0,
+        "padding_top_desktop": 24,
+        "padding_bottom_desktop": 24,
+        "padding_top_tablet": 20,
+        "padding_bottom_tablet": 20,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 20
       }
     }
   },
@@ -652,6 +690,7 @@
     "product-recent",
     "continua_ritualul_K3qkFh",
     "protocoale_complete_7L7mXw",
+    "1789626709aa382c39",
     "tech_mockup_hero_tiBdYQ"
   ]
 }

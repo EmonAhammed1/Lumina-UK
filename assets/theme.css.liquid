@@ -11620,8 +11620,39 @@ blockquote::before {
 .jdgm-widget .jdgm-prev-badge[data-average-rating='0.00']{
   display: block !important;
 }
-.jdgm-widget.jdgm-widget{
+/* Force Judge.me review widget to expand wider than the 1200px app limit */
+#judgeme_product_reviews,
+#judgeme_product_reviews[style],
+.jdgm-review-widget,
+.jdgm-review-widget[style],
+.jdgm-widget,
+.jdgm-widget[style],
+.jdgm-rev-widg,
+.jdgm-rev-widg[style],
+.jdgm-widget.jdgm-widget,
+.jdgm-rev-widg.jdgm-rev-widg {
   display: block !important;
+  width: 100% !important;
+  max-width: 1440px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+.apps-section-wrap .container,
+.apps-section-wrap .container-fluid,
+.index-section:has(.jdgm-widget) .container-fluid,
+.index-section:has(.jdgm-review-widget) .container-fluid,
+.index-section:has(.jdgm-widget) .container,
+.index-section:has(.jdgm-review-widget) .container,
+.index-section:has(#judgeme_product_reviews) .container,
+.index-section:has(#judgeme_product_reviews) .container-fluid {
+  max-width: 1440px !important;
+  width: 100% !important;
+  padding-left: clamp(16px, 4vw, 50px) !important;
+  padding-right: clamp(16px, 4vw, 50px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
 }
 .jdgm-preview-badge .jdgm-star.jdgm-star.jdgm--off{
   color:rgba(var(--color-body-text-rgb),.3);

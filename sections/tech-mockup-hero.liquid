@@ -1,13 +1,59 @@
 {% render 'golden-hour-vars' %}
+{%- liquid
+  assign pt_desktop = section.settings.padding_top_desktop
+  if pt_desktop == blank
+    assign pt_desktop = 24
+  endif
+
+  assign pb_desktop = section.settings.padding_bottom_desktop
+  if pb_desktop == blank
+    assign pb_desktop = 24
+  endif
+
+  assign pt_tablet = section.settings.padding_top_tablet
+  if pt_tablet == blank
+    assign pt_tablet = 20
+  endif
+
+  assign pb_tablet = section.settings.padding_bottom_tablet
+  if pb_tablet == blank
+    assign pb_tablet = 20
+  endif
+
+  assign pt_mobile = section.settings.padding_top_mobile
+  if pt_mobile == blank
+    assign pt_mobile = 16
+  endif
+
+  assign pb_mobile = section.settings.padding_bottom_mobile
+  if pb_mobile == blank
+    assign pb_mobile = 20
+  endif
+
+  assign min_h_desktop = section.settings.min_height_desktop
+  if min_h_desktop == blank
+    assign min_h_desktop = 0
+  endif
+
+  assign min_h_tablet = section.settings.min_height_tablet
+  if min_h_tablet == blank
+    assign min_h_tablet = 0
+  endif
+
+  assign min_h_mobile = section.settings.min_height_mobile
+  if min_h_mobile == blank
+    assign min_h_mobile = 0
+  endif
+-%}
 <style>
   #shopify-section-{{ section.id }} .tm-hero-wrap {
     position: relative;
     width: 100%;
-    min-height: 85vh;
+    min-height: {% if min_h_desktop > 0 %}{{ min_h_desktop }}vh{% else %}auto{% endif %};
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 80px 4% 80px 8%;
+    padding: {{ pt_desktop }}px 4% {{ pb_desktop }}px 8%;
     background-color: #000;
     overflow: hidden;
     box-sizing: border-box;
@@ -43,16 +89,16 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gh-text-muted);
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     font-family: sans-serif;
   }
 
   .tm-hero-title {
-    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-size: clamp(2.8rem, 5.5vw, 5.2rem);
     line-height: 1.05;
     font-weight: 300;
     color: var(--gh-golden);
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     font-family: serif;
     text-transform: uppercase;
   }
@@ -61,7 +107,7 @@
     font-size: 16px;
     line-height: 1.6;
     color: var(--gh-text-light);
-    margin-bottom: 40px;
+    margin-bottom: 28px;
     max-width: 450px;
   }
 
@@ -111,7 +157,7 @@
   .tm-hero-media video {
     width: 100%;
     height: auto;
-    max-height: 80vh;
+    max-height: 650px;
     object-fit: contain;
     mix-blend-mode: screen;
     opacity: 1;
@@ -120,25 +166,25 @@
 
   @media screen and (max-width: 991px) {
     #shopify-section-{{ section.id }} .tm-hero-wrap {
-      padding: 60px 4% 60px 6%;
-      min-height: 70vh;
+      padding: {{ pt_tablet }}px 4% {{ pb_tablet }}px 6%;
+      min-height: {% if min_h_tablet > 0 %}{{ min_h_tablet }}vh{% else %}auto{% endif %};
     }
     .tm-hero-title {
-      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
     }
   }
 
   @media screen and (max-width: 768px) {
     #shopify-section-{{ section.id }} .tm-hero-wrap {
-      padding: 40px 20px 48px 20px;
-      min-height: auto;
+      padding: {{ pt_mobile }}px 20px {{ pb_mobile }}px 20px;
+      min-height: {% if min_h_mobile > 0 %}{{ min_h_mobile }}vh{% else %}auto{% endif %};
       display: block;
     }
 
     .tm-hero-inner {
       flex-direction: column;
       align-items: flex-start;
-      gap: 24px;
+      gap: 20px;
       width: 100%;
     }
 
@@ -151,18 +197,18 @@
 
     .tm-hero-subtitle {
       font-size: 12px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .tm-hero-title {
-      font-size: clamp(2.3rem, 8.5vw, 3.2rem);
-      margin-bottom: 18px;
+      font-size: clamp(2.2rem, 8vw, 3rem);
+      margin-bottom: 16px;
     }
 
     .tm-hero-desc {
       font-size: 15px;
       line-height: 1.6;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       max-width: 100%;
     }
 
@@ -176,15 +222,15 @@
       flex: none;
       justify-content: center;
       align-items: center;
-      margin-top: 12px;
+      margin-top: 10px;
     }
 
     .tm-hero-media img,
     .tm-hero-media video {
       width: 100%;
-      max-width: 420px;
+      max-width: 400px;
       height: auto;
-      max-height: 420px;
+      max-height: 400px;
       object-fit: contain;
       margin: 0 auto;
     }
@@ -291,6 +337,112 @@
       "type": "url",
       "id": "btn_link",
       "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Section Height"
+    },
+    {
+      "type": "range",
+      "id": "min_height_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Min Height — Desktop (0 = Auto)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "min_height_tablet",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Min Height — Tablet (0 = Auto)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "min_height_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Min Height — Mobile (0 = Auto)",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Padding — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Padding — Tablet"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_tablet",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_tablet",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Padding — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 20
     }
   ],
   "presets": [
